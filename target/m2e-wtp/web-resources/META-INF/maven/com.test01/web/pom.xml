@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.EsgGames</groupId>
+	<groupId>com.test01</groupId>
 	<artifactId>web</artifactId>
 	<name>EsgGames</name>
 	<packaging>war</packaging>
@@ -91,7 +91,13 @@
 			<version>1</version>
 		</dependency>
 
-	
+		<!-- Servlet -->
+		<!-- <dependency> -->
+		<!-- <groupId>javax.servlet</groupId> -->
+		<!-- <artifactId>servlet-api</artifactId> -->
+		<!-- <version>2.5</version> -->
+		<!-- <scope>provided</scope> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -122,7 +128,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.17</version>
+			<version>8.0.28</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
