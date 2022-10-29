@@ -39,7 +39,7 @@
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="${pageContext.request.contextPath }/index">
-				<img src="${pageContext.request.contextPath }/resources/img/ESGlogo.png" alt="">
+				<img src="${pageContext.request.contextPath }/resources/img/esglogo.png" alt="">
 			</a>
 			<div class="user-panel">
 				<a href="#">Login</a>  /  <a href="#">Register</a>
