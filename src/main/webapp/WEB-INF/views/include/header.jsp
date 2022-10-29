@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Game Warrior Template</title>
+	<title>EsgGames</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Game Warrior Template">
 	<meta name="keywords" content="warrior, game, creative, html">
@@ -39,7 +39,7 @@
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="${pageContext.request.contextPath }/index">
-				<img src="${pageContext.request.contextPath }/resources/img/logo.png" alt="">
+				<img src="${pageContext.request.contextPath }/resources/img/ESGlogo.png" alt="">
 			</a>
 			<div class="user-panel">
 				<a href="#">Login</a>  /  <a href="#">Register</a>
@@ -51,11 +51,39 @@
 			<!-- site menu -->
 			<nav class="main-menu">
 				<ul>
-					<li><a href="${pageContext.request.contextPath }/index">Home</a></li>
-					<li><a href="${pageContext.request.contextPath }/review">Games</a></li>
-					<li><a href="${pageContext.request.contextPath }/categories">Blog</a></li>
+					<li><a href="${pageContext.request.contextPath }/index">Home</a>
+					
+					<li class="GameList">
+					<a  href="${pageContext.request.contextPath }/review">Games</a>
+					
+					<ul class="Gsubmenu" >
+					
+						<li>
+					   <a href="${pageContext.request.contextPath }/review">lol</a>
+					   </li>
+					   
+					   <li>
+					   <a href="${pageContext.request.contextPath }/review">Maple</a>
+					   </li>
+					   
+					   <li>
+					   <a href="${pageContext.request.contextPath }/review">StarCraft</a>
+					   </li>
+					   
+					    <li>
+					   <a href="${pageContext.request.contextPath }/review">Lost Ark</a>
+					   </li>
+					   
+					</ul>
+					
+					
+					</li>
+					
+					<li >
+					 <a href="${pageContext.request.contextPath }/categories">Trade</a>
+					</li>
 					<li><a href="${pageContext.request.contextPath }/community">Forums</a></li>
-					<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>
+					<li><a href="${pageContext.request.contextPath }/contact">회원가입</a></li>
 				</ul>
 			</nav>
 		</div>

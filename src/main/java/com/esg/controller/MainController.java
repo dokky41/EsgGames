@@ -1,4 +1,4 @@
-package com.esg.web;
+package com.esg.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,6 @@ public class MainController {
 		
 		log.info("singleblog페이지 실행");
 	}
-	
 	
 	
 	
