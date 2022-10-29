@@ -21,7 +21,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/style.css"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/animate.css"/>
 
-
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -39,7 +38,7 @@
 		<div class="container">
 			<!-- logo -->
 			<a class="site-logo" href="${pageContext.request.contextPath }/index">
-				<img src="${pageContext.request.contextPath }/resources/img/esglogo.png" alt="">
+				<img src="${pageContext.request.contextPath }/resources/img/logo.png" alt="">
 			</a>
 			<div class="user-panel">
 				<a href="#">Login</a>  /  <a href="#">Register</a>
@@ -59,19 +58,19 @@
 					<ul class="Gsubmenu" >
 					
 						<li>
-					   <a href="${pageContext.request.contextPath }/review">lol</a>
+					   <a href="${pageContext.request.contextPath }/review">리그오브레전드</a>
 					   </li>
 					   
 					   <li>
-					   <a href="${pageContext.request.contextPath }/review">Maple</a>
+					   <a href="${pageContext.request.contextPath }/review">메이플스토리</a>
 					   </li>
 					   
 					   <li>
-					   <a href="${pageContext.request.contextPath }/review">StarCraft</a>
+					   <a href="${pageContext.request.contextPath }/review">배틀그라운드</a>
 					   </li>
 					   
 					    <li>
-					   <a href="${pageContext.request.contextPath }/review">Lost Ark</a>
+					   <a href="${pageContext.request.contextPath }/review">로스트아크</a>
 					   </li>
 					   
 					</ul>
