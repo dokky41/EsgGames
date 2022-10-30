@@ -301,8 +301,13 @@ ol {
 }
 
 /* 변경 */
+.Gsubmenu li a{
 
+color: white !important;
+	
+}
 .Gsubmenu {
+
 display:none;  /* 평상시에는 서브메뉴가 안보이게 하기 */
 
 }
@@ -318,6 +323,10 @@ z-index: 10;
 padding-right: 20px;
 
 }
+
+
+
+
 
 
 /* 변경 */	

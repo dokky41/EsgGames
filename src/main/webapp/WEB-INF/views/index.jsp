@@ -7,24 +7,47 @@
 	<!-- Hero section -->
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/slider-1.jpg">
+			<div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/sliderlol.jpg">
 				<div class="hs-text">
 					<div class="container">
-						<h2>The Best <span>Games</span> Out There</h2>
+						<h2>리그 오브 레전드 </h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
-						<a href="#" class="site-btn">Read More</a>
+						<a href="#" class="site-btn">GO!</a>
 					</div>
 				</div>
 			</div>
-			<div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/slider-2.jpg">
+
+			
+			<div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/slidermaple.jpg">
 				<div class="hs-text">
 					<div class="container">
-						<h2>The Best <span>Games</span> Out There</h2>
+						<h2>메이플스토리</h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
-						<a href="#" class="site-btn">Read More</a>
+						<a href="#" class="site-btn">GO!</a>
 					</div>
 				</div>
 			</div>
+			
+						<div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/sliderbag.jpg">
+				<div class="hs-text">
+					<div class="container">
+						<h2>배틀 그라운드 </h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
+						<a href="#" class="site-btn">GO!</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/sliderlostark.jpg">
+				<div class="hs-text">
+					<div class="container">
+						<h2> <span>로스트 아크</span> </h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
+						<a href="#" class="site-btn">GO!</a>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 	</section>
 	<!-- Hero section end -->
