@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.esg.web">
+	<logger name="com.esg.controller">
 		<level value="info" />
 	</logger>
 	
