@@ -50,10 +50,10 @@
 			<!-- site menu -->
 			<nav class="main-menu">
 				<ul>
-					<li><a href="${pageContext.request.contextPath }/index">Home</a>
+					<li><a href="${pageContext.request.contextPath }/index">메인</a>
 					
 					<li class="GameList">
-					<a  href="${pageContext.request.contextPath }/review">Games</a>
+					<a  href="${pageContext.request.contextPath }/review">커뮤니티</a>
 					
 					<ul class="Gsubmenu" >
 					
@@ -79,9 +79,10 @@
 					</li>
 					
 					<li >
-					 <a href="${pageContext.request.contextPath }/categories">Trade</a>
+					 <a href="${pageContext.request.contextPath }/categories">거래</a>
 					</li>
-					<li><a href="${pageContext.request.contextPath }/community">Forums</a></li>
+					<li><a href="${pageContext.request.contextPath }/community">고객센터</a></li>
+					
 					<li><a href="${pageContext.request.contextPath }/contact">회원가입</a></li>
 				</ul>
 			</nav>

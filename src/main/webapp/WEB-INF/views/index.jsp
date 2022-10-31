@@ -11,7 +11,9 @@
 				<div class="hs-text">
 					<div class="container">
 						<h2>리그 오브 레전드 </h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
+						<p> 라이엇 게임즈에서 개발 및 서비스하는 
+						<br>멀티플레이어 온라인 배틀 아레나 게임입니다. 
+						<br>게임정보를 공유하고 실력을 향상 시켜보세요!</p>
 						<a href="#" class="site-btn">GO!</a>
 					</div>
 				</div>
@@ -22,7 +24,9 @@
 				<div class="hs-text">
 					<div class="container">
 						<h2>메이플스토리</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
+						<p> 다채로운 필드에서의 여행과 모험을 할수있는
+						<br>국내 TOP10 MMORPG게임입니다. 
+						<br>게임정보를 공유하고 쉽게 육성해보세요!</p>
 						<a href="#" class="site-btn">GO!</a>
 					</div>
 				</div>
@@ -32,7 +36,9 @@
 				<div class="hs-text">
 					<div class="container">
 						<h2>배틀 그라운드 </h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
+						<p> 다양한 전장에서 최후의 1인이 되기 위한 
+						<br>생존사투를 벌이는 FPS게임입니다.
+						<br>게임정보를 공유하고 치킨을 획득해보세요!</p>
 						<a href="#" class="site-btn">GO!</a>
 					</div>
 				</div>
@@ -41,8 +47,10 @@
 			<div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/sliderlostark.jpg">
 				<div class="hs-text">
 					<div class="container">
-						<h2> <span>로스트 아크</span> </h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada <br> lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. <br>Suspendisse cursus faucibus finibus.</p>
+						<h2> 로스트 아크 </h2>
+						<p> 다채로운 필드에서의 여행과 모험을 할수있는
+						<br>국내 TOP10 MMORPG게임입니다. 
+						<br>게임정보를 공유하고 쉽게 육성해보세요!</p>
 						<a href="#" class="site-btn">GO!</a>
 					</div>
 				</div>
@@ -55,7 +63,7 @@
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">Latest News</div>
+		<div class="ln-title">최근 소식</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
 				<div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
