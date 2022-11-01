@@ -78,9 +78,36 @@
 					
 					</li>
 					
-					<li >
+					<li class="GameList">
 					 <a href="${pageContext.request.contextPath }/categories">거래</a>
+					 
+					 
+					 <ul class="Gsubmenu2" >
+					
+						<li>
+					   <a href="${pageContext.request.contextPath }/review">T리그오브레전드</a>
+					   </li>
+					   
+					   <li>
+					   <a href="${pageContext.request.contextPath }/review">T메이플스토리</a>
+					   </li>
+					   
+					   <li>
+					   <a href="${pageContext.request.contextPath }/review">T배틀그라운드</a>
+					   </li>
+					   
+					    <li>
+					   <a href="${pageContext.request.contextPath }/ydTrBoard/trLostArk">T로스트아크</a>
+					   </li>
+					   
+					</ul>
+					 
 					</li>
+					
+					
+					
+					
+					
 					<li><a href="${pageContext.request.contextPath }/community">고객센터</a></li>
 					
 					<li><a href="${pageContext.request.contextPath }/contact">회원가입</a></li>
