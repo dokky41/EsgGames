@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,eclipse,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse,windows
 
+
 lecture
 target
 pom.properties
@@ -125,3 +126,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride

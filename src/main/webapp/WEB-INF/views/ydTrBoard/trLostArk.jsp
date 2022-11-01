@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -10,9 +11,18 @@
 		<div class="ln-title">로아 뉴스</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
-				<div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+				<div class="nt-item">
+				
+				
+				<c:forEach var="list" items="${LoaNews}" >
+				
+					<span class="new">news</span>
+					<a style="color: white !important;" href="https://m-lostark.game.onstove.com${list.RoaLink}">${list.RoaNews}</a> 
+					&nbsp; &nbsp;&nbsp;
+				
+				</c:forEach>
+				
+				 </div>
 			</div>
 		</div>
 	</div>
@@ -26,7 +36,7 @@
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
 						<h2>로아 거래소</h2>
-						<p>게임머니 및 아이템 거래</p>
+						<p> &nbsp; 게임머니 및 아이템 거래</p>
 					</div>
 				</div>
 			</div>
@@ -60,7 +70,7 @@
 							<div class="post-content">
 								<h5>James Smith<span>posted an update</span></h5>
 								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
+								<p>1Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
 							</div>
 						</div>
 					</li>
