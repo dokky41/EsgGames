@@ -31,46 +31,55 @@ pageEncoding="UTF-8"%>
 
 <!-- ê²ìí -->
 <article>
-<h1>게시판 작성 </h1>
-<form action="${pageContext.request.contextPath}/board/center/write" method="post">
-<input type="hidden" value="${membervo.userid}" name="userid">
+<h1>게시판</h1>
 <table id="notice">
-
-	<tr>
-		<th class="ttitle" colspan="5">게시판 작성 </th>
-	</tr>
-
-    <tr>
-    	<td>제목</td>
-        <td><input type="text" size="25" name="subject"> </td>
-    </tr>
-
-	<tr>
- 		<td>내용</td>
-	    <td><textarea rows="15" cols="27" name="content"></textarea> </td>
-    </tr>
- 
-     <tr>
-		<td>비밀번호</td>
-	    <td><input type="password" size="25" name="boardpw"></td>
-    </tr>
+<tr><th class="tno">No.</th>
+    <th class="twrite">Title</th>
+    <th class="twrite">Writer</th>
+    <th class="tdate">Date</th>
+    <th class="tread">Read</th></tr>
+    
+<%-- <tr><td>${boardList}</td><td class="left">${boardList[0]}</td> --%>
+<%--     <td>${boardList[0].getContent()}</td><td>${boardList[0].getNum()}</td><td>15</td></tr> --%>
  
  
+ <c:forEach var="board" items="${boardList }">
+ 
+ <tr>
+ 	<td>${board.num}</td>
+
+ 	<td>
+<%--  		<input type="hidden" value="${board.num }" name="num"> --%>
+ 		<a href="${pageContext.request.contextPath }/board/center/read?num=${board.num}">${board.subject}</a>
+ 	</td>
+ 
+ 	<td>${board.userid}</td>
+
+ 	<td>${board.date}</td>
+
+ 	<td>${board.readcount}</td>
+ 	
+  </tr>
+ 
+ </c:forEach>
+ 
+ 
+ 
+ 
+
 </table>
-
 <div id="table_search">
-<input type="submit" value="글쓰기" class="btn">
+
+<a href="${pageContext.request.contextPath}/board/center/write" class="btn" >글쓰기</a>
+
+<input type="text" name="search" class="input_box">
+<input type="button" value="search" class="btn">
+
+
 </div>
-
-
-</form>
-
-
-
-
-
-
 <div class="clear"></div>
+
+
 <div id="page_control">
 <a href="#">Prev</a>
 <a href="#">1</a><a href="#">2</a><a href="#">3</a>
@@ -79,9 +88,10 @@ pageEncoding="UTF-8"%>
 <a href="#">10</a>
 <a href="#">Next</a>
 </div>
+
+
+
 </article>
-<!-- ê²ìí -->
-<!-- ë³¸ë¬¸ë¤ì´ê°ë ê³³ -->
 <div class="clear"></div>
 
 <jsp:include page="../include/footer.jsp"></jsp:include>

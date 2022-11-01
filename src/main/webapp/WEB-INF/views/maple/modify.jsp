@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,9 @@ pageEncoding="UTF-8"%>
 <title>Insert title here</title>
 <link href="${pageContext.request.contextPath }" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }" rel="stylesheet" type="text/css">
+
+
+
 </head>
 
 <body>
@@ -31,35 +35,57 @@ pageEncoding="UTF-8"%>
 
 <!-- ê²ìí -->
 <article>
-<h1>게시판 작성 </h1>
-<form action="${pageContext.request.contextPath}/board/center/write" method="post">
-<input type="hidden" value="${membervo.userid}" name="userid">
+<h1>게시판 수정</h1>
+<form action="" role="form" method="post">
+
+<input type="hidden" value="${uvo.num}" name="num">
+
 <table id="notice">
 
 	<tr>
-		<th class="ttitle" colspan="5">게시판 작성 </th>
+		<th class="ttitle" colspan="5">게시판 수정 </th>
 	</tr>
 
     <tr>
-    	<td>제목</td>
-        <td><input type="text" size="25" name="subject"> </td>
-    </tr>
+    	<td>글번호 </td>
+        <td>${uvo.num} </td>
+    
 
-	<tr>
- 		<td>내용</td>
-	    <td><textarea rows="15" cols="27" name="content"></textarea> </td>
+ 		<td>조회수 </td>
+	    <td>${uvo.readcount}</td>
     </tr>
  
      <tr>
-		<td>비밀번호</td>
-	    <td><input type="password" size="25" name="boardpw"></td>
+		<td>글쓴이 </td>
+	    <td>${uvo.userid}</td>
+	    
+	    <td>작성일 </td>
+	    <td>
+	    	<fmt:formatDate value="${uvo.date}" pattern="yy-MM-dd"/>
+	    </td>
+    </tr>
+    
+    <tr>
+    	<td>제목 </td>
+    	<td colspan="4">
+    	<input type="text" name="subject" value="${uvo.subject}">
+    	</td>
+    </tr>
+    
+    <tr>
+    	<td>내용 </td>
+    	<td colspan="4">
+    	<input type="text" name="content" value="${uvo.content}">
+    	</td>
     </tr>
  
  
 </table>
 
 <div id="table_search">
-<input type="submit" value="글쓰기" class="btn">
+
+	<button type="submit" class="modify">수정 </button>
+	
 </div>
 
 
