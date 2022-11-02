@@ -1,6 +1,9 @@
 package com.esg.service;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -11,12 +14,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.esg.domain.trLoaVO;
+import com.esg.persistence.TrLoaDAO;
+
 @Service
-public class LoaServiceImpl implements LoaService{
+public class TrLoaServiceImpl implements TrLoaService{
 
 	
-	private static final Logger log = LoggerFactory.getLogger(LoaServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(TrLoaServiceImpl.class);
 
+	@Inject
+	TrLoaDAO dao;
+	
 	@Override
 	public JSONArray getLoaNews() {
 //		log.info("service : 숙소목록불러오기");
@@ -54,6 +63,23 @@ public class LoaServiceImpl implements LoaService{
 //		System.out.println(" roomList : " + roomList);
 
 		return RoaNewsList;
+	}
+
+	//로아 거래 글쓰기
+	@Override
+	public void trLoaboardCreate(trLoaVO vo) {
+
+		dao.trLoaboardCreate(vo);
+
+		
+	}
+
+	//로아 거래글 목록 불러오기
+	@Override
+	public List<trLoaVO> trLoaBoardList() {
+		
+		return dao.trLoaBoardList();
+		
 	}
 	
 	
