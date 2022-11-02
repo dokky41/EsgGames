@@ -41,7 +41,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h3 class="community-top-title">All Members (344)</h3>
+						<h3 class="community-top-title">COMMUNITY </h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
 						<form class="community-filter">
