@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -53,7 +54,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h3 class="community-top-title">All List(344)</h3>
+						<h3 class="community-top-title">All List ( ${fn:length(trLoaList)} )</h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
 					
@@ -65,13 +66,15 @@
 							</label>
 							
 							<select id="fdf5">
-								<option value="#">최신순</option>
-								<option value="#">인기순</option>
-								<option value="#">조회순</option>
-								<option value="#">댓글순</option>
+								<option value="#">게임머니</option>
+								<option value="#">아이템</option>
+								<option value="#">기타</option>
 							</select>
 							
-						</form>
+							</form>
+				
+							
+						
 					</div>
 				</div>
 				
@@ -84,10 +87,12 @@
 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div>
 							<div class="post-content">
 								<h5>${list.userid}<span>${list.date}</span></h5>
-								<div class="post-date">${list.subject }</div>
+								<div class="post-date">
+								<a href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent" >
+								<h3 style="color: yellow;">${list.subject }</h3>
+								</a></div>
 								<p>
 								${list.content }
-								
 								</p>
 							</div>
 						</div>
@@ -99,12 +104,38 @@
 					
 				</ul>
 				
+				<form class="community-filter"
+						 action="${PageContext.request.contextPath}/ydTrBoard/trLostArk" method="post">
 				
-				<div class="site-pagination sp-style-2">
-					<span class="active">01.</span>
-					<a href="#">02.</a>
-					<a href="#">03.</a>
+				<input type="submit" value="검색" style="float: right;">
+				<input type="text" name="searchName" style="float: right;">
+				
+				</form>
+				
+				<div class="site-pagination sp-style-2" style="padding-left: 45% !important;">
+					
+<!-- 			<span class="active">01.</span> -->
+					
+					<c:if test="${pm.prev }">
+				<a href="trLostArk?page=${pm.startPage - 1 }">&laquo;</a>
+			</c:if>
+			
+			<c:forEach var="idx" begin="${pm.startPage }" end="${pm.endPage }">
+				
+					<a href="trLostArk?page=${idx }">${idx }</a>
+			</c:forEach>			
+			
+			<c:if test="${pm.next && pm.endPage >0 }">
+				<a href="trLostArk?page=${pm.endPage + 1 }">&raquo;</a>
+			</c:if>
+					
+					
 				</div>
+				
+			
+				
+				
+				
 			</div>
 		</div>
 	</section>

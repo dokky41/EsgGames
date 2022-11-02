@@ -13,7 +13,7 @@ import com.esg.domain.BoardVO;
 @Service
 public class BoardServiceImpl implements BoardService{
 
-	@Inject //dao°´Ã¼ ÁÖÀÔ
+	@Inject //daoï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	BoardDAO dao;
 	
 	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);

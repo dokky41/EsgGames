@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class trLoaVO {
 
-	private String userid;
+	private String userid; //작성자 아이디
 	private String subject; //글제목
 	private String content; //글내용
 	private int readcount; //글 조회수

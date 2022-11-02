@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.esg.domain.Criteria;
 import com.esg.domain.trLoaVO;
 import com.esg.persistence.TrLoaDAO;
 
@@ -76,11 +77,19 @@ public class TrLoaServiceImpl implements TrLoaService{
 
 	//로아 거래글 목록 불러오기
 	@Override
-	public List<trLoaVO> trLoaBoardList() {
+	public List<trLoaVO> trLoaBoardList(Criteria cri) {
 		
-		return dao.trLoaBoardList();
+		return dao.trLoaBoardList(cri);
 		
 	}
 	
-	
+	@Override
+	public int totalCnt() {
+		return dao.getTotalCnt();
+	}
+
+	@Override
+	public List<trLoaVO> trLoaSearchList(Criteria cri) {
+		return dao.trLoaSearchList(cri);
+	}
 }

@@ -16,9 +16,30 @@
 	
 	<select id="TrLoaList" resultType="trLoaVO">
 	
-		select * from trLoaBoard
+	 <![CDATA[
+ 		select * from trLoaBoard
+ 		where num > 0
+ 		order by num desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
 	
+	<select id="TrLoaSearchList" resultType="trLoaVO">
+	
+	 <![CDATA[
+ 		select * from trLoaBoard
+ 		where (num > 0) && subject like concat('%',#{searchName},'%')
+ 		order by num desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
 	</select>
 	
 	
+	
+	<select id="totalCnt" resultType="int">
+ 	select count(num) from trLoaBoard;
+ 	
+ 	</select>
 </mapper>
