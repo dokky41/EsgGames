@@ -51,60 +51,61 @@
 	<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/community-bg.jpg">
 		<div class="community-warp spad">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<h3 class="community-top-title">All List(344)</h3>
-					</div>
-					<div class="col-md-6 text-lg-right">
+				<ul class="community-post-list">
 					
-						<form class="community-filter"
-						 action="${PageContext.request.contextPath}/ydTrBoard/trLostWrite" method="get">
+					<li>
+						<!-- Page section -->
+	<section class="page-section spad contact-page" style="padding-top: 10px">
+	
+				<div class="col-lg-8" >
+					<div class="contact-form-warp">
+						<h4 class="comment-title" style="color: white;">판매등록</h4>
+						<form class="comment-form" 
+						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post" enctype="multipart/form-data">
 							
-							<label for="fdf5">
-							<input type="submit" value="판매등록">
-							</label>
+							<input type="hidden" value="${id}" name="userid">
 							
-							<select id="fdf5">
-								<option value="#">최신순</option>
-								<option value="#">인기순</option>
-								<option value="#">조회순</option>
-								<option value="#">댓글순</option>
-							</select>
-							
+							<div class="row">
+								<div class="col-md-6">
+									<input type="text" placeholder="상품이름" name="subject">
+								</div>
+								<div class="col-md-6">
+									<input type="email" placeholder="상품개수">
+								</div>
+								
+								<div class="col-md-6">
+									<input type="email" placeholder="캐릭터명">
+								</div>
+								
+								<div class="col-md-6">
+									<input type="email" placeholder="판매금액" >
+								</div>
+								
+								<div class="col-lg-12">
+<!-- 									<input type="text" placeholder="판매금액"> -->
+									
+									<textarea placeholder="상세설명" name="content"></textarea>
+									
+									<button type="button" value=""> </button>
+									<input type="file" name="files" multiple style="color: white;"
+									accept="image/*" >
+									
+									
+									<input type="submit" class="site-btn btn-sm" style="float: right;" value="등록">
+								</div>
+								
+								
+								
+								
+							</div>
 						</form>
 					</div>
 				</div>
-				
-				<ul class="community-post-list">
-					
-					<c:forEach var="list" items="${trLoaList}">
-						
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div>
-							<div class="post-content">
-								<h5>${list.userid}<span>${list.date}</span></h5>
-								<div class="post-date">${list.subject }</div>
-								<p>
-								${list.content }
-								
-								</p>
-							</div>
-						</div>
+			
+	</section>
+	<!-- Page section end -->
 					</li>
-						 
-					
-					</c:forEach>
-					
-					
 				</ul>
-				
-				
-				<div class="site-pagination sp-style-2">
-					<span class="active">01.</span>
-					<a href="#">02.</a>
-					<a href="#">03.</a>
-				</div>
 			</div>
 		</div>
 	</section>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.esg.mapper.TrLoaMapper">
+
+
+	<insert id="TrLoainsert">
+	
+		insert into trLoaBoard (userid,subject,content,ip,file)
+		values(#{userid},#{subject},#{content},#{ip},#{file})
+	
+	</insert>
+	
+	
+	<select id="TrLoaList" resultType="trLoaVO">
+	
+		select * from trLoaBoard
+	
+	</select>
+	
+	
+</mapper>
