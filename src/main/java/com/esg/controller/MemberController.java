@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.esg.domain.MemberVO;
 import com.esg.service.MemberService;
 
-
+@Controller
+@RequestMapping("/board/member/*")
 public class MemberController {
 	
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
@@ -27,10 +29,10 @@ public class MemberController {
 		log.info("login페이지 실행");
 	}
 	
-	@RequestMapping(value="/join", method=RequestMethod.GET)
+	@RequestMapping(value="/Register", method=RequestMethod.GET)
 	public void joinGet() throws Exception {
 		
-		log.info("join페이지 실행");
+		log.info("Register페이지 실행");
 }
 	
 	@RequestMapping(value="/idCheck", method=RequestMethod.POST)
