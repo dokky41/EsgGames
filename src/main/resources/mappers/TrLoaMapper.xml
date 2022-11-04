@@ -8,17 +8,52 @@
 
 	<insert id="TrLoainsert">
 	
-		insert into trLoaBoard (userid,subject,content,ip,file)
-		values(#{userid},#{subject},#{content},#{ip},#{file})
+		insert into trLoaBoard (userid,subject,content,ip,file,goodsCount,chname,price)
+		values(#{userid},#{subject},#{content},#{ip},#{file},#{goodsCount},#{chname},#{price})
 	
 	</insert>
 	
 	
 	<select id="TrLoaList" resultType="trLoaVO">
 	
-		select * from trLoaBoard
+	 <![CDATA[
+ 		select * from trLoaBoard
+ 		where num > 0
+ 		order by num desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
 	
+	<select id="TrLoaSearchList" resultType="trLoaVO">
+	
+	 <![CDATA[
+ 		select * from trloaBoard
+ 		where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'))
+ 		order by num desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
 	</select>
 	
 	
+	
+	<select id="totalCnt" resultType="int">
+ 	select count(num) from trLoaBoard;
+ 	
+ 	</select>
+ 	
+ 	
+ 	<select id="TrLoaContent" resultType="trLoaVO">
+ 	select * from trLoaBoard where num=#{num};
+ 	
+ 	</select>
+ 	
+ 	
+ 	<select id="totalCnt2" resultType="int">
+ 	select count(num) from trLoaBoard
+ 	where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'));
+ 	
+ 	</select>
+ 	
 </mapper>
