@@ -70,15 +70,15 @@
 									<input type="text" placeholder="상품이름" name="subject">
 								</div>
 								<div class="col-md-6">
-									<input type="email" placeholder="상품개수">
+									<input type="text" placeholder="상품개수" name="goodsCount">
 								</div>
 								
 								<div class="col-md-6">
-									<input type="email" placeholder="캐릭터명">
+									<input type="text" placeholder="캐릭터명" name="chname">
 								</div>
 								
 								<div class="col-md-6">
-									<input type="email" placeholder="판매금액" >
+									<input type="text" placeholder="판매금액" name="price">
 								</div>
 								
 								<div class="col-lg-12">
@@ -86,7 +86,7 @@
 									
 									<textarea placeholder="상세설명" name="content"></textarea>
 									
-									<button type="button" value=""> </button>
+									<button type="button" value="" ></button> 
 									<input type="file" name="files" multiple style="color: white;"
 									accept="image/*" >
 									

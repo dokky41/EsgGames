@@ -9,7 +9,11 @@
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">로아 뉴스</div>
+		<a href="https://m-lostark.game.onstove.com/News/Notice/List" target='_blank'>
+		<div class="ln-title">
+		로아 뉴스
+		</div>
+		</a>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
 				<div class="nt-item">
@@ -18,7 +22,8 @@
 				<c:forEach var="list" items="${LoaNews}" >
 				
 					<span class="new">news</span>
-					<a style="color: white !important;" href="https://m-lostark.game.onstove.com${list.RoaLink}">${list.RoaNews}</a> 
+					<a style="color: white !important;" 
+					href="https://m-lostark.game.onstove.com${list.RoaLink}"  target='_blank'>${list.RoaNews}</a> 
 					&nbsp; &nbsp;&nbsp;
 				
 				</c:forEach>
@@ -53,16 +58,17 @@
 		<div class="community-warp spad">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6">
-						<h3 class="community-top-title">All List ( ${fn:length(trLoaList)} )</h3>
+					<div class="col-md-6" >
+						<h3 class="community-top-title" >
+						<a style="color: red;" href="${PageContext.request.contextPath}/ydTrBoard/trLostArk">
+						All List ( ${ listSize} )
+						</a></h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
 					
-						<form class="community-filter"
-						 action="${PageContext.request.contextPath}/ydTrBoard/trLostWrite" method="get">
-							
+		<form class="community-filter" action="${PageContext.request.contextPath}/ydTrBoard/trLostWrite" method="get">
 							<label for="fdf5">
-							<input type="submit" value="판매등록">
+							<input type="submit" value="판매등록" style="height: 43px;">
 							</label>
 							
 							<select id="fdf5">
@@ -86,13 +92,13 @@
 						<div class="community-post">
 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div>
 							<div class="post-content">
-								<h5>${list.userid}<span>${list.date}</span></h5>
-								<div class="post-date">
-								<a href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent" >
-								<h3 style="color: yellow;">${list.subject }</h3>
+								<h5>판매자 : ${list.userid}<span>날짜 : ${list.date}</span> &nbsp;&nbsp;&nbsp;<span>가격 : ${list.price }p</span> </h5> 
+								<div class="post-date" style="text-overflow: ellipsis;">
+								<a href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent?num=${list.num}" >
+								<h4 style="color: white;">제품명 : ${list.subject }</h4>
 								</a></div>
 								<p>
-								${list.content }
+								내용 : ${list.content }
 								</p>
 							</div>
 						</div>
@@ -107,6 +113,7 @@
 				<form class="community-filter"
 						 action="${PageContext.request.contextPath}/ydTrBoard/trLostArk" method="post">
 				
+				<input type="submit" value="전체" style="float: left;">
 				<input type="submit" value="검색" style="float: right;">
 				<input type="text" name="searchName" style="float: right;">
 				

@@ -1,6 +1,5 @@
 package com.esg.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,7 +36,27 @@ public class YdTradeController {
 	
 	
 	@RequestMapping(value="/trLoaContent",method = RequestMethod.GET)
-	public void gettrLoaContent() {
+	public void gettrLoaContent(Model model,HttpSession session
+			,@RequestParam("num") int num) {
+		
+		log.info("LostContent 거래상세페이지 이동");
+
+		
+		//로아 최신뉴스 크롤링
+		JSONArray LoaNews = service.getLoaNews();
+		
+		model.addAttribute("LoaNews", LoaNews);
+		
+		session.setAttribute("userid", "admin");
+		session.setAttribute("userpw", "1234");
+		
+//		log.info(LoaNews+"");
+		//로아 최신뉴스 크롤링
+		
+		//해당글내용 불러오기
+		session.setAttribute("trLoa", service.getTrLoaContent(num));
+		//해당글내용 불러오기
+		
 		
 	}
 	
@@ -54,8 +73,8 @@ public class YdTradeController {
 		
 		model.addAttribute("LoaNews", LoaNews);
 		
-		session.setAttribute("id", "admin");
-		session.setAttribute("pw", "1234");
+		session.setAttribute("userid", "admin");
+		session.setAttribute("userpw", "1234");
 		
 //		log.info(LoaNews+"");
 		//로아 최신뉴스 크롤링
@@ -66,9 +85,15 @@ public class YdTradeController {
 	
 		log.info("어어"+trLoaList+"");
 		
+		
+		
+		model.addAttribute("listSize", service.totalCnt());
+		
 		//로아글목록 저장
 		model.addAttribute("trLoaList",trLoaList);
 		//로아글목록 저장
+		
+		
 		
 		//하단 페이징처리 정보 전달
 		PageMaker pageMaker = new PageMaker();
@@ -93,8 +118,8 @@ public class YdTradeController {
 		
 		model.addAttribute("LoaNews", LoaNews);
 		
-		session.setAttribute("id", "admin");
-		session.setAttribute("pw", "1234");
+		session.setAttribute("userid", "admin");
+		session.setAttribute("userpw", "1234");
 		
 //		log.info(LoaNews+"");
 		//로아 최신뉴스 크롤링
@@ -103,8 +128,12 @@ public class YdTradeController {
 		List<trLoaVO> trLoaList =  service.trLoaSearchList(cri);
 		//로아 거래글 목록 불러오기
 		
-		log.info("ok:"+trLoaList+"");
 		
+		log.info("ok:"+trLoaList+"");
+		//거래글수
+		model.addAttribute("listSize", service.totalCnt2(searchName));
+		//거래글수		
+	
 		//로아글목록 저장
 		model.addAttribute("trLoaList",trLoaList);
 		//로아글목록 저장
@@ -113,7 +142,7 @@ public class YdTradeController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
-		pageMaker.setTotalCount(service.totalCnt());
+		pageMaker.setTotalCount(service.totalCnt2(searchName));
 		
 		model.addAttribute("pm",pageMaker);
 		

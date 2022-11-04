@@ -19,10 +19,15 @@ public interface TrLoaService {
 	List<trLoaVO> trLoaBoardList(Criteria cri);
 
 	//글 전체수
-	public int totalCnt();
+    int totalCnt();
 
 	//글 검색
 	List<trLoaVO> trLoaSearchList(Criteria cri);
+
+	//글 내용보기
+	trLoaVO getTrLoaContent(int num);
+
+	int totalCnt2(String searchName);
 
 
 }

@@ -47,6 +47,17 @@ public class TrLoaDAOImpl implements TrLoaDAO {
 		return sqlSession.selectList(NAMESPACE + ".TrLoaSearchList",cri);
 	}
 
+	//로아글 상세내용
+	@Override
+	public trLoaVO getTrLoaContent(int num) {
+		return sqlSession.selectOne(NAMESPACE + ".TrLoaContent",num);
+	}
+
+	@Override
+	public int getTotalCnt2(String searchName) {
+		return sqlSession.selectOne(NAMESPACE+".totalCnt2",searchName);
+	}
+
 	
 	
 	

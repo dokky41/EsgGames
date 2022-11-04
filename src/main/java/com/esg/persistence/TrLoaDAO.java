@@ -19,4 +19,10 @@ public interface TrLoaDAO {
 	//로아 거래글 목록 검색
 	List<trLoaVO> trLoaSearchList(Criteria cri);
 
+	//로아 거래글 상세내용
+	trLoaVO getTrLoaContent(int num);
+
+	//검색 해당글 갯수
+	int getTotalCnt2(String searchName);
+
 }

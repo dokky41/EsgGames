@@ -92,4 +92,15 @@ public class TrLoaServiceImpl implements TrLoaService{
 	public List<trLoaVO> trLoaSearchList(Criteria cri) {
 		return dao.trLoaSearchList(cri);
 	}
+
+	@Override
+	public trLoaVO getTrLoaContent(int num) {
+		return dao.getTrLoaContent(num);
+	}
+
+	@Override
+	public int totalCnt2(String searchName) {
+		// TODO Auto-generated method stub
+		return dao.getTotalCnt2(searchName);
+	}
 }
