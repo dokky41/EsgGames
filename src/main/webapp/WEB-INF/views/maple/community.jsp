@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -44,7 +45,7 @@
 						<h3 class="community-top-title">COMMUNITY </h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
-						<form class="community-filter">
+						<form class="community-filter" action ="${pageContext.request.contextPath}/maple/contact" method="get">
 							<label for="fdf5"><input type="submit" value="글쓰기" class="btn"></label>
 							<select id="fdf5">
 								<option value="#">All</option>
@@ -54,79 +55,23 @@
 					</div>
 				</div>
 				<ul class="community-post-list">
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div>
-							<div class="post-content">
-								<h5>James Smith<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/8.jpg"></div>
-							<div class="post-content">
-								<h5>Partik Williams<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-								<div class="attachment-file">
-									<img src="img/attachment.jpg" alt="">
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/5.jpg"></div>
-							<div class="post-content">
-								<h5>Cris The Man<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div>
-							<div class="post-content">
-								<h5>James Smith<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/4.jpg"></div>
-							<div class="post-content">
-								<h5>Cris The Man<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/6.jpg"></div>
-							<div class="post-content">
-								<h5>James Smith<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
-							</div>
-						</div>
-					</li>
+				
+				<c:forEach var="list" items="${maplelist}">
+				
+				
+				
 					<li>
 						<div class="community-post">
 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/7.jpg"></div>
 							<div class="post-content">
-								<h5>Maria Doe<span>posted an update</span></h5>
+								<h5>${list.userid}<span>${list.subject}</span></h5>
 								<div class="post-date">June 21, 2018</div>
 								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
 							</div>
 						</div>
 					</li>
+					
+					</c:forEach>
 				</ul>
 				<div class="site-pagination sp-style-2">
 					<span class="active">01.</span>
