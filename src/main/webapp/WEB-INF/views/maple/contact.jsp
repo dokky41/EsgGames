@@ -37,7 +37,7 @@
 	<!-- Page section -->
 	<section class="page-section spad contact-page">
 		<div class="container">
-			<div class="map" id="map-canvas"></div>
+			
 			<div class="row">
 				<div class="col-lg-4 mb-5 mb-lg-0">
 					<h4 class="comment-title">게시판 작성 </h4>

@@ -66,7 +66,7 @@
 							<div class="post-content">
 								<h5>${list.userid}<span>${list.subject}</span></h5>
 								<div class="post-date">June 21, 2018</div>
-								<p>Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
+								<p>${list.content }</p>
 							</div>
 						</div>
 					</li>
