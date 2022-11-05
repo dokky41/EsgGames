@@ -29,7 +29,7 @@ public class mapleboardController {
 	@Inject
 	mapleboardService service;
 	
-	@RequestMapping(value="/maple/community",method=RequestMethod.GET)
+	@RequestMapping(value="/maple/mapleboardlist",method=RequestMethod.GET)
 	public void mapleGet(Model model) throws Exception {
 		
 		log.info("maple페이지 실행");
@@ -40,18 +40,18 @@ public class mapleboardController {
 	}
 	
 	
-	@RequestMapping(value="/maple/contact",method=RequestMethod.GET)
+	@RequestMapping(value="/maple/mapleboardwrite",method=RequestMethod.GET)
 	public void maple1Get() throws Exception{
 		
 		log.info("글쓰기페이지 실행");
 	}
 	
-	@RequestMapping(value="/maple/contact", method=RequestMethod.POST)
+	@RequestMapping(value="/maple/mapleboardwrite", method=RequestMethod.POST)
 	public String maple2Post(mapleboardVO vo) throws Exception {
 		//log.info(vo+"");
 		service.mapleboardwrite(vo);
 		
-		return "redirect:/maple/community";
+		return "redirect:/maple/mapleboardlist";
 	}
 	
 	

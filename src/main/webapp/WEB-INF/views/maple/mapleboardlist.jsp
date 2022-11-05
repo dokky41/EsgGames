@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
+
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
@@ -35,33 +37,46 @@
 
 
 	<!-- Page section -->
-	<section class="page-section spad contact-page">
-		<div class="container">
-			
-			<div class="row">
-				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="comment-title">게시판 작성 </h4>
-					
-				</div>
-				<div class="col-lg-8">
-					<div class="contact-form-warp">
-						<h4 class="comment-title">글쓰기 </h4>
-						<form class="comment-form" action="${pageContext.request.contextPath}/maple/contact" method="post" >
-							<div class="row">
-								<div class="col-md-6">
-									<input type="text" placeholder="아이디를 입력하세요. " name="userid">
-								</div>
-								<div class="col-md-6">
-									<input type="text" placeholder="비밀번호 입력하세요. " name="boardpw">
-								</div>
-								<div class="col-lg-12">
-									<input type="text" placeholder="제목을 입력하세요.  " name="subject">
-									<textarea placeholder="내용을 입력하세요.  " name="content"></textarea>
-									<button class="site-btn btn-sm">등록 </button>
-								</div>
-							</div>
+	<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/maple/2.jpg">
+		<div class="community-warp spad">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h3 class="community-top-title">COMMUNITY </h3>
+					</div>
+					<div class="col-md-6 text-lg-right">
+						<form class="community-filter" action ="${pageContext.request.contextPath}/maple/mapleboardwrite" method="get">
+							<label for="fdf5"><input type="submit" value="글쓰기" class="btn"></label>
+							<select id="fdf5">
+								<option value="#">All</option>
+								<option value="#">Everything</option>
+							</select>
 						</form>
 					</div>
+				</div>
+				<ul class="community-post-list">
+				
+				<c:forEach var="list" items="${maplelist}">
+				
+				
+				
+					<li>
+						<div class="community-post">
+							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/7.jpg"></div>
+							<div class="post-content">
+								<h5>${list.userid}<span>${list.subject}</span></h5>
+								<div class="post-date">June 21, 2018</div>
+								<p>${list.content }</p>
+							</div>
+						</div>
+					</li>
+					
+					</c:forEach>
+				</ul>
+				<div class="site-pagination sp-style-2">
+					<span class="active">01.</span>
+					<a href="#">02.</a>
+					<a href="#">03.</a>
 				</div>
 			</div>
 		</div>
@@ -69,8 +84,6 @@
 	<!-- Page section end -->
 
 
-
-	
 <!-- 푸터부분 -->
 <jsp:include page="../include/footer.jsp"/>
 <!-- 푸터부분 -->
