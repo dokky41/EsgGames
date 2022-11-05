@@ -25,4 +25,10 @@ public interface TrLoaDAO {
 	//검색 해당글 갯수
 	int getTotalCnt2(String searchName);
 
+	//해당글 수정
+	void getTrLoaModify(trLoaVO vo);
+
+	//해당글 삭제
+	void getTrLoaDelete(int num);
+
 }

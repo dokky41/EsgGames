@@ -56,4 +56,18 @@
  	
  	</select>
  	
+ 	<update id="TrLoaModify">
+ 		update trLoaBoard set subject=#{subject},content=#{content},file=#{file},goodsCount=#{goodsCount},
+ 		chname=#{chname},price=#{price}
+ 		where num=#{num}
+ 	</update>
+ 	
+ 	<delete id="TrLoaDelete">
+ 		
+ 		delete from trLoaBoard
+ 		where num=#{num}
+ 	
+ 	</delete>
+ 	
+ 	
 </mapper>
