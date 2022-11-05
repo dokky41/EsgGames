@@ -58,6 +58,20 @@ public class TrLoaDAOImpl implements TrLoaDAO {
 		return sqlSession.selectOne(NAMESPACE+".totalCnt2",searchName);
 	}
 
+	//글 수정
+	@Override
+	public void getTrLoaModify(trLoaVO vo) {
+		sqlSession.update(NAMESPACE+".TrLoaModify",vo);
+		
+	}
+
+	//글 삭제
+	@Override
+	public void getTrLoaDelete(int num) {
+		sqlSession.delete(NAMESPACE+".TrLoaDelete",num);
+		
+	}
+
 	
 	
 	

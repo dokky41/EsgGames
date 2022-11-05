@@ -200,4 +200,68 @@ public class YdTradeController {
 	}
 	
 	
+	
+	
+	@RequestMapping(value="/trLostModify",method=RequestMethod.GET)
+	public void gettrLostModify(Model model,HttpSession session,
+			@RequestParam("num") int num) {
+		
+		log.info("trLostModify 거래글 수정페이지로 이동");
+		
+		//로아 최신뉴스 크롤링
+		JSONArray LoaNews = service.getLoaNews();
+		
+		model.addAttribute("LoaNews", LoaNews);
+		
+		log.info(LoaNews+"");
+		//로아 최신뉴스 크롤링
+		
+		//해당글내용 불러오기
+		session.setAttribute("trLoa", service.getTrLoaContent(num));
+		//해당글내용 불러오기
+		
+		
+	}
+	
+	
+	@RequestMapping(value="/trLostModify",method=RequestMethod.POST)
+	public String posttrLostModify(Model model,HttpSession session,
+			@RequestParam("num") int num,trLoaVO vo) {
+		
+		log.info("trLostModify 거래글 수정하기");
+		
+		
+		//해당글내용 수정
+		service.getTrLoaModify(vo);
+		//해당글내용 수정
+		
+		return "redirect:/ydTrBoard/trLoaContent?num="+num;
+	}
+	
+	
+	@RequestMapping(value="/trLoadelete",method=RequestMethod.POST)
+	public String posttrLoaDelete(@RequestParam("num") int num) {
+		
+		log.info("trLostModify 거래글 삭제하기");
+		
+		
+		//해당글내용 수정
+		service.getTrLoaDelete(num);
+		//해당글내용 수정
+		
+		return "redirect:/ydTrBoard/trLostArk";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

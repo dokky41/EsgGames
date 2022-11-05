@@ -1,9 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ 		
+	var formObj = $('form[role="form"]');
+
+		$('#loadelete').click(function(){
+			
+			 if (!confirm("정말로 삭제 하시겠습니까?")) {
+			        // 취소(아니오) 버튼 클릭 시 이벤트
+			    } else {
+			        // 확인(예) 버튼 클릭 시 이벤트
+			    	formObj.attr("action","/ydTrBoard/trLoadelete?num=${trLoa.num}");
+					
+					formObj.attr("method","post");
+					
+					formObj.submit();
+			    }
+			
+			
+		});
+	
+});
+</script>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
+
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
@@ -84,7 +109,7 @@
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
 						<h4 class="comment-title">Leave a Reply</h4>
-						<form class="comment-form">
+						<form class="comment-form" role="form">
 							<div class="row">
 								<div class="col-md-6">
 									<input type="text" placeholder="Name">
@@ -97,17 +122,27 @@
 									<textarea placeholder="Message"></textarea>
 									<button class="site-btn btn-sm">구매신청</button>
 									
+									<button class="site-btn btn-sm" 
+									onclick="location.href='/ydTrBoard/trLostArk' ;return false;">
+									목록</button>
+									
 									
 <%-- 								<c:if test="${vo.userid==membervo.userid || membervo.userid == 'admin' }"> --%>
 									
-									<button class="site-btn btn-sm">수정</button>
+									<button class="site-btn btn-sm"
+									onclick="location.href='/ydTrBoard/trLostModify?num=${trLoa.num}'; return false;"
+									>수정</button>
+									</form>
+									
+									
+									<button class="site-btn btn-sm" id="loadelete" onclick="javascript:loadelete()">삭제</button>
 <%-- 								</c:if> --%>
 									
 									
 									
 								</div>
 							</div>
-						</form>
+						
 					</div>
 				</div>
 			</div>
