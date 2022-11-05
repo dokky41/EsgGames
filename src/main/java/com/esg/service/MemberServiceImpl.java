@@ -1,9 +1,8 @@
 package com.esg.service;
 
-import java.util.logging.Logger;
-
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +12,14 @@ import com.esg.persistence.MemberDAO;
 @Service
 public class MemberServiceImpl implements MemberService{
 	
-	private static final  log = LoggerFactory.getLogger(MemberServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
 	
 	@Inject
 	MemberDAO dao;
 
 	@Override
 	public int idCheck(String userid) {
+		
 		return dao.idcheck(userid);
 	}
 
@@ -36,7 +36,4 @@ public class MemberServiceImpl implements MemberService{
 		
 		return membervo;
 	}
-	
-	
-
 }

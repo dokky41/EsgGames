@@ -3,15 +3,16 @@ package com.esg.persistence;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.esg.domain.MemberVO;
 
-import jdk.internal.org.jline.utils.Log;
-
-
 @Repository
 public class MemberDAOImpl implements MemberDAO {
+	
+	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
 
 	private static final String NAMESPACE = "com.esg.mapper.MemberMapper";
 	
@@ -21,7 +22,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int idcheck(String userid) {
 		
-			int result = sqlSession.selectOne(NAMESPACE+".idcheck", userid);
+		int result = sqlSession.selectOne(NAMESPACE+".idcheck", userid);
 		
 		return result;
 	}
@@ -33,7 +34,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		sqlSession.insert(NAMESPACE+".insertMember",vo);
 		
-		Log.info("회원가입 완료");
+		log.info("회원가입 완료");
 		
 	}
 
