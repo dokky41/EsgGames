@@ -45,7 +45,7 @@
 						<h3 class="community-top-title">COMMUNITY </h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
-						<form class="community-filter" action ="${pageContext.request.contextPath}/maple/contact" method="get">
+						<form class="community-filter" action ="${pageContext.request.contextPath}/maple/mapleboardwrite" method="get">
 							<label for="fdf5"><input type="submit" value="글쓰기" class="btn"></label>
 							<select id="fdf5">
 								<option value="#">All</option>

@@ -43,11 +43,12 @@ public class MainController {
 		log.info("review페이지 실행");
 	}
 	
-	@RequestMapping(value="/singleblog", method=RequestMethod.GET)
-	public void singleblog() {
+	@RequestMapping(value="/maple/community", method=RequestMethod.GET)
+	public void m() {
 		
-		log.info("singleblog페이지 실행");
+		log.info("m페이지 실행");
 	}
+	
 	
 	
 	

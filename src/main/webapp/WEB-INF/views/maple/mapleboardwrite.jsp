@@ -46,7 +46,7 @@
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
 						<h4 class="comment-title">글쓰기 </h4>
-						<form class="comment-form" action="${pageContext.request.contextPath}/maple/contact" method="post" >
+						<form class="comment-form" action="${pageContext.request.contextPath}/maple/mapleboardwrite" method="post" >
 							<div class="row">
 								<div class="col-md-6">
 									<input type="text" placeholder="아이디를 입력하세요. " name="userid">

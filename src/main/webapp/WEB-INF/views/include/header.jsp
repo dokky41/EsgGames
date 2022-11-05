@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -41,7 +42,15 @@
 				<img src="${pageContext.request.contextPath }/resources/img/logo.png" alt="">
 			</a>
 			<div class="user-panel">
+			
+				<c:if test="${sessionScope.userid==null }">
 				<a href="#">Login</a>  /  <a href="#">Register</a>
+				</c:if>
+				
+				<c:if test="${sessionScope.userid!=null }">
+				<a href="#">${sessionScope.userid} / 내정보</a>
+				</c:if>
+				
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
@@ -78,9 +87,36 @@
 					
 					</li>
 					
-					<li >
+					<li class="GameList">
 					 <a href="${pageContext.request.contextPath }/categories">거래</a>
+					 
+					 
+					 <ul class="Gsubmenu2" >
+					
+						<li>
+					   <a href="${pageContext.request.contextPath }/review">T리그오브레전드</a>
+					   </li>
+					   
+					   <li>
+					   <a href="${pageContext.request.contextPath }/review">T메이플스토리</a>
+					   </li>
+					   
+					   <li>
+					   <a href="${pageContext.request.contextPath }/review">T배틀그라운드</a>
+					   </li>
+					   
+					    <li>
+					   <a href="${pageContext.request.contextPath }/ydTrBoard/trLostArk">T로스트아크</a>
+					   </li>
+					   
+					</ul>
+					 
 					</li>
+					
+					
+					
+					
+					
 					<li><a href="${pageContext.request.contextPath }/community">고객센터</a></li>
 					
 					<li><a href="${pageContext.request.contextPath }/contact">회원가입</a></li>
