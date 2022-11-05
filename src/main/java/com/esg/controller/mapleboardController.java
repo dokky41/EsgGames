@@ -29,7 +29,7 @@ public class mapleboardController {
 	@Inject
 	mapleboardService service;
 	
-	@RequestMapping(value="/maple/community",method=RequestMethod.GET)
+	@RequestMapping(value="/maple/mapleboardlist",method=RequestMethod.GET)
 	public void mapleGet(Model model) throws Exception {
 		
 		log.info("maple페이지 실행");
@@ -51,7 +51,7 @@ public class mapleboardController {
 		//log.info(vo+"");
 		service.mapleboardwrite(vo);
 		
-		return "redirect:/maple/community";
+		return "redirect:/maple/mapleboardlist";
 	}
 	
 	
