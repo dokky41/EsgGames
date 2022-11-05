@@ -23,4 +23,39 @@
                 #{CREA_ID}
         );
 	</insert>
+	<select id="getBoard" resultType="LOLBoardVO">
+
+            SELECT
+                *
+            FROM
+                lol_board
+            WHERE
+                IDX = #{IDX};
+    </select>
+    
+    <update id="updateBoardCnt">
+            UPDATE
+                lol_board
+            SET
+                HIT_CNT = HIT_CNT + 1
+            WHERE
+                IDX = #{IDX};
+    </update>
+    
+    <update id="update">
+            UPDATE
+                lol_board
+            SET
+                TITLE = #{TITLE},
+                CONTENTS = #{CONTENTS}
+            WHERE
+                IDX = #{IDX}
+                and
+                CREA_ID = #{CREA_ID}
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM lol_board
+    	WHERE IDX = #{IDX}
+    </delete>
 </mapper>

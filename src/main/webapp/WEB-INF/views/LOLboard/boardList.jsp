@@ -41,7 +41,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h3 class="community-top-title">총글수</h3>
+						<h3 class="community-top-title">전체</h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
 						<form class="community-filter">
@@ -57,7 +57,7 @@
                           <c:forEach items="${boardList }" var="bList">
                               <tr>
                               <th scope="row">${bList.IDX }</th>
-                              <td>${bList.TITLE }</td>
+                              <td><a href="/LOLboard/boardRead?IDX=${bList.IDX}" class="text-dark">${bList.TITLE }</a></td>
                               <td>${bList.CREA_ID }</td>
                               <td>${bList.CREA_DATE }</td>
                               <td>${bList.HIT_CNT }</td>
