@@ -8,7 +8,7 @@
 	<insert id="createBoard">
 	
 		insert into tbl_mapleboard (userid,boardpw,subject,content,ip)
-		values(#{userid},1,#{subject},1,1)
+		values(#{userid},#{boardpw},#{subject},#{content},#{ip})
 	
 	</insert>
 	

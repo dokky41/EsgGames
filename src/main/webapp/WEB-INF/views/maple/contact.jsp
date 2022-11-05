@@ -6,12 +6,12 @@
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">Latest News</div>
+		<div class="ln-title">Maple ISSUE</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
-				<div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+				<div class="nt-item"><span class="new">HOT</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
+				<div class="nt-item"><span class="strategy">NOTICE</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+				<div class="nt-item"><span class="racing">EVENT</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
 			</div>
 		</div>
 	</div>
@@ -19,12 +19,12 @@
 
 
 	<!-- Page info section -->
-	<section class="page-info-section set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/page-top-bg/5.jpg">
+	<section class="page-info-section set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/maple/1.jpeg">
 		<div class="pi-content">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>Contact us</h2>
+						<h2>MapleStory</h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</p>
 					</div>
 				</div>
@@ -40,41 +40,24 @@
 			<div class="map" id="map-canvas"></div>
 			<div class="row">
 				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="comment-title">Contact us</h4>
-					<p>Odio ultrices ut. Etiam ac erat ut enim maximus accumsan vel ac nisl. Duis feug iat bibendum orci, non elementum urna. Cras sit amet sapien aliquam.</p>
-					<div class="row">
-						<div class="col-md-9">
-							<ul class="contact-info-list">
-								<li><div class="cf-left">Address</div><div class="cf-right">1481 Creekside Lane Avila Beach, CA 931</div></li>
-								<li><div class="cf-left">Phone</div><div class="cf-right">+53 345 7953 32453</div></li>
-								<li><div class="cf-left">E-mail</div><div class="cf-right">yourmail@gmail.com</div></li>
-							</ul>
-						</div>
-					</div>
-					<div class="social-links">
-						<a href="#"><i class="fa fa-pinterest"></i></a>
-						<a href="#"><i class="fa fa-facebook"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>
-						<a href="#"><i class="fa fa-dribbble"></i></a>
-						<a href="#"><i class="fa fa-behance"></i></a>
-						<a href="#"><i class="fa fa-linkedin"></i></a>
-					</div>
+					<h4 class="comment-title">게시판 작성 </h4>
+					
 				</div>
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
-						<h4 class="comment-title">Leave a Reply</h4>
+						<h4 class="comment-title">글쓰기 </h4>
 						<form class="comment-form" action="${pageContext.request.contextPath}/maple/contact" method="post" >
 							<div class="row">
 								<div class="col-md-6">
-									<input type="text" placeholder="Name" name="userid">
+									<input type="text" placeholder="아이디를 입력하세요. " name="userid">
 								</div>
 								<div class="col-md-6">
-									<input type="text" placeholder="Email" name="subject">
+									<input type="text" placeholder="비밀번호 입력하세요. " name="boardpw">
 								</div>
 								<div class="col-lg-12">
-									<input type="text" placeholder="Subject">
-									<textarea placeholder="Message"></textarea>
-									<button class="site-btn btn-sm">Send</button>
+									<input type="text" placeholder="제목을 입력하세요.  " name="subject">
+									<textarea placeholder="내용을 입력하세요.  " name="content"></textarea>
+									<button class="site-btn btn-sm">등록 </button>
 								</div>
 							</div>
 						</form>
