@@ -1,6 +1,8 @@
 package com.esg.persistence;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -35,6 +37,37 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		// TODO Auto-generated method stub
 		sqlSession.insert(NAMESPACE + ".write",vo);
 	}
+
+
+	@Override
+	public void updateBoardCnt(int num) {
+		// TODO Auto-generated method stub
+		log.info("readcount ¡ı∞°");
+		sqlSession.update(NAMESPACE+".updateBoardCnt",num);
+	}
+
+
+	@Override
+	public LOLBoardVO getBoardContent(int num) {
+		// TODO Auto-generated method stub
+		LOLBoardVO vo = sqlSession.selectOne(NAMESPACE+".getBoard",num);
+		return vo;
+	}
+
+
+	@Override
+	public void update(LOLBoardVO vo) {
+		// TODO Auto-generated method stub
+		sqlSession.update(NAMESPACE+".update",vo);
+	}
+
+
+	@Override
+	public void delete(int num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(NAMESPACE+".delete",num);
+	}
+
 	
 
 }

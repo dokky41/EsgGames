@@ -1,6 +1,8 @@
 package com.esg.service;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -31,8 +33,31 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 		
 	}
 
+	@Override
+	public void updateBoardCount(int num) {
+		// TODO Auto-generated method stub
+		dao.updateBoardCnt(num);
+	}
 
-	
+	@Override
+	public LOLBoardVO readBoard(int num) {
+		// TODO Auto-generated method stub
+		LOLBoardVO vo = dao.getBoardContent(num);
+		return vo;
+	}
+
+	@Override
+	public void update(LOLBoardVO vo) {
+		// TODO Auto-generated method stub
+		dao.update(vo);
+	}
+
+	@Override
+	public void deleteBoard(int num) {
+		// TODO Auto-generated method stub
+		dao.delete(num);
+		
+	}
 
 	
 
