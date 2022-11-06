@@ -31,4 +31,7 @@ public interface TrLoaDAO {
 	//해당글 삭제
 	void getTrLoaDelete(int num);
 
+	//조회수 증가
+	void updateTrBoardCount(int num);
+
 }

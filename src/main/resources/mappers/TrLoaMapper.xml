@@ -70,4 +70,13 @@
  	</delete>
  	
  	
+ 	<update id="TrLoaCount">
+ 	
+ 		update trLoaBoard set readcount=readcount+1
+ 		where num=#{num}
+ 	
+ 	</update>
+ 	
+ 	
+ 	
 </mapper>

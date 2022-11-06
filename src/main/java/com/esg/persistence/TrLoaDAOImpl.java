@@ -72,6 +72,12 @@ public class TrLoaDAOImpl implements TrLoaDAO {
 		
 	}
 
+	//글 조회수 증가
+	@Override
+	public void updateTrBoardCount(int num) {
+		sqlSession.delete(NAMESPACE+".TrLoaCount",num);
+	}
+
 	
 	
 	

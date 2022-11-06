@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -63,7 +64,7 @@
 						<form class="comment-form" 
 						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post" enctype="multipart/form-data">
 							
-							<input type="hidden" value="${id}" name="userid">
+							<input type="hidden" value="${sessionScope.userid}" name="userid">
 							
 							<div class="row">
 								<div class="col-md-6">

@@ -11,6 +11,9 @@ $(document).ready(function(){
 			
 			 if (!confirm("정말로 삭제 하시겠습니까?")) {
 			        // 취소(아니오) 버튼 클릭 시 이벤트
+			       
+				 formObj.attr("onsubmit","return false");
+				 
 			    } else {
 			        // 확인(예) 버튼 클릭 시 이벤트
 			    	formObj.attr("action","/ydTrBoard/trLoadelete?num=${trLoa.num}");
@@ -108,18 +111,18 @@ $(document).ready(function(){
 				</div>
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
-						<h4 class="comment-title">Leave a Reply</h4>
+						<h4 class="comment-title">요청사항</h4>
 						<form class="comment-form" role="form">
 							<div class="row">
 								<div class="col-md-6">
-									<input type="text" placeholder="Name">
+									<input type="text" placeholder="닉네임" name="name">
 								</div>
 								<div class="col-md-6">
-									<input type="email" placeholder="Email">
+									<input type="text" placeholder="물품개수">
 								</div>
 								<div class="col-lg-12">
-									<input type="text" placeholder="Subject">
-									<textarea placeholder="Message"></textarea>
+									<input type="text" placeholder="제목">
+									<textarea placeholder="내용"></textarea>
 									<button class="site-btn btn-sm">구매신청</button>
 									
 									<button class="site-btn btn-sm" 
