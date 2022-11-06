@@ -33,6 +33,7 @@ public class TrMapleServiceImpl implements TrMapleService{
 	public List<trMapleVO> trMapleboardList() {
 		// TODO Auto-generated method stub
 		return dao.trMapleboardList();
+		
 	}
 	
 }

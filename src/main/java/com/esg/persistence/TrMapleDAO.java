@@ -12,4 +12,5 @@ public interface TrMapleDAO {
       void trMapleboardCreate(trMapleVO vo);
       
       List<trMapleVO> trMapleboardList();
+      
 }

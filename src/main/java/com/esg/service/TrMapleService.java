@@ -10,6 +10,7 @@ public interface TrMapleService {
 	
 	List<trMapleVO> trMapleboardList();
 	
+	
 
 	
 
