@@ -2,17 +2,20 @@ package com.esg.domain;
 
 import java.sql.Timestamp;
 
-public class BoardVO {
-	private String userid; //글작성자
-	private String boardpw; //글삭제시 필요한 비밀번호
-	private String subject; //글제목
-	private String content; //글내용
-	private int readcount; //글조회수
-	private Timestamp date; //글 생성날짜
-	private String ip;//글 작성ip
-	private String file;//글 첨부파일
-	private int num;//글 고유번호
-
+public class mapleboardVO {
+	//vo
+	
+	private String userid;
+	private String boardpw; 
+	private String subject; 
+	private String content; 
+	private int readcount; 
+	private Timestamp date; 
+	private String ip; 
+	private String file; 
+	private int num; 
+	
+	
 	public String getUserid() {
 		return userid;
 	}
@@ -70,11 +73,14 @@ public class BoardVO {
 	
 	@Override
 	public String toString() {
-		return "LOLboardVO [userid=" + userid + ", boardpw=" + boardpw + ", subject=" + subject + ", content=" + content
+		return "BoardVO [userid=" + userid + ", boardpw=" + boardpw + ", subject=" + subject + ", content=" + content
 				+ ", readcount=" + readcount + ", date=" + date + ", ip=" + ip + ", file=" + file + ", num=" + num
 				+ "]";
 	}
 	
 	
 	
+		
 }
+
+

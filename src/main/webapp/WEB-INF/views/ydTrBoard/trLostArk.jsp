@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -8,19 +9,26 @@
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">로아 뉴스</div>
+		<a href="https://m-lostark.game.onstove.com/News/Notice/List" target='_blank'>
+		<div class="ln-title">
+		로아 뉴스
+		</div>
+		</a>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
 				<div class="nt-item">
 				
-				
+				<!-- 로아뉴스 for문 -->
 				<c:forEach var="list" items="${LoaNews}" >
 				
 					<span class="new">news</span>
-					<a style="color: white !important;" href="https://m-lostark.game.onstove.com${list.RoaLink}">${list.RoaNews}</a> 
+					<a style="color: white !important;" 
+					href="https://m-lostark.game.onstove.com${list.RoaLink}"  target='_blank'>${list.RoaNews}</a> 
 					&nbsp; &nbsp;&nbsp;
 				
 				</c:forEach>
+				<!-- 로아뉴스 for문 -->
+				
 				
 				 </div>
 			</div>
@@ -50,37 +58,122 @@
 		<div class="community-warp spad">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6">
-						<h3 class="community-top-title">All List(344)</h3>
+					<div class="col-md-6" >
+						<h3 class="community-top-title" >
+						<a style="color: black;" href="${PageContext.request.contextPath}/ydTrBoard/trLostArk">
+						전체 ( ${ listSize} )
+						</a></h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
-						<form class="community-filter">
-							<label for="fdf5">Show</label>
+					
+		<form class="community-filter" action="${PageContext.request.contextPath}/ydTrBoard/trLostWrite" method="get">
+							<label for="fdf5">
+							<input type="submit" value="판매등록" style="height: 43px;">
+							</label>
+							
 							<select id="fdf5">
-								<option value="#">Everything</option>
-								<option value="#">Everything</option>
+								<option value="#">게임머니</option>
+								<option value="#">아이템</option>
+								<option value="#">기타</option>
 							</select>
-						</form>
+							
+							</form>
+				
+							
+						
 					</div>
 				</div>
-				<ul class="community-post-list">
-					<li>
+				
+				<ul class="community-post-list" >
+					
+					<li style="margin-bottom: 0; padding: 20px 10px 20px; background: #e3e3e3; " >
 						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div>
-							<div class="post-content">
-								<h5>James Smith<span>posted an update</span></h5>
-								<div class="post-date">June 21, 2018</div>
-								<p>1Lorem ipsum dolor sit amet, cdictum nisl onsectetur adipisc ing ipsum dolor sit ame. Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.Donec venenatis at eros sit amet aliquam. Donec vel orci efficitur, dictum nisl vitae, scelerisque nibh. Curabitur eget ipsum pulvinar nunc gravida interdum. </p>
+<%-- 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div> --%>
+							<div class="post-content" style="padding-left:0;">
+								<h4 style="font-weight: 300px !important;">
+								<span>판매자 </span> 
+								<span style="padding-left: 150px">물품제목 </span> 
+								
+								
+								<span style="float: right; padding-right: 30px">조회수 </span>
+								<span style="float: right; padding-right: 70px">업로드시간 </span> 
+								<span style="float: right; padding-right: 80px">물품가격 </span> 
+								
+								
+								 </h4> 
+								
 							</div>
 						</div>
 					</li>
 					
+					
+					
+					
+					<c:forEach var="list" items="${trLoaList}">
+						
+					<li style="margin-bottom: 0px; padding: 30px 10px 30px; background: white;">
+						<div class="community-post">
+<%-- 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div> --%>
+							<div class="post-content" style="padding-left:0;">
+								<h4>
+								<span>${list.userid } </span> 
+								<a href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent?num=${list.num}" >
+								<span style="padding-left: 100px">${list.subject } </span> 
+								</a>
+								
+								<span style="float: right; padding-right: 60px">${list.readcount } </span>
+								<span style="float: right; padding-right: 60px">
+								
+								<fmt:formatDate value="${list.date }" type="date" dateStyle="long" pattern="yy/MM/dd hh:mm:ss"/>
+								</span> 
+								<span style="float: right; padding-right: 60px">${list.price }p </span> 
+								
+								
+								 </h4> 
+							</div>
+						</div>
+					</li>
+						 
+					
+					</c:forEach>
+					
+					
 				</ul>
-				<div class="site-pagination sp-style-2">
-					<span class="active">01.</span>
-					<a href="#">02.</a>
-					<a href="#">03.</a>
+				
+				<br>
+				<form class="community-filter"
+						 action="${PageContext.request.contextPath}/ydTrBoard/trLostArk" method="post">
+				
+				<input type="submit" value="전체" style="float: left;">
+				<input type="submit" value="검색" style="float: right; ">
+				<input type="text" name="searchName" style="float: right;">
+				
+				</form>
+				
+				<div class="site-pagination sp-style-2" style="padding-left: 45% !important;">
+					
+<!-- 			<span class="active">01.</span> -->
+					
+					<c:if test="${pm.prev }">
+				<a href="trLostArk?page=${pm.startPage - 1 }">&laquo;</a>
+			</c:if>
+			
+			<c:forEach var="idx" begin="${pm.startPage }" end="${pm.endPage }">
+				
+					<a href="trLostArk?page=${idx }">${idx }</a>
+			</c:forEach>			
+			
+			<c:if test="${pm.next && pm.endPage >0 }">
+				<a href="trLostArk?page=${pm.endPage + 1 }">&raquo;</a>
+			</c:if>
+					
+					
 				</div>
+				
+			
+				
+				
+				
 			</div>
 		</div>
 	</section>

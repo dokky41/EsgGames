@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -41,7 +42,15 @@
 				<img src="${pageContext.request.contextPath }/resources/img/logo.png" alt="">
 			</a>
 			<div class="user-panel">
+			
+				<c:if test="${sessionScope.userid==null }">
 				<a href="#">Login</a>  /  <a href="#">Register</a>
+				</c:if>
+				
+				<c:if test="${sessionScope.userid!=null }">
+				<a href="#">${sessionScope.userid} / 내정보</a>
+				</c:if>
+				
 			</div>
 			<!-- responsive -->
 			<div class="nav-switch">
