@@ -115,4 +115,14 @@ public class TrLoaServiceImpl implements TrLoaService{
 	public void getTrLoaDelete(int num) {
 		dao.getTrLoaDelete(num);
 	}
+
+	
+	@Override
+	public void updateTrBoardCount(int num) {
+		dao.updateTrBoardCount(num);
+		
+	}
+	
+	
+	
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -60,8 +60,8 @@
 				<div class="row">
 					<div class="col-md-6" >
 						<h3 class="community-top-title" >
-						<a style="color: red;" href="${PageContext.request.contextPath}/ydTrBoard/trLostArk">
-						All List ( ${ listSize} )
+						<a style="color: black;" href="${PageContext.request.contextPath}/ydTrBoard/trLostArk">
+						전체 ( ${ listSize} )
 						</a></h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
@@ -84,22 +84,52 @@
 					</div>
 				</div>
 				
-				<ul class="community-post-list">
+				<ul class="community-post-list" >
+					
+					<li style="margin-bottom: 0; padding: 20px 10px 20px; background: #e3e3e3; " >
+						<div class="community-post">
+<%-- 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div> --%>
+							<div class="post-content" style="padding-left:0;">
+								<h4 style="font-weight: 300px !important;">
+								<span>판매자 </span> 
+								<span style="padding-left: 150px">물품제목 </span> 
+								
+								
+								<span style="float: right; padding-right: 30px">조회수 </span>
+								<span style="float: right; padding-right: 70px">업로드시간 </span> 
+								<span style="float: right; padding-right: 80px">물품가격 </span> 
+								
+								
+								 </h4> 
+								
+							</div>
+						</div>
+					</li>
+					
+					
+					
 					
 					<c:forEach var="list" items="${trLoaList}">
 						
-					<li>
+					<li style="margin-bottom: 0px; padding: 30px 10px 30px; background: white;">
 						<div class="community-post">
-							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div>
-							<div class="post-content">
-								<h5>판매자 : ${list.userid}<span>날짜 : ${list.date}</span> &nbsp;&nbsp;&nbsp;<span>가격 : ${list.price }p</span> </h5> 
-								<div class="post-date" style="text-overflow: ellipsis;">
+<%-- 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/1.jpg"></div> --%>
+							<div class="post-content" style="padding-left:0;">
+								<h4>
+								<span>${list.userid } </span> 
 								<a href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent?num=${list.num}" >
-								<h4 style="color: white;">제품명 : ${list.subject }</h4>
-								</a></div>
-								<p>
-								내용 : ${list.content }
-								</p>
+								<span style="padding-left: 100px">${list.subject } </span> 
+								</a>
+								
+								<span style="float: right; padding-right: 60px">${list.readcount } </span>
+								<span style="float: right; padding-right: 60px">
+								
+								<fmt:formatDate value="${list.date }" type="date" dateStyle="long" pattern="yy/MM/dd hh:mm:ss"/>
+								</span> 
+								<span style="float: right; padding-right: 60px">${list.price }p </span> 
+								
+								
+								 </h4> 
 							</div>
 						</div>
 					</li>
@@ -110,11 +140,12 @@
 					
 				</ul>
 				
+				<br>
 				<form class="community-filter"
 						 action="${PageContext.request.contextPath}/ydTrBoard/trLostArk" method="post">
 				
 				<input type="submit" value="전체" style="float: left;">
-				<input type="submit" value="검색" style="float: right;">
+				<input type="submit" value="검색" style="float: right; ">
 				<input type="text" name="searchName" style="float: right;">
 				
 				</form>

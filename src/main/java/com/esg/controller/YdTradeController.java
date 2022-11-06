@@ -53,6 +53,10 @@ public class YdTradeController {
 //		log.info(LoaNews+"");
 		//로아 최신뉴스 크롤링
 		
+		//조회수 증가
+		service.updateTrBoardCount(num);
+		
+		
 		//해당글내용 불러오기
 		session.setAttribute("trLoa", service.getTrLoaContent(num));
 		//해당글내용 불러오기

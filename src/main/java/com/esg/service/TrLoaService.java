@@ -36,5 +36,8 @@ public interface TrLoaService {
 	//글삭제
 	void getTrLoaDelete(int num);
 
+	//조회수증가
+	void updateTrBoardCount(int num);
+
 
 }
