@@ -6,21 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="idcheck" parameterType="String" resultType="int">
 	
-		select count(userid) from tbl_member
+		select count(userid) from member
 		where userid=#{userid}
 		
 	</select>
 	
 	<insert id="insertMember">
 	
-		insert into tbl_member (userid,userpw,username,useremail)
-		values(#{userid},#{userpw},#{username},#{useremail})
+		insert into member (userid,userpw,username,useremail,address)
+		values(#{userid},#{userpw},#{username},#{useremail},#{address})
 	
 	</insert>
 	
 	<select id ="loginCheck" resultType="MemberVO">
 	
-		select * from tbl_member
+		select * from member
 		where userid=#{userid} and userpw=#{userpw}
 	
 	</select>

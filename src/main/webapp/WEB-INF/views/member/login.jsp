@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ESG GAMES</title>
 <link href="${pageContext.request.contextPath }/resources/css/default.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/resources/css/subpage.css" rel="stylesheet" type="text/css">
 </head>
@@ -16,29 +16,41 @@
 <div id="sub_img_member"></div>
 <nav id="sub_menu">
 <ul>
-<li><a href="#">Join us</a></li>
-<li><a href="#">Privacy policy</a></li>
+
 </ul>
 </nav>
-<article>
-<h1>로그인</h1>
+<article style="padding-left: 45%;">
+<h2 class="login__fb-title">로그인</h2>
 
 <form action="${pageContext.request.contextPath}/board/member/login" id= "join" method="post">
 <fieldset>
 
-<legend>로그인 페이지</legend>
-<label>User ID</label>
-<input type="text" name="userid"><br>
-<label>Password</label>
-<input type="password" name="userpw"><br>
-</fieldset>
-<div class="clear"></div>
-<div id="buttons">
+<div id="loginWrap" class="loginWrap">
+				<div class="loginUserInfo">
+					<p class="idWrap">
+						<input type="text" title="아이디 입력" value="" maxlength="50" id="user_id" name="user_id" class="inputidpw" placeholder="아이디">
+					</p>
+					<p class="pwWrap">
+						<input type="password" title="비밀번호 입력" value="" id="password" name="password" class="inputidpw" placeholder="비밀번호">
+					</p>
+					<div id="notice" role="tooltip"></div>
+					<input type="hidden" value="68597a4f6ca586b0ba5f9cfecb80d4" id="stoken" name="stoken">
+                                        <input type="hidden" value="" id="comm" name="comm">
+                                        <input type="hidden" value="" id="sid" name="sid">
+					<p id="content"><button id="loginBtn" class="btn btn-primary btn-large" type="submit"><span><i class="fa fa-sign-in"></i> 로그인</span></button></p>
+				</div>
+				<div class="saveid">
+					<div class="btn-group">
+					<label class="txt btn btn-info"><input id="save_login" class="saveLogin" name="save_login" type="checkbox"> <i class="icon-user icon-white"></i>
+					로그인 상태 유지</label>
+					<label class="txt btn btn-info"><input id="save_id" class="saveId" name="save_id" type="checkbox"> <i class="icon-user icon-white"></i>
+					아이디 저장</label>
+					</div>
+				</div>
 
-<input type="submit" value="로그인" class="submit">
-<input type="button" value="Cancel" class="cancel">
-</div>
-</form>
+			</div>
+			</fieldset>
+		</form>
 </article>
 
 <div class="clear"></div>
