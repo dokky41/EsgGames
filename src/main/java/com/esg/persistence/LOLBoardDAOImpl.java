@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.LOLBoardVO;
 
@@ -68,6 +70,12 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		sqlSession.update(NAMESPACE+".delete",num);
 	}
 
-	
+
+	@Override
+	public void insertFile(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(NAMESPACE+".insertFile", map);
+	}
+
 
 }
