@@ -3,13 +3,16 @@ package com.esg.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.esg.domain.LOLBoardVO;
 
 public interface LOLBoardService {
 	//글 목록
 	List<LOLBoardVO> getBoardList();
 	//글 쓰기
-	void insertBoard(LOLBoardVO vo);
+	void insertBoard(LOLBoardVO vo, MultipartHttpServletRequest mpRequest);
 	//조회수 증가
 	void updateBoardCount(int num);
 	//글 정보 불러오기

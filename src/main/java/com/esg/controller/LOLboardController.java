@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esg.domain.LOLBoardVO;
@@ -45,16 +47,16 @@ public class LOLboardController {
 	public void WriteGet() throws Exception{
 		
 		log.info("Write.jsp 실행");
-		
 	}
 	//글 쓰기
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
-    public ModelAndView boardWritePost (LOLBoardVO vo) throws Exception {
+    public ModelAndView boardWritePost (LOLBoardVO vo,MultipartHttpServletRequest mpRequest) throws Exception {
         ModelAndView model = new ModelAndView();
         model.setViewName("redirect:/LOLboard/boardList");
         log.info(vo+"");
-        service.insertBoard(vo);
+        service.insertBoard(vo, mpRequest);
         log.info(model+"");
+        
         return model;
     }
 	

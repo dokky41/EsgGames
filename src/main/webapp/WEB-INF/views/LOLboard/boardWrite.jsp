@@ -4,7 +4,27 @@
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("a[name='file-delete']").on("click", function(e) {
+            e.preventDefault();
+            deleteFile($(this));
+        });
+    })
+ 
+    function addFile() {
+        var str = "<div class='file-group'><input type='file' name='file'><a href='#this' name='file-delete'>삭제</a></div>";
+        $("#file-list").append(str);
+        $("a[name='file-delete']").on("click", function(e) {
+            e.preventDefault();
+            deleteFile($(this));
+        });
+    }
+ 
+    function deleteFile(obj) {
+        obj.parent().remove();
+    }
+</script>
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
@@ -45,7 +65,7 @@
 					</div>
 				</div>
 				
-				<form action='<c:url value='/LOLboard/boardWrite'/>' method="post">
+				<form action='<c:url value='/LOLboard/boardWrite'/>' method="post" enctype="multipart/form-data">
         <div class="form-group">
               <label for="exampleFormControlInput1">제목</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" name="TITLE" placeholder="제목을 작성해주세요.">
@@ -58,6 +78,12 @@
             <label for="exampleFormControlTextarea1">내용</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" name="CONTENTS" rows="10"></textarea>
           </div>
+          <div class="form-group" id="file-list">
+        <a href="#this" onclick="addFile()">파일추가</a>
+        <div class="file-group">
+            <input type="file" name="file"><a href='#this' name='file-delete'>삭제</a>
+        </div>
+    </div>
         <button type="submit" class="btn btn-info">등록하기</button>
         <button type="button" class="btn btn-secondary" onclick="location.href='boardList' ">목록으로</button>
     </form>

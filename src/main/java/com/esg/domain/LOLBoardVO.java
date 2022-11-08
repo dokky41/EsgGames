@@ -11,6 +11,7 @@ public class LOLBoardVO {
 	private String DEL_CHK;
 	private Timestamp CREA_DATE;
 	private String CREA_ID;
+	
 	public int getIDX() {
 		return IDX;
 	}
