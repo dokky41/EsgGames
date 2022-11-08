@@ -5,8 +5,11 @@
 
 <mapper namespace="com.esg.mapper.LOLboardMapper">
 	<select id="BoardList" resultType="LOLBoardVO">
-        select * from lol_board order by IDX DESC;
+        select * from lol_board 
+        order by IDX DESC;
     </select>
+    
+    
     <insert id="write">
 		INSERT INTO lol_board
 		(		TITLE,
@@ -23,6 +26,7 @@
                 #{CREA_ID}
         );
 	</insert>
+	
 	<select id="getBoard" resultType="LOLBoardVO">
 
             SELECT
@@ -32,7 +36,6 @@
             WHERE
                 IDX = #{IDX};
     </select>
-    
     <update id="updateBoardCnt">
             UPDATE
                 lol_board

@@ -32,7 +32,8 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		
 		return boardList;
 	}
-
+	
+	
 
 	@Override
 	public void insertBoard(LOLBoardVO vo) {
@@ -56,7 +57,6 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		return vo;
 	}
 
-
 	@Override
 	public void update(LOLBoardVO vo) {
 		// TODO Auto-generated method stub
@@ -69,13 +69,5 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		// TODO Auto-generated method stub
 		sqlSession.update(NAMESPACE+".delete",num);
 	}
-
-
-	@Override
-	public void insertFile(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		sqlSession.insert(NAMESPACE+".insertFile", map);
-	}
-
-
+	
 }
