@@ -30,7 +30,7 @@
 <article>
 
 <h1>Register</h1>
-<form action="${pageContext.request.contextPath}/board/member/insertMember" id="join" method="post">
+<form action="${pageContext.request.contextPath}/member/insertMember" id="join" method="post">
 <fieldset>
 <legend>회원가입</legend>
 <label>User ID</label>
@@ -48,7 +48,8 @@
 <input type="text" name="username"><br>
 <label>E-Mail</label>
 <input type="email" name="useremail"><br>
-
+<label>Address</label>
+<input type="text" name="address"><br>
 </fieldset>
 
 

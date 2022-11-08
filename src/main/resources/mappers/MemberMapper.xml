@@ -13,14 +13,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertMember">
 	
-		insert into member (userid,userpw,username,useremail,address)
+		insert into esgmember (userid,userpw,username,useremail,address)
 		values(#{userid},#{userpw},#{username},#{useremail},#{address})
 	
 	</insert>
 	
 	<select id ="loginCheck" resultType="MemberVO">
 	
-		select * from member
+		select * from esgmember
 		where userid=#{userid} and userpw=#{userpw}
 	
 	</select>

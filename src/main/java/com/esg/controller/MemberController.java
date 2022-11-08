@@ -54,12 +54,11 @@ public class MemberController {
 		log.info("InsertMember 회원가입 실행");
 		log.info(vo+"");
 		
-		
 		service.memberInsert(vo);
 		
-		return "redirect:/board/member/login";
+		return "redirect:/member/login";
 }
-	@RequestMapping(value="login", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(MemberVO vo, HttpSession session) throws Exception {
 		
 		log.info("controller 로그인");
@@ -67,12 +66,12 @@ public class MemberController {
 		MemberVO membervo = service.loginCheck(vo);
 		
 		if(membervo==null) {
-			return "redirect:/board/member/login";
+			return "redirect:/member/login";
 		}
 		
 		session.setAttribute("membervo", membervo);
 		
-		return "redirect:/board/index";
+		return "redirect:/index";
 	}
 	//로그아웃
 	@RequestMapping(value="/logout", method=RequestMethod.POST)
@@ -82,7 +81,7 @@ public class MemberController {
 		session.invalidate();
 		
 		//페이지 이동
-		return "redirect:/board/index";		
+		return "redirect:/index";		
 	}
 
 }
