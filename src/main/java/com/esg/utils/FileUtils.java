@@ -3,15 +3,17 @@ package com.esg.utils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.*;
 
@@ -19,15 +21,13 @@ import com.esg.domain.*;
 public class FileUtils {
 	private static final Logger log = LoggerFactory.getLogger(FileUtils.class);
 	
-	@Resource(name="uploadPath")
-    String uploadPath;
- 
-    public List<LOLBoardVO> parseFileInfo(LOLBoardVO map, MultipartFile[] file) throws Exception {
+	private static final String uploadPath = "C:\\mp\\file\\";
+	public List<Map<String, Object>> parseFileInfo(LOLBoardVO vo, MultipartFile[] file) throws Exception {
         
-        String boardIDX = String.valueOf(map.getIDX());
-        String creaID = (String) map.getCREA_ID();
+        String boardIDX = String.valueOf(vo.getIDX());
+        String creaID = (String) vo.getCREA_ID();
         
-        List<LOLBoardVO> fileList = new ArrayList<LOLBoardVO>();
+        List<Map<String, Object>> fileList = new ArrayList<Map<String, Object>>();
  
         File target = new File(uploadPath);
         if(!target.exists()) target.mkdirs();
@@ -39,12 +39,12 @@ public class FileUtils {
             String saveFileName = UUID.randomUUID().toString().replaceAll("-", "") + orgFileExtension;
             Long saveFileSize = file[i].getSize();
             
-            log.debug("================== file start ==================");
-            log.debug("파일 실제 이름: "+orgFileName);
-            log.debug("파일 저장 이름: "+saveFileName);
-            log.debug("파일 크기: "+saveFileSize);
-            log.debug("content type: "+file[i].getContentType());
-            log.debug("================== file   END ==================");
+            log.info("================== file start ==================");
+            log.info("파일 실제 이름: "+orgFileName);
+            log.info("파일 저장 이름: "+saveFileName);
+            log.info("파일 크기: "+saveFileSize);
+            log.info("content type: "+file[i].getContentType());
+            log.info("================== file   END ==================");
  
             target = new File(uploadPath, saveFileName);
             file[i].transferTo(target);
@@ -56,7 +56,7 @@ public class FileUtils {
             fileInfo.put("SAVE_FILE_NAME", saveFileName);
             fileInfo.put("FILE_SIZE", saveFileSize);
             fileInfo.put("CREA_ID", creaID);
-            fileList.add((LOLBoardVO) fileInfo);
+            fileList.add(fileInfo);
             
         }
         return fileList;

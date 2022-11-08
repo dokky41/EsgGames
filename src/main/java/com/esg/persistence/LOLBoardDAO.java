@@ -22,4 +22,6 @@ public interface LOLBoardDAO {
 
 	void delete(int num);
 
+	void insertFile(Map<String, Object> map);
+
 }

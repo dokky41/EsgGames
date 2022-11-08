@@ -10,7 +10,7 @@
     </select>
     
     
-    <insert id="write">
+    <insert id="write" useGeneratedKeys="true" keyProperty="IDX">
 		INSERT INTO lol_board
 		(		TITLE,
                 CONTENTS,
@@ -26,6 +26,29 @@
                 #{CREA_ID}
         );
 	</insert>
+	
+	<insert id="insertFile">
+        INSERT INTO lol_file
+        (
+            BOARD_IDX,
+            ORG_FILE_NAME,
+            SAVE_FILE_NAME,
+            FILE_SIZE,
+            CREA_ID,
+            CREA_DATE,
+            UPDATE_DATE
+        )
+        VALUES
+        (
+            #{ BOARD_IDX},
+            #{ ORG_FILE_NAME},
+            #{ SAVE_FILE_NAME},
+            #{ FILE_SIZE},
+            #{ CREA_ID},
+            SYSDATE(),
+            SYSDATE()
+        )
+</insert>
 	
 	<select id="getBoard" resultType="LOLBoardVO">
 

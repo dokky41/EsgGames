@@ -54,15 +54,8 @@ public class LOLboardController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/LOLboard/boardList");
         log.info(vo+"");
-        service.insertBoard(vo);
-        for(int i=0; i<file.length; i++) {
-            log.info("================== file start ==================");
-            log.info("파일 이름: "+file[i].getName());
-            log.info("파일 실제 이름: "+file[i].getOriginalFilename());
-            log.info("파일 크기: "+file[i].getSize());
-            log.info("content type: "+file[i].getContentType());
-            log.info("================== file   END ==================");
-        }
+        log.info(file+"입니다");
+        service.insertBoard(vo,file);
         return mav;
     }
 	

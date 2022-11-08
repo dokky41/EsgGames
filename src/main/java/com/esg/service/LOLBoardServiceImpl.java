@@ -12,9 +12,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import javax.annotation.Resource;
-
 import com.esg.persistence.LOLBoardDAO;
+import com.esg.utils.FileUtils;
 import com.esg.domain.LOLBoardVO;
 
 @Service
@@ -22,6 +21,9 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 
 	@Inject //dao∞¥√º ¡÷¿‘
 	LOLBoardDAO dao;
+
+	@Resource(name="fileUtils")
+	private FileUtils fileUtils;
 	
 	private static final Logger log = LoggerFactory.getLogger(LOLBoardServiceImpl.class);
 
@@ -32,10 +34,13 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	}
 
 	@Override
-	public void insertBoard(LOLBoardVO vo){
+	public void insertBoard(LOLBoardVO vo,MultipartFile[] file)throws Exception{
 		// TODO Auto-generated method stub
 		dao.insertBoard(vo);
-		
+		List<Map<String, Object>> fileList = fileUtils.parseFileInfo(vo, file);
+	    for(int i=0; i<fileList.size(); i++) {
+	        dao.insertFile(fileList.get(i));
+	    }
 	}
 
 	@Override

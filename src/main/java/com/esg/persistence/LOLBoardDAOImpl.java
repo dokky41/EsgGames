@@ -70,4 +70,8 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		sqlSession.update(NAMESPACE+".delete",num);
 	}
 	
+	public void insertFile(Map<String, Object> map) {
+	    sqlSession.insert(NAMESPACE+".insertFile", map);
+	}
+
 }
