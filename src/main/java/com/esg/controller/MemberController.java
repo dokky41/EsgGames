@@ -15,7 +15,7 @@ import com.esg.domain.MemberVO;
 import com.esg.service.MemberService;
 
 @Controller
-@RequestMapping("/board/member/*")
+@RequestMapping("/member/*")
 public class MemberController {
 	
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
