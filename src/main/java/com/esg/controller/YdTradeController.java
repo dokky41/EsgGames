@@ -34,6 +34,12 @@ public class YdTradeController {
 	@Inject
 	private TrLoaService service;
 	
+	@RequestMapping(value="/contact",method = RequestMethod.GET)
+	public void gettest() {
+		
+	
+	}
+	
 	
 	@RequestMapping(value="/trLoaContent",method = RequestMethod.GET)
 	public void gettrLoaContent(Model model,HttpSession session
@@ -176,15 +182,17 @@ public class YdTradeController {
 		
 		log.info("LostArk 거래작성완료");
 		
+		
 		//사진저장부분
 		files.forEach(file -> {
 		log.info("---------------------");
 		log.info("name : " + file.getOriginalFilename());
 		log.info("size : " + file.getSize());
-		vo.setFile("F:\\upload\\tmp"+file.getOriginalFilename());	
+		vo.setFile("C:\\test\\file\\"+file.getOriginalFilename());	
 		
-		File saveFile = new File("F:\\upload\\tmp\\", file.getOriginalFilename());
+		File saveFile = new File("C:\\test\\file\\", file.getOriginalFilename());
 			
+		vo.setFile(file.getOriginalFilename());
 		try {
 			file.transferTo(saveFile);
 		} catch (Exception e) {
@@ -194,8 +202,10 @@ public class YdTradeController {
 		//사진저장부분
 		vo.setUserid(userid); //아이디 저장
 		vo.setIp(req.getRemoteAddr()); //작성 아이피 저장
+		
 		log.info("저장 후 vo : "+vo);
 			
+		
 		//글 작성 서비스동작
 		service.trLoaboardCreate(vo);
 			

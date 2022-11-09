@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+.text-subject {
+	color: black;
+}
+
+
+.text-subject:hover {
+	color: #0080ff;
+}

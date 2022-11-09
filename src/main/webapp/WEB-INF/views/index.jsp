@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 헤더부분 -->
 <jsp:include page="include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -63,16 +64,30 @@
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">최근 소식</div>
+		<div class="ln-title">TOP 10</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
-				<div class="nt-item"><span class="new">new</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="strategy">strategy</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
-				<div class="nt-item"><span class="racing">racing</span>Isum dolor sit amet, consectetur adipiscing elit. </div>
+			<c:set var="c" value="0"></c:set>
+			
+			<c:forEach var="list" items="${gameMeca}" >
+				
+				<div class="nt-item">
+				<span class="new">${c=c+1}</span>
+				<a style="color: white !important;" 
+					  target='_blank'>${list.rank}</a> 
+					&nbsp; &nbsp;&nbsp;
+				
+				 </div>
+			
+			</c:forEach>
+			
 			</div>
 		</div>
 	</div>
 	<!-- Latest news section end -->
+
+
+
 
 
 	<!-- Feature section -->
