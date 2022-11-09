@@ -9,6 +9,7 @@ public class MemberVO {
 	private String userpw;
 	private String username;
 	private String useremail;
+	private String address;
 	private Timestamp regdate;
 	private Timestamp updatedate;
 	
@@ -39,6 +40,12 @@ public class MemberVO {
 	public void setUseremail(String useremail) {
 		this.useremail = useremail;
 	}
+	public String getaddress() {
+		return address;
+	}
+	public void setaddress(String address) {
+		this.address = address;
+	}
 	public Timestamp getRegdate() {
 		return regdate;
 	}
@@ -56,7 +63,7 @@ public class MemberVO {
 	@Override  //데이터가 제대로 전달되는지 확인하기 위함
 	public String toString() {
 		return "MemberVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", useremail="
-				+ useremail + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+				+ useremail + ", address=" + address + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
 	}
 	
 	
