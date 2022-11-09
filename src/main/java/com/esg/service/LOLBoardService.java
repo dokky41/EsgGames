@@ -9,16 +9,17 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.esg.domain.LOLBoardVO;
 
 public interface LOLBoardService {
-	//±Û ¸ñ·Ï
+	//ê¸€ ëª©ë¡
 	List<LOLBoardVO> getBoardList();
-	//±Û ¾²±â+ÆÄÀÏ¾÷·Îµå
+	//ê¸€ ì“°ê¸°+íŒŒì¼ì—…ë¡œë“œ
 	void insertBoard(LOLBoardVO vo, MultipartFile[] file)throws Exception;
-	//Á¶È¸¼ö Áõ°¡
+	//ì¡°íšŒìˆ˜ ì¦ê°€
 	void updateBoardCount(int num);
-	//±Û Á¤º¸ ºÒ·¯¿À±â
+	//ê¸€ ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°
 	LOLBoardVO readBoard(int num);
-	//±Û ¼öÁ¤
+	//ê¸€ ìˆ˜ì •
 	void update(LOLBoardVO vo);
-	//±Û »èÁ¦
+	//ê¸€ ì‚­ì œ
 	void deleteBoard(int num);
 }
+

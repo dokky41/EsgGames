@@ -26,8 +26,18 @@ public interface TrLoaService {
 
 	//글 내용보기
 	trLoaVO getTrLoaContent(int num);
-
+	
+	//검색결과 수
 	int totalCnt2(String searchName);
+
+	//글 수정
+	void getTrLoaModify(trLoaVO vo);
+
+	//글삭제
+	void getTrLoaDelete(int num);
+
+	//조회수증가
+	void updateTrBoardCount(int num);
 
 
 }

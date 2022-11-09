@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script src = "http://code.jquery.com/jquery-latest.js"></script>
-<script>
-//     var cnt = 1;
-    function fn_addFile(){
-//         $("#d_file").append("<br>" + "<input type='file' name='files" + cnt + "' accept='image/*' />");
-        $("#d_file").append("&nbsp;" + "<input type='file' name='files' accept='image/*'  />");
-//         cnt++;
-    }
-</script>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -69,38 +59,39 @@
 	
 				<div class="col-lg-8" >
 					<div class="contact-form-warp">
+						<h4 class="comment-title" style="color: white;">판매글수정</h4>
 						<form class="comment-form" 
-						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post" enctype="multipart/form-data">
-						<h4 class="comment-title" style="color: white;">판매등록 <input type="submit" class="site-btn btn-sm" style="float: right;" value="등록"></h4>
-						
-							
-							<input type="hidden" value="${sessionScope.userid}" name="userid">
+						action="${PageContext.request.contextPath}/ydTrBoard/trLostModify" method="post" enctype="multipart/form-data">
+
+							<input type="hidden" value="${trLoa.num}" name="num">
 							
 							<div class="row">
 								<div class="col-md-6">
-									<input type="text" placeholder="상품이름" name="subject">
+									<input type="text" placeholder="상품이름" name="subject" value="${trLoa.subject }">
 								</div>
 								<div class="col-md-6">
-									<input type="text" placeholder="상품개수" name="goodsCount">
-								</div>
-								
-								<div class="col-md-6">
-									<input type="text" placeholder="캐릭터명" name="chname">
+									<input type="text" placeholder="상품개수" name="goodsCount" value="${trLoa.goodsCount }">
 								</div>
 								
 								<div class="col-md-6">
-									<input type="text" placeholder="판매금액" name="price">
+									<input type="text" placeholder="캐릭터명" name="chname" value="${trLoa.chname }">
+								</div>
+								
+								<div class="col-md-6">
+									<input type="text" placeholder="판매금액" name="price" value="${trLoa.price }">
 								</div>
 								
 								<div class="col-lg-12">
 <!-- 									<input type="text" placeholder="판매금액"> -->
 									
-									<textarea placeholder="상세설명" name="content"></textarea>
-								
-									<div id="d_file">
-									<input type="button" value="사진 추가" onClick="fn_addFile()"><br>
-									</div>
+									<textarea placeholder="상세설명" name="content" >${trLoa.content }</textarea>
 									
+									<button type="button" value="" ></button> 
+									<input type="file" name="files" multiple style="color: white;"
+									accept="image/*" value="${trLoa.file }">
+									
+									
+									<input type="submit" class="site-btn btn-sm" style="float: right;" value="재등록">
 								</div>
 								
 								

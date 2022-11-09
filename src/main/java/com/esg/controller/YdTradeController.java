@@ -34,6 +34,12 @@ public class YdTradeController {
 	@Inject
 	private TrLoaService service;
 	
+	@RequestMapping(value="/contact",method = RequestMethod.GET)
+	public void gettest() {
+		
+	
+	}
+	
 	
 	@RequestMapping(value="/trLoaContent",method = RequestMethod.GET)
 	public void gettrLoaContent(Model model,HttpSession session
@@ -52,6 +58,10 @@ public class YdTradeController {
 		
 //		log.info(LoaNews+"");
 		//로아 최신뉴스 크롤링
+		
+		//조회수 증가
+		service.updateTrBoardCount(num);
+		
 		
 		//해당글내용 불러오기
 		session.setAttribute("trLoa", service.getTrLoaContent(num));
@@ -172,15 +182,17 @@ public class YdTradeController {
 		
 		log.info("LostArk 거래작성완료");
 		
+		
 		//사진저장부분
 		files.forEach(file -> {
 		log.info("---------------------");
 		log.info("name : " + file.getOriginalFilename());
 		log.info("size : " + file.getSize());
-		vo.setFile("F:\\upload\\tmp"+file.getOriginalFilename());	
+		vo.setFile("C:\\test\\file\\"+file.getOriginalFilename());	
 		
-		File saveFile = new File("F:\\upload\\tmp\\", file.getOriginalFilename());
+		File saveFile = new File("C:\\test\\file\\", file.getOriginalFilename());
 			
+		vo.setFile(file.getOriginalFilename());
 		try {
 			file.transferTo(saveFile);
 		} catch (Exception e) {
@@ -190,14 +202,80 @@ public class YdTradeController {
 		//사진저장부분
 		vo.setUserid(userid); //아이디 저장
 		vo.setIp(req.getRemoteAddr()); //작성 아이피 저장
+		
 		log.info("저장 후 vo : "+vo);
 			
+		
 		//글 작성 서비스동작
 		service.trLoaboardCreate(vo);
 			
 		
 		return "redirect:/ydTrBoard/trLostArk";
 	}
+	
+	
+	
+	
+	@RequestMapping(value="/trLostModify",method=RequestMethod.GET)
+	public void gettrLostModify(Model model,HttpSession session,
+			@RequestParam("num") int num) {
+		
+		log.info("trLostModify 거래글 수정페이지로 이동");
+		
+		//로아 최신뉴스 크롤링
+		JSONArray LoaNews = service.getLoaNews();
+		
+		model.addAttribute("LoaNews", LoaNews);
+		
+		log.info(LoaNews+"");
+		//로아 최신뉴스 크롤링
+		
+		//해당글내용 불러오기
+		session.setAttribute("trLoa", service.getTrLoaContent(num));
+		//해당글내용 불러오기
+		
+		
+	}
+	
+	
+	@RequestMapping(value="/trLostModify",method=RequestMethod.POST)
+	public String posttrLostModify(Model model,HttpSession session,
+			@RequestParam("num") int num,trLoaVO vo) {
+		
+		log.info("trLostModify 거래글 수정하기");
+		
+		
+		//해당글내용 수정
+		service.getTrLoaModify(vo);
+		//해당글내용 수정
+		
+		return "redirect:/ydTrBoard/trLoaContent?num="+num;
+	}
+	
+	
+	@RequestMapping(value="/trLoadelete",method=RequestMethod.POST)
+	public String posttrLoaDelete(@RequestParam("num") int num) {
+		
+		log.info("trLostModify 거래글 삭제하기");
+		
+		
+		//해당글내용 수정
+		service.getTrLoaDelete(num);
+		//해당글내용 수정
+		
+		return "redirect:/ydTrBoard/trLostArk";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

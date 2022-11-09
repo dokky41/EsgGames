@@ -31,7 +31,7 @@ public class LOLboardController {
 	
 	@Inject
 	LOLBoardService service;
-	//±Û ¸ñ·Ï
+	//ê¸€ ëª©ë¡
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList() throws Exception{
 		
@@ -42,53 +42,53 @@ public class LOLboardController {
 		
 		return mav;
 	}
-	//±Û ÆäÀÌÁö ¿ÀÇÂ
+	//ê¸€ í˜ì´ì§€ ì˜¤í”ˆ
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
-		log.info("Write.jsp ½ÇÇà");
+		log.info("Write.jsp ì‹¤í–‰");
 	}
-	//±Û ¾²±â
+	//ê¸€ ì“°ê¸°
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
     public ModelAndView boardWritePost (LOLBoardVO vo,MultipartFile[] file) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/LOLboard/boardList");
         log.info(vo+"");
-        log.info(file+"ÀÔ´Ï´Ù");
+        log.info(file+"ì…ë‹ˆë‹¤");
         service.insertBoard(vo,file);
         return mav;
     }
 	
-	//±Û º»¹® º¸±â + ±Û Á¶È¸¼ö Áõ°¡
+	//ê¸€ ë³¸ë¬¸ ë³´ê¸° + ê¸€ ì¡°íšŒìˆ˜ ì¦ê°€
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
 	public void readGet(@RequestParam("IDX") int num,Model model,LOLBoardVO vo) throws Exception{
-		log.info("read.jsp ½ÇÇà");
+		log.info("read.jsp ì‹¤í–‰");
 		
-		//Á¶È¸¼ö Áõ°¡
+		//ì¡°íšŒìˆ˜ ì¦ê°€
 		service.updateBoardCount(num);
 		log.info(num+"");
-		//±Û Á¤º¸ °¡Á®¿À±â
+		//ê¸€ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 		vo = service.readBoard(num);
-		//°¡Á®¿Â µ¥ÀÌÅÍ¸¦ ¿¬°áµÈ ºäÆäÀÌÁö¿¡ Ãâ·Â
+		//ê°€ì ¸ì˜¨ ë°ì´í„°ë¥¼ ì—°ê²°ëœ ë·°í˜ì´ì§€ì— ì¶œë ¥
 		model.addAttribute("vo",vo);
 	}
-	//»ó¼¼Á¤º¸¸¦ °¡Á®¿Í "detail"¶õ ÀÌ¸§¿¡ ÀúÀå
+	//ìƒì„¸ì •ë³´ë¥¼ ê°€ì ¸ì™€ "detail"ë€ ì´ë¦„ì— ì €ì¥
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)
 	public void UpdateGet(@RequestParam("IDX") int num,Model model) throws Exception{
 		
-		log.info("Update.jsp ½ÇÇà");
+		log.info("Update.jsp ì‹¤í–‰");
 		LOLBoardVO detail=service.readBoard(num);
 		model.addAttribute("detail",detail);
 	}
 
-	//±Û ¼öÁ¤ ¾÷µ¥ÀÌÆ®
+	//ê¸€ ìˆ˜ì • ì—…ë°ì´íŠ¸
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.POST)
     public String boardUpdatePost (LOLBoardVO vo) throws Exception {
         log.info(vo+"");
         service.update(vo);
         return "redirect:/LOLboard/boardList";
     }
-	//±Û »èÁ¦ IDX ÀúÀå
+	//ê¸€ ì‚­ì œ IDX ì €ì¥
 		@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
 		public String DeletePOST(@RequestParam("IDX") int num) throws Exception{
 			log.info(num+"delete");

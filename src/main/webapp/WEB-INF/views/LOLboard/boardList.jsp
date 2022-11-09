@@ -74,11 +74,7 @@
               </tbody>
             </table>
 			</div>
-<!-- 			<div class="site-pagination sp-style-2"> -->
-<!-- 					<span class="active">01.</span> -->
-<!-- 					<a href="#">02.</a> -->
-<!-- 					<a href="#">03.</a> -->
-<!-- 			</div> -->
+
 		</div>
 	</section>
 	<!-- Page section end -->

@@ -40,9 +40,9 @@ public class FileUtils {
             Long saveFileSize = file[i].getSize();
             
             log.info("================== file start ==================");
-            log.info("ÆÄÀÏ ½ÇÁ¦ ÀÌ¸§: "+orgFileName);
-            log.info("ÆÄÀÏ ÀúÀå ÀÌ¸§: "+saveFileName);
-            log.info("ÆÄÀÏ Å©±â: "+saveFileSize);
+            log.info("íŒŒì¼ ì‹¤ì œ ì´ë¦„: "+orgFileName);
+            log.info("íŒŒì¼ ì €ì¥ ì´ë¦„: "+saveFileName);
+            log.info("íŒŒì¼ í¬ê¸°: "+saveFileSize);
             log.info("content type: "+file[i].getContentType());
             log.info("================== file   END ==================");
  

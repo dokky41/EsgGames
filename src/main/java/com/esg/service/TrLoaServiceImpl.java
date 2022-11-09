@@ -103,4 +103,26 @@ public class TrLoaServiceImpl implements TrLoaService{
 		// TODO Auto-generated method stub
 		return dao.getTotalCnt2(searchName);
 	}
+
+	@Override
+	public void getTrLoaModify(trLoaVO vo) {
+		
+		dao.getTrLoaModify(vo);
+		
+	}
+
+	@Override
+	public void getTrLoaDelete(int num) {
+		dao.getTrLoaDelete(num);
+	}
+
+	
+	@Override
+	public void updateTrBoardCount(int num) {
+		dao.updateTrBoardCount(num);
+		
+	}
+	
+	
+	
 }
