@@ -8,8 +8,8 @@
 
 	<insert id="TrLoainsert">
 	
-		insert into trLoaBoard (userid,subject,content,ip,file,goodsCount,chname,price)
-		values(#{userid},#{subject},#{content},#{ip},#{file},#{goodsCount},#{chname},#{price})
+		insert into trLoaBoard (userid,subject,content,ip,file1,goodsCount,chname,price,file2,file3,file4)
+		values(#{userid},#{subject},#{content},#{ip},#{file1},#{goodsCount},#{chname},#{price},#{file2},#{file3},#{file4})
 	
 	</insert>
 	
@@ -78,5 +78,36 @@
  	</update>
  	
  	
+	<select id="TrLoaSelList" resultType="trLoaVO">
+	
+	 <![CDATA[
+ 		select * from trLoaBoard
+ 		where num > 0
+ 		order by readcount desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	<select id="TrLoaPriList" resultType="trLoaVO">
+	
+	 <![CDATA[
+ 		select * from trLoaBoard
+ 		where num > 0
+ 		order by price asc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	
+	<select id="TrLoaPriList2" resultType="trLoaVO">
+	
+	 <![CDATA[
+ 		select * from trLoaBoard
+ 		where num > 0
+ 		order by price desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
  	
 </mapper>

@@ -66,20 +66,41 @@
 						<h3 class="community-top-title" >
 						<a style="color: black;" href="${PageContext.request.contextPath}/ydTrBoard/trLostArk">
 						<b style="font-family: 'Malgun Gothic', dotum, sans-serif;">
-						물품 리스트 ( ${ listSize} )</b>
+						물품리스트 (${ listSize})</b>
 						</a></h3>
 						
 						<div style="float: left;">
-						<button onclick="location.href='/ydTrBoard/trLostArk' ;return false;">전체</button>
+						<button onclick="location.href='/ydTrBoard/trLostArk?sort=def' ;return false;" 
+						style="cursor: pointer; color: white; background: black;
+						border-radius:5px 5px 5px 5px;
+						">최신순</button>
+						
+						<button onclick="location.href='/ydTrBoard/trLostArk?sort=sel' ;return false;" 
+						style="cursor: pointer; color: white; background: black;
+						border-radius:5px 5px 5px 5px;
+						">조회순</button>
+						
+						<button onclick="location.href='/ydTrBoard/trLostArk?sort=pri' ;return false;" 
+						style="cursor: pointer; color: white; background: black;
+						border-radius:5px 5px 5px 5px;
+						">가격순↓</button>
+						
+						<button onclick="location.href='/ydTrBoard/trLostArk?sort=pri2' ;return false;" 
+						style="cursor: pointer; color: white; background: black;
+						border-radius:5px 5px 5px 5px;
+						">가격순↑</button>
+						
 						</div>
 					</div>
 					
 					
 					<div class="col-md-6 text-lg-right">
 					
-		<form class="community-filter" action="${PageContext.request.contextPath}/ydTrBoard/trLostWrite" method="get">
+		<form class="community-filter" action="${PageContext.request.contextPath}/ydTrBoard/trLostWrite" method="get" >
 							<label for="fdf5">
-							<input type="submit" value="판매등록" style="height: 43px; background: white;">
+							<input type="submit" value="판매등록" style="height: 43px; 
+							background: black; color: white; border-radius:5px 5px 5px 5px; cursor: pointer;
+							 ">
 							</label>
 							</form>
 				
@@ -94,11 +115,11 @@
            
               
               <thead style="text-align: center;">
-              <tr>
-              <th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+              <tr style="background: #1e282c; color: white;">
+              <th>번호</th><th>물품제목</th><th>가격</th><th>작성자</th><th>작성일</th><th>조회수</th>
               </tr>
               </thead>
-              <tbody style="text-align: center;">
+              <tbody style="text-align: center; ">
  						  <c:choose>
                       <c:when test="${fn:length(trLoaList) > 0 }">
                           <c:forEach var="list" items="${trLoaList}">
@@ -108,6 +129,10 @@
                               <a href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent?num=${list.num}" 
                                class="text-subject">${list.subject }</a>
                               </td>
+                              <td>
+                              ${list.price }p
+                              </td>
+                              
                               <td>${list.userid }</td>
                               
                               <td>
@@ -128,16 +153,12 @@
             </table>
 					
 					
-					
-					
-					
-			
-				
 				<br>
 				<form class="community-filter"
 						 action="${PageContext.request.contextPath}/ydTrBoard/trLostArk" method="post">
 				
-				<input type="submit" value="검색" style="float: right; ">
+				<input type="submit" value="검색" 
+				style="float: right; cursor: pointer; color: white; background: black;">
 				<input type="text" name="searchName" style="float: right;">
 				
 				</form>
@@ -147,16 +168,16 @@
 <!-- 			<span class="active">01.</span> -->
 					
 					<c:if test="${pm.prev }">
-				<a href="trLostArk?page=${pm.startPage - 1 }">&laquo;</a>
+				<a href="trLostArk?sort=<%=request.getParameter("sort") %>page=${pm.startPage - 1 }">&laquo;</a>
 			</c:if>
 			
 			<c:forEach var="idx" begin="${pm.startPage }" end="${pm.endPage }">
 				
-					<a href="trLostArk?page=${idx }">${idx }</a>
+					<a href="trLostArk?sort=<%=request.getParameter("sort") %>&page=${idx }">${idx }</a>
 			</c:forEach>			
 			
 			<c:if test="${pm.next && pm.endPage >0 }">
-				<a href="trLostArk?page=${pm.endPage + 1 }">&raquo;</a>
+				<a href="trLostArk?sort=<%=request.getParameter("sort") %>page=${pm.endPage + 1 }">&raquo;</a>
 			</c:if>
 					
 					
