@@ -21,4 +21,6 @@ public interface LOLBoardService {
 	void update(LOLBoardVO vo);
 	//글 삭제
 	void deleteBoard(int num);
+	//파일 정보 불러오기
+	List<Map<String, Object>> selectFileList(int num);
 }
