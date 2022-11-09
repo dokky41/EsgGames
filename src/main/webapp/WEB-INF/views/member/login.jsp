@@ -22,16 +22,16 @@
 <article style="padding-left: 45%;">
 <h2 class="login__fb-title">로그인</h2>
 
-<form action="${pageContext.request.contextPath}/board/member/login" id= "join" method="post">
+<form action="${pageContext.request.contextPath}/member/login" id= "join" method="post">
 <fieldset>
 
 <div id="loginWrap" class="loginWrap">
 				<div class="loginUserInfo">
 					<p class="idWrap">
-						<input type="text" title="아이디 입력" value="" maxlength="50" id="user_id" name="user_id" class="inputidpw" placeholder="아이디">
+						<input type="text" title="아이디 입력" value="" maxlength="50" id="userid" name="userid" class="inputidpw" placeholder="아이디">
 					</p>
 					<p class="pwWrap">
-						<input type="password" title="비밀번호 입력" value="" id="password" name="password" class="inputidpw" placeholder="비밀번호">
+						<input type="password" title="비밀번호 입력" value="" id="userpw" name="userpw" class="inputidpw" placeholder="비밀번호">
 					</p>
 					<div id="notice" role="tooltip"></div>
 					<input type="hidden" value="68597a4f6ca586b0ba5f9cfecb80d4" id="stoken" name="stoken">

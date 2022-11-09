@@ -62,6 +62,7 @@ public class MemberController {
 	public String login(MemberVO vo, HttpSession session) throws Exception {
 		
 		log.info("controller 로그인");
+		log.info(vo+"");
 		
 		MemberVO membervo = service.loginCheck(vo);
 		
