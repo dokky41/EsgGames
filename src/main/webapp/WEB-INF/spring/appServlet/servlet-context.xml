@@ -17,6 +17,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/img/*" location="file:///C:/test/file/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -25,13 +26,13 @@
 	</beans:bean>
 	
 	<!-- 파일 업로드 -->
-<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+  <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
   <beans:property name="defaultEncoding" value="utf-8"></beans:property>
   <!-- 1024 * 1024 * 10 bytes 10MB -->
   <beans:property name="maxUploadSize" value="104857560"></beans:property>
   <!-- 1024 * 1024 * 2 bytes 2MB -->
   <beans:property name="maxUploadSizePerFile" value="2097152"></beans:property>
-  <beans:property name="uploadTempDir" value="file:/Users/ijiun/upload "></beans:property>
+  <beans:property name="uploadTempDir" value="file:/F:/workspace_sts5/EsgGames/src/main/webapp/resources/upload/tmp"></beans:property>
   <beans:property name="maxInMemorySize" value="10485756"></beans:property>
 </beans:bean>
 	
