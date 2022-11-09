@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function(){
  		
 	var formObj = $('form[role="form"]');
@@ -27,8 +29,13 @@ $(document).ready(function(){
 		});
 	
 });
+
+
+
+
 </script>
 <!-- 헤더부분 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/yd/contentModel.css"/>
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
 
@@ -81,17 +88,24 @@ $(document).ready(function(){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 mb-5 mb-lg-0">
-					<h4 class="comment-title">${trLoa.subject}</h4>
 					
 					<p>
-					${trLoa.content}
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file }" class="img">
+					
+					<div class="modal">
+  						<span class="close">&times;</span>
+						  <img class="modal_content">
+					</div>
 					
 					</p>
 					
 					<div class="row">
 						<div class="col-md-9">
 							<ul class="contact-info-list">
-								<li><div class="cf-left">카테고리</div><div class="cf-right">네트워크 서버</div></li>
+							
+							
+								<li><div class="cf-left">상품이름</div><div class="cf-right">${trLoa.subject}</div></li>
+								<li><div class="cf-left">내용</div><div class="cf-right">${trLoa.content}</div></li>
 								<li><div class="cf-left">가격</div><div class="cf-right">${trLoa.price}원</div></li>
 								<li><div class="cf-left">개수</div><div class="cf-right">${trLoa.goodsCount}</div></li>
 								<li><div class="cf-left">작성자</div><div class="cf-right">${trLoa.userid}</div></li>
@@ -157,5 +171,6 @@ $(document).ready(function(){
 
 	
 <!-- 푸터부분 -->
+<script src="${pageContext.request.contextPath }/resources/js/yd/contentModel.js"></script>
 <jsp:include page="../include/footer.jsp"/>
 <!-- 푸터부분 -->

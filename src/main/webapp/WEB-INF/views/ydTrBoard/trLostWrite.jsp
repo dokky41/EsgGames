@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script src = "http://code.jquery.com/jquery-latest.js"></script>
+<script>
+//     var cnt = 1;
+    function fn_addFile(){
+//         $("#d_file").append("<br>" + "<input type='file' name='files" + cnt + "' accept='image/*' />");
+        $("#d_file").append("&nbsp;" + "<input type='file' name='files' accept='image/*'  />");
+//         cnt++;
+    }
+</script>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -60,9 +69,10 @@
 	
 				<div class="col-lg-8" >
 					<div class="contact-form-warp">
-						<h4 class="comment-title" style="color: white;">판매등록</h4>
 						<form class="comment-form" 
 						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post" enctype="multipart/form-data">
+						<h4 class="comment-title" style="color: white;">판매등록 <input type="submit" class="site-btn btn-sm" style="float: right;" value="등록"></h4>
+						
 							
 							<input type="hidden" value="${sessionScope.userid}" name="userid">
 							
@@ -86,13 +96,11 @@
 <!-- 									<input type="text" placeholder="판매금액"> -->
 									
 									<textarea placeholder="상세설명" name="content"></textarea>
+								
+									<div id="d_file">
+									<input type="button" value="사진 추가" onClick="fn_addFile()"><br>
+									</div>
 									
-									<button type="button" value="" ></button> 
-									<input type="file" name="files" multiple style="color: white;"
-									accept="image/*" >
-									
-									
-									<input type="submit" class="site-btn btn-sm" style="float: right;" value="등록">
 								</div>
 								
 								
