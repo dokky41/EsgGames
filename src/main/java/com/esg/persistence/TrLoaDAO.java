@@ -34,4 +34,13 @@ public interface TrLoaDAO {
 	//조회수 증가
 	void updateTrBoardCount(int num);
 
+	//조회수순으로 글 불러오기
+	List<trLoaVO> trLoaBoardSelList(Criteria cri);
+
+	//낮은가격순으로 글 불러오기
+	List<trLoaVO> trLoaBoardPriList(Criteria cri);
+
+	//높은가격순으로 글 불러오기
+	List<trLoaVO> trLoaBoardPriList2(Criteria cri);
+
 }

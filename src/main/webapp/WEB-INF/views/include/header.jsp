@@ -106,7 +106,7 @@
 					   </li>
 					   
 					    <li>
-					   <a href="${pageContext.request.contextPath }/ydTrBoard/trLostArk">T로스트아크</a>
+					   <a href="${pageContext.request.contextPath }/ydTrBoard/trLostArk?sort=def">T로스트아크</a>
 					   </li>
 					   
 					</ul>

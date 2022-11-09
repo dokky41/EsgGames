@@ -78,6 +78,20 @@ public class TrLoaDAOImpl implements TrLoaDAO {
 		sqlSession.delete(NAMESPACE+".TrLoaCount",num);
 	}
 
+	@Override
+	public List<trLoaVO> trLoaBoardSelList(Criteria cri) {
+		return sqlSession.selectList(NAMESPACE + ".TrLoaSelList",cri);
+	}
+
+	@Override
+	public List<trLoaVO> trLoaBoardPriList(Criteria cri) {
+		return sqlSession.selectList(NAMESPACE + ".TrLoaPriList",cri);
+	}
+
+	@Override
+	public List<trLoaVO> trLoaBoardPriList2(Criteria cri) {
+		return sqlSession.selectList(NAMESPACE + ".TrLoaPriList2",cri);
+	}
 	
 	
 	

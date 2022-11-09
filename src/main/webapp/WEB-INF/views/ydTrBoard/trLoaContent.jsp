@@ -90,7 +90,10 @@ $(document).ready(function(){
 				<div class="col-lg-4 mb-5 mb-lg-0">
 					
 					<p>
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file }" class="img">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }" class="img">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file2 }" class="img">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file3 }" class="img">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file4 }" class="img">
 					
 					<div class="modal">
   						<span class="close">&times;</span>
@@ -140,7 +143,7 @@ $(document).ready(function(){
 									<button class="site-btn btn-sm">구매신청</button>
 									
 									<button class="site-btn btn-sm" 
-									onclick="location.href='/ydTrBoard/trLostArk' ;return false;">
+									onclick="location.href='/ydTrBoard/trLostArk?sort=def' ;return false;">
 									목록</button>
 									
 									
