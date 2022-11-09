@@ -1,20 +1,19 @@
 package com.esg.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
 import javax.annotation.Resource;
-
+import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.esg.persistence.LOLBoardDAO;
-import com.esg.utils.LOLFileUtils;
-import com.mchange.io.FileUtils;
+import com.esg.utils.FileUtils;
 import com.esg.domain.LOLBoardVO;
 
 @Service
@@ -35,15 +34,13 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	}
 
 	@Override
-	public void insertBoard(LOLBoardVO vo,MultipartHttpServletRequest mpRequest) {
+	public void insertBoard(LOLBoardVO vo,MultipartFile[] file)throws Exception{
 		// TODO Auto-generated method stub
 		dao.insertBoard(vo);
-		List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(vo, mpRequest); 
-		int size = list.size();
-		for(int i=0; i<size; i++){ 
-			dao.insertFile(list.get(i)); 
-		}
-		
+		List<Map<String, Object>> fileList = fileUtils.parseFileInfo(vo, file);
+	    for(int i=0; i<fileList.size(); i++) {
+	        dao.insertFile(fileList.get(i));
+	    }
 	}
 
 	@Override
@@ -71,6 +68,4 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 		dao.delete(num);
 		
 	}
-	
-	
 }

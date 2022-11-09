@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,13 +35,12 @@ public class LOLboardController {
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList() throws Exception{
 		
-		ModelAndView model = new ModelAndView();
-		model.setViewName("/LOLboard/boardList");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/LOLboard/boardList");	
+		List<LOLBoardVO> boardList = service.getBoardList();	
+		mav.addObject("boardList", boardList);
 		
-		List<LOLBoardVO> boardList = service.getBoardList();
-		model.addObject("boardList", boardList);
-		
-		return model;
+		return mav;
 	}
 	//글 페이지 오픈
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
@@ -50,27 +50,25 @@ public class LOLboardController {
 	}
 	//글 쓰기
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
-    public ModelAndView boardWritePost (LOLBoardVO vo,MultipartHttpServletRequest mpRequest) throws Exception {
-        ModelAndView model = new ModelAndView();
-        model.setViewName("redirect:/LOLboard/boardList");
+    public ModelAndView boardWritePost (LOLBoardVO vo,MultipartFile[] file) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("redirect:/LOLboard/boardList");
         log.info(vo+"");
-        service.insertBoard(vo, mpRequest);
-        log.info(model+"");
-        
-        return model;
+        log.info(file+"입니다");
+        service.insertBoard(vo,file);
+        return mav;
     }
 	
 	//글 본문 보기 + 글 조회수 증가
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
-	public void readGet(@RequestParam("IDX") int num,Model model) throws Exception{
+	public void readGet(@RequestParam("IDX") int num,Model model,LOLBoardVO vo) throws Exception{
 		log.info("read.jsp 실행");
 		
 		//조회수 증가
 		service.updateBoardCount(num);
 		log.info(num+"");
 		//글 정보 가져오기
-		LOLBoardVO vo = service.readBoard(num);
-		
+		vo = service.readBoard(num);
 		//가져온 데이터를 연결된 뷰페이지에 출력
 		model.addAttribute("vo",vo);
 	}

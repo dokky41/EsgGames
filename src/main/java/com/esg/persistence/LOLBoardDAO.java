@@ -24,5 +24,4 @@ public interface LOLBoardDAO {
 
 	void insertFile(Map<String, Object> map);
 
-
 }

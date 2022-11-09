@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -57,6 +58,8 @@
                 <i class="fas fa-align-justify"></i> ${vo.HIT_CNT }
             </h6>
             <p class="card-text">${vo.CONTENTS }</p>
+            
+            
         </div>
         <div class="card-body">
             <a href='<c:url value='/LOLboard/boardUpdate?IDX=${vo.IDX }'/>' class="btn btn-outline-secondary btn-sm" role="button">수정</a>

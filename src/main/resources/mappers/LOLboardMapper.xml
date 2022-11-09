@@ -5,9 +5,12 @@
 
 <mapper namespace="com.esg.mapper.LOLboardMapper">
 	<select id="BoardList" resultType="LOLBoardVO">
-        select * from lol_board order by IDX DESC;
+        select * from lol_board 
+        order by IDX DESC;
     </select>
-    <insert id="write">
+    
+    
+    <insert id="write" useGeneratedKeys="true" keyProperty="IDX">
 		INSERT INTO lol_board
 		(		TITLE,
                 CONTENTS,
@@ -23,6 +26,30 @@
                 #{CREA_ID}
         );
 	</insert>
+	
+	<insert id="insertFile">
+        INSERT INTO lol_file
+        (
+            BOARD_IDX,
+            ORG_FILE_NAME,
+            SAVE_FILE_NAME,
+            FILE_SIZE,
+            CREA_ID,
+            CREA_DATE,
+            UPDATE_DATE
+        )
+        VALUES
+        (
+            #{ BOARD_IDX},
+            #{ ORG_FILE_NAME},
+            #{ SAVE_FILE_NAME},
+            #{ FILE_SIZE},
+            #{ CREA_ID},
+            SYSDATE(),
+            SYSDATE()
+        )
+</insert>
+	
 	<select id="getBoard" resultType="LOLBoardVO">
 
             SELECT
@@ -32,7 +59,6 @@
             WHERE
                 IDX = #{IDX};
     </select>
-    
     <update id="updateBoardCnt">
             UPDATE
                 lol_board
