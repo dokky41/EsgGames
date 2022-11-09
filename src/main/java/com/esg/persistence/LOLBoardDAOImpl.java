@@ -74,4 +74,11 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	    sqlSession.insert(NAMESPACE+".insertFile", map);
 	}
 
+
+	@Override
+	public List<Map<String, Object>> selectFileList(int num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+".getBoardFile",num);
+	}
+
 }

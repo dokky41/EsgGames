@@ -61,16 +61,22 @@ public class LOLboardController {
 	
 	//글 본문 보기 + 글 조회수 증가
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
-	public void readGet(@RequestParam("IDX") int num,Model model,LOLBoardVO vo) throws Exception{
+	public void readGet(@RequestParam("IDX") int num,Model model) throws Exception{
 		log.info("read.jsp 실행");
 		
 		//조회수 증가
 		service.updateBoardCount(num);
 		log.info(num+"");
 		//글 정보 가져오기
-		vo = service.readBoard(num);
+		LOLBoardVO read = service.readBoard(num);
+		//파일 정보 가져오기
+		List<Map<String, Object>> fileList = service.selectFileList(num);
+		model.addAttribute("file", fileList);
+		log.info(fileList+"");
+		log.info(read+"");
+
 		//가져온 데이터를 연결된 뷰페이지에 출력
-		model.addAttribute("vo",vo);
+		model.addAttribute("vo",read);
 	}
 	//상세정보를 가져와 "detail"란 이름에 저장
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)

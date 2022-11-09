@@ -24,4 +24,6 @@ public interface LOLBoardDAO {
 
 	void insertFile(Map<String, Object> map);
 
+	List<Map<String, Object>> selectFileList(int num);
+
 }

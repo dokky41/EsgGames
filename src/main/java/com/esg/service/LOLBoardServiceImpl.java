@@ -68,4 +68,9 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 		dao.delete(num);
 		
 	}
+	//파일 정보 불러오기
+	@Override
+	public List<Map<String, Object>> selectFileList(int num) {
+		// TODO Auto-generated method stub
+		return dao.selectFileList(num);	}
 }
