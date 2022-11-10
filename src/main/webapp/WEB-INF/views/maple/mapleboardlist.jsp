@@ -27,7 +27,8 @@
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
 						<h2>MapleStory</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</p>
+					
+					    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</p>
 					</div>
 				</div>
 			</div>
@@ -43,6 +44,10 @@
 				<div class="row">
 					<div class="col-md-6">
 						<h3 class="community-top-title">COMMUNITY </h3>
+						<form action="${pageContext.request.contextPath }/maple/mapleboardlist" method="POST">
+						<input type="text" name="searchName">
+						<input type="submit" value="검색 ">
+						</form>
 					</div>
 					<div class="col-md-6 text-lg-right">
 						<form class="community-filter" action ="${pageContext.request.contextPath}/maple/mapleboardwrite" method="get">

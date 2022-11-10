@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.esg.controller.mapleboardController;
+import com.esg.domain.Criteria;
 import com.esg.domain.mapleboardVO;
 import com.esg.service.mapleboardService;
 
@@ -54,8 +56,15 @@ public class mapleboardController {
 		return "redirect:/maple/mapleboardlist";
 	}
 	
+	@RequestMapping(value="/maple/mapleboardlist", method=RequestMethod.POST)
+	public void posttrLostArk(Model model,HttpSession session,
+			Criteria cri,@RequestParam("searchName") String searchName) throws Exception {
+		
+		log.info("maple페이지 검색" );
+		
+		List<mapleboardVO> mapleboardList =  service.mapleSearchList(cri);
+		model.addAttribute("maplelist", mapleboardList );
 	
-	
-	
+	}
 
 }

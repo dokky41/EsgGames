@@ -19,6 +19,16 @@
 		
 	</select>
 	
+	<select id="mapleSearchList" resultType="mapleboardVO">
+	
+	 
+ 		select * from tbl_mapleboard
+ 		where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'))
+ 		order by num desc, date desc 
+ 		limit #{pageStart}, #{perPageNum}
+ 	
+ 		
+	</select>
 	
 	
 </mapper>
