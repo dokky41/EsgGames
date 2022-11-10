@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esg.domain.LOLBoardVO;
+import com.esg.domain.LOLCriteria;
+import com.esg.domain.LOLPageMaker;
 import com.esg.persistence.LOLBoardDAO;
 import com.esg.service.LOLBoardService;
 
@@ -33,13 +35,20 @@ public class LOLboardController {
 	LOLBoardService service;
 	//글 목록
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
-	public ModelAndView boardList() throws Exception{
+	public ModelAndView boardList(LOLCriteria cri) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
-		List<LOLBoardVO> boardList = service.getBoardList();	
-		mav.addObject("boardList", boardList);
+		List<LOLBoardVO> boardList = service.getBoardList(cri);	
 		
+		//페이징처리
+		LOLPageMaker pageMaker = new LOLPageMaker();
+	    pageMaker.setCri(cri);
+	    pageMaker.setTotalCount(100);
+	  
+	    mav.addObject("boardList", boardList);
+	    mav.addObject("pageMaker", pageMaker);
+	    
 		return mav;
 	}
 	//글 페이지 오픈
