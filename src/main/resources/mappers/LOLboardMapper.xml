@@ -6,7 +6,8 @@
 <mapper namespace="com.esg.mapper.LOLboardMapper">
 	<select id="BoardList" resultType="LOLBoardVO">
         select * from lol_board 
-        order by IDX DESC;
+        order by IDX DESC
+        LIMIT #{pageStart}, #{perPageNum};
     </select>
     
     
