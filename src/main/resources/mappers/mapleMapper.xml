@@ -14,7 +14,9 @@
 	
 	<select id="maplelist" resultType="mapleboardVO">
 		select * from tbl_mapleboard 
-		order by num desc
+		where num > 0
+		order by num desc, date desc
+		limit #{pageStart}, #{perPageNum}
 		
 		
 	</select>
@@ -46,6 +48,12 @@
  		where num=#{num}
  	
  	</delete>
+ 	
+ 	<select id="totalCnt" resultType="int">
+ 	
+ 		select count(num) from tbl_mapleboard
+ 		 
+ 	</select>
  	
 	
 	

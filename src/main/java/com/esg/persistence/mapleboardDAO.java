@@ -9,7 +9,7 @@ public interface mapleboardDAO {
 
 	void mapleboardwrite(mapleboardVO vo);
 
-	List<mapleboardVO> mapleboardlist();
+	List<mapleboardVO> mapleboardlist(Criteria cri);
 
 	List<mapleboardVO> mapleSearchList(Criteria cri);
 
@@ -19,5 +19,8 @@ public interface mapleboardDAO {
 	mapleboardVO getmapleContent(int num);
 
 	void getmapledelete(int num);
+
+	//글 전체 개수 
+	int totalCnt();
 
 }

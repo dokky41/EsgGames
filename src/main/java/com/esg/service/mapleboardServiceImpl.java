@@ -28,9 +28,9 @@ public class mapleboardServiceImpl implements mapleboardService {
 	}
 
 	@Override
-	public List<mapleboardVO> mapleboardlist() {
+	public List<mapleboardVO> mapleboardlist(Criteria cri) {
 		// TODO Auto-generated method stub
-		return dao.mapleboardlist();
+		return dao.mapleboardlist(cri);
 	}
 
 	@Override
@@ -59,6 +59,12 @@ public class mapleboardServiceImpl implements mapleboardService {
 		// TODO Auto-generated method stub
 		dao.getmapledelete(num);
 		
+	}
+
+	@Override
+	public int totalCnt() {
+		// TODO Auto-generated method stub
+		return dao.totalCnt();
 	}
 
 	

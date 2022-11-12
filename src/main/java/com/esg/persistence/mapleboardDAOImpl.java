@@ -36,9 +36,9 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 
 
 	@Override
-	public List<mapleboardVO> mapleboardlist() {
+	public List<mapleboardVO> mapleboardlist(Criteria cri) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".maplelist");
+		return sqlSession.selectList(NAMESPACE+".maplelist",cri);
 	}
 
 
@@ -69,6 +69,13 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 		// TODO Auto-generated method stub
 		sqlSession.delete(NAMESPACE+".mapledelete",num);
 		
+	}
+
+
+	@Override
+	public int totalCnt() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+".totalCnt");
 	}
 
 

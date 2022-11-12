@@ -54,7 +54,7 @@
 									<input type="text" placeholder="아이디를 입력하세요. " name="userid" value="${mapleboard.userid }" readOnly>
 								</div>
 								<div class="col-md-6">
-									<input type="text" placeholder="비밀번호 입력하세요. " name="boardpw" value="${mapleboard.boardpw }" readOnyl>
+									<input type="text" placeholder="비밀번호 입력하세요. " name="boardpw" value="${mapleboard.boardpw }" readOnly>
 								</div>
 								<div class="col-lg-12">
 									<input type="text" placeholder="제목을 입력하세요.  " name="subject" value="${mapleboard.subject }">

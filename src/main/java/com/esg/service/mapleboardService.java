@@ -9,7 +9,7 @@ public interface mapleboardService {
 
 	void mapleboardwrite(mapleboardVO vo);
 
-	List<mapleboardVO> mapleboardlist();
+	List<mapleboardVO> mapleboardlist(Criteria cri);
 
 	//글 여러개 
 	List<mapleboardVO> mapleSearchList(Criteria cri);
@@ -22,5 +22,8 @@ public interface mapleboardService {
 	mapleboardVO getmapleContent(int num);
 
 	void getmapledelete(int num);
+
+	//글 전체 개수 
+	int totalCnt();
 
 }

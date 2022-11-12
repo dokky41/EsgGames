@@ -79,11 +79,26 @@
 					
 					</c:forEach>
 				</ul>
-				<div class="site-pagination sp-style-2">
-					<span class="active">01.</span>
-					<a href="#">02.</a>
-					<a href="#">03.</a>
-				</div>
+				
+				
+				<div class="site-pagination sp-style-2" style="padding-left: 45%; ">
+	
+	<c:if test="${pm.prev}">
+		<a href="mapleboardlist?page=${pm.startPage -1}"> &laquo; </a>
+	</c:if>
+	
+	<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage }">
+	
+		<a href="mapleboardlist?page=${idx }" style= "color : white;">${idx }</a>
+		
+	</c:forEach>
+	
+	<c:if test="${pm.next && pm.endPage > 0 }">
+		<a href="mapleboardlist?page=${pm.endPage+1}"> &raquo; </a>
+		
+	</c:if>
+</div>
+				
 			</div>
 		</div>
 	</section>

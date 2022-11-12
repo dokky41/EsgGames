@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.esg.controller.mapleboardController;
 import com.esg.domain.Criteria;
+import com.esg.domain.PageMaker;
 import com.esg.domain.mapleboardVO;
 import com.esg.service.mapleboardService;
 
@@ -32,13 +33,19 @@ public class mapleboardController {
 	mapleboardService service;
 	
 	@RequestMapping(value="/maple/mapleboardlist",method=RequestMethod.GET)
-	public void mapleGet(Model model) throws Exception {
+	public void mapleGet(Model model,Criteria cri) throws Exception {
 		
 		log.info("maple페이지 실행");
-		List<mapleboardVO> maplelist = service.mapleboardlist();
-		log.info(""+service.mapleboardlist());
+		List<mapleboardVO> maplelist = service.mapleboardlist(cri);
+		log.info(""+service.mapleboardlist(cri));
 		model.addAttribute("maplelist", maplelist);
 		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		pageMaker.setTotalCount(service.totalCnt());
+		
+		model.addAttribute("pm",pageMaker);
 		
 	}
 	
