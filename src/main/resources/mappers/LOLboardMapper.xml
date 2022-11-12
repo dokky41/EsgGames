@@ -6,7 +6,8 @@
 <mapper namespace="com.esg.mapper.LOLboardMapper">
 	<select id="BoardList" resultType="LOLBoardVO">
         select * from lol_board 
-        order by IDX DESC;
+        order by IDX DESC
+        LIMIT #{pageStart}, #{perPageNum};
     </select>
     
     
@@ -49,7 +50,17 @@
             SYSDATE()
         )
 </insert>
-	
+	<select id="getBoardFile" resultType="LOLBoardVO">
+            SELECT
+                IDX,
+                ORG_FILE_NAME,
+                SAVE_FILE_NAME,
+                ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+            FROM
+                lol_file
+            WHERE
+                BOARD_IDX = #{IDX}
+    </select>
 	<select id="getBoard" resultType="LOLBoardVO">
 
             SELECT

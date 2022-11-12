@@ -42,7 +42,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h3 class="community-top-title">게시판 글쓰기</h3>
+						<h3 class="community-top-title">게시판 상세정보</h3>
 					</div>
 				</div>
 				
@@ -59,7 +59,24 @@
             </h6>
             <p class="card-text">${vo.CONTENTS }</p>
             
-            
+            <c:choose>
+    <c:when test="${fn:length(file) > 0 }">
+    <div class="blog-file">
+        <ul>
+        <c:forEach items="${file }" var="file">
+            <li> 
+                <span class="file-img"></span>
+                <div class="file-info">
+                    <a href='#'><i class="fa fa-camera"></i>${file.ORG_FILE_NAME }</a>
+                    <span>${file.FILE_SIZE }kb</span>
+                </div>
+                <img src="http://localhost:8088/tomcatImg/${file.SAVE_FILE_NAME}">
+            </li>
+        </c:forEach>
+        </ul>
+    </div>
+    </c:when>
+</c:choose>
         </div>
         <div class="card-body">
             <a href='<c:url value='/LOLboard/boardUpdate?IDX=${vo.IDX }'/>' class="btn btn-outline-secondary btn-sm" role="button">수정</a>

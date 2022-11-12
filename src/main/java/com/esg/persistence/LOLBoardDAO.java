@@ -7,10 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.LOLBoardVO;
+import com.esg.domain.LOLCriteria;
 
 public interface LOLBoardDAO {
 
-	List<LOLBoardVO> getBoardList();
+	List<LOLBoardVO> getBoardList(LOLCriteria cri);
 
 	void insertBoard(LOLBoardVO vo);
 
@@ -23,5 +24,7 @@ public interface LOLBoardDAO {
 	void delete(int num);
 
 	void insertFile(Map<String, Object> map);
+
+	List<Map<String, Object>> selectFileList(int num);
 
 }

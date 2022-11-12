@@ -7,19 +7,21 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.LOLBoardVO;
+import com.esg.domain.LOLCriteria;
 
 public interface LOLBoardService {
-	//글 목록
-	List<LOLBoardVO> getBoardList();
-	//글 쓰기+파일업로드
+	//�� ���
+	List<LOLBoardVO> getBoardList(LOLCriteria cri);
+	//�� ����+���Ͼ��ε�
 	void insertBoard(LOLBoardVO vo, MultipartFile[] file)throws Exception;
-	//조회수 증가
+	//��ȸ�� ����
 	void updateBoardCount(int num);
-	//글 정보 불러오기
+	//�� ���� �ҷ�����
 	LOLBoardVO readBoard(int num);
-	//글 수정
+	//�� ����
 	void update(LOLBoardVO vo);
-	//글 삭제
+	//�� ����
 	void deleteBoard(int num);
+	//���� ���� �ҷ�����
+	List<Map<String, Object>> selectFileList(int num);
 }
-

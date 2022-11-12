@@ -3,6 +3,7 @@ package com.esg.service;
 import java.util.List;
 
 import org.json.simple.JSONArray;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.esg.domain.Criteria;
 import com.esg.domain.trLoaVO;
@@ -38,6 +39,15 @@ public interface TrLoaService {
 
 	//조회수증가
 	void updateTrBoardCount(int num);
+
+	//조회수순으로 글불러오기
+	List<trLoaVO> trLoaBoardSelList(Criteria cri);
+
+	//낮은가격순으로 글 불러오기
+	List<trLoaVO> trLoaBoardPriList(Criteria cri);
+
+	//높은가격순으로 글 불러오기
+	List<trLoaVO> trLoaBoardPri2List(Criteria cri);
 
 
 }

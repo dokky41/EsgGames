@@ -6,7 +6,7 @@ public class Criteria {
 	
 	private int page; //페이지 시작번호
 	private int perPageNum; //페이지 크기
-	private String searchName; //페이지 크기
+	private String searchName; //검색어
 	
 	public Criteria() {
 		

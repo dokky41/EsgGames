@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.LOLBoardVO;
+import com.esg.domain.LOLCriteria;
 
 @Repository
 public class LOLBoardDAOImpl implements LOLBoardDAO {
@@ -25,7 +26,7 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 
 
 	@Override
-	public List<LOLBoardVO> getBoardList() {
+	public List<LOLBoardVO> getBoardList(LOLCriteria cri) {
 		// TODO Auto-generated method stub
 		log.info("getBoardList() 호출");
 		List<LOLBoardVO> boardList = sqlSession.selectList(NAMESPACE+".BoardList");
@@ -72,6 +73,13 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	
 	public void insertFile(Map<String, Object> map) {
 	    sqlSession.insert(NAMESPACE+".insertFile", map);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectFileList(int num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+".getBoardFile",num);
 	}
 
 }

@@ -122,6 +122,21 @@ public class TrLoaServiceImpl implements TrLoaService{
 		dao.updateTrBoardCount(num);
 		
 	}
+
+	@Override
+	public List<trLoaVO> trLoaBoardSelList(Criteria cri) {
+		return dao.trLoaBoardSelList(cri);
+	}
+
+	@Override
+	public List<trLoaVO> trLoaBoardPriList(Criteria cri) {
+		return dao.trLoaBoardPriList(cri);
+	}
+
+	@Override
+	public List<trLoaVO> trLoaBoardPri2List(Criteria cri) {
+		return dao.trLoaBoardPriList2(cri);
+	}
 	
 	
 	

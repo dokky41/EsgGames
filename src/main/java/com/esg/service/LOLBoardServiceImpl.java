@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.esg.persistence.LOLBoardDAO;
 import com.esg.utils.FileUtils;
 import com.esg.domain.LOLBoardVO;
+import com.esg.domain.LOLCriteria;
 
 @Service
 public class LOLBoardServiceImpl implements LOLBoardService {
@@ -28,9 +29,9 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	private static final Logger log = LoggerFactory.getLogger(LOLBoardServiceImpl.class);
 
 	@Override
-	public List<LOLBoardVO> getBoardList() {
+	public List<LOLBoardVO> getBoardList(LOLCriteria cri) {
 		// TODO Auto-generated method stub
-		return dao.getBoardList();
+		return dao.getBoardList(cri);
 	}
 
 	@Override
@@ -68,4 +69,9 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 		dao.delete(num);
 		
 	}
+	//파일 정보 불러오기
+	@Override
+	public List<Map<String, Object>> selectFileList(int num) {
+		// TODO Auto-generated method stub
+		return dao.selectFileList(num);	}
 }
