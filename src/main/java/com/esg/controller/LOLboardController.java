@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.esg.domain.LOLBoardVO;
+import com.esg.domain.LOLCriteria;
+import com.esg.domain.LOLPageMaker;
 import com.esg.persistence.LOLBoardDAO;
 import com.esg.service.LOLBoardService;
 
@@ -31,64 +33,77 @@ public class LOLboardController {
 	
 	@Inject
 	LOLBoardService service;
-	//글 목록
+	//�� ���
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
-	public ModelAndView boardList() throws Exception{
+	public ModelAndView boardList(LOLCriteria cri) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
-		List<LOLBoardVO> boardList = service.getBoardList();	
-		mav.addObject("boardList", boardList);
+		List<LOLBoardVO> boardList = service.getBoardList(cri);	
 		
+		//����¡ó��
+		LOLPageMaker pageMaker = new LOLPageMaker();
+	    pageMaker.setCri(cri);
+	    pageMaker.setTotalCount(100);
+	  
+	    mav.addObject("boardList", boardList);
+	    mav.addObject("pageMaker", pageMaker);
+	    
 		return mav;
 	}
-	//글 페이지 오픈
+	//�� ������ ����
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
-		log.info("Write.jsp 실행");
+		log.info("Write.jsp ����");
 	}
-	//글 쓰기
+	//�� ����
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
     public ModelAndView boardWritePost (LOLBoardVO vo,MultipartFile[] file) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/LOLboard/boardList");
         log.info(vo+"");
-        log.info(file+"입니다");
+        log.info(file+"�Դϴ�");
         service.insertBoard(vo,file);
         return mav;
     }
 	
-	//글 본문 보기 + 글 조회수 증가
+	//�� ���� ���� + �� ��ȸ�� ����
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
-	public void readGet(@RequestParam("IDX") int num,Model model,LOLBoardVO vo) throws Exception{
-		log.info("read.jsp 실행");
+	public void readGet(@RequestParam("IDX") int num,Model model) throws Exception{
+		log.info("read.jsp ����");
 		
-		//조회수 증가
+		//��ȸ�� ����
 		service.updateBoardCount(num);
 		log.info(num+"");
-		//글 정보 가져오기
-		vo = service.readBoard(num);
-		//가져온 데이터를 연결된 뷰페이지에 출력
-		model.addAttribute("vo",vo);
+		//�� ���� ��������
+		LOLBoardVO read = service.readBoard(num);
+		//���� ���� ��������
+		List<Map<String, Object>> fileList = service.selectFileList(num);
+		model.addAttribute("file", fileList);
+		log.info(fileList+"");
+		log.info(read+"");
+
+		//������ �����͸� ����� ���������� ���
+		model.addAttribute("vo",read);
 	}
-	//상세정보를 가져와 "detail"란 이름에 저장
+	//�������� ������ "detail"�� �̸��� ����
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)
 	public void UpdateGet(@RequestParam("IDX") int num,Model model) throws Exception{
 		
-		log.info("Update.jsp 실행");
+		log.info("Update.jsp ����");
 		LOLBoardVO detail=service.readBoard(num);
 		model.addAttribute("detail",detail);
 	}
 
-	//글 수정 업데이트
+	//�� ���� ������Ʈ
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.POST)
     public String boardUpdatePost (LOLBoardVO vo) throws Exception {
         log.info(vo+"");
         service.update(vo);
         return "redirect:/LOLboard/boardList";
     }
-	//글 삭제 IDX 저장
+	//�� ���� IDX ����
 		@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
 		public String DeletePOST(@RequestParam("IDX") int num) throws Exception{
 			log.info(num+"delete");
