@@ -10,18 +10,18 @@ import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
 
 public interface LOLBoardService {
-	//±Û ¸ñ·Ï
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½
 	List<LOLBoardVO> getBoardList(LOLCriteria cri);
-	//±Û ¾²±â+ÆÄÀÏ¾÷·Îµå
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½+ï¿½ï¿½ï¿½Ï¾ï¿½ï¿½Îµï¿½
 	void insertBoard(LOLBoardVO vo, MultipartFile[] file)throws Exception;
-	//Á¶È¸¼ö Áõ°¡
+	//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void updateBoardCount(int num);
-	//±Û Á¤º¸ ºÒ·¯¿À±â
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	LOLBoardVO readBoard(int num);
-	//±Û ¼öÁ¤
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void update(LOLBoardVO vo);
-	//±Û »èÁ¦
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void deleteBoard(int num);
-	//ÆÄÀÏ Á¤º¸ ºÒ·¯¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	List<Map<String, Object>> selectFileList(int num);
 }
