@@ -19,16 +19,37 @@
 
 </ul>
 </nav>
-<article style="padding-left: 45%;">
-<h2 class="login__fb-title">로그인</h2>
+<div class="row">
+<div class="col-md-4 col-md-offset col-sm-6 col-sm-offset-3">
+<div class="form-box">
+<div class="form-header">
+<h2>
+<b>
+<i class="fa fa-smile-o"></i>
+"Have a Nice Day!"
+</b>
+</h2>
+</div>
+<div class="form-body">
+<form class="form" role="form" action="${pageContext.request.contextPath}/member/login" id= "join" method="post">
 
-<form action="${pageContext.request.contextPath}/member/login" id= "join" method="post">
-<fieldset>
+<div class="form-group has-feedback">
+<label for="login_id">
+<b>아이디</b>
+</label>
+<input type="text" title="아이디 입력" maxlength="20" id="userid" name="userid" class="inputidpw" placeholder="아이디">
+<span class="fa fa-user form-control-feedback">
+</span>
+</div>
+
+</form>
+
+</div>
 
 <div id="loginWrap" class="loginWrap">
 				<div class="loginUserInfo">
 					<p class="idWrap">
-						<input type="text" title="아이디 입력" value="" maxlength="50" id="userid" name="userid" class="inputidpw" placeholder="아이디">
+						
 					</p>
 					<p class="pwWrap">
 						<input type="password" title="비밀번호 입력" value="" id="userpw" name="userpw" class="inputidpw" placeholder="비밀번호">
@@ -49,9 +70,11 @@
 				</div>
 
 			</div>
-			</fieldset>
-		</form>
-</article>
+		
+		</div>
+		</div>
+		</div>
+
 
 <div class="clear"></div>
 <!-- í¸í°ë¤ì´ê°ë ê³³ -->

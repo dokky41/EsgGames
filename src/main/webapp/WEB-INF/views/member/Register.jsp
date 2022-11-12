@@ -20,10 +20,6 @@
 <!-- ë³¸ë¬¸ë©ì¸ì´ë¯¸ì§ -->
 <!-- ì¼ìª½ë©ë´ -->
 <nav id="sub_menu">
-<ul>
-<li><a href="#">Join us</a></li>
-<li><a href="#">Privacy policy</a></li>
-</ul>
 </nav>
 <!-- ì¼ìª½ë©ë´ -->
 <!-- ë³¸ë¬¸ë´ì© -->
@@ -33,7 +29,12 @@
 <form action="${pageContext.request.contextPath}/member/insertMember" id="join" method="post">
 <fieldset>
 <legend>회원가입</legend>
-<label>User ID</label>
+<div class="form-group has-feedback text-gap">
+<label class="col-sm-2 control-label" for="reg_mb_id"><b>아이디</b></label>
+<div class="col-sm-3">
+<input type="text" name="userid" value id="reg_mb_id" required class="form-control input-sm" minlength="3" maxlength="20">
+</div>
+</div>
 <input type="text" name="userid" class="id" id="userid" oninput="checkId()">
 
 <span class="id_ok" style="display: none;">사용 가능한 아이디입니다.</span>
@@ -41,7 +42,14 @@
 
 
 <input type="button" value="dup. check" class="dup"><br>
-<label>Password</label>
+<div class="form-group has-feedback">
+<label class="col-sm-2 control-label" for="reg_mb_password"><b>비밀번호</b>
+</label>
+<div class="col-sm-3">
+<input type="password" name="userpw" id="reg_mb_password" required class="form-control input-sm" minlength="3" maxlength="20">
+</div>
+</div>
+
 <input type="password" name="userpw"><br>
 
 <label>Name</label>
