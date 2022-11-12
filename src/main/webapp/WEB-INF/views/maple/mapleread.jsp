@@ -60,6 +60,8 @@
 									<textarea placeholder="내용을 입력하세요.  "  >${mapleboard.content }</textarea>
 									
 									<input type="submit" value="수정 " class="site-btn btn-sm">
+									<input type="button" value="삭제 " class="site-btn btn-sm" 
+									onclick="location.href='/maple/mapledelete?num=${mapleboard.num}'">
 								</div>
 							</div>
 						</form>

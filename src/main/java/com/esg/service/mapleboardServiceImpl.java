@@ -54,6 +54,13 @@ public class mapleboardServiceImpl implements mapleboardService {
 		return dao.getmapleContent(num);
 	}
 
+	@Override
+	public void getmapledelete(int num) {
+		// TODO Auto-generated method stub
+		dao.getmapledelete(num);
+		
+	}
+
 	
 
 	

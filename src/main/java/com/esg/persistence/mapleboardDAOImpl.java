@@ -64,7 +64,13 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 	}
 
 
-	
+	@Override
+	public void getmapledelete(int num) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(NAMESPACE+".mapledelete",num);
+		
+	}
+
 
 	
 

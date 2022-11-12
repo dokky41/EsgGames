@@ -18,4 +18,6 @@ public interface mapleboardDAO {
 
 	mapleboardVO getmapleContent(int num);
 
+	void getmapledelete(int num);
+
 }

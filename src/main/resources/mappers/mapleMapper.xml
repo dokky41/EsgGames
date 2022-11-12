@@ -40,6 +40,12 @@
  		where num=#{num}
  	</update>
  	
+ 	<delete id="mapledelete">
+ 		
+ 		delete from tbl_mapleboard
+ 		where num=#{num}
+ 	
+ 	</delete>
  	
 	
 	

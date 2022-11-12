@@ -61,6 +61,8 @@
 									<textarea placeholder="내용을 입력하세요.  " name="content">${mapleboard.content }</textarea>
 									
 									<input type="submit" value="수정 " class="site-btn btn-sm">
+									
+									
 								</div>
 							</div>
 						</form>

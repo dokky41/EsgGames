@@ -104,5 +104,17 @@ public class mapleboardController {
 		return "redirect:/maple/mapleboardlist";
 	
 	}
+	
+	@RequestMapping(value="/mapledelete",method=RequestMethod.GET)
+	public String postmapledelete(@RequestParam("num") int num) {
+		
+		log.info("maplemodify 글쓰기 삭제하기");
+		
+		
+		service.getmapledelete(num);
+		
+		return "redirect:/maple/mapleboardlist";
+	}
+	
 
 }

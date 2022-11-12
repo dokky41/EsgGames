@@ -21,4 +21,6 @@ public interface mapleboardService {
 	//return형식 중간부분 메소드 이름 (인자값 또는 매개변수 )
 	mapleboardVO getmapleContent(int num);
 
+	void getmapledelete(int num);
+
 }
