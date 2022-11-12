@@ -14,7 +14,49 @@
 	
 	<select id="maplelist" resultType="mapleboardVO">
 		select * from tbl_mapleboard 
+		where num > 0
+		order by num desc, date desc
+		limit #{pageStart}, #{perPageNum}
+		
 		
 	</select>
+	
+	<select id="mapleSearchList" resultType="mapleboardVO">
+	
+	 
+ 		select * from tbl_mapleboard
+ 		where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'))
+ 		order by num desc, date desc 
+ 		limit #{pageStart}, #{perPageNum}
+ 	
+ 		
+	</select>
+	
+	<select id="mapleContent" resultType="mapleboardVO">
+ 		select * from tbl_mapleboard where num=#{num};
+ 	
+ 	</select>
+ 	
+ 	<update id="maplemodify">
+ 		update tbl_mapleboard set userid=#{userid},boardpw=#{boardpw},subject=#{subject},content=#{content}
+ 		where num=#{num}
+ 	</update>
+ 	
+ 	<delete id="mapledelete">
+ 		
+ 		delete from tbl_mapleboard
+ 		where num=#{num}
+ 	
+ 	</delete>
+ 	
+ 	<select id="totalCnt" resultType="int">
+ 	
+ 		select count(num) from tbl_mapleboard
+ 		 
+ 	</select>
+ 	
+	
+	
+	
 	
 </mapper>

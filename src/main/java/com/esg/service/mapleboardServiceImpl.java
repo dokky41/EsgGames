@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-
+import com.esg.domain.Criteria;
 import com.esg.domain.mapleboardVO;
 import com.esg.persistence.mapleboardDAO;
 
@@ -28,9 +28,49 @@ public class mapleboardServiceImpl implements mapleboardService {
 	}
 
 	@Override
-	public List<mapleboardVO> mapleboardlist() {
+	public List<mapleboardVO> mapleboardlist(Criteria cri) {
 		// TODO Auto-generated method stub
-		return dao.mapleboardlist();
+		return dao.mapleboardlist(cri);
 	}
+
+	@Override
+	public List<mapleboardVO> mapleSearchList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return dao.mapleSearchList(cri);
+	}
+	
+	
+
+	@Override
+	public void getmaplemodify(mapleboardVO vo) {
+		// TODO Auto-generated method stub
+		dao.getmaplemodify(vo);
+		
+	}
+	
+	@Override
+	public mapleboardVO getmapleContent(int num) {
+		// TODO Auto-generated method stub
+		return dao.getmapleContent(num);
+	}
+
+	@Override
+	public void getmapledelete(int num) {
+		// TODO Auto-generated method stub
+		dao.getmapledelete(num);
+		
+	}
+
+	@Override
+	public int totalCnt() {
+		// TODO Auto-generated method stub
+		return dao.totalCnt();
+	}
+
+	
+
+	
+
+	
 
 }

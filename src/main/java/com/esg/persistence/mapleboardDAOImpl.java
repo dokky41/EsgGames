@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.esg.domain.Criteria;
 import com.esg.domain.mapleboardVO;
+
 
 
 @Repository
@@ -34,9 +36,49 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 
 
 	@Override
-	public List<mapleboardVO> mapleboardlist() {
+	public List<mapleboardVO> mapleboardlist(Criteria cri) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".maplelist");
+		return sqlSession.selectList(NAMESPACE+".maplelist",cri);
 	}
+
+
+	@Override
+	public List<mapleboardVO> mapleSearchList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE + ".mapleSearchList",cri);
+	}
+
+
+	
+	@Override
+	public void getmaplemodify(mapleboardVO vo) {
+		sqlSession.update(NAMESPACE+".maplemodify",vo);
+		
+	}
+
+
+	@Override
+	public mapleboardVO getmapleContent(int num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+".mapleContent",num);
+	}
+
+
+	@Override
+	public void getmapledelete(int num) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(NAMESPACE+".mapledelete",num);
+		
+	}
+
+
+	@Override
+	public int totalCnt() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+".totalCnt");
+	}
+
+
+	
 
 }

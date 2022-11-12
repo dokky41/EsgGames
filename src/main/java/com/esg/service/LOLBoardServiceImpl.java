@@ -20,7 +20,7 @@ import com.esg.domain.LOLCriteria;
 @Service
 public class LOLBoardServiceImpl implements LOLBoardService {
 
-	@Inject //dao∞¥√º ¡÷¿‘
+	@Inject //daoÍ∞ùÏ≤¥ Ï£ºÏûÖ
 	LOLBoardDAO dao;
 
 	@Resource(name="fileUtils")

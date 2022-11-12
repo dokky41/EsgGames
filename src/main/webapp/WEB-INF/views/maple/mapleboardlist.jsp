@@ -27,7 +27,8 @@
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
 						<h2>MapleStory</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</p>
+					
+					    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum.</p>
 					</div>
 				</div>
 			</div>
@@ -43,6 +44,10 @@
 				<div class="row">
 					<div class="col-md-6">
 						<h3 class="community-top-title">COMMUNITY </h3>
+						<form action="${pageContext.request.contextPath }/maple/mapleboardlist" method="POST">
+						<input type="text" name="searchName">
+						<input type="submit" value="검색 ">
+						</form>
 					</div>
 					<div class="col-md-6 text-lg-right">
 						<form class="community-filter" action ="${pageContext.request.contextPath}/maple/mapleboardwrite" method="get">
@@ -64,7 +69,8 @@
 						<div class="community-post">
 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/7.jpg"></div>
 							<div class="post-content">
-								<h5>${list.userid}<span>${list.subject}</span></h5>
+								<h5>${list.userid}<a href="/maple/mapleread?num=${list.num}"><span>${list.subject}</span></a></h5>
+<%-- 								<a href="/LOLboard/boardRead?IDX=${bList.IDX}" class="text-dark">${bList.TITLE }</a> --%>
 								<div class="post-date">June 21, 2018</div>
 								<p>${list.content }</p>
 							</div>
@@ -73,11 +79,26 @@
 					
 					</c:forEach>
 				</ul>
-				<div class="site-pagination sp-style-2">
-					<span class="active">01.</span>
-					<a href="#">02.</a>
-					<a href="#">03.</a>
-				</div>
+				
+				
+				<div class="site-pagination sp-style-2" style="padding-left: 45%; ">
+	
+	<c:if test="${pm.prev}">
+		<a href="mapleboardlist?page=${pm.startPage -1}"> &laquo; </a>
+	</c:if>
+	
+	<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage }">
+	
+		<a href="mapleboardlist?page=${idx }" style= "color : white;">${idx }</a>
+		
+	</c:forEach>
+	
+	<c:if test="${pm.next && pm.endPage > 0 }">
+		<a href="mapleboardlist?page=${pm.endPage+1}"> &raquo; </a>
+		
+	</c:if>
+</div>
+				
 			</div>
 		</div>
 	</section>
