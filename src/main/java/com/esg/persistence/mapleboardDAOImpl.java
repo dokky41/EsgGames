@@ -13,6 +13,7 @@ import com.esg.domain.Criteria;
 import com.esg.domain.mapleboardVO;
 
 
+
 @Repository
 public class mapleboardDAOImpl implements mapleboardDAO{
 	
@@ -46,5 +47,25 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE + ".mapleSearchList",cri);
 	}
+
+
+	
+	@Override
+	public void getmaplemodify(mapleboardVO vo) {
+		sqlSession.update(NAMESPACE+".maplemodify",vo);
+		
+	}
+
+
+	@Override
+	public mapleboardVO getmapleContent(int num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+".mapleContent",num);
+	}
+
+
+	
+
+	
 
 }

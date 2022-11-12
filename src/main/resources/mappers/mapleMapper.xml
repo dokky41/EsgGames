@@ -30,5 +30,19 @@
  		
 	</select>
 	
+	<select id="mapleContent" resultType="mapleboardVO">
+ 		select * from tbl_mapleboard where num=#{num};
+ 	
+ 	</select>
+ 	
+ 	<update id="maplemodify">
+ 		update tbl_mapleboard set userid=#{userid},boardpw=#{boardpw},subject=#{subject},content=#{content}
+ 		where num=#{num}
+ 	</update>
+ 	
+ 	
+	
+	
+	
 	
 </mapper>

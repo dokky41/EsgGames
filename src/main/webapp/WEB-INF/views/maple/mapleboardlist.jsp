@@ -69,7 +69,8 @@
 						<div class="community-post">
 							<div class="author-avator set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/authors/7.jpg"></div>
 							<div class="post-content">
-								<h5>${list.userid}<span>${list.subject}</span></h5>
+								<h5>${list.userid}<a href="/maple/mapleread?num=${list.num}"><span>${list.subject}</span></a></h5>
+<%-- 								<a href="/LOLboard/boardRead?IDX=${bList.IDX}" class="text-dark">${bList.TITLE }</a> --%>
 								<div class="post-date">June 21, 2018</div>
 								<p>${list.content }</p>
 							</div>

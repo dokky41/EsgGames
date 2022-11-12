@@ -38,5 +38,26 @@ public class mapleboardServiceImpl implements mapleboardService {
 		// TODO Auto-generated method stub
 		return dao.mapleSearchList(cri);
 	}
+	
+	
+
+	@Override
+	public void getmaplemodify(mapleboardVO vo) {
+		// TODO Auto-generated method stub
+		dao.getmaplemodify(vo);
+		
+	}
+	
+	@Override
+	public mapleboardVO getmapleContent(int num) {
+		// TODO Auto-generated method stub
+		return dao.getmapleContent(num);
+	}
+
+	
+
+	
+
+	
 
 }

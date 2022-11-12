@@ -13,4 +13,9 @@ public interface mapleboardDAO {
 
 	List<mapleboardVO> mapleSearchList(Criteria cri);
 
+	void getmaplemodify(mapleboardVO vo);
+
+
+	mapleboardVO getmapleContent(int num);
+
 }

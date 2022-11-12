@@ -36,6 +36,7 @@ public class mapleboardController {
 		
 		log.info("maple페이지 실행");
 		List<mapleboardVO> maplelist = service.mapleboardlist();
+		log.info(""+service.mapleboardlist());
 		model.addAttribute("maplelist", maplelist);
 		
 		
@@ -64,6 +65,43 @@ public class mapleboardController {
 		
 		List<mapleboardVO> mapleboardList =  service.mapleSearchList(cri);
 		model.addAttribute("maplelist", mapleboardList );
+	
+	}
+	
+	//value값에는 form태그의 action경로를 적어준다. method는 form태그와 똑같이 해준다. 
+	//model객체는 jsp페이지로 data를 전달해준다. @RequestParam은 jsp에서 값을 받아 사용할 수 있게 해준다. 
+	//HttpSession은 페이지내의 session정보를 저장해준다. (ex.login)
+	@RequestMapping(value="/mapleread", method=RequestMethod.GET)
+	public void getmapleContent(Model model,HttpSession session,
+			@RequestParam("num") int num) {
+		
+		log.info("mapleread페이지로 이동 ");
+		
+		mapleboardVO mapleread = service.getmapleContent(num);
+		model.addAttribute("mapleboard", mapleread);
+	}
+	
+	@RequestMapping(value="/maplemodify", method=RequestMethod.GET)
+	public void getmaplemodify(Model model,HttpSession session,
+			@RequestParam("num") int num) {
+		
+		log.info("maplemodify페이지로 이동 ");
+		
+		mapleboardVO mapleread = service.getmapleContent(num);
+		model.addAttribute("mapleboard", mapleread);
+	}
+	
+	
+	@RequestMapping(value="/maple/maplemodify",method=RequestMethod.POST)
+	public String postmaplemodify(Model model,HttpSession session,
+			@RequestParam("num") int num,mapleboardVO vo) {
+		
+		log.info("maplemodify 글쓰기 수정하기 ");
+		
+		
+		service.getmaplemodify(vo);
+		
+		return "redirect:/maple/mapleboardlist";
 	
 	}
 
