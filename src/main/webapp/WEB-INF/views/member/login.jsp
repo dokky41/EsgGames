@@ -19,12 +19,13 @@
 
 </ul>
 </nav>
-<article style="padding-left: 45%;">
+<article style="padding-left: 40%;  height: 100%;">
 <!-- <a href="/index" style="padding-left: 45%;"> -->
-<%-- <img src="${pageContext.request.contextPath }/resources/img/logo.png"> --%>
-<!-- </a> -->
 <br>
-<h5 class="login__fb-title">로그인 후 이용하실 수 있습니다.</h5>
+<img src="${pageContext.request.contextPath }/resources/img/logo2.jpg" style=" width: 33%;">
+<br>
+<br>
+<h5 class="login__fb-title"><b>로그인 후 이용하실 수 있습니다.</b></h5>
 <br>
 <form action="${pageContext.request.contextPath}/member/login" id= "join" method="post">
 <fieldset>
@@ -50,7 +51,7 @@
 					<i class="fa fa-sign-in">
 					</i> 로그인</span></button>
 					<button id="loginBtn" class="btn btn-primary btn-large" 
-					onclick="location.href='/member/Register'; return false;" style="width: 145px;">
+					onclick="location.href='/member/Register'; return false;" style="width: 145px; background: #2c974b;">
 					<span>
 					<i class="fa fa-sign-in">
 					</i> 회원가입</span></button>
@@ -64,6 +65,9 @@
 					아이디 저장</label>
 					</div>
 				</div>
+				
+				
+				<br>
 			</form>
 			</div>
 			</fieldset>
