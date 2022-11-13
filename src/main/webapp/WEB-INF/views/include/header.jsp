@@ -44,11 +44,11 @@
 			<div class="user-panel">
 			
 				<c:if test="${membervo.userid==null }">
-				<a href="${pageContext.request.contextPath }/member/login">Login</a>  /  <a href="#">Register</a>
+				<a href="${pageContext.request.contextPath }/member/login">로그인</a>   <a href="#"></a>
 				</c:if>
 				
 				<c:if test="${membervo.userid!=null }">
-				<a href="${pageContext.request.contextPath }/index">${membervo.userid} / 내정보</a>
+				<a href="${pageContext.request.contextPath }/member/logout">${membervo.userid}님 / 로그아웃</a>
 				</c:if>
 				
 			</div>
@@ -119,7 +119,13 @@
 					
 					<li><a href="${pageContext.request.contextPath }/community">고객센터</a></li>
 					
-					<li><a href="${pageContext.request.contextPath }/contact">회원가입</a></li>
+					<c:if test="${membervo.userid==null }">
+					<li><a href="${pageContext.request.contextPath }/member/Register">회원가입</a></li>
+					</c:if>
+					
+					<c:if test="${membervo.userid!=null }">
+					<li><a href="${pageContext.request.contextPath }/contact">내정보</a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</div>
