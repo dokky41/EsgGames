@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,22 +38,32 @@ public class MemberController {
 	
 	@RequestMapping(value="/idCheck", method=RequestMethod.POST)
 	@ResponseBody
-	public int idCheck(@RequestParam("userid") String userid) throws Exception {
+	public int idCheck(@RequestParam("userid") String userid,Model model) throws Exception {
 		
 		log.info("userIdCheck 실행");
 		log.info("전달받은 userid :" +userid);
 		
 		int cnt = service.idCheck(userid);
 		
+		model.addAttribute("cnt", cnt);
+		
+		log.info(cnt+"");
+		
 		return cnt;
 }
 	
 	//회원가입
 	@RequestMapping(value="/insertMember", method=RequestMethod.POST)
-	public String inserMember(MemberVO vo) throws Exception {
+	public String inserMember(MemberVO vo,@RequestParam("chk") String chk,Model model) throws Exception {
 		
 		log.info("InsertMember 회원가입 실행");
 		log.info(vo+"");
+		
+		
+		if(chk.equals("1") ) {
+			model.addAttribute("cc", "error");
+			return "redirect:/member/Register";
+		}
 		
 		service.memberInsert(vo);
 		
@@ -75,7 +86,7 @@ public class MemberController {
 		return "redirect:/index";
 	}
 	//로그아웃
-	@RequestMapping(value="/logout", method=RequestMethod.POST)
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logoutGET(HttpSession session) throws Exception {
 		
 		//로그아웃 => 세션정보 초기화
