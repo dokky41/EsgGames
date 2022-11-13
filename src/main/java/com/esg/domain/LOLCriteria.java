@@ -34,4 +34,9 @@ public class LOLCriteria {
             this.perPageNum = pageCount;
         }
     }
+
+	@Override
+	public String toString() {
+		return "LOLCriteria [page=" + page + ", perPageNum=" + perPageNum + "]";
+	}
 }

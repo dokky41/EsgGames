@@ -70,4 +70,9 @@ public class LOLPageMaker {
     public void setDisplayPageNum(int displayPageNum) {
         this.displayPageNum = displayPageNum;
     }
+	@Override
+	public String toString() {
+		return "LOLPageMaker [cri=" + cri + ", totalCount=" + totalCount + ", startPage=" + startPage + ", endPage="
+				+ endPage + ", prev=" + prev + ", next=" + next + ", displayPageNum=" + displayPageNum + "]";
+	}
 }

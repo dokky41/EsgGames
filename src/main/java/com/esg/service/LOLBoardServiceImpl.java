@@ -73,5 +73,12 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	@Override
 	public List<Map<String, Object>> selectFileList(int num) {
 		// TODO Auto-generated method stub
-		return dao.selectFileList(num);	}
+		return dao.selectFileList(num);	
+	}
+//
+//	@Override
+//	public int countBoardListTotal() {
+//		// TODO Auto-generated method stub
+//		return dao.countBoardList();
+//	}
 }

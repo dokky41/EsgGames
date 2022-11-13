@@ -29,7 +29,7 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	public List<LOLBoardVO> getBoardList(LOLCriteria cri) {
 		// TODO Auto-generated method stub
 		log.info("getBoardList() »£√‚");
-		List<LOLBoardVO> boardList = sqlSession.selectList(NAMESPACE+".BoardList");
+		List<LOLBoardVO> boardList = sqlSession.selectList(NAMESPACE+".BoardList",cri);
 		
 		return boardList;
 	}
@@ -81,5 +81,13 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+".getBoardFile",num);
 	}
+
+
+//
+//	@Override
+//	public int countBoardList() {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectOne(NAMESPACE+"countBoardList");
+//	}
 
 }

@@ -39,13 +39,13 @@ public class LOLboardController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
-		List<LOLBoardVO> boardList = service.getBoardList(cri);	
-		
 		//페이징처리
 		LOLPageMaker pageMaker = new LOLPageMaker();
 	    pageMaker.setCri(cri);
-	    pageMaker.setTotalCount(100);
-	  
+	    
+		List<LOLBoardVO> boardList = service.getBoardList(cri);
+		pageMaker.setTotalCount(20);
+
 	    mav.addObject("boardList", boardList);
 	    mav.addObject("pageMaker", pageMaker);
 	    
