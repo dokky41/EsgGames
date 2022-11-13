@@ -48,9 +48,6 @@ public class YdTradeController {
 
 		model.addAttribute("LoaNews", LoaNews);
 
-		session.setAttribute("userid", "admin");
-		session.setAttribute("userpw", "1234");
-
 //		log.info(LoaNews+"");
 		// 로아 최신뉴스 크롤링
 
@@ -64,8 +61,8 @@ public class YdTradeController {
 	}
 
 	@RequestMapping(value = "/trLostArk", method = RequestMethod.GET)
-	public void gettrLostArk(Model model, HttpSession session, Criteria cri, @RequestParam("sort") String sort)
-			throws Exception {
+	public void gettrLostArk(Model model, HttpSession session, Criteria cri, 
+			@RequestParam("sort") String sort) throws Exception {
 
 		log.info("LostArk 거래페이지 이동");
 
@@ -73,9 +70,6 @@ public class YdTradeController {
 		JSONArray LoaNews = service.getLoaNews();
 
 		model.addAttribute("LoaNews", LoaNews);
-
-		session.setAttribute("userid", "admin");
-		session.setAttribute("userpw", "1234");
 
 //		log.info(LoaNews+"");
 		// 로아 최신뉴스 크롤링
@@ -98,6 +92,7 @@ public class YdTradeController {
 
 		// 로아글목록 저장
 		model.addAttribute("trLoaList", trLoaList);
+	
 		// 로아글목록 저장
 
 		// 하단 페이징처리 정보 전달
@@ -121,8 +116,6 @@ public class YdTradeController {
 
 		model.addAttribute("LoaNews", LoaNews);
 
-		session.setAttribute("userid", "admin");
-		session.setAttribute("userpw", "1234");
 
 //		log.info(LoaNews+"");
 		// 로아 최신뉴스 크롤링
@@ -153,7 +146,6 @@ public class YdTradeController {
 		// 하단 페이징처리 정보 전달
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-
 		pageMaker.setTotalCount(service.totalCnt2(searchName));
 
 		model.addAttribute("pm", pageMaker);
@@ -194,7 +186,6 @@ public class YdTradeController {
 				vo.setFile1("C:\\test\\file\\" + newName);
 				saveFile = new File("C:\\test\\file\\", newName);
 				vo.setFile1(newName);
-			
 			}else if(WRcount==2) {
 				vo.setFile2("C:\\test\\file\\" + newName);
 				saveFile = new File("C:\\test\\file\\", newName);
@@ -230,7 +221,8 @@ public class YdTradeController {
 	}
 
 	@RequestMapping(value = "/trLostModify", method = RequestMethod.GET)
-	public void gettrLostModify(Model model, HttpSession session, @RequestParam("num") int num) {
+	public void gettrLostModify(Model model, HttpSession session,
+			@RequestParam("num") int num) {
 
 		log.info("trLostModify 거래글 수정페이지로 이동");
 

@@ -43,12 +43,12 @@
 			</a>
 			<div class="user-panel">
 			
-				<c:if test="${sessionScope.userid==null }">
-				<a href="#">Login</a>  /  <a href="#">Register</a>
+				<c:if test="${membervo.userid==null }">
+				<a href="${pageContext.request.contextPath }/member/login">Login</a>  /  <a href="#">Register</a>
 				</c:if>
 				
-				<c:if test="${sessionScope.userid!=null }">
-				<a href="#">${sessionScope.userid} / 내정보</a>
+				<c:if test="${membervo.userid!=null }">
+				<a href="${pageContext.request.contextPath }/index">${membervo.userid} / 내정보</a>
 				</c:if>
 				
 			</div>
@@ -67,11 +67,11 @@
 					<ul class="Gsubmenu" >
 					
 						<li>
-					   <a href="${pageContext.request.contextPath }/review">리그오브레전드</a>
+					   <a href="${pageContext.request.contextPath }/LOLboard/boardList">리그오브레전드</a>
 					   </li>
 					   
 					   <li>
-					   <a href="${pageContext.request.contextPath }/review">메이플스토리</a>
+					   <a href="${pageContext.request.contextPath }/maple/mapleboardlist">메이플스토리</a>
 					   </li>
 					   
 					   <li>
