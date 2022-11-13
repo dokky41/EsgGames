@@ -83,11 +83,11 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	}
 
 
-//
-//	@Override
-//	public int countBoardList() {
-//		// TODO Auto-generated method stub
-//		return sqlSession.selectOne(NAMESPACE+"countBoardList");
-//	}
+
+	@Override
+	public int countBoardList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"countBoardList");
+	}
 
 }

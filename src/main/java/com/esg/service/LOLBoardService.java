@@ -24,5 +24,5 @@ public interface LOLBoardService {
 	void deleteBoard(int num);
 	//파일 정보 불러오기
 	List<Map<String, Object>> selectFileList(int num);
-//	int countBoardListTotal();
+	int countBoardListTotal();
 }

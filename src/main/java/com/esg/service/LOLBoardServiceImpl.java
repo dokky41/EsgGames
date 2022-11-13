@@ -75,10 +75,10 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 		// TODO Auto-generated method stub
 		return dao.selectFileList(num);	
 	}
-//
-//	@Override
-//	public int countBoardListTotal() {
-//		// TODO Auto-generated method stub
-//		return dao.countBoardList();
-//	}
+
+	@Override
+	public int countBoardListTotal() {
+		// TODO Auto-generated method stub
+		return dao.countBoardList();
+	}
 }

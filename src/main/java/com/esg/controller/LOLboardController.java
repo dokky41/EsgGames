@@ -44,7 +44,7 @@ public class LOLboardController {
 	    pageMaker.setCri(cri);
 	    
 		List<LOLBoardVO> boardList = service.getBoardList(cri);
-		pageMaker.setTotalCount(20);
+		pageMaker.setTotalCount(service.countBoardListTotal());
 
 	    mav.addObject("boardList", boardList);
 	    mav.addObject("pageMaker", pageMaker);
