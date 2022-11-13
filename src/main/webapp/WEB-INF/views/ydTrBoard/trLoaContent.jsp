@@ -18,7 +18,7 @@ $(document).ready(function(){
 				 
 			    } else {
 			        // 확인(예) 버튼 클릭 시 이벤트
-			    	formObj.attr("action","/ydTrBoard/trLoadelete?num=${trLoa.num}");
+			    	formObj.attr("action","/ydTrBoard/trLoadelete?num=${trLoa.num}&sort=def");
 					
 					formObj.attr("method","post");
 					
@@ -90,10 +90,22 @@ $(document).ready(function(){
 				<div class="col-lg-4 mb-5 mb-lg-0">
 					
 					<p>
+					<c:if test="${trLoa.file1 != null}">
 					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }" class="img">
+					</c:if>
+					
+					<c:if test="${trLoa.file2 != null}">
 					<img src="http://localhost:8088/tomcatImg/${trLoa.file2 }" class="img">
+					</c:if>
+					
+					<c:if test="${trLoa.file3 != null}">
 					<img src="http://localhost:8088/tomcatImg/${trLoa.file3 }" class="img">
+					</c:if>
+					
+					<c:if test="${trLoa.file4 != null}">
 					<img src="http://localhost:8088/tomcatImg/${trLoa.file4 }" class="img">
+					</c:if>
+					
 					
 					<div class="modal">
   						<span class="close">&times;</span>
@@ -150,7 +162,7 @@ $(document).ready(function(){
 <%-- 								<c:if test="${vo.userid==membervo.userid || membervo.userid == 'admin' }"> --%>
 									
 									<button class="site-btn btn-sm"
-									onclick="location.href='/ydTrBoard/trLostModify?num=${trLoa.num}'; return false;"
+									onclick="location.href='/ydTrBoard/trLostModify?num=${trLoa.num}&sort=def'; return false;"
 									>수정</button>
 									</form>
 									

@@ -33,7 +33,7 @@ public class LOLboardController {
 	
 	@Inject
 	LOLBoardService service;
-	//±Û ¸ñ·Ï
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(LOLCriteria cri) throws Exception{
 		
@@ -41,7 +41,7 @@ public class LOLboardController {
 		mav.setViewName("/LOLboard/boardList");	
 		List<LOLBoardVO> boardList = service.getBoardList(cri);	
 		
-		//ÆäÀÌÂ¡Ã³¸®
+		//ï¿½ï¿½ï¿½ï¿½Â¡Ã³ï¿½ï¿½
 		LOLPageMaker pageMaker = new LOLPageMaker();
 	    pageMaker.setCri(cri);
 	    pageMaker.setTotalCount(100);
@@ -50,60 +50,60 @@ public class LOLboardController {
 	    mav.addObject("pageMaker", pageMaker);
 	    
 		return mav;
-	}
-	//±Û ÆäÀÌÁö ¿ÀÇÂ
+	}//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
-		log.info("Write.jsp ½ÇÇà");
+		log.info("Write.jsp ï¿½ï¿½ï¿½ï¿½");
 	}
-	//±Û ¾²±â
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
     public ModelAndView boardWritePost (LOLBoardVO vo,MultipartFile[] file) throws Exception {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/LOLboard/boardList");
         log.info(vo+"");
-        log.info(file+"ÀÔ´Ï´Ù");
+        log.info(file+"ï¿½Ô´Ï´ï¿½");
         service.insertBoard(vo,file);
         return mav;
     }
 	
-	//±Û º»¹® º¸±â + ±Û Á¶È¸¼ö Áõ°¡
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ + ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
 	public void readGet(@RequestParam("IDX") int num,Model model) throws Exception{
-		log.info("read.jsp ½ÇÇà");
+		log.info("read.jsp ï¿½ï¿½ï¿½ï¿½");
 		
-		//Á¶È¸¼ö Áõ°¡
+		//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		service.updateBoardCount(num);
 		log.info(num+"");
-		//±Û Á¤º¸ °¡Á®¿À±â
+		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		LOLBoardVO read = service.readBoard(num);
-		//ÆÄÀÏ Á¤º¸ °¡Á®¿À±â
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		List<Map<String, Object>> fileList = service.selectFileList(num);
 		model.addAttribute("file", fileList);
 		log.info(fileList+"");
 		log.info(read+"");
 
-		//°¡Á®¿Â µ¥ÀÌÅÍ¸¦ ¿¬°áµÈ ºäÆäÀÌÁö¿¡ Ãâ·Â
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		model.addAttribute("vo",read);
 	}
-	//»ó¼¼Á¤º¸¸¦ °¡Á®¿Í "detail"¶õ ÀÌ¸§¿¡ ÀúÀå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "detail"ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)
 	public void UpdateGet(@RequestParam("IDX") int num,Model model) throws Exception{
 		
-		log.info("Update.jsp ½ÇÇà");
+		log.info("Update.jsp ï¿½ï¿½ï¿½ï¿½");
 		LOLBoardVO detail=service.readBoard(num);
 		model.addAttribute("detail",detail);
 	}
 
-	//±Û ¼öÁ¤ ¾÷µ¥ÀÌÆ®
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.POST)
     public String boardUpdatePost (LOLBoardVO vo) throws Exception {
         log.info(vo+"");
         service.update(vo);
         return "redirect:/LOLboard/boardList";
     }
-	//±Û »èÁ¦ IDX ÀúÀå
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IDX ï¿½ï¿½ï¿½ï¿½
 		@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
 		public String DeletePOST(@RequestParam("IDX") int num) throws Exception{
 			log.info(num+"delete");
