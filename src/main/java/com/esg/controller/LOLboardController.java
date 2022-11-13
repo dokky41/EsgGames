@@ -50,8 +50,8 @@ public class LOLboardController {
 	    mav.addObject("pageMaker", pageMaker);
 	    
 		return mav;
-	}//�� ������ ����
-	
+	}
+	//�� ������ ����
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
