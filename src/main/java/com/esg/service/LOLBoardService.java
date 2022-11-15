@@ -24,4 +24,6 @@ public interface LOLBoardService {
 	void deleteBoard(int num);
 	//���� ���� �ҷ�����
 	List<Map<String, Object>> selectFileList(int num);
+	int countBoardListTotal();
+	void insertBoard(LOLBoardVO vo);
 }

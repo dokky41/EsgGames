@@ -46,7 +46,7 @@
 				</div>
 				
 				<div class="container col-md-6">
-    <form action='<c:url value='/LOLboard/boardUpdate'/>' method="post">
+    <form action='<c:url value='/LOLboard/boardUpdate${pageMaker.makeQueryPage(page) }'/>' method="post">
         <div class="form-group">
             <label for="exampleFormControlInput1">제목</label>
             <input type="text" class="form-control" id="exampleFormControlInput1" name="TITLE" value="${detail.TITLE }">
@@ -61,7 +61,7 @@
         </div>
         <input type="hidden" name="IDX" value="${detail.IDX }">
         <button type="submit" class="btn btn-info">수정하기</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href='boardRead?IDX=${detail.IDX}'">뒤로가기</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='boardRead${pageMaker.makeQueryPage(detail.IDX, page) }'">뒤로가기</button>
     </form>
 </div>
 

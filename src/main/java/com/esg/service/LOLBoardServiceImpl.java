@@ -38,8 +38,8 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	public void insertBoard(LOLBoardVO vo,MultipartFile[] file)throws Exception{
 		// TODO Auto-generated method stub
 		dao.insertBoard(vo);
-		List<Map<String, Object>> fileList = fileUtils.parseFileInfo(vo, file);
-	    for(int i=0; i<fileList.size(); i++) {
+	    List<Map<String, Object>>fileList = fileUtils.parseFileInfo(vo, file);
+		for(int i=0; i<fileList.size(); i++) {
 	        dao.insertFile(fileList.get(i));
 	    }
 	}
@@ -73,5 +73,18 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	@Override
 	public List<Map<String, Object>> selectFileList(int num) {
 		// TODO Auto-generated method stub
-		return dao.selectFileList(num);	}
+		return dao.selectFileList(num);	
+	}
+
+	@Override
+	public int countBoardListTotal() {
+		// TODO Auto-generated method stub
+		return dao.countBoardList();
+	}
+
+	@Override
+	public void insertBoard(LOLBoardVO vo) {
+		// TODO Auto-generated method stub
+		dao.insertBoard(vo);
+	}
 }
