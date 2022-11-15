@@ -28,7 +28,7 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	@Override
 	public List<LOLBoardVO> getBoardList(LOLCriteria cri) {
 		// TODO Auto-generated method stub
-		log.info("getBoardList() »£√‚");
+		log.info("getBoardList() √à¬£√É√¢");
 		List<LOLBoardVO> boardList = sqlSession.selectList(NAMESPACE+".BoardList",cri);
 		
 		return boardList;
@@ -46,7 +46,7 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	@Override
 	public void updateBoardCnt(int num) {
 		// TODO Auto-generated method stub
-		log.info("readcount ¡ı∞°");
+		log.info("readcount √Å√µ¬∞¬°");
 		sqlSession.update(NAMESPACE+".updateBoardCnt",num);
 	}
 
