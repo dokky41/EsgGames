@@ -34,13 +34,13 @@ public class LOLboardController {
 	
 	@Inject
 	LOLBoardService service;
-	//±Û ¸ñ·Ï
+	//ê¸€ ëª©ë¡
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(LOLCriteria cri) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
-		//ÆäÀÌÂ¡Ã³¸®
+		//í˜ì´ì§•ì²˜ë¦¬
 		LOLPageMaker pageMaker = new LOLPageMaker();
 	    pageMaker.setCri(cri);
 	    
@@ -52,15 +52,15 @@ public class LOLboardController {
 		return mav;
 	}
 	
-	//±Û ÆäÀÌÁö ¿ÀÇÂ
+	//ê¸€ í˜ì´ì§€ ì˜¤í”ˆ
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
-		log.info("Write.jsp ½ÇÇà");
+		log.info("Write.jsp ì‹¤í–‰");
 		
 	}
 	
-	//±Û ¾²±â
+	//ê¸€ ì“°ê¸°
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
     public ModelAndView boardWritePost (LOLBoardVO vo,MultipartFile[] file) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -77,37 +77,37 @@ public class LOLboardController {
         return mav;
     }
 	
-	//±Û º»¹® º¸±â + ±Û Á¶È¸¼ö Áõ°¡
+	//ê¸€ ë³¸ë¬¸ ë³´ê¸° + ê¸€ ì¡°íšŒìˆ˜ ì¦ê°€
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
 	public void readGet(@RequestParam("IDX") int num,Model model,LOLCriteria cri) throws Exception{
-		log.info("read.jsp ½ÇÇà");
+		log.info("read.jsp ì‹¤í–‰");
 		
-		//Á¶È¸¼ö Áõ°¡
+		//ì¡°íšŒìˆ˜ ì¦ê°€
 		service.updateBoardCount(num);
 		log.info(num+"");
-		//±Û Á¤º¸ °¡Á®¿À±â
+		//ê¸€ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 		LOLBoardVO read = service.readBoard(num);
-		//ÆÄÀÏ Á¤º¸ °¡Á®¿À±â
+		//íŒŒì¼ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 		List<Map<String, Object>> fileList = service.selectFileList(num);
 		model.addAttribute("file", fileList);
 		log.info(fileList+"");
 		log.info(read+"");
 
-		//°¡Á®¿Â µ¥ÀÌÅÍ¸¦ ¿¬°áµÈ ºäÆäÀÌÁö¿¡ Ãâ·Â
+		//ê°€ì ¸ì˜¨ ë°ì´í„°ë¥¼ ì—°ê²°ëœ ë·°í˜ì´ì§€ì— ì¶œë ¥
 		model.addAttribute("vo",read);
 		
-		//ÆäÀÌÂ¡ Ã³¸®
+		//í˜ì´ì§• ì²˜ë¦¬
 		LOLPageMaker pageMaker = new LOLPageMaker();
         pageMaker.setCri(cri);
         model.addAttribute("page",cri.getPage());
         model.addAttribute("pageMaker", pageMaker);
 	}
 	
-	//»ó¼¼Á¤º¸¸¦ °¡Á®¿Í "detail"¶õ ÀÌ¸§¿¡ ÀúÀå
+	//ìƒì„¸ì •ë³´ë¥¼ ê°€ì ¸ì™€ "detail"ë€ ì´ë¦„ì— ì €ì¥
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)
 	public void UpdateGet(@RequestParam("IDX") int num,Model model,LOLCriteria cri) throws Exception{
 		
-		log.info("Update.jsp ½ÇÇà");
+		log.info("Update.jsp ì‹¤í–‰");
 		LOLBoardVO detail=service.readBoard(num);
 		model.addAttribute("detail",detail);
 		
@@ -117,7 +117,7 @@ public class LOLboardController {
         model.addAttribute("pageMaker", pageMaker);
 	}
 
-	//±Û ¼öÁ¤ ¾÷µ¥ÀÌÆ®
+	//ê¸€ ìˆ˜ì • ì—…ë°ì´íŠ¸
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.POST)
     public String boardUpdatePost (LOLBoardVO vo,LOLCriteria cri,RedirectAttributes redAttr) throws Exception {
         log.info(vo+"");
@@ -129,16 +129,16 @@ public class LOLboardController {
         return "redirect:/LOLboard/boardList";
     }
 	
-	//±Û »èÁ¦ IDX ÀúÀå
+	//ê¸€ ì‚­ì œ IDX ì €ì¥
 	@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
 	public String DeletePOST(@RequestParam("IDX") int num,LOLCriteria cri,RedirectAttributes redAttr) throws Exception{
 			log.info(num+"delete");
 			service.deleteBoard(num);
 			
-			//ÆäÀÌÂ¡ Ã³¸®
+			//í˜ì´ì§• ì²˜ë¦¬
 			redAttr.addAttribute("page", cri.getPage());
 			redAttr.addAttribute("perPagNum", cri.getPerPageNum());
 		     
 			return "redirect:/LOLboard/boardList";
 	}
-}
+ }
