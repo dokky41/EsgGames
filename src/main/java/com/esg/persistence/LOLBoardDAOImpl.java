@@ -28,7 +28,7 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	@Override
 	public List<LOLBoardVO> getBoardList(LOLCriteria cri) {
 		// TODO Auto-generated method stub
-		log.info("getBoardList() ȣ��");
+		log.info("getBoardList() ȣ��1");
 		List<LOLBoardVO> boardList = sqlSession.selectList(NAMESPACE+".BoardList",cri);
 		
 		return boardList;
