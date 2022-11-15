@@ -26,4 +26,6 @@ public interface mapleboardService {
 	//글 전체 개수 
 	int totalCnt();
 
+	void updatemapleBoardCount(int num);
+
 }

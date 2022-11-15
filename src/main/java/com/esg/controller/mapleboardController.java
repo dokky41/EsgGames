@@ -84,6 +84,7 @@ public class mapleboardController {
 		
 		log.info("mapleread페이지로 이동 ");
 		
+		service.updatemapleBoardCount(num);
 		mapleboardVO mapleread = service.getmapleContent(num);
 		model.addAttribute("mapleboard", mapleread);
 	}

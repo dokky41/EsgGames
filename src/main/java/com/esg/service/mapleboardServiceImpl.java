@@ -67,6 +67,12 @@ public class mapleboardServiceImpl implements mapleboardService {
 		return dao.totalCnt();
 	}
 
+	@Override
+	public void updatemapleBoardCount(int num) {
+		// TODO Auto-generated method stub
+		dao.updatemapleBoardCount(num);
+	}
+
 	
 
 	

@@ -79,6 +79,14 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 	}
 
 
+	@Override
+	public void updatemapleBoardCount(int num) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(NAMESPACE+".mapleCount",num);
+		
+	}
+
+
 	
 
 }
