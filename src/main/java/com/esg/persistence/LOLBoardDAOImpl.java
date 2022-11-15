@@ -91,3 +91,4 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	}
 
 }
+
