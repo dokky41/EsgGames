@@ -41,7 +41,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h3 class="community-top-title">전체</h3>
+						<h3 class="community-top-title">전체 ${pageMaker.getTotalCount()}</h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
 						<form class="community-filter">
@@ -57,7 +57,7 @@
                           <c:forEach items="${boardList }" var="bList">
                               <tr>
                               <th scope="row">${bList.IDX }</th>
-                              <td><a href="/LOLboard/boardRead?IDX=${bList.IDX}" class="text-dark">${bList.TITLE }</a></td>
+                              <td><a href="/LOLboard/boardRead${pageMaker.makeQueryPage(bList.IDX, pageMaker.cri.page) }" class="text-dark">${bList.TITLE }</a></td>
                               <td>${bList.CREA_ID }</td>
                               <td>${bList.CREA_DATE }</td>
                               <td>${bList.HIT_CNT }</td>
@@ -72,22 +72,23 @@
                   </c:choose> 
               </tbody>
             </table>
-            <ul class="btn-group pagination">
-    <c:if test="${pageMaker.prev }">
-    <li>
-        <a href='<c:url value="/LOLboard/boardList?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a>
-    </li>
-    </c:if>
-    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-    <li>
-        <a href='<c:url value="/LOLboard/boardList?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
-    </li>
-    </c:forEach>
-    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-    <li>
-        <a href='<c:url value="/LOLboard/boardList?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
-    </li>
-    </c:if>
+            
+            <ul class="pagination">
+  <c:if test="${pageMaker.prev }">
+  <li>
+      <a href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.startPage-1) }"/>'><i class="fa fa-chevron-left"><</i></a>
+  </li>
+  </c:if>
+  <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+  <li>
+      <a href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageNum) }"/>'>${pageNum }</a>
+  </li>
+  </c:forEach>
+  <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+  <li>
+      <a href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.endPage+1) }"/>'><i class="fa fa-chevron-right">></i></a>
+  </li>
+  </c:if>
 </ul>
 			</div>
 

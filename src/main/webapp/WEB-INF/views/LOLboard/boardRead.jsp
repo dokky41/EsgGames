@@ -79,11 +79,11 @@
 </c:choose>
         </div>
         <div class="card-body">
-            <a href='<c:url value='/LOLboard/boardUpdate?IDX=${vo.IDX }'/>' class="btn btn-outline-secondary btn-sm" role="button">수정</a>
-            <a href='<c:url value='/LOLboard/boardDelete?IDX=${vo.IDX }'/>'  class="btn btn-outline-secondary btn-sm " role="button">삭제</a>
+            <a href='<c:url value='/LOLboard/boardUpdate${pageMaker.makeQueryPage(vo.IDX, page) }'/>' class="btn btn-outline-secondary btn-sm" role="button">수정</a>
+            <a href='<c:url value='/LOLboard/boardDelete${pageMaker.makeQueryPage(vo.IDX, page) }'/>'  class="btn btn-outline-secondary btn-sm " role="button">삭제</a>
         </div>
         <div class="card-body">
-            <a href='<c:url value='/LOLboard/boardList'/>' class="btn btn-info" role="button">목록으로</a>
+            <a href='<c:url value='/LOLboard/boardList${pageMaker.makeQueryPage(page) }'/>' class="btn btn-info" role="button">목록으로</a>
         </div>
     </div>
 </div>

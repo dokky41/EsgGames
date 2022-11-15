@@ -25,4 +25,5 @@ public interface LOLBoardService {
 	//파일 정보 불러오기
 	List<Map<String, Object>> selectFileList(int num);
 	int countBoardListTotal();
+	void insertBoard(LOLBoardVO vo);
 }

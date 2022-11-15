@@ -11,8 +11,8 @@
         LIMIT #{pageStart}, #{perPageNum};
     </select>
     
-    <select id="countBoardList" resultType="LOLBoardVO">
-        select count(IDX) from lol_board
+    <select id="countBoardList" resultType="int">
+        select count(*) from lol_board
     </select>
     
     <insert id="write" useGeneratedKeys="true" keyProperty="IDX">
