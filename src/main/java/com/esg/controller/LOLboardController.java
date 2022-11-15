@@ -141,4 +141,4 @@ public class LOLboardController {
 		     
 			return "redirect:/LOLboard/boardList";
 	}
- }
+}
