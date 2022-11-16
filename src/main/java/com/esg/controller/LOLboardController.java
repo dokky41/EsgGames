@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
 import com.esg.domain.LOLPageMaker;
+import com.esg.domain.LOLReplyVO;
 import com.esg.persistence.LOLBoardDAO;
 import com.esg.service.LOLBoardService;
 
@@ -34,6 +35,7 @@ public class LOLboardController {
 	
 	@Inject
 	LOLBoardService service;
+	
 	//글 목록
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(LOLCriteria cri) throws Exception{
@@ -101,6 +103,10 @@ public class LOLboardController {
         pageMaker.setCri(cri);
         model.addAttribute("page",cri.getPage());
         model.addAttribute("pageMaker", pageMaker);
+        
+        //댓글 처리
+        List<LOLReplyVO> LOLReplyVO = service.readReply(num);
+        model.addAttribute("replyList",LOLReplyVO);
 	}
 	
 	//상세정보를 가져와 "detail"란 이름에 저장

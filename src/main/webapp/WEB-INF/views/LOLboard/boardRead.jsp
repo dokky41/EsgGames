@@ -85,6 +85,23 @@
         <div class="card-body">
             <a href='<c:url value='/LOLboard/boardList${pageMaker.makeQueryPage(page) }'/>' class="btn btn-info" role="button">목록으로</a>
         </div>
+        
+        <!-- 댓글 -->
+<div id="reply">
+  <ol class="replyList">
+    <c:forEach items="${replyList}" var="replyList">
+      <li>
+        <p>
+        작성자 : ${replyList.writer}<br />
+        작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
+        </p>
+
+        <p>${replyList.content}</p>
+      </li>
+    </c:forEach>   
+  </ol>
+</div>
+
     </div>
 </div>
 
