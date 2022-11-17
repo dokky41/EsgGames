@@ -26,12 +26,15 @@ public class LOLreplyController {
 	private static final Logger log = LoggerFactory.getLogger(LOLreplyController.class);
 	@Inject
 	private LOLReplyService replyservice;
+	
 	// ¥Ò±€ ¿€º∫
 	@RequestMapping(value = "/replyWrite", method = RequestMethod.POST)
-	public String posttWirte(LOLReplyVO vo) throws Exception {
-		
-		replyservice.write(vo);
-		
-		return "redirect:/board/view?bno=" + vo.getIDX();
+	public ModelAndView postWirte(LOLReplyVO vo,LOLCriteria cri) throws Exception {
+		ModelAndView mav = new ModelAndView();
+        
+        mav.setViewName("redirect:/LOLboard/boardRead?IDX=" + vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum());
+        replyservice.write(vo);
+		log.info(vo+"");
+		return mav;
 	}
 }

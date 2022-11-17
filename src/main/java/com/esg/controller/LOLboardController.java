@@ -79,6 +79,7 @@ public class LOLboardController {
         else{
         service.insertBoard(vo,file);
         }
+        
         return mav;
     }
 	

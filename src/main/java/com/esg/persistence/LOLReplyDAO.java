@@ -8,7 +8,7 @@ public interface LOLReplyDAO {
 	// ´ñ±Û Á¶È¸
 	public List<LOLReplyVO> list(int num) throws Exception ;
 
-	// ´ñ±Û Á¶È¸
+	// ´ñ±Û ¾²±â
 	public void write(LOLReplyVO vo) throws Exception ;
 
 	// ´ñ±Û ¼öÁ¤

@@ -88,30 +88,35 @@
         </div>
         
         <!-- 댓글 -->
-        <ul>
+        <ul class="card-body">
         <c:forEach items="${reply}" var="reply">
 <li>
     <div>
         <p>${reply.WRITER} / <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd" /></p>
         <p>${reply.CONTENT }</p>
+        <p>
+	<a href="">수정</a> / <a href="">삭제</a>
+</p>
+			
+<hr />
     </div>
 </li>    
 </c:forEach>
 </ul>
 
-<div>
+<div class="card-body">
 
-	<form method="post" action="/LOLboard/boardRead">
+	<form method="post" action="../LOLreply/replyWrite">
 	
 		<p>
-			<label>댓글 작성자</label> <input type="text" name="writer">
+			<label>댓글 작성자</label> <input type="text" name="WRITER">
 		</p>
 		<p>
-			<textarea rows="5" cols="50" name="content"></textarea>
+			<textarea rows="5" cols="50" name="CONTENT" placeholder="댓글을 작성해주세요."></textarea>
 		</p>
 		<p>
 			<input type="hidden" name="IDX" value="${vo.IDX}">
-			<button type="submit">댓글 작성</button>
+			<button type="submit" class="btn btn-info">댓글 작성</button>
 		</p>
 	</form>
 	

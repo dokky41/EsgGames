@@ -31,7 +31,7 @@ public class LOLReplyServiceImpl implements LOLReplyService{
 	}
 
 	@Override
-	public void delete(LOLReplyVO vo) throws Exception {
+	public void delete(LOLReplyVO vo) throws Exception{
 	    dao.delete(vo);
 	}
 }

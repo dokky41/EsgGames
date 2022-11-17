@@ -1,13 +1,13 @@
 package com.esg.domain;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class LOLReplyVO {
 	private int IDX; //°Ô½ÃÆÇ °íÀ¯ ¹øÈ£
 	private int RNO; //´ñ±Û °íÀ¯ ¹øÈ£
 	private String CONTENT; //´ñ±Û ³»¿ë
 	private String WRITER; //´ñ±Û ÀÛ¼ºÀÚ
-	private Date REGDATE; //´ñ±Û ÀÛ¼º ³¯Â¥
+	private Timestamp REGDATE; //´ñ±Û ÀÛ¼º ³¯Â¥
 	
 	public int getIDX() {
 		return IDX;
@@ -33,17 +33,17 @@ public class LOLReplyVO {
 	public void setWRITER(String wRITER) {
 		WRITER = wRITER;
 	}
-	public Date getREGDATE() {
+	public Timestamp getREGDATE() {
 		return REGDATE;
 	}
-	public void setREGDATE(Date rEGDATE) {
+	public void setREGDATE(Timestamp rEGDATE) {
 		REGDATE = rEGDATE;
 	}
-	
 	@Override
 	public String toString() {
 		return "LOLReplyVO [IDX=" + IDX + ", RNO=" + RNO + ", CONTENT=" + CONTENT + ", WRITER=" + WRITER + ", REGDATE="
 				+ REGDATE + "]";
 	}
+	
 	
 }
