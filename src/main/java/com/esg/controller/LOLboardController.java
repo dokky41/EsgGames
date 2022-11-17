@@ -25,6 +25,7 @@ import com.esg.domain.LOLPageMaker;
 import com.esg.domain.LOLReplyVO;
 import com.esg.persistence.LOLBoardDAO;
 import com.esg.service.LOLBoardService;
+import com.esg.service.LOLReplyService;
 
 @Controller
 @RequestMapping("/LOLboard/*")
@@ -36,6 +37,8 @@ public class LOLboardController {
 	@Inject
 	LOLBoardService service;
 	
+	@Inject
+	LOLReplyService replyservice;
 	//글 목록
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(LOLCriteria cri) throws Exception{
@@ -104,9 +107,10 @@ public class LOLboardController {
         model.addAttribute("page",cri.getPage());
         model.addAttribute("pageMaker", pageMaker);
         
-        //댓글 처리
-        List<LOLReplyVO> LOLReplyVO = service.readReply(num);
-        model.addAttribute("replyList",LOLReplyVO);
+        // 댓글 조회
+        List<LOLReplyVO> reply;
+        reply = replyservice.list(num);
+        model.addAttribute("reply", reply);
 	}
 	
 	//상세정보를 가져와 "detail"란 이름에 저장

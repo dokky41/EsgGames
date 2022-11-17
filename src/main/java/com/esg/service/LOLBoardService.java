@@ -27,5 +27,4 @@ public interface LOLBoardService {
 	List<Map<String, Object>> selectFileList(int num);
 	int countBoardListTotal();
 	void insertBoard(LOLBoardVO vo);
-	List<LOLReplyVO> readReply(int num);
 }

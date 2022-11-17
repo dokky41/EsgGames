@@ -3,45 +3,47 @@ package com.esg.domain;
 import java.util.Date;
 
 public class LOLReplyVO {
-	private int bno;
-	private int rno;
-	private String content;
-	private String writer;
-	private Date regdate;
-	public int getBno() {
-		return bno;
+	private int IDX; //게시판 고유 번호
+	private int RNO; //댓글 고유 번호
+	private String CONTENT; //댓글 내용
+	private String WRITER; //댓글 작성자
+	private Date REGDATE; //댓글 작성 날짜
+	
+	public int getIDX() {
+		return IDX;
 	}
-	public void setBno(int bno) {
-		this.bno = bno;
+	public void setIDX(int iDX) {
+		IDX = iDX;
 	}
-	public int getRno() {
-		return rno;
+	public int getRNO() {
+		return RNO;
 	}
-	public void setRno(int rno) {
-		this.rno = rno;
+	public void setRNO(int rNO) {
+		RNO = rNO;
 	}
-	public String getContent() {
-		return content;
+	public String getCONTENT() {
+		return CONTENT;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setCONTENT(String cONTENT) {
+		CONTENT = cONTENT;
 	}
-	public String getWriter() {
-		return writer;
+	public String getWRITER() {
+		return WRITER;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setWRITER(String wRITER) {
+		WRITER = wRITER;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getREGDATE() {
+		return REGDATE;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setREGDATE(Date rEGDATE) {
+		REGDATE = rEGDATE;
 	}
 	
 	@Override
 	public String toString() {
-		return "ReplyVO [bno=" + bno + ", rno=" + rno + ", content=" + content + ", writer=" + writer + ", regdate="
-				+ regdate + "]";
+		return "LOLReplyVO [IDX=" + IDX + ", RNO=" + RNO + ", CONTENT=" + CONTENT + ", WRITER=" + WRITER + ", REGDATE="
+				+ REGDATE + "]";
 	}
+	
 }

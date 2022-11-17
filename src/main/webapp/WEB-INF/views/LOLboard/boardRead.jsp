@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -87,20 +88,35 @@
         </div>
         
         <!-- 댓글 -->
-<div id="reply">
-  <ol class="replyList">
-    <c:forEach items="${replyList}" var="replyList">
-      <li>
-        <p>
-        작성자 : ${replyList.writer}<br />
-        작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
-        </p>
+        <ul>
+        <c:forEach items="${reply}" var="reply">
+<li>
+    <div>
+        <p>${reply.WRITER} / <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd" /></p>
+        <p>${reply.CONTENT }</p>
+    </div>
+</li>    
+</c:forEach>
+</ul>
 
-        <p>${replyList.content}</p>
-      </li>
-    </c:forEach>   
-  </ol>
+<div>
+
+	<form method="post" action="/LOLboard/boardRead">
+	
+		<p>
+			<label>댓글 작성자</label> <input type="text" name="writer">
+		</p>
+		<p>
+			<textarea rows="5" cols="50" name="content"></textarea>
+		</p>
+		<p>
+			<input type="hidden" name="IDX" value="${vo.IDX}">
+			<button type="submit">댓글 작성</button>
+		</p>
+	</form>
+	
 </div>
+
 
     </div>
 </div>
