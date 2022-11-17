@@ -16,6 +16,7 @@ import com.esg.persistence.LOLBoardDAO;
 import com.esg.utils.FileUtils;
 import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
+import com.esg.domain.LOLReplyVO;
 
 @Service
 public class LOLBoardServiceImpl implements LOLBoardService {
@@ -86,5 +87,11 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	public void insertBoard(LOLBoardVO vo) {
 		// TODO Auto-generated method stub
 		dao.insertBoard(vo);
+	}
+	//´ñ±Û Ã³¸®
+	@Override
+	public List<LOLReplyVO> readReply(int num) {
+		// TODO Auto-generated method stub
+		return dao.readReply(num);
 	}
 }

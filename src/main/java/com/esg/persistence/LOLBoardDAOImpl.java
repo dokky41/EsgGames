@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
+import com.esg.domain.LOLReplyVO;
 
 @Repository
 public class LOLBoardDAOImpl implements LOLBoardDAO {
@@ -88,6 +89,14 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	public int countBoardList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+".countBoardList");
+	}
+
+
+
+	@Override
+	public List<LOLReplyVO> readReply(int num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+".readReply",num);
 	}
 
 }
