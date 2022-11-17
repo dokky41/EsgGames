@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
 import com.esg.domain.LOLPageMaker;
+import com.esg.domain.LOLReplyVO;
 import com.esg.persistence.LOLBoardDAO;
 import com.esg.service.LOLBoardService;
 
@@ -33,44 +35,53 @@ public class LOLboardController {
 	
 	@Inject
 	LOLBoardService service;
+	
 	//�� ���
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(LOLCriteria cri) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
-		List<LOLBoardVO> boardList = service.getBoardList(cri);	
-		
 		//����¡ó��
 		LOLPageMaker pageMaker = new LOLPageMaker();
 	    pageMaker.setCri(cri);
-	    pageMaker.setTotalCount(100);
-	  
+	    
+		List<LOLBoardVO> boardList = service.getBoardList(cri);
+		pageMaker.setTotalCount(service.countBoardListTotal());
 	    mav.addObject("boardList", boardList);
 	    mav.addObject("pageMaker", pageMaker);
 	    
 		return mav;
 	}
+	
 	//�� ������ ����
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
 		log.info("Write.jsp ����");
+		
 	}
+	
 	//�� ����
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
     public ModelAndView boardWritePost (LOLBoardVO vo,MultipartFile[] file) throws Exception {
         ModelAndView mav = new ModelAndView();
+        
         mav.setViewName("redirect:/LOLboard/boardList");
         log.info(vo+"");
-        log.info(file+"�Դϴ�");
+        
+        if((file[0].getOriginalFilename()).equals("")) {
+        service.insertBoard(vo);
+        }
+        else{
         service.insertBoard(vo,file);
+        }
         return mav;
     }
 	
 	//�� ���� ���� + �� ��ȸ�� ����
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
-	public void readGet(@RequestParam("IDX") int num,Model model) throws Exception{
+	public void readGet(@RequestParam("IDX") int num,Model model,LOLCriteria cri) throws Exception{
 		log.info("read.jsp ����");
 		
 		//��ȸ�� ����
@@ -86,28 +97,54 @@ public class LOLboardController {
 
 		//������ �����͸� ����� ���������� ���
 		model.addAttribute("vo",read);
+		
+		//����¡ ó��
+		LOLPageMaker pageMaker = new LOLPageMaker();
+        pageMaker.setCri(cri);
+        model.addAttribute("page",cri.getPage());
+        model.addAttribute("pageMaker", pageMaker);
+        
+        //��� ó��
+        List<LOLReplyVO> LOLReplyVO = service.readReply(num);
+        model.addAttribute("replyList",LOLReplyVO);
 	}
+	
 	//�������� ������ "detail"�� �̸��� ����
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)
-	public void UpdateGet(@RequestParam("IDX") int num,Model model) throws Exception{
+	public void UpdateGet(@RequestParam("IDX") int num,Model model,LOLCriteria cri) throws Exception{
 		
 		log.info("Update.jsp ����");
 		LOLBoardVO detail=service.readBoard(num);
 		model.addAttribute("detail",detail);
+		
+		LOLPageMaker pageMaker = new LOLPageMaker();
+		pageMaker.setCri(cri);
+        model.addAttribute("page",cri.getPage());
+        model.addAttribute("pageMaker", pageMaker);
 	}
 
 	//�� ���� ������Ʈ
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.POST)
-    public String boardUpdatePost (LOLBoardVO vo) throws Exception {
+    public String boardUpdatePost (LOLBoardVO vo,LOLCriteria cri,RedirectAttributes redAttr) throws Exception {
         log.info(vo+"");
         service.update(vo);
+        
+        redAttr.addAttribute("page", cri.getPage());
+        redAttr.addAttribute("perPagNum", cri.getPerPageNum());
+        
         return "redirect:/LOLboard/boardList";
     }
+	
 	//�� ���� IDX ����
-		@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
-		public String DeletePOST(@RequestParam("IDX") int num) throws Exception{
+	@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
+	public String DeletePOST(@RequestParam("IDX") int num,LOLCriteria cri,RedirectAttributes redAttr) throws Exception{
 			log.info(num+"delete");
 			service.deleteBoard(num);
+			
+			//����¡ ó��
+			redAttr.addAttribute("page", cri.getPage());
+			redAttr.addAttribute("perPagNum", cri.getPerPageNum());
+		     
 			return "redirect:/LOLboard/boardList";
-		}
+	}
 }

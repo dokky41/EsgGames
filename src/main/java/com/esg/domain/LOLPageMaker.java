@@ -1,5 +1,8 @@
 package com.esg.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class LOLPageMaker {
 	private LOLCriteria cri;
     private int totalCount;
@@ -39,6 +42,22 @@ public class LOLPageMaker {
         next = endPage * cri.getPerPageNum() < totalCount ? true : false;
         
     }
+    public String makeQueryPage(int page) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .queryParam("page", page)
+                .queryParam("perPageNum", cri.getPerPageNum())
+                .build();
+        return uri.toUriString();
+    }
+    
+    public String makeQueryPage(int IDX, int page) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .queryParam("IDX", IDX)
+                .queryParam("page", page)
+                .queryParam("perPageNum", cri.getPerPageNum())
+                .build();
+        return uri.toUriString();
+    }
     
     public int getStartPage() {
         return startPage;
@@ -70,4 +89,9 @@ public class LOLPageMaker {
     public void setDisplayPageNum(int displayPageNum) {
         this.displayPageNum = displayPageNum;
     }
+	@Override
+	public String toString() {
+		return "LOLPageMaker [cri=" + cri + ", totalCount=" + totalCount + ", startPage=" + startPage + ", endPage="
+				+ endPage + ", prev=" + prev + ", next=" + next + ", displayPageNum=" + displayPageNum + "]";
+	}
 }

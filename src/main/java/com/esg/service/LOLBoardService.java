@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
+import com.esg.domain.LOLReplyVO;
 
 public interface LOLBoardService {
 	//�� ���
@@ -24,4 +25,7 @@ public interface LOLBoardService {
 	void deleteBoard(int num);
 	//���� ���� �ҷ�����
 	List<Map<String, Object>> selectFileList(int num);
+	int countBoardListTotal();
+	void insertBoard(LOLBoardVO vo);
+	List<LOLReplyVO> readReply(int num);
 }

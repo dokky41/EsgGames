@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
+import com.esg.domain.LOLReplyVO;
 
 public interface LOLBoardDAO {
 
@@ -26,5 +27,9 @@ public interface LOLBoardDAO {
 	void insertFile(Map<String, Object> map);
 
 	List<Map<String, Object>> selectFileList(int num);
+
+	int countBoardList();
+
+	List<LOLReplyVO> readReply(int num);
 
 }
