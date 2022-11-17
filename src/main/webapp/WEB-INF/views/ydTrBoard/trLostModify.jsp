@@ -86,10 +86,15 @@
 									
 									<textarea placeholder="상세설명" name="content" >${trLoa.content }</textarea>
 									
-									<button type="button" value="" ></button> 
-									<input type="file" name="files" multiple style="color: white;"
-									accept="image/*" value="${trLoa.file }">
 									
+									<input type="file" name="files" multiple style="color: white;"
+									accept="image/*" value="${trLoa.file1 }">
+									<input type="file" name="files" multiple style="color: white;"
+									accept="image/*" value="${trLoa.file2 }">
+									<input type="file" name="files" multiple style="color: white;"
+									accept="image/*" value="${trLoa.file3 }">
+									<input type="file" name="files" multiple style="color: white;"
+									accept="image/*" value="${trLoa.file4 }">
 									
 									<input type="submit" class="site-btn btn-sm" style="float: right;" value="재등록">
 								</div>

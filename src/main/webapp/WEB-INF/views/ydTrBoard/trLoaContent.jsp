@@ -18,7 +18,7 @@ $(document).ready(function(){
 				 
 			    } else {
 			        // 확인(예) 버튼 클릭 시 이벤트
-			    	formObj.attr("action","/ydTrBoard/trLoadelete?num=${trLoa.num}&sort=def");
+			    	formObj.attr("action","/ydTrBoard/trLoadelete?num=${trLoa.num}");
 					
 					formObj.attr("method","post");
 					

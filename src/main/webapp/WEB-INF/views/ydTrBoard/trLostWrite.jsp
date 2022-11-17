@@ -17,7 +17,11 @@ location.href="${pageContext.request.contextPath}/member/login";
 
 $(document).ready(function() {
 	$('.fbutton').click(function(){
-		$('#containera').prepend('<input type="file" name="files"  accept="image/*">');
+		$('#containera').prepend('<input type="file" name="files"  accept="image/*" class="fbu" style="color: white;">');
+	});
+	
+	$('.Rbutton').click(function(){
+		$('.fbu').remove();
 	});
 	
 });
@@ -72,12 +76,13 @@ $(document).ready(function() {
 					
 					<li>
 						<!-- Page section -->
-	<section class="page-section spad contact-page" style="padding-top: 10px">
+	<section class="page-section spad contact-page" style="padding-top: 10px;">
 	
-				<div class="col-lg-8" style="margin: auto;">
+				<div class="col-lg-8" style="">
 					<div class="contact-form-warp">
 						<form class="comment-form" 
-						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post" enctype="multipart/form-data">
+						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post"
+						 enctype="multipart/form-data" style="width: 150%;">
 						<h4 class="comment-title" style="color: white;">판매등록 <input type="submit" class="site-btn btn-sm" style="float: right;" value="등록"></h4>
 						
 							
@@ -101,17 +106,13 @@ $(document).ready(function() {
 								</div>
 								
 								<div class="col-lg-12">
-<!-- 									<input type="text" placeholder="판매금액"> -->
 									
 									<textarea placeholder="상세설명" name="content"></textarea>
-								
-								<div class="filebox">
-								<div id="containera">
-									 <label for="ex_filename" style="color: white;">업로드</label> 
-									<input type='file' name='files'  id="ex_filename" accept='image/*'>
-								</div>
-								
 									<input type='button' value="사진추가" class="fbutton">
+									<input type='button' value="사진제거" class="Rbutton">
+									<br><br>
+								<div class="filebox">
+									<span  id="containera" ></span>
 								
 								</div>
 								</div>

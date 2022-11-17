@@ -55,6 +55,7 @@ public class YdTradeController {
 		service.updateTrBoardCount(num);
 
 		// 해당글내용 불러오기
+		log.info(service.getTrLoaContent(num)+"");
 		session.setAttribute("trLoa", service.getTrLoaContent(num));
 		// 해당글내용 불러오기
 
@@ -107,7 +108,8 @@ public class YdTradeController {
 
 	@RequestMapping(value = "/trLostArk", method = RequestMethod.POST)
 	public void posttrLostArk(Model model, HttpSession session, Criteria cri,
-			@RequestParam("searchName") String searchName, @RequestParam("sort") String sort) throws Exception {
+			@RequestParam("searchName") String searchName, 
+			@RequestParam("sort") String sort) throws Exception {
 
 		log.info("LostArk 거래페이지 검색");
 
@@ -122,16 +124,7 @@ public class YdTradeController {
 		
 		List<trLoaVO> trLoaList = null;
 		// 로아 거래글 목록 불러오기
-		if (sort.equals("def")) {
-
-			trLoaList = service.trLoaBoardList(cri);
-		} else if (sort.equals("sel")) {
-			trLoaList = service.trLoaBoardSelList(cri);
-		} else if (sort.equals("pri")) {
-			trLoaList = service.trLoaBoardPriList(cri);
-		}else if (sort.equals("pri2")) {
-			trLoaList = service.trLoaBoardPri2List(cri);
-		}
+			trLoaList = service.trLoaSearchList(cri);
 		// 로아 거래글 목록 불러오기
 
 		log.info("ok:" + trLoaList + "");
@@ -235,16 +228,53 @@ public class YdTradeController {
 		// 로아 최신뉴스 크롤링
 
 		// 해당글내용 불러오기
+		log.info(service.getTrLoaContent(num) + "");
 		session.setAttribute("trLoa", service.getTrLoaContent(num));
 		// 해당글내용 불러오기
 
 	}
 
 	@RequestMapping(value = "/trLostModify", method = RequestMethod.POST)
-	public String posttrLostModify(Model model, HttpSession session, @RequestParam("num") int num, trLoaVO vo) {
+	public String posttrLostModify(Model model, HttpSession session, 
+			@RequestParam("num") int num, trLoaVO vo,ArrayList<MultipartFile> files) {
 
 		log.info("trLostModify 거래글 수정하기");
 
+		// 사진저장부분
+				files.forEach(file -> {
+					UUID uuid = UUID.randomUUID();
+					String newName = uuid.toString();
+					log.info("---------------------");
+					log.info("name : " + uuid);
+					log.info("size : " + file.getSize());
+					File saveFile=null;
+					if(WRcount==1) {
+						vo.setFile1("C:\\test\\file\\" + newName);
+						saveFile = new File("C:\\test\\file\\", newName);
+						vo.setFile1(newName);
+					}else if(WRcount==2) {
+						vo.setFile2("C:\\test\\file\\" + newName);
+						saveFile = new File("C:\\test\\file\\", newName);
+						vo.setFile2(newName);
+					}else if(WRcount==3) {
+						vo.setFile3("C:\\test\\file\\" + newName);
+						saveFile = new File("C:\\test\\file\\", newName);
+						vo.setFile3(newName);
+					}else if(WRcount==4) {
+						vo.setFile4("C:\\test\\file\\" + newName);
+						saveFile = new File("C:\\test\\file\\", newName);
+						vo.setFile4(newName);
+					}
+					
+					try {
+						file.transferTo(saveFile);
+						
+					} catch (Exception e) {
+						log.info(e.getMessage());
+					}
+					WRcount++;
+				});
+				// 사진저장부분
 		// 해당글내용 수정
 		service.getTrLoaModify(vo);
 		// 해당글내용 수정
@@ -257,11 +287,13 @@ public class YdTradeController {
 
 		log.info("trLostModify 거래글 삭제하기");
 
-		// 해당글내용 수정
+		
+		
+		// 해당글내용 삭제
 		service.getTrLoaDelete(num);
-		// 해당글내용 수정
+		// 해당글내용 삭제
 
-		return "redirect:/ydTrBoard/trLostArk";
+		return "redirect:/ydTrBoard/trLostArk?sort=def";
 	}
 
 }

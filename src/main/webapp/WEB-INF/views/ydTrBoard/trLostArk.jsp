@@ -158,7 +158,7 @@
 
 			<br>
 			<form class="community-filter"
-				action="${PageContext.request.contextPath}/ydTrBoard/trLostArk"
+				action="${PageContext.request.contextPath}/ydTrBoard/trLostArk?sort=def"
 				method="post">
 
 				<input type="submit" value="검색"
