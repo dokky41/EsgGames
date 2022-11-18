@@ -22,12 +22,12 @@ public class LOLReplyServiceImpl implements LOLReplyService{
 
 	@Override
 	public void write(LOLReplyVO vo) throws Exception {
-	    dao.write(vo);
+		dao.write(vo);
 	}
 
 	@Override
-	public void modify(LOLReplyVO vo) throws Exception {
-	    dao.modify(vo);
+	public void update(LOLReplyVO vo) throws Exception {
+	    dao.update(vo);
 	}
 
 	@Override

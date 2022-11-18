@@ -35,8 +35,8 @@ public class LOLReplyDAOImpl implements LOLReplyDAO{
 
 	// ´ñ±Û ¼öÁ¤
 	@Override
-	public void modify(LOLReplyVO vo) throws Exception {
-		sqlSession.update(NAMESPACE + ".replyModify", vo);
+	public void update(LOLReplyVO vo) throws Exception {
+		sqlSession.update(NAMESPACE + ".replyUpdate", vo);
 	}
 
 	// ´ñ±Û »èÁ¦

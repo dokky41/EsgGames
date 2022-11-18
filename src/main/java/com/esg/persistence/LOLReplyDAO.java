@@ -12,7 +12,7 @@ public interface LOLReplyDAO {
 	public void write(LOLReplyVO vo) throws Exception ;
 
 	// ´ñ±Û ¼öÁ¤
-	public void modify(LOLReplyVO vo) throws Exception ;
+	public void update(LOLReplyVO vo) throws Exception ;
 
 	// ´ñ±Û »èÁ¦
 	public void delete(LOLReplyVO vo) throws Exception ;
