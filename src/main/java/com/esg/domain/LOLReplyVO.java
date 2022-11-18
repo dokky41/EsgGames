@@ -1,47 +1,49 @@
 package com.esg.domain;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class LOLReplyVO {
-	private int bno;
-	private int rno;
-	private String content;
-	private String writer;
-	private Date regdate;
-	public int getBno() {
-		return bno;
-	}
-	public void setBno(int bno) {
-		this.bno = bno;
-	}
-	public int getRno() {
-		return rno;
-	}
-	public void setRno(int rno) {
-		this.rno = rno;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getWriter() {
-		return writer;
-	}
-	public void setWriter(String writer) {
-		this.writer = writer;
-	}
-	public Date getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
+	private int IDX; //게시판 고유 번호
+	private int RNO; //댓글 고유 번호
+	private String CONTENT; //댓글 내용
+	private String WRITER; //댓글 작성자
+	private Timestamp REGDATE; //댓글 작성 날짜
 	
+	public int getIDX() {
+		return IDX;
+	}
+	public void setIDX(int iDX) {
+		IDX = iDX;
+	}
+	public int getRNO() {
+		return RNO;
+	}
+	public void setRNO(int rNO) {
+		RNO = rNO;
+	}
+	public String getCONTENT() {
+		return CONTENT;
+	}
+	public void setCONTENT(String cONTENT) {
+		CONTENT = cONTENT;
+	}
+	public String getWRITER() {
+		return WRITER;
+	}
+	public void setWRITER(String wRITER) {
+		WRITER = wRITER;
+	}
+	public Timestamp getREGDATE() {
+		return REGDATE;
+	}
+	public void setREGDATE(Timestamp rEGDATE) {
+		REGDATE = rEGDATE;
+	}
 	@Override
 	public String toString() {
-		return "ReplyVO [bno=" + bno + ", rno=" + rno + ", content=" + content + ", writer=" + writer + ", regdate="
-				+ regdate + "]";
+		return "LOLReplyVO [IDX=" + IDX + ", RNO=" + RNO + ", CONTENT=" + CONTENT + ", WRITER=" + WRITER + ", REGDATE="
+				+ REGDATE + "]";
 	}
+	
+	
 }

@@ -1,10 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
+<script>
 
+if("${membervo.userid}"=='')
+{
+alert('로그인이 필요합니다');
+location.href="${pageContext.request.contextPath}/member/login";
+}
+
+
+$(document).ready(function() {
+    $("a[name='file-delete']").on("click", function(e) {
+        e.preventDefault();
+        deleteFile($(this));
+    });
+})
+
+function addFile() {
+    var str = "<div class='file-group'><input type='file' name='files' accept='image/*'><a href='#this' name='file-delete'>삭제</a></div>";
+    
+    var aa = document.getElementsByClassName('file-group').length;
+    
+    if(aa<4){
+	    $("#file-list").append(str);
+    }
+    
+    $("a[name='file-delete']").on("click", function(e) {
+        e.preventDefault();
+        deleteFile($(this));
+    });
+}
+
+function deleteFile(obj) {
+    obj.parent().remove();
+}
+</script>
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
@@ -87,14 +122,13 @@
 									<textarea placeholder="상세설명" name="content" >${trLoa.content }</textarea>
 									
 									
-									<input type="file" name="files" multiple style="color: white;"
-									accept="image/*" value="${trLoa.file1 }">
-									<input type="file" name="files" multiple style="color: white;"
-									accept="image/*" value="${trLoa.file2 }">
-									<input type="file" name="files" multiple style="color: white;"
-									accept="image/*" value="${trLoa.file3 }">
-									<input type="file" name="files" multiple style="color: white;"
-									accept="image/*" value="${trLoa.file4 }">
+									<div class="form-group" id="file-list">
+								        <a href="#this" onclick="addFile()">파일추가</a>
+							        	<div class="file-group">
+							        	<a style="color: white;">* 맨 위 메인이미지</a> <br>
+						            		<input type="file" name="files" accept="image/*"><a href='#this' name='file-deleteno' >삭제</a>
+						        		</div>
+								    </div>
 									
 									<input type="submit" class="site-btn btn-sm" style="float: right;" value="재등록">
 								</div>

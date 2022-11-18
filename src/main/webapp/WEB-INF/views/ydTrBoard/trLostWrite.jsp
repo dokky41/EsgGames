@@ -16,15 +16,30 @@ location.href="${pageContext.request.contextPath}/member/login";
 
 
 $(document).ready(function() {
-	$('.fbutton').click(function(){
-		$('#containera').prepend('<input type="file" name="files"  accept="image/*" class="fbu" style="color: white;">');
-	});
-	
-	$('.Rbutton').click(function(){
-		$('.fbu').remove();
-	});
-	
-});
+    $("a[name='file-delete']").on("click", function(e) {
+        e.preventDefault();
+        deleteFile($(this));
+    });
+})
+
+function addFile() {
+    var str = "<div class='file-group'><input type='file' name='files' accept='image/*'><a href='#this' name='file-delete'>삭제</a></div>";
+    
+    var aa = document.getElementsByClassName('file-group').length;
+    
+    if(aa<4){
+	    $("#file-list").append(str);
+    }
+    
+    $("a[name='file-delete']").on("click", function(e) {
+        e.preventDefault();
+        deleteFile($(this));
+    });
+}
+
+function deleteFile(obj) {
+    obj.parent().remove();
+}
 </script>
 
 	<!-- Latest news section -->
@@ -108,13 +123,15 @@ $(document).ready(function() {
 								<div class="col-lg-12">
 									
 									<textarea placeholder="상세설명" name="content"></textarea>
-									<input type='button' value="사진추가" class="fbutton">
-									<input type='button' value="사진제거" class="Rbutton">
-									<br><br>
-								<div class="filebox">
-									<span  id="containera" ></span>
+									
+									<div class="form-group" id="file-list">
+								        <a href="#this" onclick="addFile()">파일추가</a>
+							        	<div class="file-group">
+							        	<a style="color: white;">* 맨 위 메인이미지</a> <br>
+						            		<input type="file" name="files" accept="image/*"><a href='#this' name='file-deleteno' >삭제</a>
+						        		</div>
+								    </div>
 								
-								</div>
 								</div>
 								
 								

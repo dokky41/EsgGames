@@ -210,6 +210,7 @@ public class YdTradeController {
 		// 글 작성 서비스동작
 		service.trLoaboardCreate(vo);
 
+		WRcount=1;
 		return "redirect:/ydTrBoard/trLostArk?sort=def";
 	}
 

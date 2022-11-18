@@ -25,6 +25,7 @@ import com.esg.domain.LOLPageMaker;
 import com.esg.domain.LOLReplyVO;
 import com.esg.persistence.LOLBoardDAO;
 import com.esg.service.LOLBoardService;
+import com.esg.service.LOLReplyService;
 
 @Controller
 @RequestMapping("/LOLboard/*")
@@ -36,6 +37,8 @@ public class LOLboardController {
 	@Inject
 	LOLBoardService service;
 	
+	@Inject
+	LOLReplyService replyservice;
 	//�� ���
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(LOLCriteria cri) throws Exception{
@@ -76,6 +79,7 @@ public class LOLboardController {
         else{
         service.insertBoard(vo,file);
         }
+        
         return mav;
     }
 	
@@ -104,9 +108,10 @@ public class LOLboardController {
         model.addAttribute("page",cri.getPage());
         model.addAttribute("pageMaker", pageMaker);
         
-        //��� ó��
-        List<LOLReplyVO> LOLReplyVO = service.readReply(num);
-        model.addAttribute("replyList",LOLReplyVO);
+        // ��� ��ȸ
+        List<LOLReplyVO> reply;
+        reply = replyservice.list(num);
+        model.addAttribute("reply", reply);
 	}
 	
 	//�������� ������ "detail"�� �̸��� ����
