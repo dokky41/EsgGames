@@ -55,6 +55,13 @@
  		 
  	</select>
  	
+ 	<update id="mapleCount">
+ 	
+ 		update tbl_mapleboard set readcount=readcount+1
+ 		where num=#{num}
+ 	
+ 	</update>
+ 	
 	
 	
 	
