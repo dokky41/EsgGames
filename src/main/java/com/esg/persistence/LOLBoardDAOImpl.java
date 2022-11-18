@@ -92,11 +92,4 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 	}
 
 
-
-	@Override
-	public List<LOLReplyVO> readReply(int num) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".readReply",num);
-	}
-
 }

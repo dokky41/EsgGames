@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
@@ -87,20 +88,40 @@
         </div>
         
         <!-- 댓글 -->
-<div id="reply">
-  <ol class="replyList">
-    <c:forEach items="${replyList}" var="replyList">
-      <li>
+        <ul class="card-body">
+        <c:forEach items="${reply}" var="reply">
+<li>
+    <div>
+        <p>${reply.WRITER} / <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd" /></p>
+        <p>${reply.CONTENT }</p>
         <p>
-        작성자 : ${replyList.writer}<br />
-        작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
-        </p>
+	<a href="">수정</a> / <a href="">삭제</a>
+</p>
+			
+<hr />
+    </div>
+</li>    
+</c:forEach>
+</ul>
 
-        <p>${replyList.content}</p>
-      </li>
-    </c:forEach>   
-  </ol>
+<div class="card-body">
+
+	<form method="post" action="../LOLreply/replyWrite">
+	
+		<p>
+			<label>댓글 작성자</label> <input type="text" name="WRITER">
+		</p>
+		<p>
+			<textarea rows="5" cols="50" name="CONTENT" placeholder="댓글을 작성해주세요."></textarea>
+		</p>
+		<p>
+			<input type="hidden" name="IDX" value="${vo.IDX}">
+			<button type="submit" class="btn btn-info">댓글 작성</button>
+		</p>
+	</form>
+	
 </div>
+
 
     </div>
 </div>

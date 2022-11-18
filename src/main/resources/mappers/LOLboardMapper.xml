@@ -99,4 +99,6 @@
     	DELETE FROM lol_board
     	WHERE IDX = #{IDX};
     </delete>
+    
+
 </mapper>
