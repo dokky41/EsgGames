@@ -12,10 +12,11 @@ public class MemberVO {
 	private String address;
 	private Timestamp regdate;
 	private Timestamp updatedate;
+	private int userpoint;
 	
 	
 	// alt + shift + s => r
-	// getter, setter 찾아보기
+		// getter, setter 찾아보기
 	public String getUserid() {
 		return userid;
 	}
@@ -40,10 +41,10 @@ public class MemberVO {
 	public void setUseremail(String useremail) {
 		this.useremail = useremail;
 	}
-	public String getaddress() {
+	public String getAddress() {
 		return address;
 	}
-	public void setaddress(String address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 	public Timestamp getRegdate() {
@@ -58,13 +59,23 @@ public class MemberVO {
 	public void setUpdatedate(Timestamp updatedate) {
 		this.updatedate = updatedate;
 	}
+	public int getUserpoint() {
+		return userpoint;
+	}
+	public void setUserpoint(int userpoint) {
+		this.userpoint = userpoint;
+	}
 	
-	
-	@Override  //데이터가 제대로 전달되는지 확인하기 위함
+	@Override
 	public String toString() {
 		return "MemberVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", useremail="
-				+ useremail + ", address=" + address + ", regdate=" + regdate + ", updatedate=" + updatedate + "]";
+				+ useremail + ", address=" + address + ", regdate=" + regdate + ", updatedate=" + updatedate
+				+ ", userpoint=" + userpoint + "]";
 	}
+	
+	
+
+	
 	
 	
 	

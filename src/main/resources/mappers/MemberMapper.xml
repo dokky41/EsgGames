@@ -25,4 +25,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	</select>
 	
+	
+	<update id="pointCharge">
+		
+		update esgmember set userpoint=userpoint+#{userpoint}
+ 		where userid=#{userid}
+	
+	</update>
+	
+	<insert id="mileInsert">
+	
+		insert into esgmile (chargeNum,userid,userpoint,chargeSort)
+		values(#{chargeNum},#{userid},#{userpoint},#{chargeSort})
+	
+	</insert>
+	
+	
+	<select id="getSearchCnum" resultType="String">
+  	select chargeNum from esgmile order by date desc limit 1
+  	</select>
+  	
+	<select id="getMyMileSearch" resultType="esgMileVO">
+  	select * from esgmile 
+  	where userid=#{userid}
+  	</select>
+	
+	
 </mapper>

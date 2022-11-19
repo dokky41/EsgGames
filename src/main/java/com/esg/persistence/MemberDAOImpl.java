@@ -1,5 +1,7 @@
 package com.esg.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.esg.domain.MemberVO;
+import com.esg.domain.esgMileVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -44,6 +47,27 @@ public class MemberDAOImpl implements MemberDAO {
 		MemberVO membervo = sqlSession.selectOne(NAMESPACE+".loginCheck", vo);
 		
 		return membervo;
+	}
+
+	@Override
+	public void myPointCharge(MemberVO vo) {
+		sqlSession.update(NAMESPACE+".pointCharge", vo);
+	}
+
+	@Override
+	public void mileInsert(esgMileVO vo) {
+		sqlSession.insert(NAMESPACE+".mileInsert", vo);
+		
+	}
+
+	@Override
+	public String searchCnum() {
+		return sqlSession.selectOne(NAMESPACE + ".getSearchCnum");
+	}
+
+	@Override
+	public List<esgMileVO> getMyMileInfo(esgMileVO vo) {
+		return sqlSession.selectList(NAMESPACE+".getMyMileSearch",vo);
 	}
 	
 

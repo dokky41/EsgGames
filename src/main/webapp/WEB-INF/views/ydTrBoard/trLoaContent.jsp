@@ -84,63 +84,65 @@ $(document).ready(function(){
 
 
 	<!-- Page section -->
-	<section class="page-section spad contact-page">
+	<section class="page-section spad contact-page" style="padding-bottom: 0px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 mb-5 mb-lg-0">
 					
-					<p>
+					
+					
+					<div class="row">
+						<div class="col-md-9">
+							<ul class="contact-info-list" style="padding-top: 0px;">
+							
+							
+							
 					<c:if test="${trLoa.file1 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }" class="img">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }" class="img" width="300px" height="150px" >
 					</c:if>
-					
-					<c:if test="${trLoa.file2 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file2 }" class="img">
+					<c:if test="${trLoa.file1 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" width="300px" height="150px">
 					</c:if>
-					
-					<c:if test="${trLoa.file3 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file3 }" class="img">
-					</c:if>
-					
-					<c:if test="${trLoa.file4 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file4 }" class="img">
-					</c:if>
-					
 					
 					<div class="modal">
   						<span class="close">&times;</span>
 						  <img class="modal_content">
 					</div>
 					
-					</p>
-					
-					<div class="row">
-						<div class="col-md-9">
-							<ul class="contact-info-list">
-							
-							
+							<br><br>
 								<li><div class="cf-left">상품이름</div><div class="cf-right">${trLoa.subject}</div></li>
-								<li><div class="cf-left">내용</div><div class="cf-right">${trLoa.content}</div></li>
+<%-- 								<li><div class="cf-left">내용</div><div class="cf-right">${trLoa.content}</div></li> --%>
 								<li><div class="cf-left">가격</div><div class="cf-right">${trLoa.price}원</div></li>
 								<li><div class="cf-left">개수</div><div class="cf-right">${trLoa.goodsCount}</div></li>
 								<li><div class="cf-left">작성자</div><div class="cf-right">${trLoa.userid}</div></li>
 								<li><div class="cf-left">거래번호</div><div class="cf-right">#${trLoa.num}</div></li>
 								<li><div class="cf-left">등록일</div><div class="cf-right">#${trLoa.date}</div></li>
 							</ul>
+	
+							<br><br><br><br><br>
+							
+							<h4 style="margin-top: 8px; ">상세내용</h4>
+							<br>
+							<table border="1" width="200" height="100">
+							<tr><textarea rows="17" cols="42" readonly="readonly" style="resize: none;">${trLoa.content}</textarea></tr>
+							
+							</table>
+															
 						</div>
 					</div>
-					<div class="social-links">
-						<a href="#"><i class="fa fa-pinterest"></i></a>
-						<a href="#"><i class="fa fa-facebook"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>
-						<a href="#"><i class="fa fa-dribbble"></i></a>
-						<a href="#"><i class="fa fa-behance"></i></a>
-						<a href="#"><i class="fa fa-linkedin"></i></a>
-					</div>
+					
 				</div>
+				
+				
+				
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
-						<h4 class="comment-title">요청사항</h4>
+						<h4 class="comment-title">요청사항  <button class="site-btn btn-sm" style="float: right;"
+									onclick="location.href='/ydTrBoard/trLostArk?sort=def' ;return false;">
+									목록</button></h4>
+						 
+						
+									
 						<form class="comment-form" role="form">
 							<div class="row">
 								<div class="col-md-6">
@@ -152,23 +154,25 @@ $(document).ready(function(){
 								<div class="col-lg-12">
 									<input type="text" placeholder="제목">
 									<textarea placeholder="내용"></textarea>
+									
 									<button class="site-btn btn-sm">구매신청</button>
 									
-									<button class="site-btn btn-sm" 
-									onclick="location.href='/ydTrBoard/trLostArk?sort=def' ;return false;">
-									목록</button>
-									
-									
-<%-- 								<c:if test="${vo.userid==membervo.userid || membervo.userid == 'admin' }"> --%>
-									
-									<button class="site-btn btn-sm"
-									onclick="location.href='/ydTrBoard/trLostModify?num=${trLoa.num}&sort=def'; return false;"
-									>수정</button>
 									</form>
 									
 									
-									<button class="site-btn btn-sm" id="loadelete" onclick="javascript:loadelete()">삭제</button>
-<%-- 								</c:if> --%>
+								<c:if test="${trLoa.userid==membervo.userid || membervo.userid == 'admin' }">
+								
+								<button class="site-btn btn-sm" id="loadelete" onclick="javascript:loadelete()" style="float: right;">
+									삭제</button>
+								
+								
+									<button class="site-btn btn-sm"
+									onclick="location.href='/ydTrBoard/trLostModify?num=${trLoa.num}&sort=def'; 
+									return false;" style="float: right;">수정</button>
+									
+									
+									
+								</c:if>
 									
 									
 									
@@ -176,14 +180,60 @@ $(document).ready(function(){
 							</div>
 						
 					</div>
+					
+	<!-- 상세내용 -->
+	<br> <br> <br> <br> 
+	  <h4>물품사진</h4>
+	<br>
+	<!-- 사진들 4개 -->
+	<!-- 사진들 4개 -->
+	<div class="social-links">
+					<c:if test="${trLoa.file1 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }" class="img" style="width: 300px; height: 200px;" onclick="window.open(this.src)">
+					</c:if>
+					<c:if test="${trLoa.file1 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" style="width: 360px; height: 200px">
+					</c:if>
+	
+					<c:if test="${trLoa.file2 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file2 }" class="img" style="width: 300px; height: 200px;" onclick="window.open(this.src)">
+					</c:if>
+					<c:if test="${trLoa.file2 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" style="width: 360px; height: 200px">
+					</c:if>
+					
+					<c:if test="${trLoa.file3 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file3 }" class="img" style="width: 300px; height: 200px;" onclick="window.open(this.src)">
+					</c:if>
+					<c:if test="${trLoa.file3 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" style="width: 360px; height: 200px">
+					</c:if>
+					
+					<c:if test="${trLoa.file4 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLoa.file4 }" class="img" style="width: 300px; height: 200px;" onclick="window.open(this.src)">
+					</c:if>
+					<c:if test="${trLoa.file4 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" style="width: 360px; height: 200px">
+					</c:if>
+	</div>
+	
+<!-- 상세내용 -->
+					<br>
 				</div>
+				
 			</div>
+			
 		</div>
+		
+		
+		
+		
 	</section>
 	<!-- Page section end -->
 
+	<!-- 댓글 -->
 
-
+	<!-- 댓글 -->
 	
 <!-- 푸터부분 -->
 <script src="${pageContext.request.contextPath }/resources/js/yd/contentModel.js"></script>

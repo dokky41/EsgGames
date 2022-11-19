@@ -27,7 +27,7 @@ function addFile() {
     
     var aa = document.getElementsByClassName('file-group').length;
     
-    if(aa<4){
+    if(aa<5){
 	    $("#file-list").append(str);
     }
     
@@ -109,7 +109,7 @@ function deleteFile(obj) {
 									<input type="text" placeholder="상품이름" name="subject">
 								</div>
 								<div class="col-md-6">
-									<input type="text" placeholder="상품개수" name="goodsCount">
+									<input type="number" placeholder="상품개수" name="goodsCount" value="1">
 								</div>
 								
 								<div class="col-md-6">
@@ -117,7 +117,7 @@ function deleteFile(obj) {
 								</div>
 								
 								<div class="col-md-6">
-									<input type="text" placeholder="판매금액" name="price">
+									<input type="number" placeholder="판매금액" name="price" value="1000">
 								</div>
 								
 								<div class="col-lg-12">
@@ -125,10 +125,10 @@ function deleteFile(obj) {
 									<textarea placeholder="상세설명" name="content"></textarea>
 									
 									<div class="form-group" id="file-list">
-								        <a href="#this" onclick="addFile()">파일추가</a>
+								        <a href="#this" onclick="addFile()">사진추가</a>
 							        	<div class="file-group">
 							        	<a style="color: white;">* 맨 위 메인이미지</a> <br>
-						            		<input type="file" name="files" accept="image/*"><a href='#this' name='file-deleteno' >삭제</a>
+<!-- 						            		<input type="file" name="files" accept="image/*"><a href='#this' name='file-deleteno' >삭제</a> -->
 						        		</div>
 								    </div>
 								

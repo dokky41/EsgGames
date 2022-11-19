@@ -124,7 +124,7 @@
 					</c:if>
 					
 					<c:if test="${membervo.userid!=null }">
-					<li><a href="${pageContext.request.contextPath }/contact">내정보</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/myinfo">내정보</a></li>
 					</c:if>
 				</ul>
 			</nav>
