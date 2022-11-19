@@ -25,6 +25,9 @@ public interface LOLBoardService {
 	void deleteBoard(int num);
 	//파일 정보 불러오기
 	List<Map<String, Object>> selectFileList(int num);
+	//총갯수
 	int countBoardListTotal();
+	//파일이 없을때 글 쓰기
 	void insertBoard(LOLBoardVO vo);
+	void recommend(int num);
 }

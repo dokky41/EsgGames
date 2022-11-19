@@ -41,16 +41,27 @@ public class LOLreplyController {
 		
 		return "redirect:/LOLboard/boardRead?IDX=" + vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
 	}
-	//댓글 수정
-	@RequestMapping(value="/replyUpdate",method = RequestMethod.GET)
-	public String UpdateGET(LOLReplyVO vo,LOLCriteria cri) throws Exception{
-		log.info("Update 실행");
+	
+	// 댓글 단일 조회 (수정 페이지)
+	@RequestMapping(value = "/replyUpdate", method = RequestMethod.GET)
+	public void getMofidy(@RequestParam("IDX") int num, @RequestParam("RNO") int RNO, Model model) throws Exception {
+		
+		LOLReplyVO vo = new LOLReplyVO();
+		vo.setIDX(num);
+		vo.setRNO(RNO);
+		
+		LOLReplyVO reply = replyservice.replySelect(vo);
+			 
+		model.addAttribute("reply", reply);
+	}
+	// 댓글 수정
+	@RequestMapping(value = "/replyUpdate", method = RequestMethod.POST)
+	public String postModify(LOLReplyVO vo,LOLCriteria cri) throws Exception {
+
 		replyservice.update(vo);
-				
-			     
+
 		return "redirect:/LOLboard/boardRead?IDX=" + vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
 	}
-	
 	//댓글 삭제
 	@RequestMapping(value="/replyDelete",method = RequestMethod.GET)
 	public String DeleteGET(LOLReplyVO vo,LOLCriteria cri) throws Exception{

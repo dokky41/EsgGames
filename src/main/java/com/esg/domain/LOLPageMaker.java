@@ -10,7 +10,7 @@ public class LOLPageMaker {
     private int endPage;
     private boolean prev;
     private boolean next;
-    private int displayPageNum = 5;
+    private int displayPageNum = 10;
     
     public LOLCriteria getCri() {
         return cri;

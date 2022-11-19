@@ -35,8 +35,6 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		return boardList;
 	}
 	
-	
-
 	@Override
 	public void insertBoard(LOLBoardVO vo) {
 		// TODO Auto-generated method stub
@@ -83,12 +81,16 @@ public class LOLBoardDAOImpl implements LOLBoardDAO {
 		return sqlSession.selectList(NAMESPACE+".getBoardFile",num);
 	}
 
-
-
 	@Override
 	public int countBoardList() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+".countBoardList");
+	}
+
+	@Override
+	public void recommend(int num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(NAMESPACE+".recommend",num);
 	}
 
 

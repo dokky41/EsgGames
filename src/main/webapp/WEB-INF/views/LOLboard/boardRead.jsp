@@ -96,7 +96,7 @@
       <li>
         <p>
         작성자 : ${reply.WRITER}<br />
-        작성 날짜 :  <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd" />
+        작성 날짜 :  <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd hh-mm" />
         </p>
 
         <p>${reply.CONTENT}</p>

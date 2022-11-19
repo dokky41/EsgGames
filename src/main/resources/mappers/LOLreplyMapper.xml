@@ -30,5 +30,14 @@
 		delete from lol_reply
 		where RNO = #{RNO} and IDX = ${IDX}	
 	</delete>
+	
+	<!-- 단일 댓글 조회 -->
+<select id="replySelect" parameterType="LOLReplyVO" resultType="LOLReplyVO">
+	select
+		*
+	from lol_reply
+		where IDX = #{IDX}
+		and RNO = #{RNO}					
+</select>
 
 </mapper>

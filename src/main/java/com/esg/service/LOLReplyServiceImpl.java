@@ -34,4 +34,10 @@ public class LOLReplyServiceImpl implements LOLReplyService{
 	public void delete(LOLReplyVO vo) throws Exception{
 	    dao.delete(vo);
 	}
+
+	@Override
+	public LOLReplyVO replySelect(LOLReplyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.replySelect(vo);
+	}
 }

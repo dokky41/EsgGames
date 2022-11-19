@@ -44,4 +44,10 @@ public class LOLReplyDAOImpl implements LOLReplyDAO{
 	public void delete(LOLReplyVO vo) throws Exception {
 		sqlSession.delete(NAMESPACE + ".replyDelete", vo);
 	}
+	// 단일 댓글 조회
+	@Override
+	public LOLReplyVO replySelect(LOLReplyVO vo) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE + ".replySelect", vo);
+	}
 }

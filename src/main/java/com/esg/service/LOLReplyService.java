@@ -16,5 +16,6 @@ public interface LOLReplyService {
 
 	// ¥Ò±€ ªË¡¶
 	public void delete(LOLReplyVO vo) throws Exception ;
-
+	// ¥‹¿œ ¥Ò±€ ¡∂»∏
+	public LOLReplyVO replySelect(LOLReplyVO vo) throws Exception;
 }
