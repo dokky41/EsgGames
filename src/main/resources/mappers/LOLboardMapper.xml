@@ -21,14 +21,16 @@
                 CONTENTS,
                 HIT_CNT,
                 DEL_CHK,
-                CREA_ID
+                CREA_ID,
+                RECOMMEND
         )
 		VALUES
 		(		#{TITLE},
                 #{CONTENTS},
                 0,
                 'N',
-                #{CREA_ID}
+                #{CREA_ID},
+                0
         );
 	</insert>
 	

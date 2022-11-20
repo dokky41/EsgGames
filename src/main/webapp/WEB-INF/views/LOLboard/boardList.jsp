@@ -52,12 +52,12 @@
 				</div>
 				<table class="table">
               <tbody>
-              <th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>추천수</th>
+              <tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>추천수</th></tr>
  						  <c:choose>
                       <c:when test="${fn:length(boardList) > 0 }">
                           <c:forEach items="${boardList }" var="bList">
                               <tr>
-                              <th scope="row">${bList.IDX }</th>
+                              <td scope="row">${bList.IDX }</td>
                               <td><a href="/LOLboard/boardRead${pageMaker.makeQueryPage(bList.IDX, pageMaker.cri.page) }" class="text-dark">${bList.TITLE }</a></td>
                               <td>${bList.CREA_ID }</td>
                               <td><fmt:formatDate value="${bList.CREA_DATE }" pattern="yyyy-MM-dd hh-mm" /></td>
@@ -68,7 +68,7 @@
                       </c:when>
                       <c:otherwise>
                           <tr>
-                              <td colspan="5">조회된 결과가 없습니다.</td>
+                              <td colspan="6">조회된 결과가 없습니다.</td>
                           </tr>
                       </c:otherwise>
                   </c:choose> 
