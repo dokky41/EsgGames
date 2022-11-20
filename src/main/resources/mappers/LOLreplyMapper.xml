@@ -14,14 +14,13 @@
 
 <!-- 댓글 작성 -->
 	<insert id="replyWrite" parameterType="LOLReplyVO">
-		insert into lol_reply(IDX, WRITER, CONTENT, REGDATE)
-			value(#{IDX}, #{WRITER}, #{CONTENT}, #{REGDATE})
+		insert into lol_reply(IDX, WRITER, CONTENT)
+			value(#{IDX}, #{WRITER}, #{CONTENT})
 	</insert>
 	
 <!-- 댓글 수정 -->
-	<update id="replyModify" parameterType="LOLReplyVO">
+	<update id="replyUpdate" parameterType="LOLReplyVO">
 		update lol_reply set
-			WRITER = #{WRITER},
 			CONTENT = #{CONTENT}
 		where RNO = #{RNO} and IDX = ${IDX}	
 	</update>
@@ -31,5 +30,14 @@
 		delete from lol_reply
 		where RNO = #{RNO} and IDX = ${IDX}	
 	</delete>
+	
+	<!-- 단일 댓글 조회 -->
+<select id="replySelect" parameterType="LOLReplyVO" resultType="LOLReplyVO">
+	select
+		*
+	from lol_reply
+		where IDX = #{IDX}
+		and RNO = #{RNO}					
+</select>
 
 </mapper>

@@ -12,9 +12,10 @@ public interface LOLReplyService {
 	public void write(LOLReplyVO vo) throws Exception ;
 
 	// ¥Ò±€ ºˆ¡§
-	public void modify(LOLReplyVO vo) throws Exception ;
+	public void update(LOLReplyVO vo) throws Exception ;
 
 	// ¥Ò±€ ªË¡¶
 	public void delete(LOLReplyVO vo) throws Exception ;
-
+	// ¥‹¿œ ¥Ò±€ ¡∂»∏
+	public LOLReplyVO replySelect(LOLReplyVO vo) throws Exception;
 }

@@ -99,6 +99,12 @@
     	DELETE FROM lol_board
     	WHERE IDX = #{IDX};
     </delete>
-    
-
+<update id="recommend">
+            UPDATE
+                lol_board
+            SET
+                RECOMMEND = RECOMMEND + 1
+            WHERE
+                IDX = #{IDX};
+    </update>
 </mapper>

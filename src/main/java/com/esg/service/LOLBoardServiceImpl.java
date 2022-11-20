@@ -88,4 +88,12 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 		// TODO Auto-generated method stub
 		dao.insertBoard(vo);
 	}
+
+	@Override
+	public void recommend(int num) {
+		// TODO Auto-generated method stub
+		dao.recommend(num);
+	}
+
+
 }
