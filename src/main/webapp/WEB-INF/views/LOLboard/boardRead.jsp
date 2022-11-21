@@ -58,6 +58,8 @@
                 <i class="far fa-clock"></i> ${vo.CREA_DATE }
                 ·
                 <i class="fas fa-align-justify"></i> ${vo.HIT_CNT }
+                ·
+                <a href="/LOLboard/boardRecommend${pageMaker.makeQueryPage(vo.IDX, pageMaker.cri.page) }" class="btn btn-outline-secondary btn-sm">추천</a> ${vo.RECOMMEND }
             </h6>
             <p class="card-text">${vo.CONTENTS }</p>
             

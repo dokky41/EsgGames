@@ -5,6 +5,14 @@
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
+<script>
+const selectElement = document.querySelector('.sort');
+
+selectElement.addEventListener('change', (event) => {
+  const result = document.querySelector('.result');
+  result.textContent = `You like ${event.target.value}`;
+});
+</script>
 <!-- 헤더부분 -->
 
 
@@ -62,7 +70,7 @@
                               <td>${bList.CREA_ID }</td>
                               <td><fmt:formatDate value="${bList.CREA_DATE }" pattern="yyyy-MM-dd hh-mm" /></td>
                               <td>${bList.HIT_CNT }</td>
-							  <td><a href="/LOLboard/boardRecommend${pageMaker.makeQueryPage(bList.IDX, pageMaker.cri.page) }" class="text-dark">${bList.RECOMMEND }</a></td>
+							  <td>${bList.RECOMMEND }</td>
                             </tr>
                           </c:forEach>
                       </c:when>
@@ -74,26 +82,45 @@
                   </c:choose> 
               </tbody>
             </table>
-            <ul class="pagination">
-  <c:if test="${pageMaker.prev }">
-  <li class="page-item">
-      <a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.startPage-1) }"/>'><i class="fa fa-chevron-left"></i></a>
-  </li>
-  </c:if>
-  <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-  <li class="page-item <c:if test='${pageMaker.cri.page eq pageNum }'>active</c:if>">
-      <a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageNum) }"/>'>${pageNum }</a>
-  </li>
-  </c:forEach>
-  <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-  <li class="page-item">
-      <a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.endPage+1) }"/>'><i class="fa fa-chevron-right"></i></a>
-  </li>
-  </c:if>
-</ul>
-</div>
+            <div class="row">
+            	<div class="col-md-6">
+            		<ul class="pagination">
+  						<c:if test="${pageMaker.prev }">
+  							<li class="page-item">
+   								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.startPage-1) }"/>'><i class="fa fa-chevron-left"></i></a>
+ 							 </li>
+  						</c:if>
+  						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+ 							<li class="page-item <c:if test='${pageMaker.cri.page eq pageNum }'>active</c:if>">
+								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageNum) }"/>'>${pageNum }</a>
+ 							</li>
+						</c:forEach>
+ 						<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+ 							<li class="page-item">
+								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.endPage+1) }"/>'><i class="fa fa-chevron-right"></i></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 
+				<div class="col-md-6 text-lg-right">
+					<form class="community-filter">
+						<label>
+  <select class="sort" name="sort">
+    <option value="a">번호순</option>
+    <option value="b">조회순</option>
+    <option value="c">추천순</option>
+    <option value="d">날짜순</option>
+    <option value="e">댓글순</option>
+  </select>
+</label>
+<div class="result"></div>
+					</form>
+				</div>
 		</div>
+	</div>
+
+	</div>
 	</section>
 	<!-- Page section end -->
 
