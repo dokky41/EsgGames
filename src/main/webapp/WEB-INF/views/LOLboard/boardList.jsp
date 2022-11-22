@@ -105,16 +105,10 @@ selectElement.addEventListener('change', (event) => {
 
 				<div class="col-md-6 text-lg-right">
 					<form class="community-filter">
-						<label>
-  <select class="sort" name="sort">
-    <option value="a">번호순</option>
-    <option value="b">조회순</option>
-    <option value="c">추천순</option>
-    <option value="d">날짜순</option>
-    <option value="e">댓글순</option>
-  </select>
-</label>
-<div class="result"></div>
+  
+<button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=번호순'" class="btn btn-outline-secondary btn-sm">번호순</button>
+<button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=조회순'" class="btn btn-outline-secondary btn-sm">조회순</button>
+<button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=추천순'" class="btn btn-outline-secondary btn-sm">추천순</button>
 					</form>
 				</div>
 		</div>
