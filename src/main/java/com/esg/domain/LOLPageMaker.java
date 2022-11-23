@@ -46,6 +46,7 @@ public class LOLPageMaker {
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("perPageNum", cri.getPerPageNum())
+                .queryParam("sort",cri.getSort())
                 .build();
         return uri.toUriString();
     }

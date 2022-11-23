@@ -157,12 +157,12 @@ public class LOLboardController {
 	}
 	//글 추천수
 	@RequestMapping(value="/boardRecommend",method = RequestMethod.GET)
-	public String RecommendGet(@RequestParam("IDX") int num,LOLCriteria cri) throws Exception{
+	public String RecommendGet(@RequestParam("IDX") int num,LOLCriteria cri,LOLBoardVO vo) throws Exception{
 			log.info(num+"boardRecommend");
 			service.recommend(num);
 			
 		     
-			return "redirect:/LOLboard/boardList?page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
+			return "redirect:/LOLboard/boardRead?IDX="+vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
 	}
 	
 	
