@@ -18,4 +18,6 @@ public interface LOLReplyService {
 	public void delete(LOLReplyVO vo) throws Exception ;
 	// 단일 댓글 조회
 	public LOLReplyVO replySelect(LOLReplyVO vo) throws Exception;
+
+	public void recommend(int num);
 }

@@ -14,8 +14,8 @@
 
 <!-- 댓글 작성 -->
 	<insert id="replyWrite" parameterType="LOLReplyVO">
-		insert into lol_reply(IDX, WRITER, CONTENT)
-			value(#{IDX}, #{WRITER}, #{CONTENT})
+		insert into lol_reply(IDX, WRITER, CONTENT,RECOMMEND)
+			value(#{IDX}, #{WRITER}, #{CONTENT},0)
 	</insert>
 	
 <!-- 댓글 수정 -->
@@ -39,5 +39,12 @@
 		where IDX = #{IDX}
 		and RNO = #{RNO}					
 </select>
-
+<update id="recommend">
+            UPDATE
+                lol_reply
+            SET
+                RECOMMEND = RECOMMEND + 1
+            WHERE
+                RNO = #{RNO};
+    </update>
 </mapper>

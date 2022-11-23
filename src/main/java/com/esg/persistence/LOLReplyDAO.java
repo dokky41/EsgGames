@@ -18,4 +18,6 @@ public interface LOLReplyDAO {
 	public void delete(LOLReplyVO vo) throws Exception ;
 
 	LOLReplyVO replySelect(LOLReplyVO vo) throws Exception;
+
+	public void recommend(int num);
 }
