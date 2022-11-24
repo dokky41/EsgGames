@@ -45,11 +45,14 @@ public class LOLboardController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
+		
 		//페이징처리
 		LOLPageMaker pageMaker = new LOLPageMaker();
 	    pageMaker.setCri(cri);
 	    
 		List<LOLBoardVO> boardList = service.getBoardList(cri);
+
+		
 		pageMaker.setTotalCount(service.countBoardListTotal());
 	    mav.addObject("boardList", boardList);
 	    mav.addObject("pageMaker", pageMaker);
@@ -142,7 +145,7 @@ public class LOLboardController {
 	
 	//글 삭제 IDX 저장
 	@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
-	public String DeletePOST(@RequestParam("IDX") int num,LOLCriteria cri,RedirectAttributes redAttr) throws Exception{
+	public String DeleteGet(@RequestParam("IDX") int num,LOLCriteria cri,RedirectAttributes redAttr) throws Exception{
 			log.info(num+"delete");
 			service.deleteBoard(num);
 			
@@ -152,4 +155,15 @@ public class LOLboardController {
 		     
 			return "redirect:/LOLboard/boardList";
 	}
+	//글 추천수
+	@RequestMapping(value="/boardRecommend",method = RequestMethod.GET)
+	public String RecommendGet(@RequestParam("IDX") int num,LOLCriteria cri,LOLBoardVO vo) throws Exception{
+			log.info(num+"boardRecommend");
+			service.recommend(num);
+			
+		     
+			return "redirect:/LOLboard/boardRead?IDX="+vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
+	}
+	
+	
 }

@@ -19,25 +19,43 @@
 
 </ul>
 </nav>
-<article style="padding-left: 45%;">
-<h2 class="login__fb-title">로그인</h2>
-
+<article style="padding-left: 40%;  height: 100%;">
+<!-- <a href="/index" style="padding-left: 45%;"> -->
+<br>
+<img src="${pageContext.request.contextPath }/resources/img/logo2.jpg" style=" width: 33%;">
+<br>
+<br>
+<h5 class="login__fb-title"><b>로그인 후 이용하실 수 있습니다.</b></h5>
+<br>
 <form action="${pageContext.request.contextPath}/member/login" id= "join" method="post">
 <fieldset>
 
 <div id="loginWrap" class="loginWrap">
 				<div class="loginUserInfo">
 					<p class="idWrap">
-						<input type="text" title="아이디 입력" value="" maxlength="50" id="userid" name="userid" class="inputidpw" placeholder="아이디">
+						<input type="text" title="아이디 입력" value="" maxlength="50" 
+						id="userid" name="userid" class="inputidpw" placeholder="아이디" style="width: 288px;">
+						
 					</p>
 					<p class="pwWrap">
-						<input type="password" title="비밀번호 입력" value="" id="userpw" name="userpw" class="inputidpw" placeholder="비밀번호">
+						<input type="password" title="비밀번호 입력" value=""
+						id="userpw" name="userpw" class="inputidpw" placeholder="비밀번호" style="width: 288px;">
 					</p>
 					<div id="notice" role="tooltip"></div>
 					<input type="hidden" value="68597a4f6ca586b0ba5f9cfecb80d4" id="stoken" name="stoken">
                                         <input type="hidden" value="" id="comm" name="comm">
                                         <input type="hidden" value="" id="sid" name="sid">
-					<p id="content"><button id="loginBtn" class="btn btn-primary btn-large" type="submit"><span><i class="fa fa-sign-in"></i> 로그인</span></button></p>
+					<p id="content"><button id="loginBtn" class="btn btn-primary btn-large"
+					type="submit" style="width: 140px;">
+					<span>
+					<i class="fa fa-sign-in">
+					</i> 로그인</span></button>
+					<button id="loginBtn" class="btn btn-primary btn-large" 
+					onclick="location.href='/member/Register'; return false;" style="width: 145px; background: #2c974b;">
+					<span>
+					<i class="fa fa-sign-in">
+					</i> 회원가입</span></button>
+					</p>
 				</div>
 				<div class="saveid">
 					<div class="btn-group">
@@ -47,10 +65,13 @@
 					아이디 저장</label>
 					</div>
 				</div>
-
+				
+				
+				<br>
+			</form>
 			</div>
 			</fieldset>
-		</form>
+		
 </article>
 
 <div class="clear"></div>

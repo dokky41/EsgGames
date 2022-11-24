@@ -2,8 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
+<script>
+const selectElement = document.querySelector('.sort');
+
+selectElement.addEventListener('change', (event) => {
+  const result = document.querySelector('.result');
+  result.textContent = `You like ${event.target.value}`;
+});
+</script>
 <!-- 헤더부분 -->
 
 
@@ -41,7 +50,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h3 class="community-top-title">전체</h3>
+						<h3 class="community-top-title">전체 ${pageMaker.getTotalCount()}</h3>
 					</div>
 					<div class="col-md-6 text-lg-right">
 						<form class="community-filter">
@@ -51,53 +60,61 @@
 				</div>
 				<table class="table">
               <tbody>
-              <th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th>
+              <tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th><th>추천수</th></tr>
  						  <c:choose>
                       <c:when test="${fn:length(boardList) > 0 }">
                           <c:forEach items="${boardList }" var="bList">
                               <tr>
-                              <th scope="row">${bList.IDX }</th>
-                              <td><a href="/LOLboard/boardRead?IDX=${bList.IDX}" class="text-dark">${bList.TITLE }</a></td>
+                              <td scope="row">${bList.IDX }</td>
+                              <td><a href="/LOLboard/boardRead${pageMaker.makeQueryPage(bList.IDX, pageMaker.cri.page) }" class="text-dark">${bList.TITLE }</a></td>
                               <td>${bList.CREA_ID }</td>
-                              <td>${bList.CREA_DATE }</td>
+                              <td><fmt:formatDate value="${bList.CREA_DATE }" pattern="yyyy-MM-dd hh-mm" /></td>
                               <td>${bList.HIT_CNT }</td>
+							  <td>${bList.RECOMMEND }</td>
                             </tr>
                           </c:forEach>
                       </c:when>
                       <c:otherwise>
                           <tr>
-                              <td colspan="5">조회된 결과가 없습니다.</td>
+                              <td colspan="6">조회된 결과가 없습니다.</td>
                           </tr>
                       </c:otherwise>
                   </c:choose> 
-                  
-                  
-                  
-                <tr class="btn-group pagination">
-    <c:if test="${pageMaker.prev }">
-    <li>
-        <a href='<c:url value="/LOLboard/boardRead?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a>
-    </li>
-    </c:if>
-    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-    <li>
-        <a href='<c:url value="/LOLboard/boardRead?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
-    </li>
-    </c:forEach>
-    <c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-    <li>
-        <a href='<c:url value="/LOLboard/boardRead?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
-    </li>
-    </c:if>
-</tr>
-                
-                
-                
               </tbody>
             </table>
-			</div>
+            <div class="row">
+            	<div class="col-md-6">
+            		<ul class="pagination">
+  						<c:if test="${pageMaker.prev }">
+  							<li class="page-item">
+   								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.startPage-1) }"/>'><i class="fa fa-chevron-left"></i></a>
+ 							 </li>
+  						</c:if>
+  						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
+ 							<li class="page-item <c:if test='${pageMaker.cri.page eq pageNum }'>active</c:if>">
+								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageNum) }"/>'>${pageNum }</a>
+ 							</li>
+						</c:forEach>
+ 						<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+ 							<li class="page-item">
+								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.endPage+1) }"/>'><i class="fa fa-chevron-right"></i></a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
 
+				<div class="col-md-6 text-lg-right">
+					<form class="community-filter">
+  
+<button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=번호순'" class="btn btn-outline-secondary btn-sm">번호순</button>
+<button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=조회순'" class="btn btn-outline-secondary btn-sm">조회순</button>
+<button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=추천순'" class="btn btn-outline-secondary btn-sm">추천순</button>
+					</form>
+				</div>
 		</div>
+	</div>
+
+	</div>
 	</section>
 	<!-- Page section end -->
 

@@ -43,12 +43,12 @@
 			</a>
 			<div class="user-panel">
 			
-				<c:if test="${sessionScope.userid==null }">
-				<a href="#">Login</a>  /  <a href="#">Register</a>
+				<c:if test="${membervo.userid==null }">
+				<a href="${pageContext.request.contextPath }/member/login">로그인</a>   <a href="#"></a>
 				</c:if>
 				
-				<c:if test="${sessionScope.userid!=null }">
-				<a href="#">${sessionScope.userid} / 내정보</a>
+				<c:if test="${membervo.userid!=null }">
+				<a href="${pageContext.request.contextPath }/member/logout">${membervo.userid}님 / 로그아웃</a>
 				</c:if>
 				
 			</div>
@@ -67,11 +67,11 @@
 					<ul class="Gsubmenu" >
 					
 						<li>
-					   <a href="${pageContext.request.contextPath }/review">리그오브레전드</a>
+					   <a href="${pageContext.request.contextPath }/LOLboard/boardList">리그오브레전드</a>
 					   </li>
 					   
 					   <li>
-					   <a href="${pageContext.request.contextPath }/review">메이플스토리</a>
+					   <a href="${pageContext.request.contextPath }/maple/mapleboardlist">메이플스토리</a>
 					   </li>
 					   
 					   <li>
@@ -119,7 +119,13 @@
 					
 					<li><a href="${pageContext.request.contextPath }/community">고객센터</a></li>
 					
-					<li><a href="${pageContext.request.contextPath }/contact">회원가입</a></li>
+					<c:if test="${membervo.userid==null }">
+					<li><a href="${pageContext.request.contextPath }/member/Register">회원가입</a></li>
+					</c:if>
+					
+					<c:if test="${membervo.userid!=null }">
+					<li><a href="${pageContext.request.contextPath }/contact">내정보</a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</div>

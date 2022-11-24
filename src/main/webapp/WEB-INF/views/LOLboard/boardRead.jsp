@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
+
 <!-- 헤더부분 -->
 
 
@@ -56,6 +58,8 @@
                 <i class="far fa-clock"></i> ${vo.CREA_DATE }
                 ·
                 <i class="fas fa-align-justify"></i> ${vo.HIT_CNT }
+                ·
+                <a href="/LOLboard/boardRecommend${pageMaker.makeQueryPage(vo.IDX, pageMaker.cri.page) }" class="btn btn-outline-secondary btn-sm">추천</a> ${vo.RECOMMEND }
             </h6>
             <p class="card-text">${vo.CONTENTS }</p>
             
@@ -79,12 +83,56 @@
 </c:choose>
         </div>
         <div class="card-body">
-            <a href='<c:url value='/LOLboard/boardUpdate?IDX=${vo.IDX }'/>' class="btn btn-outline-secondary btn-sm" role="button">수정</a>
-            <a href='<c:url value='/LOLboard/boardDelete?IDX=${vo.IDX }'/>'  class="btn btn-outline-secondary btn-sm " role="button">삭제</a>
+            <a href='<c:url value='/LOLboard/boardUpdate${pageMaker.makeQueryPage(vo.IDX, page) }'/>' class="btn btn-outline-secondary btn-sm" role="button">수정</a>
+            <a href='<c:url value='/LOLboard/boardDelete${pageMaker.makeQueryPage(vo.IDX, page) }'/>'  class="btn btn-outline-secondary btn-sm " role="button">삭제</a>
         </div>
         <div class="card-body">
-            <a href='<c:url value='/LOLboard/boardList'/>' class="btn btn-info" role="button">목록으로</a>
+            <a href='<c:url value='/LOLboard/boardList${pageMaker.makeQueryPage(page) }'/>' class="btn btn-info" role="button">목록으로</a>
         </div>
+        
+<!-- 댓글 조회 -->
+<div class="card-body">
+<div id="reply">
+  <ol class="replyList">
+    <c:forEach items="${reply}" var="reply">
+      <li>
+        <p>
+        작성자 : ${reply.WRITER}<br />
+        작성 날짜 :  <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd hh-mm" />
+        </p>
+
+        <p>${reply.CONTENT}</p>
+        <p>
+		  	<a href="../LOLreply/replyUpdate${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">수정</a>
+  			<a href="../LOLreply/replyDelete${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">삭제</a>
+		</p>
+		<hr>
+      </li>
+    </c:forEach>   
+  </ol>
+</div>
+</div>
+<!-- 댓글 작성 -->
+<div class="card-body">
+
+	<form name="replyForm" method="post" action="../LOLreply/replyWrite">
+  <input type="hidden" id="IDX" name="IDX" value="${vo.IDX}" />
+  <input type="hidden" id="page" name="page" value="${pageMaker.cri.page}"> 
+  <input type="hidden" id="perPageNum" name="perPageNum" value="${pageMaker.cri.perPageNum}"> 
+
+  <div>
+    <label for="writer">댓글 작성자</label><input type="text" id="WRITER" name="WRITER" />
+    <br/>
+    <label for="content">댓글 내용</label><input type="text" id="CONTENT" name="CONTENT" />
+  </div>
+  <div>
+ 	 <button type="submit" class="replyWriteBtn">작성</button>
+  </div>
+</form>
+	
+</div>
+
+
     </div>
 </div>
 

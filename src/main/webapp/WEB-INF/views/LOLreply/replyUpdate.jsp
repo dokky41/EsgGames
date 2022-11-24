@@ -5,7 +5,6 @@
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
 
-
 	<!-- Latest news section -->
 	<div class="latest-news-section">
 		<div class="ln-title">Latest News</div>
@@ -41,31 +40,25 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h3 class="community-top-title">게시판 글수정</h3>
+						<h3 class="community-top-title">댓글 수정</h3>
 					</div>
 				</div>
-				
-				<div class="container col-md-6">
-    <form action='<c:url value='/LOLboard/boardUpdate${pageMaker.makeQueryPage(page) }'/>' method="post">
-        <div class="form-group">
-            <label for="exampleFormControlInput1">제목</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" name="TITLE" value="${detail.TITLE }">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">작성자</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" name="CREA_ID" value="${detail.CREA_ID }" readonly>
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">내용</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" name="CONTENTS">${detail.CONTENTS }</textarea>
-        </div>
-        <input type="hidden" name="IDX" value="${detail.IDX }">
-        <button type="submit" class="btn btn-info">수정하기</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href='boardRead${pageMaker.makeQueryPage(detail.IDX, page) }'">뒤로가기</button>
-    </form>
-</div>
-
-					
+        	<form method="post" action="/LOLreply/replyUpdate">
+	
+	<p>
+		<label>댓글 작성자</label> <input type="text" name="WRITER" readonly="readonly" value="${reply.WRITER}">
+	</p>
+	<p>
+		<textarea rows="5" cols="50" name="CONTENT">${reply.CONTENT}</textarea>
+	</p>
+	<p>
+		<input type="hidden" name="IDX" value="${reply.IDX}">
+		<input type="hidden" name="RNO" value="${reply.RNO}">
+		
+		<button type="submit">댓글 수정</button>
+	</p>
+</form>
+    
 			</div>
 		</div>
 	</section>

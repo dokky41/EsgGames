@@ -2,11 +2,26 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script src = "http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
 <!-- 헤더부분 -->
+<script>
 
+if("${membervo.userid}"=='')
+{
+alert('로그인이 필요합니다');
+location.href="${pageContext.request.contextPath}/member/login";
+}
+
+
+$(document).ready(function() {
+	$('.fbutton').click(function(){
+		$('#containera').prepend('<input type="file" name="files"  accept="image/*">');
+	});
+	
+});
+</script>
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
@@ -59,17 +74,18 @@
 						<!-- Page section -->
 	<section class="page-section spad contact-page" style="padding-top: 10px">
 	
-				<div class="col-lg-8" >
+				<div class="col-lg-8" style="margin: auto;">
 					<div class="contact-form-warp">
 						<form class="comment-form" 
 						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post" enctype="multipart/form-data">
 						<h4 class="comment-title" style="color: white;">판매등록 <input type="submit" class="site-btn btn-sm" style="float: right;" value="등록"></h4>
 						
 							
-							<input type="hidden" value="${sessionScope.userid}" name="userid">
+							<input type="hidden" value="${membervo.userid}" name="userid">
 							
 							<div class="row">
 								<div class="col-md-6">
+								
 									<input type="text" placeholder="상품이름" name="subject">
 								</div>
 								<div class="col-md-6">
@@ -89,13 +105,16 @@
 									
 									<textarea placeholder="상세설명" name="content"></textarea>
 								
-									<input type='file' name='files'  accept='image/*'  />
-									<input type='file' name='files'  accept='image/*'  />
-									<input type='file' name='files'  accept='image/*'  />
-									<input type='file' name='files'  accept='image/*'  />
-									
+								<div class="filebox">
+								<div id="containera">
+									 <label for="ex_filename" style="color: white;">업로드</label> 
+									<input type='file' name='files'  id="ex_filename" accept='image/*'>
 								</div>
 								
+									<input type='button' value="사진추가" class="fbutton">
+								
+								</div>
+								</div>
 								
 								
 								

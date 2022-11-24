@@ -10,7 +10,7 @@ public class LOLPageMaker {
     private int endPage;
     private boolean prev;
     private boolean next;
-    private int displayPageNum = 5;
+    private int displayPageNum = 10;
     
     public LOLCriteria getCri() {
         return cri;
@@ -46,6 +46,7 @@ public class LOLPageMaker {
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("perPageNum", cri.getPerPageNum())
+                .queryParam("sort",cri.getSort())
                 .build();
         return uri.toUriString();
     }

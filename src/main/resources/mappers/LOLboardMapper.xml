@@ -4,12 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.esg.mapper.LOLboardMapper">
+
 	<select id="BoardList" resultType="LOLBoardVO">
-        select * from lol_board 
-        order by IDX DESC
+		SELECT * FROM lol_board
+        	ORDER BY cast(CASE #{sort}
+				WHEN '번호순' THEN IDX
+    			WHEN '조회순' THEN HIT_CNT
+     	        WHEN '추천순' THEN RECOMMEND
+			END as signed integer) DESC
         LIMIT #{pageStart}, #{perPageNum};
     </select>
     
+    <select id="countBoardList" resultType="int">
+        select count(*) from lol_board
+    </select>
     
     <insert id="write" useGeneratedKeys="true" keyProperty="IDX">
 		INSERT INTO lol_board
@@ -17,14 +25,16 @@
                 CONTENTS,
                 HIT_CNT,
                 DEL_CHK,
-                CREA_ID
+                CREA_ID,
+                RECOMMEND
         )
 		VALUES
 		(		#{TITLE},
                 #{CONTENTS},
                 0,
                 'N',
-                #{CREA_ID}
+                #{CREA_ID},
+                0
         );
 	</insert>
 	
@@ -48,7 +58,7 @@
             #{ CREA_ID},
             SYSDATE(),
             SYSDATE()
-        )
+        );
 </insert>
 	<select id="getBoardFile" resultType="LOLBoardVO">
             SELECT
@@ -59,7 +69,7 @@
             FROM
                 lol_file
             WHERE
-                BOARD_IDX = #{IDX}
+                BOARD_IDX = #{IDX};
     </select>
 	<select id="getBoard" resultType="LOLBoardVO">
 
@@ -88,11 +98,19 @@
             WHERE
                 IDX = #{IDX}
                 and
-                CREA_ID = #{CREA_ID}
+                CREA_ID = #{CREA_ID};
     </update>
     
     <delete id="delete">
     	DELETE FROM lol_board
-    	WHERE IDX = #{IDX}
+    	WHERE IDX = #{IDX};
     </delete>
+<update id="recommend">
+            UPDATE
+                lol_board
+            SET
+                RECOMMEND = RECOMMEND + 1
+            WHERE
+                IDX = #{IDX};
+    </update>
 </mapper>
