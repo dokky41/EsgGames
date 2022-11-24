@@ -1,12 +1,16 @@
 package com.esg.service;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.activation.CommandMap;
 import javax.inject.Inject;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 
 import com.esg.domain.Criteria;
 import com.esg.domain.mapleboardVO;
@@ -25,6 +29,7 @@ public class mapleboardServiceImpl implements mapleboardService {
 		// TODO Auto-generated method stub
 		//log.info(vo+"");
 		dao.mapleboardwrite(vo);
+		
 	}
 
 	@Override
@@ -72,6 +77,14 @@ public class mapleboardServiceImpl implements mapleboardService {
 		// TODO Auto-generated method stub
 		dao.updatemapleBoardCount(num);
 	}
+
+	@Override
+	public int getBoardSeq() {
+		return dao.getBoardSeq();
+	}
+	
+		
+	
 
 	
 

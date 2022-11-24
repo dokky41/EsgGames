@@ -1,7 +1,9 @@
 package com.esg.controller;
 
+import java.io.File;
 import java.util.List;
 
+import javax.activation.CommandMap;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,12 +15,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.esg.controller.mapleboardController;
 import com.esg.domain.Criteria;
 import com.esg.domain.PageMaker;
+import com.esg.domain.mapleFileVO;
 import com.esg.domain.mapleboardVO;
 import com.esg.service.mapleboardService;
+import com.esg.utils.mapleFileUtils;
 
 
 
@@ -57,11 +64,31 @@ public class mapleboardController {
 	}
 	
 	@RequestMapping(value="/maple/mapleboardwrite", method=RequestMethod.POST)
-	public String maple2Post(mapleboardVO vo) throws Exception {
+	public String maple2Post(mapleboardVO vo,MultipartHttpServletRequest mhsr,HttpServletRequest request) throws Exception {
 		//log.info(vo+"");
+		
+		
+		
+		//파일 업로드 처리 
+		MultipartFile mapleFile = vo.getFile();
+		if(!mapleFile.isEmpty()) {
+			String fileName = mapleFile.getOriginalFilename();
+			mapleFile.transferTo(new File("/Users/ijiun/Documents/upload" + fileName));
+		}
+		
+		int seq = service.getBoardSeq();
+		
+		mapleFileUtils maplefileUtils = new mapleFileUtils();
+		List<mapleFileVO> fileList = maplefileUtils.parseFileInfo(seq, request, mhsr);
+		
 		service.mapleboardwrite(vo);
 		
+	
+		
 		return "redirect:/maple/mapleboardlist";
+	
+	
+		
 	}
 	
 	@RequestMapping(value="/maple/mapleboardlist", method=RequestMethod.POST)

@@ -57,6 +57,7 @@
 								<div class="col-lg-12">
 									<input type="text" placeholder="제목을 입력하세요.  " name="subject">
 									<textarea placeholder="내용을 입력하세요.  " name="content"></textarea>
+									<input type="file" name="uploadfile" multiple="multiple">
 									<button class="site-btn btn-sm">등록 </button>
 								</div>
 							</div>

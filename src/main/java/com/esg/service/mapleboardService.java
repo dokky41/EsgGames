@@ -2,6 +2,10 @@ package com.esg.service;
 
 import java.util.List;
 
+import javax.activation.CommandMap;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.esg.domain.Criteria;
 import com.esg.domain.mapleboardVO;
 
@@ -27,5 +31,11 @@ public interface mapleboardService {
 	int totalCnt();
 
 	void updatemapleBoardCount(int num);
+
+	int getBoardSeq();
+
+	
+
+	
 
 }

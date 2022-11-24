@@ -18,6 +18,7 @@ public class trLoaVO {
 	private String file3; // 글 첨부파일3
 	private String file4; // 글 첨부파일4
 	private int num; // 글 고유번호
+	
 	public String getUserid() {
 		return userid;
 	}
@@ -102,6 +103,7 @@ public class trLoaVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
+	
 	@Override
 	public String toString() {
 		return "trLoaVO [userid=" + userid + ", subject=" + subject + ", goodsCount=" + goodsCount + ", chname="

@@ -1,6 +1,7 @@
 package com.esg.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.esg.domain.Criteria;
 import com.esg.domain.mapleboardVO;
@@ -24,5 +25,14 @@ public interface mapleboardDAO {
 	int totalCnt();
 
 	void updatemapleBoardCount(int num);
+
+	int getBoardSeq();
+	
+	
+	
+	
+
+
+	
 
 }

@@ -7,8 +7,8 @@
 
 	<insert id="createBoard">
 	
-		insert into tbl_mapleboard (userid,boardpw,subject,content,ip)
-		values(#{userid},#{boardpw},#{subject},#{content},#{ip})
+		insert into tbl_mapleboard (userid,boardpw,subject,content,file)
+		values(#{userid},#{boardpw},#{subject},#{content},#{file})
 	
 	</insert>
 	
@@ -61,6 +61,13 @@
  		where num=#{num}
  	
  	</update>
+ 	
+ 	<select id="getBoardSeq" resultType="int">
+ 		SELECT IFNULL(MAX(SEQ),0) + 1 
+ 			FROM BOARD A
+ 	</select>
+ 	
+
  	
 	
 	

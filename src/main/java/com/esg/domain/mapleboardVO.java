@@ -2,6 +2,8 @@ package com.esg.domain;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class mapleboardVO {
 	//vo
 	
@@ -12,7 +14,7 @@ public class mapleboardVO {
 	private int readcount; 
 	private Timestamp date; 
 	private String ip; 
-	private String file; 
+	private MultipartFile file; 
 	private int num; 
 	
 	
@@ -58,10 +60,10 @@ public class mapleboardVO {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public String getFile() {
+	public MultipartFile getFile() {
 		return file;
 	}
-	public void setFile(String file) {
+	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
 	public int getNum() {
@@ -73,7 +75,7 @@ public class mapleboardVO {
 	
 	@Override
 	public String toString() {
-		return "BoardVO [userid=" + userid + ", boardpw=" + boardpw + ", subject=" + subject + ", content=" + content
+		return "mapleboardVO [userid=" + userid + ", boardpw=" + boardpw + ", subject=" + subject + ", content=" + content
 				+ ", readcount=" + readcount + ", date=" + date + ", ip=" + ip + ", file=" + file + ", num=" + num
 				+ "]";
 	}

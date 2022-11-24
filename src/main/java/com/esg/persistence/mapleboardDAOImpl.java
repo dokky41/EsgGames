@@ -2,6 +2,7 @@ package com.esg.persistence;
 
 import java.util.List;
 
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -85,6 +86,12 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 		sqlSession.delete(NAMESPACE+".mapleCount",num);
 		
 	}
+	
+	@Override
+	public int getBoardSeq() {
+		return sqlSession.selectOne(NAMESPACE+".getBoardSeq");
+	}
+
 
 
 	
