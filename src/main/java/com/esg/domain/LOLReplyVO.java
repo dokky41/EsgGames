@@ -8,6 +8,7 @@ public class LOLReplyVO {
 	private String CONTENT; //´ñ±Û ³»¿ë
 	private String WRITER; //´ñ±Û ÀÛ¼ºÀÚ
 	private Timestamp REGDATE; //´ñ±Û ÀÛ¼º ³¯Â¥
+	private int RECOMMEND; //´ñ±Û ÃßÃµ¼ö
 	
 	public int getIDX() {
 		return IDX;
@@ -17,6 +18,12 @@ public class LOLReplyVO {
 	}
 	public int getRNO() {
 		return RNO;
+	}
+	public int getRECOMMEND() {
+		return RECOMMEND;
+	}
+	public void setRECOMMEND(int rECOMMEND) {
+		RECOMMEND = rECOMMEND;
 	}
 	public void setRNO(int rNO) {
 		RNO = rNO;
@@ -42,7 +49,7 @@ public class LOLReplyVO {
 	@Override
 	public String toString() {
 		return "LOLReplyVO [IDX=" + IDX + ", RNO=" + RNO + ", CONTENT=" + CONTENT + ", WRITER=" + WRITER + ", REGDATE="
-				+ REGDATE + "]";
+				+ REGDATE + ", RECOMMEND=" + RECOMMEND + "]";
 	}
 	
 	

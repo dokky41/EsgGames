@@ -106,7 +106,7 @@ selectElement.addEventListener('change', (event) => {
 				<div class="col-md-6 text-lg-right">
 					<form class="community-filter">
   
-<button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=번호순'" class="btn btn-outline-secondary btn-sm">번호순</button>
+<button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=최신순'" class="btn btn-outline-secondary btn-sm">최신순</button>
 <button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=조회순'" class="btn btn-outline-secondary btn-sm">조회순</button>
 <button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=추천순'" class="btn btn-outline-secondary btn-sm">추천순</button>
 					</form>

@@ -50,4 +50,10 @@ public class LOLReplyDAOImpl implements LOLReplyDAO{
 		
 		return sqlSession.selectOne(NAMESPACE + ".replySelect", vo);
 	}
+
+	@Override
+	public void recommend(int num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(NAMESPACE+".recommend",num);
+	}
 }

@@ -59,7 +59,7 @@
                 ·
                 <i class="fas fa-align-justify"></i> ${vo.HIT_CNT }
                 ·
-                <a href="/LOLboard/boardRecommend${pageMaker.makeQueryPage(vo.IDX, pageMaker.cri.page) }" class="btn btn-outline-secondary btn-sm">추천</a> ${vo.RECOMMEND }
+                <a href="/LOLboard/boardRecommend${pageMaker.makeQueryPage(vo.IDX, pageMaker.cri.page) }" class="btn btn-outline-secondary btn-sm">추천 : ${vo.RECOMMEND }</a>
             </h6>
             <p class="card-text">${vo.CONTENTS }</p>
             
@@ -95,9 +95,11 @@
 <div id="reply">
   <ol class="replyList">
     <c:forEach items="${reply}" var="reply">
-      <li>
+      <li class="col-md-6">
         <p>
-        작성자 : ${reply.WRITER}<br />
+        작성자 : ${reply.WRITER}
+         <a href="/LOLreply/replyRecommend${pageMaker.makeQueryPage(reply.IDX, pageMaker.cri.page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm float-right">추천 : ${reply.RECOMMEND }</a>
+        <br />
         작성 날짜 :  <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd hh-mm" />
         </p>
 

@@ -35,9 +35,6 @@ public class LOLreplyController {
         replyservice.write(vo);
 		log.info(vo+"");
 		
-		rttr.addAttribute("IDX", vo.getIDX());
-		rttr.addAttribute("page", cri.getPage());
-		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		
 		return "redirect:/LOLboard/boardRead?IDX=" + vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
 	}
@@ -72,5 +69,14 @@ public class LOLreplyController {
 			     
 		return "redirect:/LOLboard/boardRead?IDX=" + vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
 	}
-		
+	
+	//글 추천수
+	@RequestMapping(value="/replyRecommend",method = RequestMethod.GET)
+	public String rRecommendGet(@RequestParam("RNO") int num,LOLCriteria cri,LOLReplyVO vo) throws Exception{
+			log.info(num+"");
+			replyservice.recommend(num);
+			
+		     
+			return "redirect:/LOLboard/boardRead?IDX="+vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
+	}
 }
