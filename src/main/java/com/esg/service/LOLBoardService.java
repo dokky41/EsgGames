@@ -25,6 +25,9 @@ public interface LOLBoardService {
 	void deleteBoard(int num);
 	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	List<Map<String, Object>> selectFileList(int num);
+	//ÃÑ°¹¼ö
 	int countBoardListTotal();
+	//ÆÄÀÏÀÌ ¾øÀ»¶§ ±Û ¾²±â
 	void insertBoard(LOLBoardVO vo);
+	void recommend(int num);
 }

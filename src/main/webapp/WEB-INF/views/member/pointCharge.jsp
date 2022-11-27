@@ -41,8 +41,7 @@
 	<input type="hidden"  value="${membervo.address }" id="paddress">
 	<input type="hidden"  value="${chargeNum}" id="chargeNum">
 				
-					결제수단 * ${membervo.userid }
-					<br>
+					결제수단 : 
 					
 					<select id="payment-select" class="select_type_1"
 											style="border-radius: 10px;" >
@@ -53,9 +52,10 @@
 												<option value="danal_tpay">휴대폰결제</option>
 										</select>
 					
-					<br>
+					<br><br>
 					충전금액 : <input type="number" name="pnumber" id="pnumber">
-								<br>
+								
+								<br><br>
 								<button type="button" onclick="requestPay()">결제</button>
 								<button type="button" onclick="cancelPay()">취소</button>
 				<br><br><br>

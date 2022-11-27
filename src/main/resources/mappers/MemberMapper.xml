@@ -48,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMyMileSearch" resultType="esgMileVO">
   	select * from esgmile 
   	where userid=#{userid}
+  	order by date desc 
   	</select>
 	
 	

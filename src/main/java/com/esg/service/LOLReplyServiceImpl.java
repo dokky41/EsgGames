@@ -22,16 +22,28 @@ public class LOLReplyServiceImpl implements LOLReplyService{
 
 	@Override
 	public void write(LOLReplyVO vo) throws Exception {
-	    dao.write(vo);
+		dao.write(vo);
 	}
 
 	@Override
-	public void modify(LOLReplyVO vo) throws Exception {
-	    dao.modify(vo);
+	public void update(LOLReplyVO vo) throws Exception {
+	    dao.update(vo);
 	}
 
 	@Override
 	public void delete(LOLReplyVO vo) throws Exception{
 	    dao.delete(vo);
+	}
+
+	@Override
+	public LOLReplyVO replySelect(LOLReplyVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.replySelect(vo);
+	}
+
+	@Override
+	public void recommend(int num) {
+		// TODO Auto-generated method stub
+		dao.recommend(num);
 	}
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,38 +28,62 @@
  src="${pageContext.request.contextPath }/resources/img/logo2.jpg" style=" width: 33%;">
 <br>
 <br>
-<h5 style="padding-left: 5%;"><b>${membervo.userid}님의 거래내역</b></h5>
+<h5 style="padding-left: 5%;"><b>${membervo.userid}님의 충전내역</b></h5>
 <br>
 <fieldset>
+
+<!-- 오늘날짜 -->
+<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></c:set> 
+<!-- 오늘날짜 -->
 
 <div id="loginWrap" class="loginWrap">
 				<div class="loginUserInfo">
 					
 						
+						
 							<c:forEach var="MMList" items="${MMInfo }">
 							
-								충전방식 : ${MMList.chargeSort } <br>
+							<table border="1" style="text-align: center;">
+								<tr>
+								<th colspan="2">
+								영수증
+								</th>
+								</tr>
+							
+								<tr>
+								<td>충전번호</td> 
+								<td> ${MMList.chargeNum }</td> 
+								</tr>
+								
+								<tr>
+								<td>충전방식</td> 
+								<td> ${MMList.chargeSort }</td> 
+								</tr>
+								
+								<tr>
+								<td>충전금액</td> 
+								<td> ${MMList.userpoint}</td> 
+								</tr>
+								
+								<tr>
+								<td>충전날짜</td> 
+								<td>
+								<fmt:formatDate value="${MMList.date }" pattern="yyyy-MM-dd HH:mm:ss" />
+								</td> 
+								</tr>
+								
+								
+								
+							</table>
 							
 							
+							
+							<br><br>
 							</c:forEach>
-							
 							<br>
 					
 					
-					<div id="notice" role="tooltip"></div>
-					<p id="content">
-					<button id="loginBtn" class="btn btn-primary btn-large"
-					onclick="location.href='/member/pointCharge'; return false;" style="width: 140px;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i> 마일리지 충전</span></button>
 					
-					<button id="loginBtn" class="btn btn-primary btn-large" 
-					onclick="location.href='/member/myTradeInfo'; return false;" style="width: 145px; background: #2c974b;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i> 내 거래정보</span></button>
-					</p>
 				</div>
 				
 				<br>

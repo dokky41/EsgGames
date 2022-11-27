@@ -3,8 +3,17 @@ package com.esg.domain;
 public class LOLCriteria {
 	private int page;
     private int perPageNum;
+    private String sort;
     
-    public int getPageStart() {
+    public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public int getPageStart() {
         return (this.page-1)*perPageNum;
     }
     
@@ -37,6 +46,6 @@ public class LOLCriteria {
 
 	@Override
 	public String toString() {
-		return "LOLCriteria [page=" + page + ", perPageNum=" + perPageNum + "]";
+		return "LOLCriteria [page=" + page + ", perPageNum=" + perPageNum + ", sort=" + sort + "]";
 	}
 }

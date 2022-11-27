@@ -117,7 +117,7 @@
 					
 					
 					
-					<li><a href="${pageContext.request.contextPath }/community">고객센터</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/esgServiceCenter">고객센터</a></li>
 					
 					<c:if test="${membervo.userid==null }">
 					<li><a href="${pageContext.request.contextPath }/member/Register">회원가입</a></li>

@@ -35,13 +35,25 @@ public class LOLReplyDAOImpl implements LOLReplyDAO{
 
 	// ¥Ò±€ ºˆ¡§
 	@Override
-	public void modify(LOLReplyVO vo) throws Exception {
-		sqlSession.update(NAMESPACE + ".replyModify", vo);
+	public void update(LOLReplyVO vo) throws Exception {
+		sqlSession.update(NAMESPACE + ".replyUpdate", vo);
 	}
 
 	// ¥Ò±€ ªË¡¶
 	@Override
 	public void delete(LOLReplyVO vo) throws Exception {
 		sqlSession.delete(NAMESPACE + ".replyDelete", vo);
+	}
+	// ¥‹¿œ ¥Ò±€ ¡∂»∏
+	@Override
+	public LOLReplyVO replySelect(LOLReplyVO vo) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE + ".replySelect", vo);
+	}
+
+	@Override
+	public void recommend(int num) {
+		// TODO Auto-generated method stub
+		sqlSession.update(NAMESPACE+".recommend",num);
 	}
 }

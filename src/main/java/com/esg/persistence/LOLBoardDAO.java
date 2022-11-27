@@ -29,5 +29,9 @@ public interface LOLBoardDAO {
 	List<Map<String, Object>> selectFileList(int num);
 
 	int countBoardList();
+
+	void recommend(int num);
+
+
 	
 }

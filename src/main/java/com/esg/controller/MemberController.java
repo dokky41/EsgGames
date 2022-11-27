@@ -148,6 +148,15 @@ public class MemberController {
 		
 	}
 	
+	//내 고객센터 페이지로 이동
+	@RequestMapping(value="/esgServiceCenter", method=RequestMethod.GET)
+	public void esgServiceCenterGET() throws Exception {
+		
+		log.info("고객센터 페이지 이동");
+		
+		
+	}
+	
 	//아이디찾기 페이지로 이동
 	@RequestMapping(value="/idSearchForm", method=RequestMethod.GET)
 	public void idSearchGET() throws Exception {

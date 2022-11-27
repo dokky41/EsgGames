@@ -5,6 +5,7 @@
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
+
 <!-- 헤더부분 -->
 
 
@@ -57,6 +58,8 @@
                 <i class="far fa-clock"></i> ${vo.CREA_DATE }
                 ·
                 <i class="fas fa-align-justify"></i> ${vo.HIT_CNT }
+                ·
+                <a href="/LOLboard/boardRecommend${pageMaker.makeQueryPage(vo.IDX, pageMaker.cri.page) }" class="btn btn-outline-secondary btn-sm">추천 : ${vo.RECOMMEND }</a>
             </h6>
             <p class="card-text">${vo.CONTENTS }</p>
             
@@ -87,38 +90,47 @@
             <a href='<c:url value='/LOLboard/boardList${pageMaker.makeQueryPage(page) }'/>' class="btn btn-info" role="button">목록으로</a>
         </div>
         
-        <!-- 댓글 -->
-        <ul class="card-body">
-        <c:forEach items="${reply}" var="reply">
-<li>
-    <div>
-        <p>${reply.WRITER} / <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd" /></p>
-        <p>${reply.CONTENT }</p>
+<!-- 댓글 조회 -->
+<div class="card-body">
+<div id="reply">
+  <ol class="replyList">
+    <c:forEach items="${reply}" var="reply">
+      <li class="col-md-6">
         <p>
-	<a href="">수정</a> / <a href="">삭제</a>
-</p>
-			
-<hr />
-    </div>
-</li>    
-</c:forEach>
-</ul>
+        작성자 : ${reply.WRITER}
+         <a href="/LOLreply/replyRecommend${pageMaker.makeQueryPage(reply.IDX, pageMaker.cri.page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm float-right">추천 : ${reply.RECOMMEND }</a>
+        <br />
+        작성 날짜 :  <fmt:formatDate value="${reply.REGDATE}" pattern="yyyy-MM-dd hh-mm" />
+        </p>
 
+        <p>${reply.CONTENT}</p>
+        <p>
+		  	<a href="../LOLreply/replyUpdate${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">수정</a>
+  			<a href="../LOLreply/replyDelete${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">삭제</a>
+		</p>
+		<hr>
+      </li>
+    </c:forEach>   
+  </ol>
+</div>
+</div>
+<!-- 댓글 작성 -->
 <div class="card-body">
 
-	<form method="post" action="../LOLreply/replyWrite">
-	
-		<p>
-			<label>댓글 작성자</label> <input type="text" name="WRITER">
-		</p>
-		<p>
-			<textarea rows="5" cols="50" name="CONTENT" placeholder="댓글을 작성해주세요."></textarea>
-		</p>
-		<p>
-			<input type="hidden" name="IDX" value="${vo.IDX}">
-			<button type="submit" class="btn btn-info">댓글 작성</button>
-		</p>
-	</form>
+	<form name="replyForm" method="post" action="../LOLreply/replyWrite">
+  <input type="hidden" id="IDX" name="IDX" value="${vo.IDX}" />
+  <input type="hidden" id="page" name="page" value="${pageMaker.cri.page}"> 
+  <input type="hidden" id="perPageNum" name="perPageNum" value="${pageMaker.cri.perPageNum}"> 
+
+  <div>
+    <label for="writer">댓글 작성자</label><input type="text" id="WRITER" name="WRITER" />
+    <br/>
+    <label for="content">댓글 내용</label><input type="text" id="CONTENT" name="CONTENT" />
+  </div>
+  <div>
+ 	 <button type="submit" class="replyWriteBtn">작성</button>
+  </div>
+</form>
 	
 </div>
 

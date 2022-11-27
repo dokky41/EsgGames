@@ -6,8 +6,12 @@
 <mapper namespace="com.esg.mapper.LOLboardMapper">
 
 	<select id="BoardList" resultType="LOLBoardVO">
-        select * from lol_board 
-        order by IDX DESC
+		SELECT * FROM lol_board
+        	ORDER BY cast(CASE #{sort}
+				WHEN '최신순' THEN IDX
+    			WHEN '조회순' THEN HIT_CNT
+     	        WHEN '추천순' THEN RECOMMEND
+			END as signed integer) DESC
         LIMIT #{pageStart}, #{perPageNum};
     </select>
     
@@ -21,14 +25,16 @@
                 CONTENTS,
                 HIT_CNT,
                 DEL_CHK,
-                CREA_ID
+                CREA_ID,
+                RECOMMEND
         )
 		VALUES
 		(		#{TITLE},
                 #{CONTENTS},
                 0,
                 'N',
-                #{CREA_ID}
+                #{CREA_ID},
+                0
         );
 	</insert>
 	
@@ -99,6 +105,12 @@
     	DELETE FROM lol_board
     	WHERE IDX = #{IDX};
     </delete>
-    
-
+<update id="recommend">
+            UPDATE
+                lol_board
+            SET
+                RECOMMEND = RECOMMEND + 1
+            WHERE
+                IDX = #{IDX};
+    </update>
 </mapper>
