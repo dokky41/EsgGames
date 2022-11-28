@@ -5,7 +5,22 @@
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
+<script>
 
+	$("#ajax_button").click({
+		$.ajax({
+			url: "../LOLreply/replyWrite",
+			type: "POST",
+			dataType: "text"
+			success : function(){
+				
+			},
+			error : function(){
+				alert("실패");
+			}
+		});
+	});
+</script>
 <!-- 헤더부분 -->
 
 
@@ -105,6 +120,7 @@
 
         <p>${reply.CONTENT}</p>
         <p>
+        	<a href="#" class="ajax_button">답글</a>
 		  	<a href="../LOLreply/replyUpdate${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">수정</a>
   			<a href="../LOLreply/replyDelete${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">삭제</a>
 		</p>
