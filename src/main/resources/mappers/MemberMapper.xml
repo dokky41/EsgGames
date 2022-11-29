@@ -50,6 +50,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	where userid=#{userid}
   	order by date desc 
   	</select>
+  	
+	<select id="getMyTrSearch" resultType="trMailVO">
+  	select * from tr_mail 
+  	where trSender=#{userid} || trReceiver=#{userid}
+  	order by trDate desc 
+  	</select>
 	
+	
+	 <select id="tradeMileGet" resultType="int">
+ 		select price from trloaboard
+ 		where num=#{num}
+ 	</select>
+	
+	 <update id="trUpdateMail">
+ 		update tr_mail set trState='yes'
+ 		where trBnum=#{trBnum}
+ 	</update>
+ 	
+	 <update id="sellerMileTrans">
+ 		update esgmember set userpoint=userpoint+${userpoint}
+ 		where userid=#{userid}
+ 	</update>
+ 	
+	 <update id="buyerMileTrans">
+ 		update esgmember set userpoint=userpoint-${userpoint}
+ 		where userid=#{userid}
+ 	</update>
 	
 </mapper>

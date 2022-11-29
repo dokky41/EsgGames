@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.esg.domain.MemberVO;
 import com.esg.domain.esgMileVO;
+import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 import com.esg.service.MemberService;
 
 @Controller
@@ -134,11 +136,11 @@ public class MemberController {
 		return "redirect:/member/myinfo";
 	}
 	
-	//내 거래내역 페이지로 이동
-	@RequestMapping(value="/myTradeInfo", method=RequestMethod.GET)
-	public void myTradeInfoGET(esgMileVO vo,Model model) throws Exception {
+	//내 충전내역 페이지로 이동
+	@RequestMapping(value="/myChargeInfo", method=RequestMethod.GET)
+	public void myChargeInfoGET(esgMileVO vo,Model model) throws Exception {
 		
-		log.info("거래 페이지 이동");
+		log.info("충전내역 페이지 이동");
 		
 		log.info(vo+"");
 		
@@ -148,6 +150,24 @@ public class MemberController {
 		
 	}
 	
+	
+	//내 거래내역 페이지로 이동
+	@RequestMapping(value="/myTradeInfo", method=RequestMethod.GET)
+	public void myTradeInfoGET(Model model,@RequestParam("userid") String userid) throws Exception {
+		
+		log.info("유저아이디 : "+userid);
+		
+		log.info("거래내역 페이지 이동");
+		
+		//거래내역리스트
+		log.info(service.getMyTrInfo(userid)+"");
+		//거래내역리스트
+			
+		model.addAttribute("trInfo", service.getMyTrInfo(userid));
+			
+	}
+	
+	
 	//내 고객센터 페이지로 이동
 	@RequestMapping(value="/esgServiceCenter", method=RequestMethod.GET)
 	public void esgServiceCenterGET() throws Exception {
@@ -156,6 +176,38 @@ public class MemberController {
 		
 		
 	}
+	
+	@RequestMapping(value = "/trAgree", method = RequestMethod.POST)
+	public String trAgree(trMailVO vo,MemberVO vo2,trLoaVO vo3,@RequestParam("bUserid") String bUserid) {
+		
+		log.info("trAgree 거래요청하기");
+		
+		//거래동의하기
+		service.trUpdateMail(vo);
+		//거래동의하기
+		
+		//거래마일리지가져오기
+		log.info(vo3+"");
+		log.info("거래마일리지 : " + service.tradeMileGet(vo3));
+		//거래마일리지가져오기
+		
+		//판매자마일리지변환
+		vo2.setUserpoint(service.tradeMileGet(vo3));
+		log.info("판매자"+vo2+"");
+		service.sellerMileTrans(vo2);
+		//판매자마일리지변환
+		
+		//구매자마일리지변환
+		vo2.setUserid(bUserid);
+		vo2.setUserpoint(service.tradeMileGet(vo3));
+		log.info("구매자"+vo2+"");
+		service.buyerMileTrans(vo2);
+		//구매자마일리지변환
+		
+		return "redirect:/member/myinfo";
+	}
+
+	
 	
 	//아이디찾기 페이지로 이동
 	@RequestMapping(value="/idSearchForm", method=RequestMethod.GET)

@@ -110,4 +110,17 @@
  		
 	</select>
  	
+ 	
+ 	
+ 	<insert id="trSendRequest">
+ 		insert into tr_mail (trSender,trReceiver,gNickName,trCount,trSubject,trContent,trConNum)
+		values(#{trSender},#{trReceiver},#{gNickName},#{trCount},#{trSubject},#{trContent},#{trConNum})
+ 	
+ 	</insert>
+ 	
+ 	
+
+ 	
+
+ 	
 </mapper>

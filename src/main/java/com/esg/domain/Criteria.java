@@ -7,6 +7,7 @@ public class Criteria {
 	private int page; //페이지 시작번호
 	private int perPageNum; //페이지 크기
 	private String searchName; //검색어
+	private String sort;
 	
 	public Criteria() {
 		
@@ -67,12 +68,20 @@ public class Criteria {
 		this.searchName = searchName;
 	}
 
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
 	@Override
 	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
+		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchName=" + searchName + ", sort=" + sort
+				+ "]";
 	}
-	
-	
+
 	
 	
 	

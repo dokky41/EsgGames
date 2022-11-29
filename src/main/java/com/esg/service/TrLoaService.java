@@ -6,7 +6,9 @@ import org.json.simple.JSONArray;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.MemberVO;
 import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 
 public interface TrLoaService {
 	
@@ -48,6 +50,10 @@ public interface TrLoaService {
 
 	//높은가격순으로 글 불러오기
 	List<trLoaVO> trLoaBoardPri2List(Criteria cri);
+
+	//거래신청
+	void trRequestMail(trMailVO vo);
+
 
 
 }

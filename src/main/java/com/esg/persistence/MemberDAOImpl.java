@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import com.esg.domain.MemberVO;
 import com.esg.domain.esgMileVO;
+import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -69,7 +71,33 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<esgMileVO> getMyMileInfo(esgMileVO vo) {
 		return sqlSession.selectList(NAMESPACE+".getMyMileSearch",vo);
 	}
+
+	@Override
+	public List<trMailVO> getMyTrInfo(String userid) {
+		return sqlSession.selectList(NAMESPACE+".getMyTrSearch",userid);
+	}
 	
+	@Override
+	public int tradeMileGet(trLoaVO vo3) {
+		return sqlSession.selectOne(NAMESPACE+".tradeMileGet",vo3);
+		
+	}
 
+	@Override
+	public void trUpdateMail(trMailVO vo) {
+		sqlSession.update(NAMESPACE+".trUpdateMail", vo);
+		
+	}
 
+	@Override
+	public void sellerMileTrans(MemberVO vo2) {
+		sqlSession.update(NAMESPACE+".sellerMileTrans", vo2);
+	}
+	
+	@Override
+	public void buyerMileTrans(MemberVO vo2) {
+		sqlSession.update(NAMESPACE+".buyerMileTrans", vo2);
+	}
+
+	
 }

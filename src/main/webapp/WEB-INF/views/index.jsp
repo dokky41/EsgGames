@@ -4,7 +4,6 @@
 <!-- 헤더부분 -->
 <jsp:include page="include/header.jsp"/>
 <!-- 헤더부분 -->
-
 	<!-- Hero section -->
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
@@ -15,7 +14,7 @@
 						<p> 라이엇 게임즈에서 개발 및 서비스하는 
 						<br>멀티플레이어 온라인 배틀 아레나 게임입니다. 
 						<br>게임정보를 공유하고 실력을 향상 시켜보세요!</p>
-						<a href="#" class="site-btn">GO!</a>
+						<a href="${pageContext.request.contextPath }/LOLboard/boardList" class="site-btn">GO!</a>
 					</div>
 				</div>
 			</div>
@@ -28,7 +27,7 @@
 						<p> 다채로운 필드에서의 여행과 모험을 할수있는
 						<br>국내 TOP10 MMORPG게임입니다. 
 						<br>게임정보를 공유하고 쉽게 육성해보세요!</p>
-						<a href="#" class="site-btn">GO!</a>
+						<a href="${pageContext.request.contextPath }/maple/mapleboardlist" class="site-btn">GO!</a>
 					</div>
 				</div>
 			</div>
@@ -86,27 +85,79 @@
 	</div>
 	<!-- Latest news section end -->
 
-
-
-
-
-	<!-- Feature section -->
-	<section class="feature-section spad">
+	<!-- Tournaments section -->
+	<section class="tournaments-section spad" 
+	style="background-image: url(${pageContext.request.contextPath }/resources/img/testbg.jpg);">
 		<div class="container">
+			<div class="tournament-title">주요기능</div>
 			<div class="row">
-				<div class="col-lg-3 col-md-6 p-0">
-					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/1.jpg">
-						<span class="cata new">new</span>
-						<div class="fi-content text-white">
-							<h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-							<a href="#" class="fi-comment">3 Comments</a>
+				<div class="col-md-6">
+					<div class="tournament-item mb-4 mb-lg-0">
+						<div class="ti-notic">게임정보공유</div>
+						<div class="ti-content">
+							<div class="ti-thumb set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/main/ques.jpg"></div>
+							<div class="ti-text">
+								<h4>게임 정보 게시판</h4>
+								<p><span>최근 업데이트</span> </p>
+								<ul>
+									<li><span>feat : </span> 게시판 추가</li>
+									<li><span>design :</span> 메인페이지 상단배경 변경</li>
+									<li><span>date :</span> July 01, 2018</li>
+									<li><span>developer:</span> HYD</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 p-0">
+				<div class="col-md-6">
+					<div class="tournament-item">
+						<div class="ti-notic">게임거래</div>
+						<div class="ti-content">
+							<div class="ti-thumb set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/main/pp.jpg"></div>
+							<div class="ti-text">
+								<h4>아이템 및 게임머니 거래</h4>
+								<p><span>최근 업데이트</span> </p>
+								<ul>
+									<li><span>feat : </span> 거래,마일리지 추가</li>
+									<li><span>design :</span> 메인페이지 상단배경 변경</li>
+									<li><span>date :</span> July 01, 2018</li>
+									<li><span>developer:</span> HYD</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Tournaments section bg -->
+
+	<!-- Feature section -->
+	<section class="feature-section spad"
+	 style="background-image: url(${pageContext.request.contextPath }/resources/img/main/firstbg.jpg); 
+	 border-top: 0.5px solid white;">
+		<div class="container">
+			<div style="text-align: center;">
+			<h2 style="color: white"><b>다양한 정보를 공유해보세요</b></h2>
+			<br>
+			</div>
+			<div class="row" style="overflow: hidden; " >
+			
+				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='#'" style="cursor: pointer;">
+					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/1.jpg">
+						<span class="cata new" >lol</span>
+						<div class="fi-content text-white">
+							<h5>Suspendisse ut justo tem por, rutrum</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+							<a class="fi-comment">3 Comments</a>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='#'" style="cursor: pointer;">
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/2.jpg">
-						<span class="cata strategy">strategy</span>
+						<span class="cata strategy">Maple</span>
 						<div class="fi-content text-white">
 							<h5><a href="#">Justo tempor, rutrum erat id, molestie</a></h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
@@ -114,9 +165,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 p-0">
+				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='#'" style="cursor: pointer;">
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/3.jpg">
-						<span class="cata new">new</span>
+						<span class="cata new" style="background: blue;">battleGround</span>
 						<div class="fi-content text-white">
 							<h5><a href="#">Nullam lacinia ex eleifend orci porttitor</a></h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
@@ -124,9 +175,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 p-0">
+				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='#'" style="cursor: pointer;">
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/4.jpg">
-						<span class="cata racing">racing</span>
+						<span class="cata racing">lostArk</span>
 						<div class="fi-content text-white">
 							<h5><a href="#">Lacinia ex eleifend orci suscipit</a></h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
@@ -141,11 +192,12 @@
 
 
 	<!-- Recent game section  -->
-	<section class="recent-game-section spad set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/recent-game-bg.png">
+	<section class="recent-game-section spad set-bg" 
+	data-setbg="${pageContext.request.contextPath }/resources/img/main/secondbg.jpg">
 		<div class="container">
 			<div class="section-title">
 				<div class="cata new">new</div>
-				<h2>Recent Games</h2>
+				<h2 style="color: white;"><b>아이템을 거래해보세요</b></h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
@@ -202,59 +254,15 @@
 	<!-- Recent game section end -->
 
 
-	<!-- Tournaments section -->
-	<section class="tournaments-section spad">
-		<div class="container">
-			<div class="tournament-title">Tournaments</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="tournament-item mb-4 mb-lg-0">
-						<div class="ti-notic">Premium Tournament</div>
-						<div class="ti-content">
-							<div class="ti-thumb set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/tournament/1.jpg"></div>
-							<div class="ti-text">
-								<h4>World Of WarCraft</h4>
-								<ul>
-									<li><span>Tournament Beggins:</span> June 20, 2018</li>
-									<li><span>Tounament Ends:</span> July 01, 2018</li>
-									<li><span>Participants:</span> 10 teams</li>
-									<li><span>Tournament Author:</span> Admin</li>
-								</ul>
-								<p><span>Prizes:</span> 1st place $2000, 2nd place: $1000, 3rd place: $500</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="tournament-item">
-						<div class="ti-notic">Premium Tournament</div>
-						<div class="ti-content">
-							<div class="ti-thumb set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/tournament/2.jpg"></div>
-							<div class="ti-text">
-								<h4>DOOM</h4>
-								<ul>
-									<li><span>Tournament Beggins:</span> June 20, 2018</li>
-									<li><span>Tounament Ends:</span> July 01, 2018</li>
-									<li><span>Participants:</span> 10 teams</li>
-									<li><span>Tournament Author:</span> Admin</li>
-								</ul>
-								<p><span>Prizes:</span> 1st place $2000, 2nd place: $1000, 3rd place: $500</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Tournaments section bg -->
+	
 
 
 	<!-- Review section -->
-	<section class="review-section spad set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/review-bg.png">
+	<section class="review-section spad set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/main/thirdbg.jpg">
 		<div class="container">
 			<div class="section-title">
 				<div class="cata new">new</div>
-				<h2>Recent Reviews</h2>
+				<h2 style="color: white;"><b>고객센터</b></h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
@@ -263,7 +271,7 @@
 							<div class="score yellow">9.3</div>
 						</div>
 						<div class="review-text">
-							<h5>Assasinââs Creed</h5>
+							<h5 style="color: white;">게시판 신고</h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
@@ -274,7 +282,7 @@
 							<div class="score purple">9.5</div>
 						</div>
 						<div class="review-text">
-							<h5>Doom</h5>
+							<h5 style="color: white;">거래 사기</h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
@@ -285,7 +293,7 @@
 							<div class="score green">9.1</div>
 						</div>
 						<div class="review-text">
-							<h5>Overwatch</h5>
+							<h5 style="color: white;">QNA</h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>
@@ -296,7 +304,7 @@
 							<div class="score pink">9.7</div>
 						</div>
 						<div class="review-text">
-							<h5>GTA</h5>
+							<h5 style="color: white;">마일리지 환불</h5>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
 						</div>
 					</div>

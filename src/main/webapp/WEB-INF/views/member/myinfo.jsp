@@ -70,13 +70,28 @@
 					</i> 마일리지 충전</span></button>
 					
 					<button id="loginBtn" class="btn btn-primary btn-large" 
+					onclick="location.href='/member/myChargeInfo?userid=${membervo.userid}'; return false;" style="width: 145px; background: red;">
+					<span>
+					<i class="fa fa-sign-in">
+					</i> 내 충전내역</span></button>
+					</p>
+					
+					
+					
+				</div>
+				
+				<button id="loginBtn" class="btn btn-primary btn-large" 
 					onclick="location.href='/member/myTradeInfo?userid=${membervo.userid}'; return false;" style="width: 145px; background: #2c974b;">
 					<span>
 					<i class="fa fa-sign-in">
-					</i> 내 거래정보</span></button>
-					</p>
-				</div>
+					</i>내 거래정보</span></button>
 				
+				<button id="loginBtn" class="btn btn-primary btn-large" 
+					onclick="location.href='/member/myTradeInfo?userid=${membervo.userid}'; return false;" style="width: 145px; background: black;">
+					<span>
+					<i class="fa fa-sign-in">
+					</i>회원정보변경</span></button>
+					
 				<br>
 			</div>
 			</fieldset>

@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.MemberVO;
 import com.esg.domain.PageMaker;
 import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 import com.esg.service.TrLoaService;
 
 @Controller
@@ -39,7 +42,8 @@ public class YdTradeController {
 	}
 
 	@RequestMapping(value = "/trLoaContent", method = RequestMethod.GET)
-	public void gettrLoaContent(Model model, HttpSession session, @RequestParam("num") int num) {
+	public void gettrLoaContent(Model model, HttpSession session,
+			@RequestParam("num") int num, Criteria cri,@RequestParam("page") int page) {
 
 		log.info("LostContent 거래상세페이지 이동");
 
@@ -59,6 +63,9 @@ public class YdTradeController {
 		session.setAttribute("trLoa", service.getTrLoaContent(num));
 		// 해당글내용 불러오기
 
+		
+		// 하단 페이징처리 정보 전달
+		model.addAttribute("pageCnt", page);
 	}
 
 	@RequestMapping(value = "/trLostArk", method = RequestMethod.GET)
@@ -143,6 +150,7 @@ public class YdTradeController {
 
 		model.addAttribute("pm", pageMaker);
 
+		
 	}
 
 	@RequestMapping(value = "/trLostWrite", method = RequestMethod.GET)
@@ -211,9 +219,8 @@ public class YdTradeController {
 		service.trLoaboardCreate(vo);
 
 		WRcount=1;
-		return "redirect:/ydTrBoard/trLostArk?sort=def";
+		return "redirect:/ydTrBoard/trLostArk?sort=def&page=1";
 	}
-
 	@RequestMapping(value = "/trLostModify", method = RequestMethod.GET)
 	public void gettrLostModify(Model model, HttpSession session,
 			@RequestParam("num") int num) {
@@ -296,5 +303,18 @@ public class YdTradeController {
 
 		return "redirect:/ydTrBoard/trLostArk?sort=def";
 	}
+	
+	@RequestMapping(value = "/trSendRequest", method = RequestMethod.POST)
+	public String trSendRequest(trMailVO vo) {
+		
+		log.info("trSendRequest 거래요청하기");
+		
+		//거래요청하기
+		service.trRequestMail(vo);
+		//거래요청하기
 
+		return "redirect:/ydTrBoard/trLostArk?sort=def";
+	}
+	
+	
 }

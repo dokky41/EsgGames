@@ -27,7 +27,21 @@ $(document).ready(function(){
 			
 			
 		});
-	
+		
+		var userpoint = parseInt('${membervo.userpoint}');
+		var price = parseInt('${trLoa.price}');
+		
+		$('#trRequest').click(function(){
+			if(userpoint > price){
+				alert('시작');
+				$('form[role="form2"]').submit();
+			}else{
+				alert('마일리지가 부족합니다.');
+				
+			}
+			
+		});
+		
 });
 
 
@@ -138,24 +152,29 @@ $(document).ready(function(){
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
 						<h4 class="comment-title">요청사항  <button class="site-btn btn-sm" style="float: right;"
-									onclick="location.href='/ydTrBoard/trLostArk?sort=def' ;return false;">
+									onclick="location.href='/ydTrBoard/trLostArk?sort=def&page=${pageCnt}' ;return false;">
 									목록</button></h4>
 						 
 						
 									
-						<form class="comment-form" role="form">
+						<form class="comment-form" 
+						action="${pageContext.request.contextPath }/ydTrBoard/trSendRequest" method="post" role="form2">
+							<input type="hidden" name="trSender" value="${membervo.userid}">
+							<input type="hidden" name="trReceiver" value="${trLoa.userid}">
+							<input type="hidden" name="trConNum" value="${trLoa.num}">
+							
 							<div class="row">
 								<div class="col-md-6">
-									<input type="text" placeholder="닉네임" name="name">
+									<input type="text" placeholder="닉네임" name="gNickName">
 								</div>
 								<div class="col-md-6">
-									<input type="text" placeholder="물품개수">
+									<input type="text" placeholder="물품개수" name="trCount">
 								</div>
 								<div class="col-lg-12">
-									<input type="text" placeholder="제목">
-									<textarea placeholder="내용"></textarea>
+									<input type="text" placeholder="제목" name="trSubject">
+									<textarea placeholder="내용" name="trContent"></textarea>
 									
-									<button class="site-btn btn-sm">구매신청</button>
+									<button type="button" class="site-btn btn-sm" id="trRequest" onclick="javascript:trRequest()">구매신청</button>
 									
 									</form>
 									

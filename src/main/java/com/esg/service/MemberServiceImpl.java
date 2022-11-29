@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.esg.domain.MemberVO;
 import com.esg.domain.esgMileVO;
+import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 import com.esg.persistence.MemberDAO;
 
 @Service
@@ -79,8 +81,31 @@ public class MemberServiceImpl implements MemberService{
 	public List<esgMileVO> getMyMileInfo(esgMileVO vo) {
 		return dao.getMyMileInfo(vo);
 	}
+
+	@Override
+	public List<trMailVO> getMyTrInfo(String userid) {
+		return dao.getMyTrInfo(userid);
+	}
 	
+	@Override
+	public int tradeMileGet(trLoaVO vo3) {
+		return dao.tradeMileGet(vo3);
+	}
 	
+	@Override
+	public void trUpdateMail(trMailVO vo) {
+		dao.trUpdateMail(vo);
+	}
+
+	@Override
+	public void sellerMileTrans(MemberVO vo2) {
+		dao.sellerMileTrans(vo2);
+		
+	}
 	
-	
+	@Override
+	public void buyerMileTrans(MemberVO vo2) {
+		dao.buyerMileTrans(vo2);
+		
+	}
 }
