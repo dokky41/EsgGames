@@ -7,8 +7,8 @@
 
 	<insert id="createBoard">
 	
-		insert into tbl_mapleboard (userid,boardpw,subject,content,ip)
-		values(#{userid},#{boardpw},#{subject},#{content},#{ip})
+		insert into tbl_mapleboard (userid,boardpw,subject,content)
+		values(#{userid},#{boardpw},#{subject},#{content})
 	
 	</insert>
 	
@@ -61,6 +61,30 @@
  		where num=#{num}
  	
  	</update>
+ 	
+ 	<insert id="insertFile">
+        INSERT INTO maple_file
+        (
+            BOARD_IDX,
+            ORG_FILE_NAME,
+            SAVE_FILE_NAME,
+            FILE_SIZE,
+            CREA_ID,
+            CREA_DATE,
+            UPDATE_DATE
+        )
+        VALUES
+        (
+            #{ BOARD_IDX},
+            #{ ORG_FILE_NAME},
+            #{ SAVE_FILE_NAME},
+            #{ FILE_SIZE},
+            #{ CREA_ID},
+            SYSDATE(),
+            SYSDATE()
+        );
+</insert>
+
  	
 	
 	
