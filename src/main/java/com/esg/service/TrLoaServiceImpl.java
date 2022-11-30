@@ -15,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.MemberVO;
 import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 import com.esg.persistence.TrLoaDAO;
 
 @Service
@@ -137,6 +139,15 @@ public class TrLoaServiceImpl implements TrLoaService{
 	public List<trLoaVO> trLoaBoardPri2List(Criteria cri) {
 		return dao.trLoaBoardPriList2(cri);
 	}
+
+	@Override
+	public void trRequestMail(trMailVO vo) {
+		dao.trRequestMail(vo);
+	}
+
+
+
+	
 	
 	
 	

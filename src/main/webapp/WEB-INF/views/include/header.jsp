@@ -106,7 +106,7 @@
 					   </li>
 					   
 					    <li>
-					   <a href="${pageContext.request.contextPath }/ydTrBoard/trLostArk?sort=def">T로스트아크</a>
+					   <a href="${pageContext.request.contextPath }/ydTrBoard/trLostArk?sort=def&page=1">T로스트아크</a>
 					   </li>
 					   
 					</ul>
@@ -117,14 +117,14 @@
 					
 					
 					
-					<li><a href="${pageContext.request.contextPath }/community">고객센터</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/esgServiceCenter">고객센터</a></li>
 					
 					<c:if test="${membervo.userid==null }">
 					<li><a href="${pageContext.request.contextPath }/member/Register">회원가입</a></li>
 					</c:if>
 					
 					<c:if test="${membervo.userid!=null }">
-					<li><a href="${pageContext.request.contextPath }/contact">내정보</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/myinfo">내정보</a></li>
 					</c:if>
 				</ul>
 			</nav>

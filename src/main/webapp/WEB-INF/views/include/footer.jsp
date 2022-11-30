@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- Footer top section -->
-	<section class="footer-top-section">
-		<div class="container">
+	<section class="footer-top-section" > 
+		<div class="container" >
 			<div class="footer-top-bg">
 				<img src="${pageContext.request.contextPath }/resources/img/footer-top-bg.png" alt="">
 			</div>
@@ -49,7 +49,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6">
+				<div class="col-lg-4 col-md-6" >
 					<div class="footer-widget">
 						<h4 class="fw-title">Members</h4>
 						<div class="top-comment">

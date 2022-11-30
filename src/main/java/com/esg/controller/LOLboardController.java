@@ -39,14 +39,14 @@ public class LOLboardController {
 	
 	@Inject
 	LOLReplyService replyservice;
-	//±Û ¸ñ·Ï
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(LOLCriteria cri) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
 		
-		//ÆäÀÌÂ¡Ã³¸®
+		//ï¿½ï¿½ï¿½ï¿½Â¡Ã³ï¿½ï¿½
 		LOLPageMaker pageMaker = new LOLPageMaker();
 	    pageMaker.setCri(cri);
 	    
@@ -60,15 +60,15 @@ public class LOLboardController {
 		return mav;
 	}
 	
-	//±Û ÆäÀÌÁö ¿ÀÇÂ
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
-		log.info("Write.jsp ½ÇÇà");
+		log.info("Write.jsp ï¿½ï¿½ï¿½ï¿½");
 		
 	}
 	
-	//±Û ¾²±â
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
     public ModelAndView boardWritePost (LOLBoardVO vo,MultipartFile[] file) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -86,42 +86,42 @@ public class LOLboardController {
         return mav;
     }
 	
-	//±Û º»¹® º¸±â + ±Û Á¶È¸¼ö Áõ°¡
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ + ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
 	public void readGet(@RequestParam("IDX") int num,Model model,LOLCriteria cri) throws Exception{
-		log.info("read.jsp ½ÇÇà");
+		log.info("read.jsp ï¿½ï¿½ï¿½ï¿½");
 		
-		//Á¶È¸¼ö Áõ°¡
+		//ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		service.updateBoardCount(num);
 		log.info(num+"");
-		//±Û Á¤º¸ °¡Á®¿À±â
+		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		LOLBoardVO read = service.readBoard(num);
-		//ÆÄÀÏ Á¤º¸ °¡Á®¿À±â
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		List<Map<String, Object>> fileList = service.selectFileList(num);
 		model.addAttribute("file", fileList);
 		log.info(fileList+"");
 		log.info(read+"");
 
-		//°¡Á®¿Â µ¥ÀÌÅÍ¸¦ ¿¬°áµÈ ºäÆäÀÌÁö¿¡ Ãâ·Â
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		model.addAttribute("vo",read);
 		
-		//ÆäÀÌÂ¡ Ã³¸®
+		//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 		LOLPageMaker pageMaker = new LOLPageMaker();
         pageMaker.setCri(cri);
         model.addAttribute("page",cri.getPage());
         model.addAttribute("pageMaker", pageMaker);
         
-        // ´ñ±Û Á¶È¸
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½È¸
         List<LOLReplyVO> reply;
         reply = replyservice.list(num);
         model.addAttribute("reply", reply);
 	}
 	
-	//»ó¼¼Á¤º¸¸¦ °¡Á®¿Í "detail"¶õ ÀÌ¸§¿¡ ÀúÀå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "detail"ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)
 	public void UpdateGet(@RequestParam("IDX") int num,Model model,LOLCriteria cri) throws Exception{
 		
-		log.info("Update.jsp ½ÇÇà");
+		log.info("Update.jsp ï¿½ï¿½ï¿½ï¿½");
 		LOLBoardVO detail=service.readBoard(num);
 		model.addAttribute("detail",detail);
 		
@@ -131,7 +131,7 @@ public class LOLboardController {
         model.addAttribute("pageMaker", pageMaker);
 	}
 
-	//±Û ¼öÁ¤ ¾÷µ¥ÀÌÆ®
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.POST)
     public String boardUpdatePost (LOLBoardVO vo,LOLCriteria cri,RedirectAttributes redAttr) throws Exception {
         log.info(vo+"");
@@ -143,19 +143,19 @@ public class LOLboardController {
         return "redirect:/LOLboard/boardList";
     }
 	
-	//±Û »èÁ¦ IDX ÀúÀå
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IDX ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
 	public String DeleteGet(@RequestParam("IDX") int num,LOLCriteria cri,RedirectAttributes redAttr) throws Exception{
 			log.info(num+"delete");
 			service.deleteBoard(num);
 			
-			//ÆäÀÌÂ¡ Ã³¸®
+			//ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½
 			redAttr.addAttribute("page", cri.getPage());
 			redAttr.addAttribute("perPagNum", cri.getPerPageNum());
 		     
 			return "redirect:/LOLboard/boardList";
 	}
-	//±Û ÃßÃµ¼ö
+	//ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ï¿½
 	@RequestMapping(value="/boardRecommend",method = RequestMethod.GET)
 	public String RecommendGet(@RequestParam("IDX") int num,LOLCriteria cri,LOLBoardVO vo) throws Exception{
 			log.info(num+"boardRecommend");

@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.MemberVO;
 import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 
 @Repository
 public class TrLoaDAOImpl implements TrLoaDAO {
@@ -92,6 +94,14 @@ public class TrLoaDAOImpl implements TrLoaDAO {
 	public List<trLoaVO> trLoaBoardPriList2(Criteria cri) {
 		return sqlSession.selectList(NAMESPACE + ".TrLoaPriList2",cri);
 	}
+
+	@Override
+	public void trRequestMail(trMailVO vo) {
+		sqlSession.insert(NAMESPACE+".trSendRequest",vo);
+	}
+
+
+	
 	
 	
 	

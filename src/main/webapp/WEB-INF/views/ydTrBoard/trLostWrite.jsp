@@ -16,11 +16,30 @@ location.href="${pageContext.request.contextPath}/member/login";
 
 
 $(document).ready(function() {
-	$('.fbutton').click(function(){
-		$('#containera').prepend('<input type="file" name="files"  accept="image/*">');
-	});
-	
-});
+    $("a[name='file-delete']").on("click", function(e) {
+        e.preventDefault();
+        deleteFile($(this));
+    });
+})
+
+function addFile() {
+    var str = "<div class='file-group'><input type='file' name='files' accept='image/*'><a href='#this' name='file-delete'>삭제</a></div>";
+    
+    var aa = document.getElementsByClassName('file-group').length;
+    
+    if(aa<5){
+	    $("#file-list").append(str);
+    }
+    
+    $("a[name='file-delete']").on("click", function(e) {
+        e.preventDefault();
+        deleteFile($(this));
+    });
+}
+
+function deleteFile(obj) {
+    obj.parent().remove();
+}
 </script>
 
 	<!-- Latest news section -->
@@ -72,12 +91,13 @@ $(document).ready(function() {
 					
 					<li>
 						<!-- Page section -->
-	<section class="page-section spad contact-page" style="padding-top: 10px">
+	<section class="page-section spad contact-page" style="padding-top: 10px;">
 	
-				<div class="col-lg-8" style="margin: auto;">
+				<div class="col-lg-8" style="">
 					<div class="contact-form-warp">
 						<form class="comment-form" 
-						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post" enctype="multipart/form-data">
+						action="${PageContext.request.contextPath}/ydTrBoard/trLoaWrite" method="post"
+						 enctype="multipart/form-data" style="width: 150%;">
 						<h4 class="comment-title" style="color: white;">판매등록 <input type="submit" class="site-btn btn-sm" style="float: right;" value="등록"></h4>
 						
 							
@@ -89,7 +109,7 @@ $(document).ready(function() {
 									<input type="text" placeholder="상품이름" name="subject">
 								</div>
 								<div class="col-md-6">
-									<input type="text" placeholder="상품개수" name="goodsCount">
+									<input type="number" placeholder="상품개수" name="goodsCount" value="1">
 								</div>
 								
 								<div class="col-md-6">
@@ -97,23 +117,21 @@ $(document).ready(function() {
 								</div>
 								
 								<div class="col-md-6">
-									<input type="text" placeholder="판매금액" name="price">
+									<input type="number" placeholder="판매금액" name="price" value="1000">
 								</div>
 								
 								<div class="col-lg-12">
-<!-- 									<input type="text" placeholder="판매금액"> -->
 									
 									<textarea placeholder="상세설명" name="content"></textarea>
+									
+									<div class="form-group" id="file-list">
+								        <a href="#this" onclick="addFile()">사진추가</a>
+							        	<div class="file-group">
+							        	<a style="color: white;">* 맨 위 메인이미지</a> <br>
+<!-- 						            		<input type="file" name="files" accept="image/*"><a href='#this' name='file-deleteno' >삭제</a> -->
+						        		</div>
+								    </div>
 								
-								<div class="filebox">
-								<div id="containera">
-									 <label for="ex_filename" style="color: white;">업로드</label> 
-									<input type='file' name='files'  id="ex_filename" accept='image/*'>
-								</div>
-								
-									<input type='button' value="사진추가" class="fbutton">
-								
-								</div>
 								</div>
 								
 								

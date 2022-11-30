@@ -1,5 +1,8 @@
 package com.esg.domain;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageMaker {
 	//페이징 처리에 필요한 모든 정보를 저장하는 객체
 	
@@ -46,6 +49,15 @@ public class PageMaker {
 		System.out.println("하단 페이징 처리에 필요한 정보 계산 완료!");
 	}
 
+	public String makeQueryPage(int page) {
+        UriComponents uri = UriComponentsBuilder.newInstance()
+                .queryParam("page", page)
+                .queryParam("perPageNum", cri.getPerPageNum())
+                .queryParam("sort",cri.getSort())
+                .build();
+        return uri.toUriString();
+    }
+	
 	public int getStartPage() {
 		return startPage;
 	}

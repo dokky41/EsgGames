@@ -1,5 +1,7 @@
 package com.esg.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.esg.domain.MemberVO;
+import com.esg.domain.esgMileVO;
+import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -45,7 +50,54 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return membervo;
 	}
+
+	@Override
+	public void myPointCharge(MemberVO vo) {
+		sqlSession.update(NAMESPACE+".pointCharge", vo);
+	}
+
+	@Override
+	public void mileInsert(esgMileVO vo) {
+		sqlSession.insert(NAMESPACE+".mileInsert", vo);
+		
+	}
+
+	@Override
+	public String searchCnum() {
+		return sqlSession.selectOne(NAMESPACE + ".getSearchCnum");
+	}
+
+	@Override
+	public List<esgMileVO> getMyMileInfo(esgMileVO vo) {
+		return sqlSession.selectList(NAMESPACE+".getMyMileSearch",vo);
+	}
+
+	@Override
+	public List<trMailVO> getMyTrInfo(String userid) {
+		return sqlSession.selectList(NAMESPACE+".getMyTrSearch",userid);
+	}
 	
+	@Override
+	public int tradeMileGet(trLoaVO vo3) {
+		return sqlSession.selectOne(NAMESPACE+".tradeMileGet",vo3);
+		
+	}
 
+	@Override
+	public void trUpdateMail(trMailVO vo) {
+		sqlSession.update(NAMESPACE+".trUpdateMail", vo);
+		
+	}
 
+	@Override
+	public void sellerMileTrans(MemberVO vo2) {
+		sqlSession.update(NAMESPACE+".sellerMileTrans", vo2);
+	}
+	
+	@Override
+	public void buyerMileTrans(MemberVO vo2) {
+		sqlSession.update(NAMESPACE+".buyerMileTrans", vo2);
+	}
+
+	
 }

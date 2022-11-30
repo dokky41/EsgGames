@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.esg.domain.MemberVO;
+import com.esg.domain.esgMileVO;
+import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 import com.esg.service.MemberService;
 
 @Controller
@@ -94,6 +97,130 @@ public class MemberController {
 		
 		//페이지 이동
 		return "redirect:/index";		
+	}
+	
+	
+	//내 정보 페이지로 이동
+	@RequestMapping(value="/myinfo", method=RequestMethod.GET)
+	public void myinfoGET() throws Exception {
+		
+		log.info("내정보 페이지 이동");
+	}
+	
+	//마일리지 충전 페이지로 이동
+	@RequestMapping(value="/pointCharge", method=RequestMethod.GET)
+	public void pointChargeGET(Model model) throws Exception {
+		
+		log.info("마일리지 충전 페이지 이동");
+
+		//고유번호
+		String chargeNum = service.searchCnum();
+		
+		model.addAttribute("chargeNum", chargeNum);
+	}
+	
+	//마일리지 충전 동작
+	@RequestMapping(value="/myPointCharge", method=RequestMethod.GET)
+	public String myPointChargeGET(MemberVO vo,esgMileVO vo2) throws Exception {
+			
+		log.info("마일리지 충전 동작");
+		
+		log.info(vo+"");
+		
+		//회원 테이블 마일리지 충전
+		service.myPointCharge(vo);
+		
+		//마일리지 테이블
+		service.mileInsert(vo2);
+		
+		return "redirect:/member/myinfo";
+	}
+	
+	//내 충전내역 페이지로 이동
+	@RequestMapping(value="/myChargeInfo", method=RequestMethod.GET)
+	public void myChargeInfoGET(esgMileVO vo,Model model) throws Exception {
+		
+		log.info("충전내역 페이지 이동");
+		
+		log.info(vo+"");
+		
+		log.info(service.getMyMileInfo(vo)+"");
+		
+		model.addAttribute("MMInfo", service.getMyMileInfo(vo));
+		
+	}
+	
+	
+	//내 거래내역 페이지로 이동
+	@RequestMapping(value="/myTradeInfo", method=RequestMethod.GET)
+	public void myTradeInfoGET(Model model,@RequestParam("userid") String userid) throws Exception {
+		
+		log.info("유저아이디 : "+userid);
+		
+		log.info("거래내역 페이지 이동");
+		
+		//거래내역리스트
+		log.info(service.getMyTrInfo(userid)+"");
+		//거래내역리스트
+			
+		model.addAttribute("trInfo", service.getMyTrInfo(userid));
+			
+	}
+	
+	
+	//내 고객센터 페이지로 이동
+	@RequestMapping(value="/esgServiceCenter", method=RequestMethod.GET)
+	public void esgServiceCenterGET() throws Exception {
+		
+		log.info("고객센터 페이지 이동");
+		
+		
+	}
+	
+	@RequestMapping(value = "/trAgree", method = RequestMethod.POST)
+	public String trAgree(trMailVO vo,MemberVO vo2,trLoaVO vo3,@RequestParam("bUserid") String bUserid) {
+		
+		log.info("trAgree 거래요청하기");
+		
+		//거래동의하기
+		service.trUpdateMail(vo);
+		//거래동의하기
+		
+		//거래마일리지가져오기
+		log.info(vo3+"");
+		log.info("거래마일리지 : " + service.tradeMileGet(vo3));
+		//거래마일리지가져오기
+		
+		//판매자마일리지변환
+		vo2.setUserpoint(service.tradeMileGet(vo3));
+		log.info("판매자"+vo2+"");
+		service.sellerMileTrans(vo2);
+		//판매자마일리지변환
+		
+		//구매자마일리지변환
+		vo2.setUserid(bUserid);
+		vo2.setUserpoint(service.tradeMileGet(vo3));
+		log.info("구매자"+vo2+"");
+		service.buyerMileTrans(vo2);
+		//구매자마일리지변환
+		
+		return "redirect:/member/myinfo";
+	}
+
+	
+	
+	//아이디찾기 페이지로 이동
+	@RequestMapping(value="/idSearchForm", method=RequestMethod.GET)
+	public void idSearchGET() throws Exception {
+		
+		
+	}
+	
+	//비밀번호찾기 페이지로 이동
+	@RequestMapping(value="/pwSearchForm", method=RequestMethod.GET)
+	public void pwSearchGET() throws Exception {
+			
+			
 	}
 
 }

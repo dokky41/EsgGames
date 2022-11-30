@@ -3,7 +3,9 @@ package com.esg.persistence;
 import java.util.List;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.MemberVO;
 import com.esg.domain.trLoaVO;
+import com.esg.domain.trMailVO;
 
 public interface TrLoaDAO {
 
@@ -42,5 +44,12 @@ public interface TrLoaDAO {
 
 	//높은가격순으로 글 불러오기
 	List<trLoaVO> trLoaBoardPriList2(Criteria cri);
+
+	//거래글작성
+	void trRequestMail(trMailVO vo);
+
+
+
+	
 
 }

@@ -74,19 +74,19 @@
 
 					<div style="float: left;">
 						<button
-							onclick="location.href='/ydTrBoard/trLostArk?sort=def' ;return false;"
+							onclick="location.href='/ydTrBoard/trLostArk?sort=def&page=1' ;return false;"
 							style="cursor: pointer; color: white; background: black; border-radius: 5px 5px 5px 5px;">최신순</button>
 
 						<button
-							onclick="location.href='/ydTrBoard/trLostArk?sort=sel' ;return false;"
+							onclick="location.href='/ydTrBoard/trLostArk?sort=sel&page=1' ;return false;"
 							style="cursor: pointer; color: white; background: black; border-radius: 5px 5px 5px 5px;">조회순</button>
 
 						<button
-							onclick="location.href='/ydTrBoard/trLostArk?sort=pri' ;return false;"
+							onclick="location.href='/ydTrBoard/trLostArk?sort=pri&page=1' ;return false;"
 							style="cursor: pointer; color: white; background: black; border-radius: 5px 5px 5px 5px;">가격순↓</button>
 
 						<button
-							onclick="location.href='/ydTrBoard/trLostArk?sort=pri2' ;return false;"
+							onclick="location.href='/ydTrBoard/trLostArk?sort=pri2&page=1' ;return false;"
 							style="cursor: pointer; color: white; background: black; border-radius: 5px 5px 5px 5px;">가격순↑</button>
 
 					</div>
@@ -128,7 +128,7 @@
 								<tr>
 									<th scope="row">${list.num }</th>
 									<td><a
-										href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent?num=${list.num}"
+										href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent?num=${list.num}&page=<%=request.getParameter("page") %>"
 										class="text-subject">${list.subject }</a></td>
 									<td>${list.price }p</td>
 
@@ -158,7 +158,7 @@
 
 			<br>
 			<form class="community-filter"
-				action="${PageContext.request.contextPath}/ydTrBoard/trLostArk"
+				action="${PageContext.request.contextPath}/ydTrBoard/trLostArk?sort=def"
 				method="post">
 
 				<input type="submit" value="검색"
@@ -172,14 +172,12 @@
 
 
 				<c:if test="${pm.prev }">
-					<a
-						href="trLostArk?sort=<%=request.getParameter("sort") %>page=${pm.startPage - 1 }">&laquo;</a>
+					<a href="trLostArk?sort=<%=request.getParameter("sort") %>page=${pm.startPage - 1 }">&laquo;</a>
 				</c:if>
 
 				<c:forEach var="idx" begin="${pm.startPage }" end="${pm.endPage }">
 
-					<a
-						href="trLostArk?sort=<%=request.getParameter("sort") %>&page=${idx }">${idx }</a>
+					<a href="trLostArk?sort=<%=request.getParameter("sort") %>&page=${idx }">${idx }</a>
 				</c:forEach>
 
 				<c:if test="${pm.next && pm.endPage >0 }">
