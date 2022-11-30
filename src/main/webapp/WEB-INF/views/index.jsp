@@ -89,7 +89,7 @@
 	<section class="tournaments-section spad" 
 	style="background-image: url(${pageContext.request.contextPath }/resources/img/testbg.jpg);">
 		<div class="container">
-			<div class="tournament-title">주요기능</div>
+			<div class="tournament-title">최신패치</div>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="tournament-item mb-4 mb-lg-0">
@@ -101,8 +101,8 @@
 								<p><span>최근 업데이트</span> </p>
 								<ul>
 									<li><span>feat : </span> 게시판 추가</li>
-									<li><span>design :</span> 메인페이지 상단배경 변경</li>
-									<li><span>date :</span> July 01, 2018</li>
+									<li><span>details : </span> 게임 정보 공유</li>
+									<li><span>date :</span> 2022/12/08</li>
 									<li><span>developer:</span> HYD</li>
 								</ul>
 							</div>
@@ -119,8 +119,8 @@
 								<p><span>최근 업데이트</span> </p>
 								<ul>
 									<li><span>feat : </span> 거래,마일리지 추가</li>
-									<li><span>design :</span> 메인페이지 상단배경 변경</li>
-									<li><span>date :</span> July 01, 2018</li>
+									<li><span>details :</span> 거래게시판,거래기능</li>
+									<li><span>date :</span> 2022/12/08</li>
 									<li><span>developer:</span> HYD</li>
 								</ul>
 							</div>
@@ -143,25 +143,25 @@
 			</div>
 			<div class="row" style="overflow: hidden; " >
 			
-				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='#'" style="cursor: pointer;">
+				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='${pageContext.request.contextPath }/LOLboard/boardList'" style="cursor: pointer;">
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/1.jpg">
 						<span class="cata new" >lol</span>
 						<div class="fi-content text-white">
-							<h5>Suspendisse ut justo tem por, rutrum</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-							<a class="fi-comment">3 Comments</a>
+							<h5>RiotGames의 5:5 협동게임</h5>
+							<p>챔피언의 정보와 상대법을 쉽게 알아보세요</p>
+							<a class="fi-comment">Move</a>
 						</div>
 					</div>
 				</div>
 				
 				
-				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='#'" style="cursor: pointer;">
+				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='${pageContext.request.contextPath }/maple/mapleboardlist'" style="cursor: pointer;">
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/2.jpg">
 						<span class="cata strategy">Maple</span>
 						<div class="fi-content text-white">
-							<h5><a href="#">Justo tempor, rutrum erat id, molestie</a></h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-							<a href="#" class="fi-comment">3 Comments</a>
+							<h5>국내 최장수 인기 RPG게임</h5>
+							<p>직업들의 정보와 사냥터를 쉽게 알아보세요</p>
+							<a class="fi-comment">Move</a>
 						</div>
 					</div>
 				</div>
@@ -169,9 +169,9 @@
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/3.jpg">
 						<span class="cata new" style="background: blue;">battleGround</span>
 						<div class="fi-content text-white">
-							<h5><a href="#">Nullam lacinia ex eleifend orci porttitor</a></h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-							<a href="#" class="fi-comment">3 Comments</a>
+							<h5>PUBG의 MMO슈팅게임</h5> 
+							<p>치킨을 위한 정보를 얻어보세요 </p><br>
+							<a class="fi-comment">Move</a>
 						</div>
 					</div>
 				</div>
@@ -179,9 +179,9 @@
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/4.jpg">
 						<span class="cata racing">lostArk</span>
 						<div class="fi-content text-white">
-							<h5><a href="#">Lacinia ex eleifend orci suscipit</a></h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-							<a href="#" class="fi-comment">3 Comments</a>
+							<h5>국내 최고의 RPG게임</h5>
+							<p>수십가지 맵과 퀘스트를 공략하기 위한 정보를 얻어보세요 </p>
+							<a class="fi-comment">Move</a>
 						</div>
 					</div>
 				</div>
@@ -193,22 +193,22 @@
 
 	<!-- Recent game section  -->
 	<section class="recent-game-section spad set-bg" 
-	data-setbg="${pageContext.request.contextPath }/resources/img/main/secondbg.jpg">
-		<div class="container">
+	data-setbg="${pageContext.request.contextPath }/resources/img/main/secondbg.jpg" >
+		<div class="container"  >
 			<div class="section-title">
 				<div class="cata new">new</div>
 				<h2 style="color: white;"><b>아이템을 거래해보세요</b></h2>
 			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
+			<div class="row" style="overflow: hidden; ">
+				<div class="col-lg-4 col-md-6" onclick="location.href='#'" style="cursor: pointer;">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/recent-game/1.jpg">
-							<div class="cata new">new</div>
+							<div class="cata new">Step 1</div>
 						</div>
 						<div class="rgi-content">
-							<h5>Suspendisse ut justo tem por, rutrum</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet, consectetur elit. </p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><b>거래게시판을 이용해 보세요</b></h5>
+							<p>원하는 아이템을 구매하고 싶을때 해당 게임의 거래게시판을 살펴보세요</p>
+							<a class="comment">Step 1</a>
 							<div class="rgi-extra">
 								<div class="rgi-star"><img src="${pageContext.request.contextPath }/resources/img/icons/star.png" alt=""></div>
 								<div class="rgi-heart"><img src="${pageContext.request.contextPath }/resources/img/icons/heart.png" alt=""></div>
@@ -216,15 +216,18 @@
 						</div>
 					</div>	
 				</div>
-				<div class="col-lg-4 col-md-6">
+				
+				
+				
+				<div class="col-lg-4 col-md-6"  onclick="location.href='#'" style="cursor: pointer;">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/recent-game/2.jpg">
-							<div class="cata racing">racing</div>
+							<div class="cata racing">step 2</div>
 						</div>
 						<div class="rgi-content">
-							<h5>Susce pulvinar metus nulla, vel  facilisis sem </h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet, consectetur elit. </p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><b>마일리지를 충전해주세요</b> </h5>
+							<p>물품을 거래하실땐 마일리지가 필요합니다 <br>  다양한 결제방법으로 충전해보세요.</p>
+							<a class="comment">Step 2</a>
 							<div class="rgi-extra">
 								<div class="rgi-star"><img src="${pageContext.request.contextPath }/resources/img/icons/star.png" alt=""></div>
 								<div class="rgi-heart"><img src="${pageContext.request.contextPath }/resources/img/icons/heart.png" alt=""></div>
@@ -232,15 +235,17 @@
 						</div>
 					</div>	
 				</div>
-				<div class="col-lg-4 col-md-6">
+				
+				
+				<div class="col-lg-4 col-md-6" onclick="location.href='#'" style="cursor: pointer;">
 					<div class="recent-game-item">
 						<div class="rgi-thumb set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/recent-game/3.jpg">
-							<div class="cata adventure">Adventure</div>
+							<div class="cata adventure">step 3</div>
 						</div>
 						<div class="rgi-content">
-							<h5>Suspendisse ut justo tem por, rutrum</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit amet, consectetur elit. </p>
-							<a href="#" class="comment">3 Comments</a>
+							<h5><b>거래를 요청해보세요</b></h5>
+							<p>거래글을 선택 후 거래신청을 하실 수 있습니다<br>판매자와 대화를 나눠보세요</p>
+							<a class="comment">Step 3</a>
 							<div class="rgi-extra">
 								<div class="rgi-star"><img src="${pageContext.request.contextPath }/resources/img/icons/star.png" alt=""></div>
 								<div class="rgi-heart"><img src="${pageContext.request.contextPath }/resources/img/icons/heart.png" alt=""></div>
@@ -268,44 +273,44 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/review/1.jpg">
-							<div class="score yellow">9.3</div>
+							<div class="score yellow">1</div>
 						</div>
 						<div class="review-text">
 							<h5 style="color: white;">게시판 신고</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>욕설 및 사칭신고</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/review/2.jpg">
-							<div class="score purple">9.5</div>
+							<div class="score purple">2</div>
 						</div>
 						<div class="review-text">
 							<h5 style="color: white;">거래 사기</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>사이트 규정안에서 거래사기 발생 시 문의</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/review/3.jpg">
-							<div class="score green">9.1</div>
+							<div class="score green">3</div>
 						</div>
 						<div class="review-text">
 							<h5 style="color: white;">QNA</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>궁금한 사항을 작성</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
 					<div class="review-item">
 						<div class="review-cover set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/review/4.jpg">
-							<div class="score pink">9.7</div>
+							<div class="score pink">4</div>
 						</div>
 						<div class="review-text">
 							<h5 style="color: white;">마일리지 환불</h5>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisc ing ipsum dolor sit ame.</p>
+							<p>미사용중인 마일리지 환불을 문의하실때</p>
 						</div>
 					</div>
 				</div>
