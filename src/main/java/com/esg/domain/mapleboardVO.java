@@ -14,7 +14,6 @@ public class mapleboardVO {
 	private int readcount; 
 	private Timestamp date; 
 	private String ip; 
-	private MultipartFile file; 
 	private int num; 
 	
 	
@@ -60,12 +59,6 @@ public class mapleboardVO {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public MultipartFile getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
-	}
 	public int getNum() {
 		return num;
 	}
@@ -76,7 +69,7 @@ public class mapleboardVO {
 	@Override
 	public String toString() {
 		return "mapleboardVO [userid=" + userid + ", boardpw=" + boardpw + ", subject=" + subject + ", content=" + content
-				+ ", readcount=" + readcount + ", date=" + date + ", ip=" + ip + ", file=" + file + ", num=" + num
+				+ ", readcount=" + readcount + ", date=" + date + ", ip=" + ip + ", num=" + num
 				+ "]";
 	}
 	

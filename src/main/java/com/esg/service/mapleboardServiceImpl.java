@@ -10,11 +10,14 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.mapleFileVO;
 import com.esg.domain.mapleboardVO;
 import com.esg.persistence.mapleboardDAO;
+import com.esg.utils.mapleFileUtils;
+
 
 @Service
 public class mapleboardServiceImpl implements mapleboardService {
@@ -79,9 +82,21 @@ public class mapleboardServiceImpl implements mapleboardService {
 	}
 
 	@Override
-	public int getBoardSeq() {
-		return dao.getBoardSeq();
+	public void insertBoard(mapleFileVO vo1, MultipartFile[] file) throws Exception{
+		// TODO Auto-generated method stub
+		dao.insertBoard(vo1);
+	    List<Map<String, Object>>fileList = mapleFileUtils.parseFileInfo(vo1, file);
+		for(int i=0; i<fileList.size(); i++) {
+	        dao.insertFile(fileList.get(i));
+	    }
+	
 	}
+
+
+		
+	
+
+	
 	
 		
 	

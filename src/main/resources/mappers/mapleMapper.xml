@@ -7,8 +7,8 @@
 
 	<insert id="createBoard">
 	
-		insert into tbl_mapleboard (userid,boardpw,subject,content,file)
-		values(#{userid},#{boardpw},#{subject},#{content},#{file})
+		insert into tbl_mapleboard (userid,boardpw,subject,content)
+		values(#{userid},#{boardpw},#{subject},#{content})
 	
 	</insert>
 	
@@ -62,11 +62,28 @@
  	
  	</update>
  	
- 	<select id="getBoardSeq" resultType="int">
- 		SELECT IFNULL(MAX(SEQ),0) + 1 
- 			FROM BOARD A
- 	</select>
- 	
+ 	<insert id="insertFile">
+        INSERT INTO maple_file
+        (
+            BOARD_IDX,
+            ORG_FILE_NAME,
+            SAVE_FILE_NAME,
+            FILE_SIZE,
+            CREA_ID,
+            CREA_DATE,
+            UPDATE_DATE
+        )
+        VALUES
+        (
+            #{ BOARD_IDX},
+            #{ ORG_FILE_NAME},
+            #{ SAVE_FILE_NAME},
+            #{ FILE_SIZE},
+            #{ CREA_ID},
+            SYSDATE(),
+            SYSDATE()
+        );
+</insert>
 
  	
 	

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.mapleFileVO;
 import com.esg.domain.mapleboardVO;
 
 public interface mapleboardDAO {
@@ -26,7 +27,14 @@ public interface mapleboardDAO {
 
 	void updatemapleBoardCount(int num);
 
-	int getBoardSeq();
+
+	void insertFile(Map<String, Object> map);
+
+	void insertBoard(mapleFileVO vo1);
+
+	
+
+	
 	
 	
 	

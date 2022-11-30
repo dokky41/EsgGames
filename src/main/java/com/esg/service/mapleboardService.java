@@ -7,6 +7,7 @@ import javax.activation.CommandMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.mapleFileVO;
 import com.esg.domain.mapleboardVO;
 
 public interface mapleboardService {
@@ -32,7 +33,11 @@ public interface mapleboardService {
 
 	void updatemapleBoardCount(int num);
 
-	int getBoardSeq();
+	void insertBoard(mapleFileVO vo1, MultipartFile[] file) throws Exception;
+
+	
+
+
 
 	
 

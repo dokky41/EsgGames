@@ -1,7 +1,7 @@
 package com.esg.persistence;
 
 import java.util.List;
-
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.esg.domain.Criteria;
+import com.esg.domain.mapleFileVO;
 import com.esg.domain.mapleboardVO;
 
 
@@ -86,11 +87,26 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 		sqlSession.delete(NAMESPACE+".mapleCount",num);
 		
 	}
-	
+
+
 	@Override
-	public int getBoardSeq() {
-		return sqlSession.selectOne(NAMESPACE+".getBoardSeq");
+	public void insertFile(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(NAMESPACE+".insertFile", map);
 	}
+
+
+	@Override
+	public void insertBoard(mapleFileVO vo1) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(NAMESPACE+".insertFile",vo1);
+	}
+
+
+	
+	
+	
+	
 
 
 
