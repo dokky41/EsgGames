@@ -18,6 +18,10 @@
 			value(#{IDX}, #{WRITER}, #{CONTENT},0)
 	</insert>
 	
+	<insert id="RreplyWrite" parameterType="LOLReplyVO">
+		insert into lol_reply(IDX, WRITER, CONTENT,RECOMMEND,PARENT,DEEP)
+		value(#{IDX}, #{WRITER}, #{CONTENT},0,#{RNO},#{DEEP}+1)
+	</insert>
 <!-- 댓글 수정 -->
 	<update id="replyUpdate" parameterType="LOLReplyVO">
 		update lol_reply set

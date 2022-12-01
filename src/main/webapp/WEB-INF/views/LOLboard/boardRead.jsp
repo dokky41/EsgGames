@@ -5,22 +5,7 @@
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
-<script>
 
-	$("#ajax_button").click({
-		$.ajax({
-			url: "../LOLreply/replyWrite",
-			type: "POST",
-			dataType: "text"
-			success : function(){
-				
-			},
-			error : function(){
-				alert("실패");
-			}
-		});
-	});
-</script>
 <!-- 헤더부분 -->
 
 
@@ -109,7 +94,9 @@
 <div class="card-body">
 <div id="reply">
   <ol class="replyList">
+  
     <c:forEach items="${reply}" var="reply">
+    <c:if test="${reply.PARENT eq 0}">
       <li class="col-md-6">
         <p>
         작성자 : ${reply.WRITER}
@@ -120,13 +107,42 @@
 
         <p>${reply.CONTENT}</p>
         <p>
-        	<a href="#" class="ajax_button">답글</a>
+        	<a href="../LOLreply/RreplyWrite${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">답글</a>
 		  	<a href="../LOLreply/replyUpdate${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">수정</a>
   			<a href="../LOLreply/replyDelete${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">삭제</a>
 		</p>
 		<hr>
-      </li>
-    </c:forEach>   
+	</li>
+	</c:if>
+	
+	
+    <c:forEach items="${qreply}" var="qreply">
+	 <c:if test="${reply.RNO eq qreply.PARENT}">
+	 <div class="row">
+	 <div class="col-md-1"></div>
+	 <ul class="col-md-6">
+      <li>
+        <p>
+        RE : 작성자 : ${qreply.WRITER}
+        <br />
+        작성 날짜 :  <fmt:formatDate value="${qreply.REGDATE}" pattern="yyyy-MM-dd hh-mm" />
+        </p>
+
+        <p>${qreply.CONTENT}</p>
+        <p>
+        	<a href="../LOLreply/RreplyWrite${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${qreply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">답글</a>
+		  	<a href="../LOLreply/replyUpdate${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${qreply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">수정</a>
+  			<a href="../LOLreply/replyDelete${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${qreply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">삭제</a>
+		</p>
+		<hr>
+	</li>
+	</ul>
+	</div>
+	 </c:if>
+	 </c:forEach>
+	 
+    </c:forEach>
+       
   </ol>
 </div>
 </div>

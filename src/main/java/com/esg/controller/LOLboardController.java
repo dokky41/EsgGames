@@ -114,6 +114,8 @@ public class LOLboardController {
         // ´ñ±Û Á¶È¸
         List<LOLReplyVO> reply;
         reply = replyservice.list(num);
+
+        model.addAttribute("qreply", reply);
         model.addAttribute("reply", reply);
 	}
 	

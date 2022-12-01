@@ -20,4 +20,7 @@ public interface LOLReplyDAO {
 	LOLReplyVO replySelect(LOLReplyVO vo) throws Exception;
 
 	public void recommend(int num);
+
+	public void Rwrite(LOLReplyVO vo);
+
 }

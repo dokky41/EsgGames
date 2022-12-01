@@ -11,7 +11,6 @@ public class LOLReplyVO {
 	private int RECOMMEND; //댓글 추천수
 	private int PARENT; //부모 번호
 	private int DEEP; //깊이
-	private int GROUPNO; //그룹번호
 	
 	public int getPARENT() {
 		return PARENT;
@@ -25,12 +24,7 @@ public class LOLReplyVO {
 	public void setDEEP(int dEEP) {
 		DEEP = dEEP;
 	}
-	public int getGROUPNO() {
-		return GROUPNO;
-	}
-	public void setGROUPNO(int gROUPNO) {
-		GROUPNO = gROUPNO;
-	}
+
 	public int getIDX() {
 		return IDX;
 	}
@@ -70,8 +64,7 @@ public class LOLReplyVO {
 	@Override
 	public String toString() {
 		return "LOLReplyVO [IDX=" + IDX + ", RNO=" + RNO + ", CONTENT=" + CONTENT + ", WRITER=" + WRITER + ", REGDATE="
-				+ REGDATE + ", RECOMMEND=" + RECOMMEND + ", PARENT=" + PARENT + ", DEEP=" + DEEP + ", GROUPNO="
-				+ GROUPNO + "]";
+				+ REGDATE + ", RECOMMEND=" + RECOMMEND + ", PARENT=" + PARENT + ", DEEP=" + DEEP + "]";
 	}
 	
 	

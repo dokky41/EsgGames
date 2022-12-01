@@ -56,4 +56,10 @@ public class LOLReplyDAOImpl implements LOLReplyDAO{
 		// TODO Auto-generated method stub
 		sqlSession.update(NAMESPACE+".recommend",num);
 	}
+
+	@Override
+	public void Rwrite(LOLReplyVO vo) {
+		// TODO Auto-generated method stub
+		sqlSession.insert(NAMESPACE + ".RreplyWrite", vo);
+	}
 }
