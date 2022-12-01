@@ -46,4 +46,10 @@ public class LOLReplyServiceImpl implements LOLReplyService{
 		// TODO Auto-generated method stub
 		dao.recommend(num);
 	}
+
+	@Override
+	public void Rwrite(LOLReplyVO vo) {
+		// TODO Auto-generated method stub
+		dao.Rwrite(vo);
+	}
 }
