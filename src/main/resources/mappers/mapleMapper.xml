@@ -86,7 +86,10 @@
 </insert>
 
  	
+	<select id="getBoardNum" resultType="int">
+		select max(num) from tbl_mapleboard
 	
+	</select>
 	
 	
 	

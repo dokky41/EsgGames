@@ -13,6 +13,9 @@ public class MemberVO {
 	private Timestamp regdate;
 	private Timestamp updatedate;
 	private int userpoint;
+	private String phNum;
+	private int dayBirth1;
+	private int dayBirth2;
 	
 	
 	// alt + shift + s => r
@@ -66,16 +69,31 @@ public class MemberVO {
 		this.userpoint = userpoint;
 	}
 	
+	public String getPhNum() {
+		return phNum;
+	}
+	public void setPhNum(String phNum) {
+		this.phNum = phNum;
+	}
+	public int getDayBirth1() {
+		return dayBirth1;
+	}
+	public void setDayBirth1(int dayBirth1) {
+		this.dayBirth1 = dayBirth1;
+	}
+	public int getDayBirth2() {
+		return dayBirth2;
+	}
+	public void setDayBirth2(int dayBirth2) {
+		this.dayBirth2 = dayBirth2;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + ", useremail="
 				+ useremail + ", address=" + address + ", regdate=" + regdate + ", updatedate=" + updatedate
-				+ ", userpoint=" + userpoint + "]";
+				+ ", userpoint=" + userpoint + ", phNum=" + phNum + ", dayBirth1=" + dayBirth1 + ", dayBirth2="
+				+ dayBirth2 + "]";
 	}
-	
-	
-
-	
 	
 	
 	

@@ -99,5 +99,30 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update(NAMESPACE+".buyerMileTrans", vo2);
 	}
 
+	@Override
+	public String getIdSearch(MemberVO vo) {
+		return sqlSession.selectOne(NAMESPACE+".getIdSearch", vo);
+	}
+
+	@Override
+	public String getPwSearch(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+".getPwSearch", vo);
+	}
+
+	@Override
+	public void updateRePw(MemberVO vo) {
+		sqlSession.update(NAMESPACE+".updateRePw", vo);
+		
+	}
+
+	@Override
+	public void updateMeInfo(MemberVO vo) {
+		sqlSession.update(NAMESPACE+".updateMeInfo", vo);
+		
+	}
+
+	
+	
 	
 }

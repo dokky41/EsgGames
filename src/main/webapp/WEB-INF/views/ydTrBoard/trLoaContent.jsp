@@ -109,11 +109,10 @@ $(document).ready(function(){
 						<div class="col-md-9">
 							<ul class="contact-info-list" style="padding-top: 0px;">
 							
-							
-							
 					<c:if test="${trLoa.file1 != null}">
 					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }" class="img" width="300px" height="150px" >
 					</c:if>
+					
 					<c:if test="${trLoa.file1 == null}">
 					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" width="300px" height="150px">
 					</c:if>
@@ -124,6 +123,7 @@ $(document).ready(function(){
 					</div>
 					
 							<br><br>
+							
 								<li><div class="cf-left">상품이름</div><div class="cf-right">${trLoa.subject}</div></li>
 <%-- 								<li><div class="cf-left">내용</div><div class="cf-right">${trLoa.content}</div></li> --%>
 								<li><div class="cf-left">가격</div><div class="cf-right">${trLoa.price}원</div></li>

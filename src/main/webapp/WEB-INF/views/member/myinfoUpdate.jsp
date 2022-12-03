@@ -26,8 +26,10 @@
  src="${pageContext.request.contextPath }/resources/img/logo2.jpg" style=" width: 33%;">
 <br>
 <br>
-<h5 style="padding-left: 5%;"><b>${membervo.userid}님의 정보 페이지</b></h5>
+<h5 style="padding-left: 3%;"><b>정보 수정 페이지</b></h5>
 <br>
+<form action="${pageContext.request.contextPath }/member/updateMeInfo" method="post">
+<input type="hidden" name="userid" value="${membervo.userid }">
 <fieldset>
 
 <div id="loginWrap" class="loginWrap">
@@ -56,6 +58,10 @@
 							<td> ${membervo.userpoint}</td>
 							</tr>
 						
+							<tr>
+							<td>비밀번호  </td>
+							<td><input type="password" name="userpw"></td>
+							</tr>
 						</table>
 							
 							<br>
@@ -63,39 +69,14 @@
 					
 					<div id="notice" role="tooltip"></div>
 					<p id="content">
-					<button id="loginBtn" class="btn btn-primary btn-large"
-					onclick="location.href='/member/pointCharge'; return false;" style="width: 140px;">
+					<button type="submit" id="loginBtn" class="btn btn-primary btn-large" style="width: 285px;">
 					<span>
 					<i class="fa fa-sign-in">
-					</i> 마일리지 충전</span></button>
-					
-					<button id="loginBtn" class="btn btn-primary btn-large" 
-					onclick="location.href='/member/myChargeInfo?userid=${membervo.userid}'; return false;" style="width: 145px; background: red;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i> 내 충전내역</span></button>
-					</p>
+					</i> 내 정보 수정</span></button>
 					
 					
-					
-				</div>
-				
-				<button id="loginBtn" class="btn btn-primary btn-large" 
-					onclick="location.href='/member/myTradeInfo?userid=${membervo.userid}'; return false;" style="width: 145px; background: #2c974b;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i>내 거래정보</span></button>
-				
-				<button id="loginBtn" class="btn btn-primary btn-large" 
-					onclick="location.href='/member/myinfoUpdate?userid=${membervo.userid}'; return false;" style="width: 145px; background: black;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i>회원정보변경</span></button>
-					
-				<br>
-			</div>
 			</fieldset>
-		
+		</form>
 </article>
 
 <div class="clear"></div>

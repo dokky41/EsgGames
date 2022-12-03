@@ -30,7 +30,8 @@ public interface mapleboardDAO {
 
 	void insertFile(Map<String, Object> map);
 
-	void insertBoard(mapleFileVO vo1);
+	int getBoardNum();
+
 
 	
 

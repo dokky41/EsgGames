@@ -97,9 +97,9 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 
 
 	@Override
-	public void insertBoard(mapleFileVO vo1) {
+	public int getBoardNum() {
 		// TODO Auto-generated method stub
-		sqlSession.insert(NAMESPACE+".insertFile",vo1);
+		return sqlSession.selectOne(NAMESPACE+".getBoardNum");
 	}
 
 

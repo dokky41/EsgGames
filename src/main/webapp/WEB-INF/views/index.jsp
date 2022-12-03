@@ -266,7 +266,7 @@
 	<section class="review-section spad set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/main/thirdbg.jpg">
 		<div class="container">
 			<div class="section-title">
-				<div class="cata new">new</div>
+				<div class="cata new">준비중</div>
 				<h2 style="color: white;"><b>고객센터</b></h2>
 			</div>
 			<div class="row">

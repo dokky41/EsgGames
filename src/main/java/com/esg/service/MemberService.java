@@ -36,4 +36,19 @@ public interface MemberService {
 
 	//구매자 마일리지 변환
 	void buyerMileTrans(MemberVO vo2);
+
+	//문자보내기
+	String smsShoot(String phNum);
+
+	//아이디 가져오기
+	String getIdSearch(MemberVO vo);
+
+	//비밀번호 재발급전 확인
+	String getPwSearch(MemberVO vo);
+
+	//비밀번호 재발급
+	void updateRePw(MemberVO vo);
+
+	//내 정보 변경
+	void updateMeInfo(MemberVO vo);
 }

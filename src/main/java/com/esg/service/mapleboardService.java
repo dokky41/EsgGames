@@ -33,7 +33,9 @@ public interface mapleboardService {
 
 	void updatemapleBoardCount(int num);
 
-	void insertBoard(mapleFileVO vo1, MultipartFile[] file) throws Exception;
+	void insertFile(mapleFileVO vo1, MultipartFile[] file) throws Exception;
+
+	int getBoardNum();
 
 	
 
