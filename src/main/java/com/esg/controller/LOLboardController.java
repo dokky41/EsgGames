@@ -40,14 +40,14 @@ public class LOLboardController {
 	
 	@Inject
 	LOLReplyService replyservice;
-	//�� ���
+	//글 목록
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(@ModelAttribute("cri")LOLSearchCriteria cri) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
 		
-		//����¡ó��
+		//페이징처리
 		LOLPageMaker pageMaker = new LOLPageMaker();
 	    pageMaker.setCri(cri);
 	    
@@ -61,7 +61,7 @@ public class LOLboardController {
 		return mav;
 	}
 	
-	//�� ������ ����
+	//글 페이지 오픈
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
@@ -69,7 +69,7 @@ public class LOLboardController {
 		
 	}
 	
-	//�� ����
+	//글 쓰기
 	@RequestMapping(value="/boardWrite",method = RequestMethod.POST)
     public ModelAndView boardWritePost (LOLBoardVO vo,MultipartFile[] file) throws Exception {
         ModelAndView mav = new ModelAndView();
@@ -87,26 +87,26 @@ public class LOLboardController {
         return mav;
     }
 	
-	//�� ���� ���� + �� ��ȸ�� ����
+	//글 본문 보기 + 글 조회수 증가
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
 	public void readGet(@RequestParam("IDX") int num,Model model,@ModelAttribute("cri")LOLSearchCriteria cri,LOLReplyVO revo) throws Exception{
-		log.info("read.jsp ����");
+		log.info("read.jsp 실행");
 		
-		//��ȸ�� ����
+		//조회수 증가
 		service.updateBoardCount(num);
 		log.info(num+"");
-		//�� ���� ��������
+		//글 정보 가져오기
 		LOLBoardVO read = service.readBoard(num);
-		//���� ���� ��������
+		//파일 정보 가져오기
 		List<Map<String, Object>> fileList = service.selectFileList(num);
 		model.addAttribute("file", fileList);
 		log.info(fileList+"");
 		log.info(read+"");
 
-		//������ �����͸� ����� ���������� ���
+		//가져온 데이터를 연결된 뷰페이지에 출력
 		model.addAttribute("vo",read);
 		
-		//����¡ ó��
+		//페이징 처리
 		LOLPageMaker pageMaker = new LOLPageMaker();
         pageMaker.setCri(cri);
         model.addAttribute("page",cri.getPage());
@@ -114,7 +114,7 @@ public class LOLboardController {
         
         //
         model.addAttribute("cri",cri);
-        // ��� ��ȸ
+        // 댓글 조회
         List<LOLReplyVO> reply;
         
         if(revo.getRECOMMEND()>10) {
@@ -128,11 +128,11 @@ public class LOLboardController {
         model.addAttribute("reply", reply);
 	}
 	
-	//�������� ������ "detail"�� �̸��� ����
+	//상세정보를 가져와 "detail"란 이름에 저장
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)
 	public void UpdateGet(@RequestParam("IDX") int num,Model model,@ModelAttribute("cri")LOLSearchCriteria cri) throws Exception{
 		
-		log.info("Update.jsp ����");
+		log.info("Update.jsp 실행");
 		LOLBoardVO detail=service.readBoard(num);
 		model.addAttribute("detail",detail);
 		//
@@ -144,7 +144,7 @@ public class LOLboardController {
         model.addAttribute("pageMaker", pageMaker);
 	}
 
-	//�� ���� ������Ʈ
+	//글 수정 업데이트
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.POST)
     public String boardUpdatePost (LOLBoardVO vo,@ModelAttribute("cri")LOLSearchCriteria cri,RedirectAttributes rttr) throws Exception {
         log.info(vo+"");
@@ -158,13 +158,13 @@ public class LOLboardController {
         return "redirect:/LOLboard/boardList";
     }
 	
-	//�� ���� IDX ����
+	//글 삭제 IDX 저장
 	@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
 	public String DeleteGet(@RequestParam("IDX") int num,@ModelAttribute("cri")LOLSearchCriteria cri,RedirectAttributes rttr) throws Exception{
 			log.info(num+"delete");
 			service.deleteBoard(num);
 			
-			//����¡ ó��
+			//페이징 처리
 			rttr.addAttribute("page", cri.getPage());
 			rttr.addAttribute("perPagNum", cri.getPerPageNum());
 			rttr.addAttribute("searchType", cri.getSearchType());
@@ -172,7 +172,7 @@ public class LOLboardController {
 			
 			return "redirect:/LOLboard/boardList";
 	}
-	//�� ��õ��
+	//글 추천수
 	@RequestMapping(value="/boardRecommend",method = RequestMethod.GET)
 	public String RecommendGet(@RequestParam("IDX") int num,LOLCriteria cri,LOLBoardVO vo) throws Exception{
 			log.info(num+"boardRecommend");
