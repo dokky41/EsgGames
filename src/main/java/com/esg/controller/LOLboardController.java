@@ -23,6 +23,7 @@ import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
 import com.esg.domain.LOLPageMaker;
 import com.esg.domain.LOLReplyVO;
+import com.esg.domain.LOLSearchCriteria;
 import com.esg.persistence.LOLBoardDAO;
 import com.esg.service.LOLBoardService;
 import com.esg.service.LOLReplyService;
@@ -41,7 +42,7 @@ public class LOLboardController {
 	LOLReplyService replyservice;
 	//글 목록
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
-	public ModelAndView boardList(LOLCriteria cri) throws Exception{
+	public ModelAndView boardList(@ModelAttribute("cri")LOLSearchCriteria cri) throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/LOLboard/boardList");	
@@ -53,7 +54,7 @@ public class LOLboardController {
 		List<LOLBoardVO> boardList = service.getBoardList(cri);
 
 		
-		pageMaker.setTotalCount(service.countBoardListTotal());
+		pageMaker.setTotalCount(service.countBoardListTotal(cri));
 	    mav.addObject("boardList", boardList);
 	    mav.addObject("pageMaker", pageMaker);
 	    
@@ -88,7 +89,7 @@ public class LOLboardController {
 	
 	//글 본문 보기 + 글 조회수 증가
 	@RequestMapping(value="/boardRead",method = RequestMethod.GET)
-	public void readGet(@RequestParam("IDX") int num,Model model,LOLCriteria cri) throws Exception{
+	public void readGet(@RequestParam("IDX") int num,Model model,@ModelAttribute("cri")LOLSearchCriteria cri,LOLReplyVO revo) throws Exception{
 		log.info("read.jsp 실행");
 		
 		//조회수 증가
@@ -111,22 +112,32 @@ public class LOLboardController {
         model.addAttribute("page",cri.getPage());
         model.addAttribute("pageMaker", pageMaker);
         
+        //
+        model.addAttribute("cri",cri);
         // 댓글 조회
         List<LOLReplyVO> reply;
-        reply = replyservice.list(num);
+        
+        if(revo.getRECOMMEND()>10) {
+            reply = replyservice.list(num);
+        }
+        else {
 
+            reply = replyservice.list(num);
+        }
         model.addAttribute("qreply", reply);
         model.addAttribute("reply", reply);
 	}
 	
 	//상세정보를 가져와 "detail"란 이름에 저장
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.GET)
-	public void UpdateGet(@RequestParam("IDX") int num,Model model,LOLCriteria cri) throws Exception{
+	public void UpdateGet(@RequestParam("IDX") int num,Model model,@ModelAttribute("cri")LOLSearchCriteria cri) throws Exception{
 		
 		log.info("Update.jsp 실행");
 		LOLBoardVO detail=service.readBoard(num);
 		model.addAttribute("detail",detail);
-		
+		//
+        model.addAttribute("cri",cri);
+        
 		LOLPageMaker pageMaker = new LOLPageMaker();
 		pageMaker.setCri(cri);
         model.addAttribute("page",cri.getPage());
@@ -135,26 +146,30 @@ public class LOLboardController {
 
 	//글 수정 업데이트
 	@RequestMapping(value="/boardUpdate",method = RequestMethod.POST)
-    public String boardUpdatePost (LOLBoardVO vo,LOLCriteria cri,RedirectAttributes redAttr) throws Exception {
+    public String boardUpdatePost (LOLBoardVO vo,@ModelAttribute("cri")LOLSearchCriteria cri,RedirectAttributes rttr) throws Exception {
         log.info(vo+"");
         service.update(vo);
         
-        redAttr.addAttribute("page", cri.getPage());
-        redAttr.addAttribute("perPagNum", cri.getPerPageNum());
-        
+        rttr.addAttribute("page", cri.getPage());
+        rttr.addAttribute("perPagNum", cri.getPerPageNum());
+        rttr.addAttribute("searchType", cri.getSearchType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
         return "redirect:/LOLboard/boardList";
     }
 	
 	//글 삭제 IDX 저장
 	@RequestMapping(value="/boardDelete",method = RequestMethod.GET)
-	public String DeleteGet(@RequestParam("IDX") int num,LOLCriteria cri,RedirectAttributes redAttr) throws Exception{
+	public String DeleteGet(@RequestParam("IDX") int num,@ModelAttribute("cri")LOLSearchCriteria cri,RedirectAttributes rttr) throws Exception{
 			log.info(num+"delete");
 			service.deleteBoard(num);
 			
 			//페이징 처리
-			redAttr.addAttribute("page", cri.getPage());
-			redAttr.addAttribute("perPagNum", cri.getPerPageNum());
-		     
+			rttr.addAttribute("page", cri.getPage());
+			rttr.addAttribute("perPagNum", cri.getPerPageNum());
+			rttr.addAttribute("searchType", cri.getSearchType());
+			rttr.addAttribute("keyword", cri.getKeyword());
+			
 			return "redirect:/LOLboard/boardList";
 	}
 	//글 추천수

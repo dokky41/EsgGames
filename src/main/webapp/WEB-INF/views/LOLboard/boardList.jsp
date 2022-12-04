@@ -66,7 +66,7 @@ selectElement.addEventListener('change', (event) => {
                           <c:forEach items="${boardList }" var="bList">
                               <tr>
                               <td scope="row">${bList.IDX }</td>
-                              <td><a href="/LOLboard/boardRead${pageMaker.makeQueryPage(bList.IDX, pageMaker.cri.page) }" class="text-dark">${bList.TITLE }</a></td>
+                              <td><a href="/LOLboard/boardRead${pageMaker.makeQueryPage(bList.IDX, pageMaker.cri.page) }&searchType=${cri.searchType}&keyword=${cri.keyword}" class="text-dark">${bList.TITLE }</a></td>
                               <td>${bList.CREA_ID }</td>
                               <td><fmt:formatDate value="${bList.CREA_DATE }" pattern="yyyy-MM-dd hh-mm" /></td>
                               <td>${bList.HIT_CNT }</td>
@@ -82,28 +82,51 @@ selectElement.addEventListener('change', (event) => {
                   </c:choose> 
               </tbody>
             </table>
+
+  
             <div class="row">
-            	<div class="col-md-6">
+            	<div class="col-md-4">
             		<ul class="pagination">
   						<c:if test="${pageMaker.prev }">
   							<li class="page-item">
-   								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.startPage-1) }"/>'><i class="fa fa-chevron-left"></i></a>
+   								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeSearch(pageMaker.startPage-1) }"/>'><i class="fa fa-chevron-left"></i></a>
  							 </li>
   						</c:if>
   						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
  							<li class="page-item <c:if test='${pageMaker.cri.page eq pageNum }'>active</c:if>">
-								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageNum) }"/>'>${pageNum }</a>
+								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeSearch(pageNum) }"/>'>${pageNum }</a>
  							</li>
 						</c:forEach>
  						<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
  							<li class="page-item">
-								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeQueryPage(pageMaker.endPage+1) }"/>'><i class="fa fa-chevron-right"></i></a>
+								<a class="page-link" href='<c:url value="/LOLboard/boardList${pageMaker.makeSearch(pageMaker.endPage+1) }"/>'><i class="fa fa-chevron-right"></i></a>
 							</li>
 						</c:if>
 					</ul>
 				</div>
+				            <form method="get">
+            <div class="search  col-md text-center">
 
-				<div class="col-md-6 text-lg-right">
+    <select name="searchType">
+      <option value="n"<c:out value="${cri.searchType == null ? 'selected' : ''}"/>>-----</option>
+      <option value="t"<c:out value="${cri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+      <option value="c"<c:out value="${cri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+      <option value="w"<c:out value="${cri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+      <option value="tc"<c:out value="${cri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+    </select>
+
+    <input type="text" name="keyword" id="keywordInput" value="${cri.keyword}"/>
+    <button id="searchBtn" type="button">검색</button>
+    <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+        	  self.location = "/LOLboard/boardList" + '${pageMaker.makeQueryPage(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
+  </div>
+  </form>
+				<div class="col-md-4 text-right">
 					<form class="community-filter">
   
 <button type="button" onclick="location.href='/LOLboard/boardList?page=${pageMaker.cri.page}&perPageNum=${pageMaker.cri.perPageNum}&sort=최신순'" class="btn btn-outline-secondary btn-sm">최신순</button>

@@ -17,6 +17,7 @@ import com.esg.utils.FileUtils;
 import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
 import com.esg.domain.LOLReplyVO;
+import com.esg.domain.LOLSearchCriteria;
 
 @Service
 public class LOLBoardServiceImpl implements LOLBoardService {
@@ -30,7 +31,7 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	private static final Logger log = LoggerFactory.getLogger(LOLBoardServiceImpl.class);
 
 	@Override
-	public List<LOLBoardVO> getBoardList(LOLCriteria cri) {
+	public List<LOLBoardVO> getBoardList(LOLSearchCriteria cri) {
 		// TODO Auto-generated method stub
 		return dao.getBoardList(cri);
 	}
@@ -78,9 +79,9 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	}
 
 	@Override
-	public int countBoardListTotal() {
+	public int countBoardListTotal(LOLSearchCriteria cri) {
 		// TODO Auto-generated method stub
-		return dao.countBoardList();
+		return dao.countBoardList(cri);
 	}
 
 	@Override

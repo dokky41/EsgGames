@@ -1,5 +1,8 @@
 package com.esg.domain;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -10,7 +13,7 @@ public class LOLPageMaker {
     private int endPage;
     private boolean prev;
     private boolean next;
-    private int displayPageNum = 10;
+    private int displayPageNum = 5;
     
     public LOLCriteria getCri() {
         return cri;
@@ -46,7 +49,7 @@ public class LOLPageMaker {
         UriComponents uri = UriComponentsBuilder.newInstance()
                 .queryParam("page", page)
                 .queryParam("perPageNum", cri.getPerPageNum())
-                .queryParam("sort",cri.getSort())
+                //.queryParam("sort",cri.getSort())
                 .build();
         return uri.toUriString();
     }
@@ -59,7 +62,32 @@ public class LOLPageMaker {
                 .build();
         return uri.toUriString();
     }
-    
+    //검색을 위함
+    public String makeSearch(int page)
+	{
+	  
+	 UriComponents uriComponents =
+	            UriComponentsBuilder.newInstance()
+	            .queryParam("page", page)
+	            .queryParam("perPageNum", cri.getPerPageNum())
+	            .queryParam("searchType", ((LOLSearchCriteria)cri).getSearchType())
+	            .queryParam("keyword", encoding(((LOLSearchCriteria)cri).getKeyword()))
+	            .build(); 
+	    return uriComponents.toUriString();  
+	}
+
+	private String encoding(String keyword) {
+		if(keyword == null || keyword.trim().length() == 0) { 
+			return "";
+		}
+		 
+		try {
+			return URLEncoder.encode(keyword, "UTF-8");
+		} catch(UnsupportedEncodingException e) { 
+			return ""; 
+		}
+	}
+	
     public int getStartPage() {
         return startPage;
     }

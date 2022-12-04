@@ -32,7 +32,7 @@
 <!-- 댓글 삭제 -->
 	<delete id="replyDelete" parameterType="LOLReplyVO">
 		delete from lol_reply
-		where RNO = #{RNO} and IDX = ${IDX}	
+		where RNO = #{RNO} and IDX = ${IDX}
 	</delete>
 	
 	<!-- 단일 댓글 조회 -->

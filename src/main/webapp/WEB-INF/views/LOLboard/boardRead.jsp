@@ -87,7 +87,7 @@
             <a href='<c:url value='/LOLboard/boardDelete${pageMaker.makeQueryPage(vo.IDX, page) }'/>'  class="btn btn-outline-secondary btn-sm " role="button">삭제</a>
         </div>
         <div class="card-body">
-            <a href='<c:url value='/LOLboard/boardList${pageMaker.makeQueryPage(page) }'/>' class="btn btn-info" role="button">목록으로</a>
+            <a href='<c:url value='/LOLboard/boardList${pageMaker.makeQueryPage(page)}&searchType=${cri.searchType}&keyword=${cri.keyword}'/>' class="btn btn-info" role="button">목록으로</a>
         </div>
         
 <!-- 댓글 조회 -->
@@ -97,7 +97,7 @@
   
     <c:forEach items="${reply}" var="reply">
     <c:if test="${reply.PARENT eq 0}">
-      <li class="col-md-6">
+      <li class="col-md-12">
         <p>
         작성자 : ${reply.WRITER}
          <a href="/LOLreply/replyRecommend${pageMaker.makeQueryPage(reply.IDX, pageMaker.cri.page) }&RNO=${reply.RNO}" class="btn btn-outline-secondary btn-sm float-right">추천 : ${reply.RECOMMEND }</a>
@@ -120,7 +120,7 @@
 	 <c:if test="${reply.RNO eq qreply.PARENT}">
 	 <div class="row">
 	 <div class="col-md-1"></div>
-	 <ul class="col-md-6">
+	 <ul class="col-md-11">
       <li>
         <p>
         RE : 작성자 : ${qreply.WRITER}
@@ -130,7 +130,6 @@
 
         <p>${qreply.CONTENT}</p>
         <p>
-        	<a href="../LOLreply/RreplyWrite${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${qreply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">답글</a>
 		  	<a href="../LOLreply/replyUpdate${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${qreply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">수정</a>
   			<a href="../LOLreply/replyDelete${pageMaker.makeQueryPage(vo.IDX, page) }&RNO=${qreply.RNO}" class="btn btn-outline-secondary btn-sm" role="button">삭제</a>
 		</p>
@@ -152,8 +151,9 @@
 	<form name="replyForm" method="post" action="../LOLreply/replyWrite">
   <input type="hidden" id="IDX" name="IDX" value="${vo.IDX}" />
   <input type="hidden" id="page" name="page" value="${pageMaker.cri.page}"> 
-  <input type="hidden" id="perPageNum" name="perPageNum" value="${pageMaker.cri.perPageNum}"> 
-
+  <input type="hidden" id="perPageNum" name="perPageNum" value="${pageMaker.cri.perPageNum}">
+  <input type="hidden" id="searchType" name="searchType" value="${cri.searchType}"> 
+  <input type="hidden" id="keyword" name="keyword" value="${cri.keyword}"> 
   <div>
     <label for="writer">댓글 작성자</label><input type="text" id="WRITER" name="WRITER" />
     <br/>
