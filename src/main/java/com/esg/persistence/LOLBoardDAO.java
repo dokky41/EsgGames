@@ -9,10 +9,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.esg.domain.LOLBoardVO;
 import com.esg.domain.LOLCriteria;
 import com.esg.domain.LOLReplyVO;
+import com.esg.domain.LOLSearchCriteria;
 
 public interface LOLBoardDAO {
 
-	List<LOLBoardVO> getBoardList(LOLCriteria cri);
+	List<LOLBoardVO> getBoardList(LOLSearchCriteria cri);
 
 	void insertBoard(LOLBoardVO vo);
 
@@ -28,7 +29,7 @@ public interface LOLBoardDAO {
 
 	List<Map<String, Object>> selectFileList(int num);
 
-	int countBoardList();
+	int countBoardList(LOLSearchCriteria cri);
 
 	void recommend(int num);
 

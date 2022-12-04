@@ -34,9 +34,11 @@ public class LOLreplyController {
         
         replyservice.write(vo);
 		log.info(vo+"");
+		rttr.addAttribute("IDX", vo.getIDX());
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		
-		
-		return "redirect:/LOLboard/boardRead?IDX=" + vo.getIDX()+"&page="+cri.getPage()+"&perPageNum="+cri.getPerPageNum();
+		return "redirect:/LOLboard/boardRead";
 	}
 	@RequestMapping(value = "/RreplyWrite", method = RequestMethod.GET)
 	public void RreplyWrite(@RequestParam("IDX") int num,@RequestParam("RNO") int RNO, Model model) throws Exception {

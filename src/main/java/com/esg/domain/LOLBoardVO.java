@@ -105,4 +105,6 @@ public class LOLBoardVO {
 				+ CREA_ID + ", BOARD_IDX=" + BOARD_IDX + ", ORG_FILE_NAME=" + ORG_FILE_NAME + ", SAVE_FILE_NAME="
 				+ SAVE_FILE_NAME + ", FILE_SIZE=" + FILE_SIZE + ", UPDATE_DATE=" + UPDATE_DATE + "]";
 	}
+	
+
 }

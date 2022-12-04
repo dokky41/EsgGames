@@ -7,6 +7,8 @@
 
 	<select id="BoardList" resultType="LOLBoardVO">
 		SELECT * FROM lol_board
+		where 1=1
+		<include refid="search"></include>
         	ORDER BY cast(CASE #{sort}
 				WHEN '최신순' THEN IDX
     			WHEN '조회순' THEN HIT_CNT
@@ -17,8 +19,26 @@
     
     <select id="countBoardList" resultType="int">
         select count(*) from lol_board
+        where 1=1
+        <include refid="search"></include>
+        AND IDX>0
     </select>
-    
+	<sql id="search">
+	                    <choose>
+                        <when test="searchType != null and searchType == 't'.toString()">
+                           AND TITLE LIKE CONCAT('%',#{keyword},'%') 
+                        </when>
+                        <when test="searchType != null and searchType == 'c'.toString()">
+                           AND CONTENTS LIKE CONCAT('%',#{keyword},'%') 
+                        </when>
+                        <when test="searchType != null and searchType == 'w'.toString()">
+                           AND CREA_ID LIKE CONCAT('%',#{keyword},'%') 
+                        </when>
+                        <when test="searchType != null and searchType == 'tc'.toString()">
+                           AND (TITLE LIKE CONCAT('%',#{keyword},'%')) or (CONTENTS LIKE CONCAT('%',#{keyword},'%'))
+                        </when>
+                    </choose>
+     </sql>
     <insert id="write" useGeneratedKeys="true" keyProperty="IDX">
 		INSERT INTO lol_board
 		(		TITLE,
