@@ -40,7 +40,7 @@ public class LOLboardController {
 	
 	@Inject
 	LOLReplyService replyservice;
-	//글 목록t
+	//글 목록
 	@RequestMapping(value="/boardList", method=RequestMethod.GET)
 	public ModelAndView boardList(@ModelAttribute("cri")LOLSearchCriteria cri) throws Exception{
 		
