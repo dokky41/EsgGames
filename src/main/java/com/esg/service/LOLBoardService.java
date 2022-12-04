@@ -12,23 +12,23 @@ import com.esg.domain.LOLReplyVO;
 import com.esg.domain.LOLSearchCriteria;
 
 public interface LOLBoardService {
-	//±Û ¸ñ·Ï
+	//ê¸€ ëª©ë¡1
 	List<LOLBoardVO> getBoardList(LOLSearchCriteria cri);
-	//±Û ¾²±â+ÆÄÀÏ¾÷·Îµå
+	//ê¸€ ì“°ê¸°+íŒŒì¼ì—…ë¡œë“œ
 	void insertBoard(LOLBoardVO vo, MultipartFile[] file)throws Exception;
-	//Á¶È¸¼ö Áõ°¡
+	//ì¡°íšŒìˆ˜ ì¦ê°€
 	void updateBoardCount(int num);
-	//±Û Á¤º¸ ºÒ·¯¿À±â
+	//ê¸€ ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°
 	LOLBoardVO readBoard(int num);
-	//±Û ¼öÁ¤
+	//ê¸€ ìˆ˜ì •
 	void update(LOLBoardVO vo);
-	//±Û »èÁ¦
+	//ê¸€ ì‚­ì œ
 	void deleteBoard(int num);
-	//ÆÄÀÏ Á¤º¸ ºÒ·¯¿À±â
+	//íŒŒì¼ ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°
 	List<Map<String, Object>> selectFileList(int num);
-	//ÃÑ°¹¼ö
+	//ì´ê°¯ìˆ˜
 	int countBoardListTotal(LOLSearchCriteria cri);
-	//ÆÄÀÏÀÌ ¾øÀ»¶§ ±Û ¾²±â
+	//íŒŒì¼ì´ ì—†ì„ë•Œ ê¸€ ì“°ê¸°
 	void insertBoard(LOLBoardVO vo);
 	void recommend(int num);
 }
