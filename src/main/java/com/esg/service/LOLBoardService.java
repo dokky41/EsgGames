@@ -12,7 +12,7 @@ import com.esg.domain.LOLReplyVO;
 import com.esg.domain.LOLSearchCriteria;
 
 public interface LOLBoardService {
-	//글 목록
+	//글 목록1
 	List<LOLBoardVO> getBoardList(LOLSearchCriteria cri);
 	//글 쓰기+파일업로드
 	void insertBoard(LOLBoardVO vo, MultipartFile[] file)throws Exception;
