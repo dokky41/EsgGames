@@ -65,7 +65,7 @@ public class LOLboardController {
 	@RequestMapping(value="/boardWrite",method = RequestMethod.GET)
 	public void WriteGet() throws Exception{
 		
-		log.info("Write.jsp ����");
+		log.info("Write.jsp 실행");
 		
 	}
 	
