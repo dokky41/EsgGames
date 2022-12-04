@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.activation.CommandMap;
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 
@@ -26,6 +27,10 @@ public class mapleboardServiceImpl implements mapleboardService {
 	
 	@Inject
 	mapleboardDAO dao;
+	
+	@Resource(name="maplefileUtils")
+	private mapleFileUtils maplefileUtils;
+	
 	
 	@Override
 	public void mapleboardwrite(mapleboardVO vo) {
@@ -82,14 +87,19 @@ public class mapleboardServiceImpl implements mapleboardService {
 	}
 
 	@Override
-	public void insertBoard(mapleFileVO vo1, MultipartFile[] file) throws Exception{
+	public void insertFile(mapleFileVO vo1, MultipartFile[] file) throws Exception{
 		// TODO Auto-generated method stub
-		dao.insertBoard(vo1);
 	    List<Map<String, Object>>fileList = mapleFileUtils.parseFileInfo(vo1, file);
 		for(int i=0; i<fileList.size(); i++) {
 	        dao.insertFile(fileList.get(i));
 	    }
 	
+	}
+
+	@Override
+	public int getBoardNum() {
+		// TODO Auto-generated method stub
+		return dao.getBoardNum()+1;
 	}
 
 

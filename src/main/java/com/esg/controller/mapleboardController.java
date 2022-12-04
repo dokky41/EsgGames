@@ -3,7 +3,7 @@ package com.esg.controller;
 
 import java.util.List;
 
-
+import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import javax.servlet.http.HttpSession;
@@ -66,17 +66,17 @@ public class mapleboardController {
 	@RequestMapping(value="/maple/mapleboardwrite", method=RequestMethod.POST)
 	public ModelAndView maple2Post(mapleboardVO vo,mapleFileVO vo1,MultipartFile[] file) throws Exception {
 		log.info(vo+"");
+		log.info(vo1+"");
 		log.info(file+"");
+		vo1.setBOARD_IDX(service.getBoardNum());
+		log.info(vo1.getBOARD_IDX()+"");
+		
 		ModelAndView mav = new ModelAndView("redirect:/maple/mapleboardlist");
+		
 		service.mapleboardwrite(vo);
-		service.insertBoard(vo1,file);
+		service.insertFile(vo1,file);
+		
 		return mav;
-	
-		
-		
-	
-	
-		
 	}
 	
 	

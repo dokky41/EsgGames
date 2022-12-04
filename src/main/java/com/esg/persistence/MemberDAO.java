@@ -32,4 +32,12 @@ public interface MemberDAO {
 	void sellerMileTrans(MemberVO vo2);
 
 	void buyerMileTrans(MemberVO vo2);
+
+	public String getIdSearch(MemberVO vo);
+
+	public String getPwSearch(MemberVO vo);
+
+	public void updateRePw(MemberVO vo);
+
+	public void updateMeInfo(MemberVO vo);
 }

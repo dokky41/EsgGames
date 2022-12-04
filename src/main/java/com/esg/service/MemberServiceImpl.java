@@ -13,6 +13,7 @@ import com.esg.domain.esgMileVO;
 import com.esg.domain.trLoaVO;
 import com.esg.domain.trMailVO;
 import com.esg.persistence.MemberDAO;
+import com.esg.sms.ydTrSms;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -108,4 +109,36 @@ public class MemberServiceImpl implements MemberService{
 		dao.buyerMileTrans(vo2);
 		
 	}
+
+	@Override
+	public String smsShoot(String phNum) {
+		return ydTrSms.aa(phNum);
+		
+	}
+
+	@Override
+	public String getIdSearch(MemberVO vo) {
+		return dao.getIdSearch(vo);
+		
+	}
+
+	@Override
+	public String getPwSearch(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return dao.getPwSearch(vo);
+	}
+
+	@Override
+	public void updateRePw(MemberVO vo) {
+		// TODO Auto-generated method stub
+		dao.updateRePw(vo);
+	}
+
+	@Override
+	public void updateMeInfo(MemberVO vo) {
+		dao.updateMeInfo(vo);
+		
+	}
+	
+	
 }

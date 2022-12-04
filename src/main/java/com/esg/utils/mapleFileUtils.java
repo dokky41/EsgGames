@@ -14,17 +14,18 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.esg.domain.mapleFileVO;
+import com.esg.domain.mapleboardVO;
 
 @Component("maplefileUtils")
 public class mapleFileUtils {
 	
 	private static final org.slf4j.Logger log =  LoggerFactory.getLogger(mapleFileUtils.class);
     
-	private static final String uploadPath = "/Users/ijiun/Documents/upload/";
+	private static final String uploadPath = "C:\\test\\file\\";
  
     public static List<Map<String, Object>> parseFileInfo(mapleFileVO vo1, MultipartFile[] file) throws Exception {
         
-        String boardIDX = String.valueOf(vo1.getIDX());
+        String boardIDX = String.valueOf(vo1.getBOARD_IDX());
         String creaID = (String) vo1.getCREA_ID();
         
         List<Map<String, Object>> fileList = new ArrayList<Map<String, Object>>();

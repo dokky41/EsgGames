@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertMember">
 	
-		insert into esgmember (userid,userpw,username,useremail,address)
-		values(#{userid},#{userpw},#{username},#{useremail},#{address})
+		insert into esgmember (userid,userpw,username,useremail,address,phNum,dayBirth1,dayBirth2)
+		values(#{userid},#{userpw},#{username},#{useremail},#{address},#{phNum},#{dayBirth1},#{dayBirth2})
 	
 	</insert>
 	
@@ -78,4 +78,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		where userid=#{userid}
  	</update>
 	
+	 <select id="getIdSearch" resultType="String">
+ 		select userid from esgmember
+ 		where username=#{username} and dayBirth1=#{dayBirth1} and phNum=#{phNum}
+ 	</select>
+ 	
+	 <select id="getPwSearch" resultType="String">
+ 		select count(username) from esgmember
+ 		where userid=#{userid} and dayBirth1=#{dayBirth1} and phNum=#{phNum}
+ 	</select>
+	
+	 <update id="updateRePw">
+ 		update esgmember set userpw=#{userpw}
+ 		where userid=#{userid}
+ 	</update>
+ 	
+	 <update id="updateMeInfo">
+ 		update esgmember set userpw=#{userpw}
+ 		where userid=#{userid}
+ 	</update>
+ 	
 </mapper>

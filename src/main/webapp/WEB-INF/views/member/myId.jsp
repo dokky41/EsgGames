@@ -25,8 +25,9 @@
 <img src="${pageContext.request.contextPath }/resources/img/logo2.jpg" style=" width: 33%;">
 <br>
 <br>
-<h5 class="login__fb-title"><b>ESG 서비스 센터 준비중입니다.</b></h5>
+<h5 class="login__fb-title" ><b>아이디는 "${idLook }" 입니다</b></h5>
 <br>
+
 
 		
 </article>

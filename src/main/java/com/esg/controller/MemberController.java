@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.esg.domain.MemberVO;
+import com.esg.domain.addressVO;
 import com.esg.domain.esgMileVO;
 import com.esg.domain.trLoaVO;
 import com.esg.domain.trMailVO;
 import com.esg.service.MemberService;
+import com.esg.sms.ydTrPwSms;
+import com.esg.sms.ydTrSms;
 
 @Controller
 @RequestMapping("/member/*")
@@ -57,7 +60,7 @@ public class MemberController {
 	
 	//회원가입
 	@RequestMapping(value="/insertMember", method=RequestMethod.POST)
-	public String inserMember(MemberVO vo,@RequestParam("chk") String chk,Model model) throws Exception {
+	public String inserMember(addressVO vo2,MemberVO vo,@RequestParam("chk") String chk,Model model) throws Exception {
 		
 		log.info("InsertMember 회원가입 실행");
 		log.info(vo+"");
@@ -67,6 +70,10 @@ public class MemberController {
 			model.addAttribute("cc", "error");
 			return "redirect:/member/Register";
 		}
+		//주소합쳐서 저장
+		String address=vo2.getAddress2()+vo2.getAddress2()+vo2.getAddress3()+vo2.getAddress4();
+		vo.setAddress(address);
+		//주소합쳐서 저장
 		
 		service.memberInsert(vo);
 		
@@ -207,6 +214,21 @@ public class MemberController {
 		return "redirect:/member/myinfo";
 	}
 
+	//본인인증 메세지
+	@RequestMapping(value="/inju", method=RequestMethod.POST)
+	@ResponseBody
+	public String injuPOST(Model model,@RequestParam("phNum") String phNum) throws Exception {
+			
+			//문자보내보기
+			String inJMail=service.smsShoot(phNum);
+			
+			log.info(inJMail);
+
+			//문자보내보기
+			model.addAttribute("inNum", inJMail);
+			
+			return inJMail;
+	}
 	
 	
 	//아이디찾기 페이지로 이동
@@ -215,6 +237,34 @@ public class MemberController {
 		
 		
 	}
+	//아이디찾기 동작
+	@RequestMapping(value="/idSearchForm", method=RequestMethod.POST)
+	public String idSearchPOST(MemberVO vo,Model model) throws Exception {
+		
+		log.info("아이디 찾기 동작");
+		log.info("가져온항목"+vo);
+		
+		//아이디가져오기
+		String idLook = service.getIdSearch(vo);
+		//아이디가져오기
+		
+		log.info("결과 : "+idLook);
+		
+		model.addAttribute("idLook", idLook);
+		
+		return "forward:/member/myId?idLook="+idLook;
+	}
+	
+	@RequestMapping(value="/myId", method=RequestMethod.POST)
+	public void myIdGET(Model model,@RequestParam("idLook") String idLook) throws Exception {
+		
+		log.info("아이디 찾기 결과 페이지");
+		
+		model.addAttribute("idLook", idLook);
+		
+	}
+	
+	
 	
 	//비밀번호찾기 페이지로 이동
 	@RequestMapping(value="/pwSearchForm", method=RequestMethod.GET)
@@ -222,5 +272,58 @@ public class MemberController {
 			
 			
 	}
+	
+	//비밀번호찾기 동작
+	@RequestMapping(value="/pwSearchForm", method=RequestMethod.POST)
+	public String pwSearchPOST(MemberVO vo) throws Exception {
+			
+		log.info("비밀번호 찾기 동작");
+		log.info("가져온항목"+vo);
+			
+		//아이디가져오기
+		String pwLook = service.getPwSearch(vo);
+		//아이디가져오기
+			
+		log.info("결과 : "+pwLook);
+		
+		if(pwLook.equals("0")) {
+			return "redirect:/member/rePwSearch";
+		}
+		//비밀번호 재발급
+		String newPw = ydTrPwSms.aa(vo.getPhNum());
+		log.info(newPw);
+		vo.setUserpw(newPw);
+		service.updateRePw(vo);
+		//비밀번호 재발급
+			
+		return "redirect:/member/login";
+	}
+	
+	
+	//비밀번호찾기 페이지로 이동
+	@RequestMapping(value="/rePwSearch", method=RequestMethod.GET)
+	public void rePwSearchGET() throws Exception {
+				
+				
+	}
+	
+	//내정보변경 페이지로 이동
+	@RequestMapping(value="/myinfoUpdate", method=RequestMethod.GET)
+	public void myinfoUpdateGET() throws Exception {
+		
+		
+	}
+	
+	//내정보변경 페이지로 이동
+	@RequestMapping(value="/updateMeInfo", method=RequestMethod.POST)
+	public String updateInfoPOST(MemberVO vo) throws Exception {
+		
+		service.updateMeInfo(vo);
+		
+		
+		return "redirect:/member/login";
+	}
+	
+	
 
 }
