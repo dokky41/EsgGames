@@ -96,10 +96,18 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 	}
 
 
+
 	@Override
 	public int getBoardNum() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+".getBoardNum");
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectFileList(int num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+".getBoardFile",num);
 	}
 
 
