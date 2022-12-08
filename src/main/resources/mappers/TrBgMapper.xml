@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.esg.mapper.TrBgMapper">
+
+
+	<insert id="TrBginsert">
+	
+		insert into trbgboard (userid,subject,content,ip,file1,goodsCount,chname,price,file2,file3,file4)
+		values(#{userid},#{subject},#{content},#{ip},#{file1},#{goodsCount},#{chname},#{price},#{file2},#{file3},#{file4})
+	
+	</insert>
+	
+	
+	<select id="TrBgList" resultType="trBgVO">
+	
+	 <![CDATA[
+ 		select * from trbgboard
+ 		where num > 0
+ 		order by num desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	
+	<select id="TrBgSearchList" resultType="trBgVO">
+	
+	 <![CDATA[
+ 		select * from trbgboard
+ 		where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'))
+ 		order by num desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	
+	
+	
+	<select id="bgTotalCnt" resultType="int">
+ 	select count(num) from trbgboard;
+ 	
+ 	</select>
+ 	
+ 	
+ 	<select id="TrBgContent" resultType="trBgVO">
+ 	select * from trbgboard where num=#{num};
+ 	
+ 	</select>
+ 	
+ 	
+ 	<select id="bgTotalCnt2" resultType="int">
+ 	select count(num) from trbgboard
+ 	where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'));
+ 	
+ 	</select>
+ 	
+ 	<update id="TrBgModify">
+ 		update trbgboard set subject=#{subject},content=#{content},file1=#{file1},goodsCount=#{goodsCount},
+ 		chname=#{chname},price=#{price},file2=#{file2},file3=#{file3},file4=#{file4}
+ 		where num=#{num}
+ 	</update>
+ 	
+ 	<delete id="TrBgDelete">
+ 		
+ 		delete from trbgboard
+ 		where num=#{num}
+ 	
+ 	</delete>
+ 	
+ 	
+ 	<update id="TrBgCount">
+ 	
+ 		update trbgboard set readcount=readcount+1
+ 		where num=#{num}
+ 	
+ 	</update>
+ 	
+ 	
+	<select id="TrBgSelList" resultType="trBgVO">
+	
+	 <![CDATA[
+ 		select * from trbgboard
+ 		where num > 0
+ 		order by readcount desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	<select id="TrBgPriList" resultType="trBgVO">
+	
+	 <![CDATA[
+ 		select * from trbgboard
+ 		where num > 0
+ 		order by price asc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	
+	<select id="TrBgPriList2" resultType="trBgVO">
+	
+	 <![CDATA[
+ 		select * from trbgboard
+ 		where num > 0
+ 		order by price desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+ 	
+ 	
+ 	
+ 	<insert id="trSendRequest">
+ 		insert into tr_mail (trSender,trReceiver,gNickName,trCount,trSubject,trContent,trConNum)
+		values(#{trSender},#{trReceiver},#{gNickName},#{trCount},#{trSubject},#{trContent},#{trConNum})
+ 	
+ 	</insert>
+ 	
+ 	
+
+ 	
+
+ 	
+</mapper>

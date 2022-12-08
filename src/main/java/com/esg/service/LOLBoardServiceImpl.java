@@ -71,7 +71,7 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 		dao.delete(num);
 		
 	}
-	//ÆÄÀÏ Á¤º¸ ºÒ·¯¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<Map<String, Object>> selectFileList(int num) {
 		// TODO Auto-generated method stub

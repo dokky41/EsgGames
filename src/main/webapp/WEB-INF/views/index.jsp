@@ -165,7 +165,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='#'" style="cursor: pointer;">
+				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='${pageContext.request.contextPath }/maple/mapleboardlist'" style="cursor: pointer;">
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/3.jpg">
 						<span class="cata new" style="background: blue;">battleGround</span>
 						<div class="fi-content text-white">
@@ -175,7 +175,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='#'" style="cursor: pointer;">
+				<div class="col-lg-3 col-md-6 p-0" onclick="location.href='${pageContext.request.contextPath }/LOAboard/boardList'" style="cursor: pointer;">
 					<div class="feature-item set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/features/4.jpg">
 						<span class="cata racing">lostArk</span>
 						<div class="fi-content text-white">

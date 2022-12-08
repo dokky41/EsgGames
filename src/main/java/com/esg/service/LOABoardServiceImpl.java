@@ -19,7 +19,7 @@ import com.esg.utils.LOAFileUtils;
 @Service
 public class LOABoardServiceImpl implements LOABoardService{
 
-	@Inject //dao°´Ã¼ ÁÖÀÔ
+	@Inject //daoï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	LOABoardDAO dao;
 
 	@Resource(name="LOAfileUtils")
@@ -68,7 +68,7 @@ public class LOABoardServiceImpl implements LOABoardService{
 		dao.delete(num);
 		
 	}
-	//ÆÄÀÏ Á¤º¸ ºÒ·¯¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<Map<String, Object>> selectFileList(int num) {
 		// TODO Auto-generated method stub

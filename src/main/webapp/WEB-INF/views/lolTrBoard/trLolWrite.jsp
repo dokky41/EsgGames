@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- 헤더부분 -->
 <jsp:include page="../include/header.jsp"/>
@@ -26,7 +27,7 @@ function addFile() {
     
     var aa = document.getElementsByClassName('file-group').length;
     
-    if(aa<4){
+    if(aa<5){
 	    $("#file-list").append(str);
     }
     
@@ -43,16 +44,16 @@ function deleteFile(obj) {
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">로아 뉴스</div>
+		<div class="ln-title">LOL 뉴스</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
 				<div class="nt-item">
 				
 				<!-- 로아뉴스 for문 -->
-				<c:forEach var="list" items="${LoaNews}" >
+				<c:forEach var="list" items="${LolNews}" >
 				
 					<span class="new">news</span>
-					<a style="color: white !important;" href="https://m-lostark.game.onstove.com${list.RoaLink}">${list.RoaNews}</a> 
+					<a style="color: white !important;" href="https://m-lostark.game.onstove.com${list.LolLink}">${list.LolNews}</a> 
 					&nbsp; &nbsp;&nbsp;
 				
 				</c:forEach>
@@ -72,7 +73,7 @@ function deleteFile(obj) {
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>로아 거래소</h2>
+						<h2>LOL 거래소</h2>
 						<p> &nbsp; 게임머니 및 아이템 거래</p>
 					</div>
 				</div>
@@ -83,56 +84,55 @@ function deleteFile(obj) {
 
 
 	<!-- Page section -->
-	<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/community-bg.jpg">
+	<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/yd/trloabg.jpg">
 		<div class="community-warp spad">
 			<div class="container">
 				<ul class="community-post-list">
 					
 					<li>
 						<!-- Page section -->
-	<section class="page-section spad contact-page" style="padding-top: 10px">
+	<section class="page-section spad contact-page" style="padding-top: 10px;">
 	
-				<div class="col-lg-8" >
+				<div class="col-lg-8" style="">
 					<div class="contact-form-warp">
-						<h4 class="comment-title" style="color: white;">판매글수정</h4>
 						<form class="comment-form" 
-						action="${PageContext.request.contextPath}/ydTrBoard/trLostModify" method="post" enctype="multipart/form-data">
-
-							<input type="hidden" value="${trLoa.num}" name="num">
+						action="${PageContext.request.contextPath}/lolTrBoard/trLolWrite" method="post"
+						 enctype="multipart/form-data" style="width: 150%;">
+						<h4 class="comment-title" style="color: white;">판매등록 <input type="submit" class="site-btn btn-sm" style="float: right;" value="등록"></h4>
+						
+							
+							<input type="hidden" value="${membervo.userid}" name="userid">
 							
 							<div class="row">
 								<div class="col-md-6">
-									<input type="text" placeholder="상품이름" name="subject" value="${trLoa.subject }">
+								
+									<input type="text" placeholder="상품이름" name="subject">
 								</div>
 								<div class="col-md-6">
-									<input type="text" placeholder="상품개수" name="goodsCount" value="${trLoa.goodsCount }">
+									<input type="number" placeholder="상품개수" name="goodsCount">
 								</div>
 								
 								<div class="col-md-6">
-									<input type="text" placeholder="캐릭터명" name="chname" value="${trLoa.chname }">
+									<input type="text" placeholder="캐릭터명" name="chname">
 								</div>
 								
 								<div class="col-md-6">
-									<input type="text" placeholder="판매금액" name="price" value="${trLoa.price }">
+									<input type="number" placeholder="판매금액" name="price">
 								</div>
 								
 								<div class="col-lg-12">
-<!-- 									<input type="text" placeholder="판매금액"> -->
 									
-									<textarea placeholder="상세설명" name="content" >${trLoa.content }</textarea>
-									
+									<textarea placeholder="상세설명" name="content"></textarea>
 									
 									<div class="form-group" id="file-list">
-								        <a href="#this" onclick="addFile()">파일추가</a>
+								        <a href="#this" onclick="addFile()">사진추가</a>
 							        	<div class="file-group">
 							        	<a style="color: white;">* 맨 위 메인이미지</a> <br>
 <!-- 						            		<input type="file" name="files" accept="image/*"><a href='#this' name='file-deleteno' >삭제</a> -->
 						        		</div>
 								    </div>
-									
-									<input type="submit" class="site-btn btn-sm" style="float: right;" value="재등록">
-								</div>
 								
+								</div>
 								
 								
 								

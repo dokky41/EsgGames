@@ -1,8 +1,11 @@
 package com.esg.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -94,16 +97,15 @@ public class MemberController {
 		if(membervo==null) {
 			return "redirect:/member/login";
 		}
-
+		
+		vo2.setUserid(vo.getUserid());
+		
 		List<esgMileVO> mile = service.getMyMileInfo(vo2);
 		List<trMailVO> trInfo = service.getMyTrInfo(membervo.getUserid());
 		List<trMailVO> trFromInfo = service.getFromTrInfo(membervo.getUserid());
 		List<trMailVO> trToInfo = service.getToTrInfo(membervo.getUserid());
 		List<trMailVO> mailFrom = service.getmailForm(membervo.getUserid());
 		List<trMailVO> mailTo = service.getmailTo(membervo.getUserid());
-		
-		log.info(mile+"");
-		log.info(trFromInfo+"");
 		
 		
 		session.setAttribute("mailFrom", mailFrom);
@@ -130,11 +132,31 @@ public class MemberController {
 	
 	//내 정보 페이지로 이동
 	@RequestMapping(value="/myinfo", method=RequestMethod.GET)
-	public void myinfoGET(Model model,@RequestParam("sort") String sort) throws Exception {
+	public void myinfoGET(esgMileVO vo2, HttpSession session,@RequestParam("userid") String userid,
+			Model model,@RequestParam("sort") String sort) throws Exception {
 		
 		log.info("내정보 페이지 이동");
 		
 		model.addAttribute("sort", sort);
+//	    
+	    log.info(userid);
+		
+		vo2.setUserid(userid);
+		
+		List<esgMileVO> mile = service.getMyMileInfo(vo2);
+		List<trMailVO> trInfo = service.getMyTrInfo(userid);
+		List<trMailVO> trFromInfo = service.getFromTrInfo(userid);
+		List<trMailVO> trToInfo = service.getToTrInfo(userid);
+		List<trMailVO> mailFrom = service.getmailForm(userid);
+		List<trMailVO> mailTo = service.getmailTo(userid);
+//		
+//		
+		session.setAttribute("mailFrom", mailFrom);
+		session.setAttribute("mailTo", mailTo);
+		session.setAttribute("trToInfo", trToInfo);
+		session.setAttribute("trFromInfo", trFromInfo);
+		session.setAttribute("mile", mile);
+		session.setAttribute("tr", trInfo);
 	}
 	
 	//마일리지 충전 페이지로 이동
@@ -151,11 +173,13 @@ public class MemberController {
 	
 	//마일리지 충전 동작
 	@RequestMapping(value="/myPointCharge", method=RequestMethod.GET)
-	public String myPointChargeGET(MemberVO vo,esgMileVO vo2) throws Exception {
+	public void myPointChargeGET(MemberVO vo,esgMileVO vo2,trLoaVO vo3) throws Exception {
 			
 		log.info("마일리지 충전 동작");
 		
 		log.info(vo+"");
+		
+		vo2.setChargeNum(service.searchCnum());
 		
 		//회원 테이블 마일리지 충전
 		service.myPointCharge(vo);
@@ -163,7 +187,6 @@ public class MemberController {
 		//마일리지 테이블
 		service.mileInsert(vo2);
 		
-		return "redirect:/member/myinfo";
 	}
 	
 	//내 충전내역 페이지로 이동
@@ -234,7 +257,7 @@ public class MemberController {
 		service.buyerMileTrans(vo2);
 		//구매자마일리지변환
 		
-		return "redirect:/member/myinfo";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "/trRefuse", method = RequestMethod.GET)
@@ -250,7 +273,7 @@ public class MemberController {
 		
 		
 		
-		return "redirect:/member/myinfo?sort=1";
+		return "redirect:/index";
 	}
 
 	//본인인증 메세지
@@ -395,7 +418,7 @@ public class MemberController {
 		service.sendMail(vo);
 		
 		
-		return "redirect:/member/myinfo?sort=1";
+		return "redirect:/index";
 	}
 
 }

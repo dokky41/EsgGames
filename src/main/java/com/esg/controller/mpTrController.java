@@ -23,44 +23,44 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esg.domain.Criteria;
 import com.esg.domain.MemberVO;
 import com.esg.domain.PageMaker;
-import com.esg.domain.trLoaVO;
+import com.esg.domain.trLolVO;
 import com.esg.domain.trMailVO;
-import com.esg.service.TrLoaService;
+import com.esg.domain.trMpVO;
+import com.esg.service.TrLolService;
+import com.esg.service.TrMpService;
 
 @Controller
-@RequestMapping("/ydTrBoard/*")
-public class YdTradeController {
+@RequestMapping("/mpTrBoard/*")
+public class mpTrController {
 
-	private static final Logger log = LoggerFactory.getLogger(YdTradeController.class);
+	private static final Logger log = LoggerFactory.getLogger(mpTrController.class);
 
 	@Inject
-	private TrLoaService service;
+	private TrMpService service;
 
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public void gettest() {
 
 	}
 
-	@RequestMapping(value = "/trLoaContent", method = RequestMethod.GET)
-	public void gettrLoaContent(Model model, HttpSession session,
+	@RequestMapping(value = "/trContent", method = RequestMethod.GET)
+	public void gettrLolContent(Model model, HttpSession session,
 			@RequestParam("num") int num, Criteria cri,@RequestParam("page") int page) {
 
-		log.info("LostContent 거래상세페이지 이동");
+		log.info("trContent 거래상세페이지 이동");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray mpNews = service.getMpNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("mpNews", mpNews);
 
-//		log.info(LoaNews+"");
-		// 로아 최신뉴스 크롤링
 
 		// 조회수 증가
 		service.updateTrBoardCount(num);
 
 		// 해당글내용 불러오기
-		log.info(service.getTrLoaContent(num)+"");
-		session.setAttribute("trLoa", service.getTrLoaContent(num));
+		log.info(service.getTrMpContent(num)+"");
+		session.setAttribute("trMp", service.getTrMpContent(num));
 		// 해당글내용 불러오기
 
 		
@@ -68,38 +68,38 @@ public class YdTradeController {
 		model.addAttribute("pageCnt", page);
 	}
 
-	@RequestMapping(value = "/trLostArk", method = RequestMethod.GET)
-	public void gettrLostArk(Model model, HttpSession session, Criteria cri, 
+	@RequestMapping(value = "/trList", method = RequestMethod.GET)
+	public void gettrLol(Model model, HttpSession session, Criteria cri, 
 			@RequestParam("sort") String sort) throws Exception {
 
-		log.info("LostArk 거래페이지 이동");
+		log.info("mp 거래페이지 이동");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray mpNews = service.getMpNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("mpNews", mpNews);
 
-//		log.info(LoaNews+"");
+		log.info(mpNews+"");
 		// 로아 최신뉴스 크롤링
-		List<trLoaVO> trLoaList = null;
+		List<trMpVO> trMpList = null;
 		// 로아 거래글 목록 불러오기
 		if (sort.equals("def")) {
-			trLoaList = service.trLoaBoardList(cri);
+			trMpList = service.trMpBoardList(cri);
 		} else if (sort.equals("sel")) {
-			trLoaList = service.trLoaBoardSelList(cri);
+			trMpList = service.trMpBoardSelList(cri);
 		} else if (sort.equals("pri")) {
-			trLoaList = service.trLoaBoardPriList(cri);
+			trMpList = service.trMpBoardPriList(cri);
 		}else if (sort.equals("pri2")) {
-			trLoaList = service.trLoaBoardPri2List(cri);
+			trMpList = service.trMpBoardPri2List(cri);
 		}
 		// 로아 거래글 목록 불러오기
 
-		log.info("어어" + trLoaList + "");
+		log.info("어어" + trMpList + "");
 
 		model.addAttribute("listSize", service.totalCnt());
 
 		// 로아글목록 저장
-		model.addAttribute("trLoaList", trLoaList);
+		model.addAttribute("trMpList", trMpList);
 	
 		// 로아글목록 저장
 
@@ -113,34 +113,34 @@ public class YdTradeController {
 
 	}
 
-	@RequestMapping(value = "/trLostArk", method = RequestMethod.POST)
-	public void posttrLostArk(Model model, HttpSession session, Criteria cri,
+	@RequestMapping(value = "/trList", method = RequestMethod.POST)
+	public void posttrLol(Model model, HttpSession session, Criteria cri,
 			@RequestParam("searchName") String searchName, 
 			@RequestParam("sort") String sort) throws Exception {
 
-		log.info("LostArk 거래페이지 검색");
+		log.info("Lol 거래페이지 검색");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray mpNews = service.getMpNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("mpNews", mpNews);
 
 
 //		log.info(LoaNews+"");
 		// 로아 최신뉴스 크롤링
 		
-		List<trLoaVO> trLoaList = null;
+		List<trMpVO> trMpList = null;
 		// 로아 거래글 목록 불러오기
-			trLoaList = service.trLoaSearchList(cri);
+			trMpList = service.trMpSearchList(cri);
 		// 로아 거래글 목록 불러오기
 
-		log.info("ok:" + trLoaList + "");
+		log.info("ok:" + trMpList + "");
 		// 거래글수
 		model.addAttribute("listSize", service.totalCnt2(searchName));
 		// 거래글수
 
 		// 로아글목록 저장
-		model.addAttribute("trLoaList", trLoaList);
+		model.addAttribute("trMpList", trMpList);
 		// 로아글목록 저장
 
 		// 하단 페이징처리 정보 전달
@@ -154,27 +154,27 @@ public class YdTradeController {
 		
 	}
 
-	@RequestMapping(value = "/trLostWrite", method = RequestMethod.GET)
-	public void gettrLostWrite(Model model, HttpSession session) {
+	@RequestMapping(value = "/trWrite", method = RequestMethod.GET)
+	public void gettrMpWrite(Model model, HttpSession session) {
 
-		log.info("LostArk 거래작성페이지로 이동");
+		log.info("Mp 거래작성페이지로 이동");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray MpNews = service.getMpNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("MpNews", MpNews);
 
-		log.info(LoaNews + "");
+		log.info(MpNews + "");
 		// 로아 최신뉴스 크롤링
 
 	}
 	
 	int WRcount=1;
-	@RequestMapping(value = "/trLoaWrite", method = RequestMethod.POST)
-	public String gettrLostWrite(ArrayList<MultipartFile> files, trLoaVO vo, HttpServletRequest req,
+	@RequestMapping(value = "/trWrite", method = RequestMethod.POST)
+	public String gettrMpWrite(ArrayList<MultipartFile> files, trMpVO vo, HttpServletRequest req,
 			@RequestParam("userid") String userid) {
 
-		log.info("LostArk 거래작성완료");
+		log.info("Mp 거래작성완료");
 
 		// 사진저장부분
 		files.forEach(file -> {
@@ -217,37 +217,37 @@ public class YdTradeController {
 		log.info("저장 후 vo : " + vo);
 
 		// 글 작성 서비스동작
-		service.trLoaboardCreate(vo);
+		service.trMpboardCreate(vo);
 
 		WRcount=1;
-		return "redirect:/ydTrBoard/trLostArk?sort=def&page=1";
+		return "redirect:/mpTrBoard/trList?sort=def&page=1";
 	}
-	@RequestMapping(value = "/trLostModify", method = RequestMethod.GET)
-	public void gettrLostModify(Model model, HttpSession session,
+	@RequestMapping(value = "/trMpModify", method = RequestMethod.GET)
+	public void gettrMpModify(Model model, HttpSession session,
 			@RequestParam("num") int num) {
 
-		log.info("trLostModify 거래글 수정페이지로 이동");
+		log.info("trMp 거래글 수정페이지로 이동");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray mpNews = service.getMpNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("mpNews", mpNews);
 
-		log.info(LoaNews + "");
+		log.info(mpNews + "");
 		// 로아 최신뉴스 크롤링
 
 		// 해당글내용 불러오기
-		log.info(service.getTrLoaContent(num) + "");
-		session.setAttribute("trLoa", service.getTrLoaContent(num));
+		log.info(service.getTrMpContent(num) + "");
+		session.setAttribute("trLoa", service.getTrMpContent(num));
 		// 해당글내용 불러오기
 
 	}
 
-	@RequestMapping(value = "/trLostModify", method = RequestMethod.POST)
-	public String posttrLostModify(Model model, HttpSession session, 
-			@RequestParam("num") int num, trLoaVO vo,ArrayList<MultipartFile> files) {
+	@RequestMapping(value = "/trMpModify", method = RequestMethod.POST)
+	public String posttrMpModify(Model model, HttpSession session, 
+			@RequestParam("num") int num, trMpVO vo,ArrayList<MultipartFile> files) {
 
-		log.info("trLostModify 거래글 수정하기");
+		log.info("trMpModify 거래글 수정하기");
 
 		// 사진저장부분
 				files.forEach(file -> {
@@ -285,26 +285,24 @@ public class YdTradeController {
 				});
 				// 사진저장부분
 		// 해당글내용 수정
-		service.getTrLoaModify(vo);
+		service.getTrMpModify(vo);
 		// 해당글내용 수정
-		WRcount=1;
-		
-		
-		return "redirect:/ydTrBoard/trLoaContent?num=" + num+"&page=1";
+
+		return "redirect:/mpTrBoard/trMpContent?num=" + num;
 	}
 
-	@RequestMapping(value = "/trLoadelete", method = RequestMethod.POST)
-	public String posttrLoaDelete(@RequestParam("num") int num) {
+	@RequestMapping(value = "/trMpdelete", method = RequestMethod.POST)
+	public String posttrMpDelete(@RequestParam("num") int num) {
 
-		log.info("trLostModify 거래글 삭제하기");
+		log.info("trMpModify 거래글 삭제하기");
 
 		
 		
 		// 해당글내용 삭제
-		service.getTrLoaDelete(num);
+		service.getTrMpDelete(num);
 		// 해당글내용 삭제
 
-		return "redirect:/ydTrBoard/trLostArk?sort=def&page=1";
+		return "redirect:/mpTrBoard/trList?sort=def";
 	}
 	
 	@RequestMapping(value = "/trSendRequest", method = RequestMethod.POST)
@@ -316,7 +314,7 @@ public class YdTradeController {
 		service.trRequestMail(vo);
 		//거래요청하기
 
-		return "redirect:/ydTrBoard/trLostArk?sort=def&page=1";
+		return "redirect:/mpTrBoard/trList?sort=def";
 	}
 	
 	

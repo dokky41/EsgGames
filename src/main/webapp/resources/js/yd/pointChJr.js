@@ -58,14 +58,16 @@ function requestPay() {
 			 				}
 			 			
 			 			}); //ajax끝
-			 			 location.href="/member/myinfo?sort=1";
+//			 			 location.href="/member/myinfo?sort=1&userid="+puserid;
+			 			 location.href="/index";
+//			 			 location.href="/member/logout";
 			 			
 			          } else {
 			         	
 			              // 결제 실패 시 로직, 뒤로가기
 			              alert('결제실패');
 			              //결제 실패시 뒤로가기
-			              location.href="/member/myinfo?sort=1";
+			              location.href="/member/myinfo?sort=1&userid="+puserid;
 			          }
 			      });
 			}
@@ -75,6 +77,6 @@ function requestPay() {
 	    function cancelPay() {
 	    	
 	    	alert('예약목록창으로 이동');
-	    	location.href="/member/myinfo";
+	    	location.href="/member/myinfo?sort=1&userid=${membervo.userid}";
 	    	
 	    }
