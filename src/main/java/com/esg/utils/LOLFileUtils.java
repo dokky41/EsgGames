@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.esg.domain.*;
 
-@Component("fileUtils")
+@Component("LOLfileUtils")
 public class LOLFileUtils {
 	private static final Logger log = LoggerFactory.getLogger(LOLFileUtils.class);
 	

@@ -25,7 +25,7 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	@Inject //dao∞¥√º ¡÷¿‘
 	LOLBoardDAO dao;
 
-	@Resource(name="fileUtils")
+	@Resource(name="LOLfileUtils")
 	private LOLFileUtils fileUtils;
 	
 	private static final Logger log = LoggerFactory.getLogger(LOLBoardServiceImpl.class);

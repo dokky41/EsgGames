@@ -21,12 +21,12 @@
 
 
 	<!-- Page info section -->
-	<section class="page-info-section set-bg" data-setbg="https://talk.op.gg/images/game/bg_LOA.jpg">
+	<section class="page-info-section set-bg" data-setbg="${pageContext.request.contextPath}/resources/img/로아배경.png">
 		<div class="pi-content">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>리그오브레전드</h2>
+						<h2>로스트아크</h2>
 					</div>
 				</div>
 			</div>
