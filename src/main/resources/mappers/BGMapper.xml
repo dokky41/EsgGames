@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-<mapper namespace="com.esg.mapper.MapleMapper">
-
-	<insert id="createBoard">
+  
+  <mapper namespace="com.esg.mapper.BGMapper">
+  
+  <insert id="createBoard">
 	
-		insert into tbl_mapleboard (userid,boardpw,subject,content)
+		insert into tbl_BGboard (userid,boardpw,subject,content)
 		values(#{userid},#{boardpw},#{subject},#{content})
 	
 	</insert>
 	
-	<select id="maplelist" resultType="mapleboardVO">
-		select * from tbl_mapleboard 
+	<select id="BGlist" resultType="BGboardVO">
+		select * from tbl_BGboard 
 		where num > 0
 		order by num desc, date desc
 		limit #{pageStart}, #{perPageNum}
@@ -21,10 +21,10 @@
 		
 	</select>
 	
-	<select id="mapleSearchList" resultType="mapleboardVO">
+	<select id="BGSearchList" resultType="BGboardVO">
 	
 	 
- 		select * from tbl_mapleboard
+ 		select * from tbl_BGboard
  		where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'))
  		order by num desc, date desc 
  		limit #{pageStart}, #{perPageNum}
@@ -32,38 +32,38 @@
  		
 	</select>
 	
-	<select id="mapleContent" resultType="mapleboardVO">
- 		select * from tbl_mapleboard where num=#{num};
+	<select id="BGContent" resultType="BGboardVO">
+ 		select * from tbl_BGboard where num=#{num};
  	
  	</select>
  	
- 	<update id="maplemodify">
- 		update tbl_mapleboard set userid=#{userid},boardpw=#{boardpw},subject=#{subject},content=#{content}
+ 	<update id="BGmodify">
+ 		update tbl_BGboard set userid=#{userid},boardpw=#{boardpw},subject=#{subject},content=#{content}
  		where num=#{num}
  	</update>
  	
- 	<delete id="mapledelete">
+ 	<delete id="BGdelete">
  		
- 		delete from tbl_mapleboard
+ 		delete from tbl_BGboard
  		where num=#{num}
  	
  	</delete>
  	
  	<select id="totalCnt" resultType="int">
  	
- 		select count(num) from tbl_mapleboard
+ 		select count(num) from tbl_BGboard
  		 
  	</select>
  	
- 	<update id="mapleCount">
+ 	<update id="BGCount">
  	
- 		update tbl_mapleboard set readcount=readcount+1
+ 		update tbl_BGboard set readcount=readcount+1
  		where num=#{num}
  	
  	</update>
  	
  	<insert id="insertFile">
-        INSERT INTO maple_file
+        INSERT INTO BG_file
         (
             BOARD_IDX,
             ORG_FILE_NAME,
@@ -87,27 +87,20 @@
 	
 	<select id="getBoardNum" resultType="int">
 	
-		select max(num) from tbl_mapleboard
+		select max(num) from tbl_BGboard
 	
 	</select>
 
-	<select id="getBoardFile" resultType="mapleFileVO">
+	<select id="getBoardFile" resultType="BGFileVO">
             SELECT
                 IDX,
                 ORG_FILE_NAME,
                 SAVE_FILE_NAME,
                 ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
             FROM
-                maple_file
+                BG_file
             WHERE
                 BOARD_IDX = #{IDX};
     </select>
- 	
-	<select id="getBoardNum" resultType="int">
-		select max(num) from tbl_mapleboard
-	
-	</select>
-	
-	
-	
-</mapper>
+  
+  </mapper>

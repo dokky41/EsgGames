@@ -7,22 +7,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.esg.domain.mapleFileVO;
-import com.esg.domain.mapleboardVO;
+import com.esg.domain.BGFileVO;
 
-@Component("maplefileUtils")
-public class mapleFileUtils {
+@Component("BGfileUtils")
+public class BGFileUtils {
 	
-	private static final org.slf4j.Logger log =  LoggerFactory.getLogger(mapleFileUtils.class);
+private static final org.slf4j.Logger log =  LoggerFactory.getLogger(BGFileUtils.class);
     
-	private static final String uploadPath = "C:\\test\\file\\";
+	private static final String uploadPath = "/Users/ijiun/Documents/upload/";
  
-    public static List<Map<String, Object>> parseFileInfo(mapleFileVO vo1, MultipartFile[] file) throws Exception {
+    public static List<Map<String, Object>> parseFileInfo(BGFileVO vo1, MultipartFile[] file) throws Exception {
         
         String boardIDX = String.valueOf(vo1.getBOARD_IDX());
         String creaID = (String) vo1.getCREA_ID();
