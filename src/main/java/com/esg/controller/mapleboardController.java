@@ -42,7 +42,7 @@ public class mapleboardController {
 	@RequestMapping(value="/maple/mapleboardlist",method=RequestMethod.GET)
 	public void mapleGet(Model model,Criteria cri) throws Exception {
 		
-		log.info("maple페이지 실행");
+		log.info("maple페이지 실행1");
 		List<mapleboardVO> maplelist = service.mapleboardlist(cri);
 		log.info(""+service.mapleboardlist(cri));
 		model.addAttribute("maplelist", maplelist);
