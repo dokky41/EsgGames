@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.esg.mapper.LOAreplyMapper">
+
+<!-- 댓글 조회 -->
+	<select id="replyList" parameterType="int" resultType="LOAReplyVO">
+		select
+			*
+			from loa_reply
+			where IDX = #{IDX}		
+	</select>
+
+<!-- 댓글 작성 -->
+	<insert id="replyWrite" parameterType="LOAReplyVO">
+		insert into loa_reply(IDX, WRITER, CONTENT,RECOMMEND)
+			value(#{IDX}, #{WRITER}, #{CONTENT},0)
+	</insert>
+	
+	<insert id="RreplyWrite" parameterType="LOAReplyVO">
+		insert into loa_reply(IDX, WRITER, CONTENT,RECOMMEND,PARENT,DEEP)
+		value(#{IDX}, #{WRITER}, #{CONTENT},0,#{RNO},#{DEEP}+1)
+	</insert>
+<!-- 댓글 수정 -->
+	<update id="replyUpdate" parameterType="LOAReplyVO">
+		update loa_reply set
+			CONTENT = #{CONTENT}
+		where RNO = #{RNO} and IDX = ${IDX}	
+	</update>
+
+<!-- 댓글 삭제 -->
+	<delete id="replyDelete" parameterType="LOAReplyVO">
+		delete from loa_reply
+		where RNO = #{RNO} and IDX = ${IDX}
+	</delete>
+	
+	<!-- 단일 댓글 조회 -->
+<select id="replySelect" parameterType="LOAReplyVO" resultType="LOAReplyVO">
+	select
+		*
+	from loa_reply
+		where IDX = #{IDX}
+		and RNO = #{RNO}					
+</select>
+<update id="recommend">
+            UPDATE
+                loa_reply
+            SET
+                RECOMMEND = RECOMMEND + 1
+            WHERE
+                RNO = #{RNO};
+    </update>
+</mapper>

@@ -18,8 +18,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.esg.domain.*;
 
 @Component("fileUtils")
-public class FileUtils {
-	private static final Logger log = LoggerFactory.getLogger(FileUtils.class);
+public class LOLFileUtils {
+	private static final Logger log = LoggerFactory.getLogger(LOLFileUtils.class);
 	
 	private static final String uploadPath = "C:\\mp\\file\\";
 	public List<Map<String, Object>> parseFileInfo(LOLBoardVO vo, MultipartFile[] file) throws Exception {

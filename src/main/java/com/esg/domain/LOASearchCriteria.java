@@ -1,6 +1,6 @@
 package com.esg.domain;
 
-public class LOLSearchCriteria extends LOLCriteria{
+public class LOASearchCriteria extends LOACriteria{
 	private String searchType;
 	private String keyword;
 	 
@@ -18,6 +18,6 @@ public class LOLSearchCriteria extends LOLCriteria{
 	}
 	@Override
 	public String toString() {
-		return "LOLSearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
+		return "LOASearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
 	}
 }

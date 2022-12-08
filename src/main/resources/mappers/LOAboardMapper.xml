@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.esg.mapper.LOAboardMapper">
+
+	<select id="BoardList" resultType="LOABoardVO">
+		SELECT * FROM loa_board
+		where 1=1
+		<include refid="search"></include>
+        	ORDER BY cast(CASE #{sort}
+				WHEN '최신순' THEN IDX
+    			WHEN '조회순' THEN HIT_CNT
+     	        WHEN '추천순' THEN RECOMMEND
+			END as signed integer) DESC
+        LIMIT #{pageStart}, #{perPageNum};
+    </select>
+    
+    <select id="countBoardList" resultType="int">
+        select count(*) from loa_board
+        where 1=1
+        <include refid="search"></include>
+        AND IDX>0
+    </select>
+	<sql id="search">
+	                    <choose>
+                        <when test="searchType != null and searchType == 't'.toString()">
+                           AND TITLE LIKE CONCAT('%',#{keyword},'%') 
+                        </when>
+                        <when test="searchType != null and searchType == 'c'.toString()">
+                           AND CONTENTS LIKE CONCAT('%',#{keyword},'%') 
+                        </when>
+                        <when test="searchType != null and searchType == 'w'.toString()">
+                           AND CREA_ID LIKE CONCAT('%',#{keyword},'%') 
+                        </when>
+                        <when test="searchType != null and searchType == 'tc'.toString()">
+                           AND (TITLE LIKE CONCAT('%',#{keyword},'%')) or (CONTENTS LIKE CONCAT('%',#{keyword},'%'))
+                        </when>
+                    </choose>
+     </sql>
+    <insert id="write" useGeneratedKeys="true" keyProperty="IDX">
+		INSERT INTO loa_board
+		(		TITLE,
+                CONTENTS,
+                HIT_CNT,
+                DEL_CHK,
+                CREA_ID,
+                RECOMMEND
+        )
+		VALUES
+		(		#{TITLE},
+                #{CONTENTS},
+                0,
+                'N',
+                #{CREA_ID},
+                0
+        );
+	</insert>
+	
+	<insert id="insertFile">
+        INSERT INTO loa_file
+        (
+            BOARD_IDX,
+            ORG_FILE_NAME,
+            SAVE_FILE_NAME,
+            FILE_SIZE,
+            CREA_ID,
+            CREA_DATE,
+            UPDATE_DATE
+        )
+        VALUES
+        (
+            #{ BOARD_IDX},
+            #{ ORG_FILE_NAME},
+            #{ SAVE_FILE_NAME},
+            #{ FILE_SIZE},
+            #{ CREA_ID},
+            SYSDATE(),
+            SYSDATE()
+        );
+</insert>
+	<select id="getBoardFile" resultType="LOABoardVO">
+            SELECT
+                IDX,
+                ORG_FILE_NAME,
+                SAVE_FILE_NAME,
+                ROUND(FILE_SIZE/1024,1) AS FILE_SIZE
+            FROM
+                loa_file
+            WHERE
+                BOARD_IDX = #{IDX};
+    </select>
+	<select id="getBoard" resultType="LOABoardVO">
+
+            SELECT
+                *
+            FROM
+                loa_board
+            WHERE
+                IDX = #{IDX};
+    </select>
+    <update id="updateBoardCnt">
+            UPDATE
+                loa_board
+            SET
+                HIT_CNT = HIT_CNT + 1
+            WHERE
+                IDX = #{IDX};
+    </update>
+    
+    <update id="update">
+            UPDATE
+                loa_board
+            SET
+                TITLE = #{TITLE},
+                CONTENTS = #{CONTENTS}
+            WHERE
+                IDX = #{IDX}
+                and
+                CREA_ID = #{CREA_ID};
+    </update>
+    
+    <delete id="delete">
+    	DELETE FROM loa_board
+    	WHERE IDX = #{IDX};
+    </delete>
+<update id="recommend">
+            UPDATE
+                loa_board
+            SET
+                RECOMMEND = RECOMMEND + 1
+            WHERE
+                IDX = #{IDX};
+    </update>
+</mapper>
