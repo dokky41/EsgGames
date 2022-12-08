@@ -98,16 +98,16 @@ $(document).ready(function(){
 
 
 	<!-- Page section -->
-	<section class="page-section spad contact-page" style="padding-bottom: 0px;">
+	<section class="page-section community-page set-bg" style="padding-top: 50px;" data-setbg="${pageContext.request.contextPath }/resources/img/yd/trloabg.jpg">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 mb-5 mb-lg-0">
 					
 					
 					
-					<div class="row">
+					<div class="row" >
 						<div class="col-md-9">
-							<ul class="contact-info-list" style="padding-top: 0px;">
+							<ul class="contact-info-list" style="padding-top: 0px;" >
 							
 					<c:if test="${trLoa.file1 != null}">
 					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }" class="img" width="300px" height="150px" >
@@ -124,19 +124,19 @@ $(document).ready(function(){
 					
 							<br><br>
 							
-								<li><div class="cf-left">상품이름</div><div class="cf-right">${trLoa.subject}</div></li>
-<%-- 								<li><div class="cf-left">내용</div><div class="cf-right">${trLoa.content}</div></li> --%>
-								<li><div class="cf-left">가격</div><div class="cf-right">${trLoa.price}원</div></li>
-								<li><div class="cf-left">개수</div><div class="cf-right">${trLoa.goodsCount}</div></li>
-								<li><div class="cf-left">작성자</div><div class="cf-right">${trLoa.userid}</div></li>
-								<li><div class="cf-left">거래번호</div><div class="cf-right">#${trLoa.num}</div></li>
-								<li><div class="cf-left">등록일</div><div class="cf-right">#${trLoa.date}</div></li>
+								<li><div class="cf-left">상품이름</div><div class="cf-right" style="color: white;">${trLoa.subject}</div></li>
+								<li><div class="cf-left">가격</div><div class="cf-right" style="color: white;">${trLoa.price}원</div></li>
+								<li><div class="cf-left">개수</div><div class="cf-right" style="color: white;">${trLoa.goodsCount}</div></li>
+								<li><div class="cf-left">작성자</div><div class="cf-right" style="color: white;">${trLoa.userid}</div></li>
+								<li><div class="cf-left">거래번호</div><div class="cf-right" style="color: white;">#${trLoa.num}</div></li>
+								<li><div class="cf-left">등록일</div><div class="cf-right" style="color: white;">#${trLoa.date}</div></li>
 							</ul>
 	
-							<br><br><br><br><br>
+							<br><br><br>
 							
-							<h4 style="margin-top: 8px; ">상세내용</h4>
-							<br>
+							<div><h3 style="color: white;">더보기</h3></div>
+							<h4 style="margin-top: 8px; color: white;">상세내용</h4>
+							<br><br><br>
 							<table border="1" width="200" height="100">
 							<tr><textarea rows="17" cols="42" readonly="readonly" style="resize: none;">${trLoa.content}</textarea></tr>
 							
@@ -151,7 +151,7 @@ $(document).ready(function(){
 				
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
-						<h4 class="comment-title">요청사항  <button class="site-btn btn-sm" style="float: right;"
+						<h4 class="comment-title" style="color: white;">요청사항  <button class="site-btn btn-sm" style="float: right;"
 									onclick="location.href='/ydTrBoard/trLostArk?sort=def&page=${pageCnt}' ;return false;">
 									목록</button></h4>
 						 
@@ -199,11 +199,14 @@ $(document).ready(function(){
 							</div>
 						
 					</div>
+			
+			
 					
 	<!-- 상세내용 -->
 	<br> <br> <br> <br> 
-	  <h4>물품사진</h4>
-	<br>
+	
+	  <h4 style="color: white; ">물품사진</h4>
+	<br><br><br>
 	<!-- 사진들 4개 -->
 	<!-- 사진들 4개 -->
 	<div class="social-links">

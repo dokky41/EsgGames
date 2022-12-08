@@ -1,10 +1,21 @@
 @charset "UTF-8";
 
 .text-subject {
-	color: black;
+	color: white;
 }
 
 
 .text-subject:hover {
 	color: #0080ff;
+}
+
+
+
+
+.text-subject2 {
+	color: #1e282c;
+}
+
+.text-subject2:hover {
+	background: #0080ff;
 }

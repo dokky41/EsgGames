@@ -49,7 +49,6 @@ function sample6_execDaumPostcode() {
             }
         }).open();
     }
-<!-- Daum postcode API -->
 
 function checkId(){
 		

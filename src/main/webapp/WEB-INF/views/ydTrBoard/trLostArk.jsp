@@ -14,7 +14,7 @@
 <div class="latest-news-section">
 	<a href="https://m-lostark.game.onstove.com/News/Notice/List"
 		target='_blank'>
-		<div class="ln-title">로아 뉴스</div>
+		<div class="ln-title"><b>로아 뉴스</b></div>
 	</a>
 	<div class="news-ticker">
 		<div class="news-ticker-contant">
@@ -57,54 +57,33 @@
 
 
 <!-- Page section -->
-<section class="page-section community-page set-bg" data-setbg=""
-	style="background: #ecf0f5;">
-	<div class="community-warp spad"
-		style="background: rgba(255, 255, 255, 0.8);">
-		<div class="container">
+<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/yd/trloabg.jpg">
+	<div class="community-warp spad">
+		<div class="container" >
 			<div class="row">
 				<div class="col-md-6">
 					<h3 class="community-top-title">
-						<a style="color: black;"
-							href="${PageContext.request.contextPath}/ydTrBoard/trLostArk">
+						<a href="${PageContext.request.contextPath}/ydTrBoard/trLostArk" class="text-subject">
 							<b style="font-family: 'Malgun Gothic', dotum, sans-serif;">
 								물품리스트 (${ listSize})</b>
 						</a>
 					</h3>
 
-					<div style="float: left;">
-						<button
-							onclick="location.href='/ydTrBoard/trLostArk?sort=def&page=1' ;return false;"
-							style="cursor: pointer; color: white; background: black; border-radius: 5px 5px 5px 5px;">최신순</button>
-
-						<button
-							onclick="location.href='/ydTrBoard/trLostArk?sort=sel&page=1' ;return false;"
-							style="cursor: pointer; color: white; background: black; border-radius: 5px 5px 5px 5px;">조회순</button>
-
-						<button
-							onclick="location.href='/ydTrBoard/trLostArk?sort=pri&page=1' ;return false;"
-							style="cursor: pointer; color: white; background: black; border-radius: 5px 5px 5px 5px;">가격순↓</button>
-
-						<button
-							onclick="location.href='/ydTrBoard/trLostArk?sort=pri2&page=1' ;return false;"
-							style="cursor: pointer; color: white; background: black; border-radius: 5px 5px 5px 5px;">가격순↑</button>
-
-					</div>
+					
+					
+					
+					
 				</div>
 
 
 				<div class="col-md-6 text-lg-right">
 
-					<form class="community-filter"
-						action="${PageContext.request.contextPath}/ydTrBoard/trLostWrite"
-						method="get">
-						<label for="fdf5"> <input type="submit" value="판매등록"
-							style="height: 43px; background: black; color: white; border-radius: 5px 5px 5px 5px; cursor: pointer;">
+					
+						<label for="fdf5"> <input type="button" value="판매등록" 
+						onclick="location.href='${PageContext.request.contextPath}/ydTrBoard/trLostWrite'"
+							style="height: 43px; cursor: pointer;" class="text-subject2">
 						</label>
-					</form>
-
-
-
+					
 				</div>
 			</div>
 
@@ -125,10 +104,10 @@
 						<c:when test="${fn:length(trLoaList) > 0 }">
 							<c:forEach var="list" items="${trLoaList}"  >
 								
-								<tr>
+								<tr style="color: white;">
 									<th scope="row">${list.num }</th>
-									<td><a
-										href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent?num=${list.num}&page=<%=request.getParameter("page") %>"
+									<td >
+									<a href="${pageContext.request.contextPath }/ydTrBoard/trLoaContent?num=${list.num}&page=<%=request.getParameter("page") %>"
 										class="text-subject">${list.subject }</a></td>
 									<td>${list.price }p</td>
 
@@ -153,40 +132,69 @@
 					</c:choose>
 
 				</tbody>
-			</table>
+				
+				<tr>
+				
+				<div style="float: left;">
+						<button class="text-subject2"
+							onclick="location.href='/ydTrBoard/trLostArk?sort=def&page=1' ;return false;"
+							style="cursor: pointer; "><b>최신순</b></button>
+
+						<button class="text-subject2"
+							onclick="location.href='/ydTrBoard/trLostArk?sort=sel&page=1' ;return false;"
+							style="cursor: pointer; "><b>조회순</b></button>
+ 
+						<button class="text-subject2"
+							onclick="location.href='/ydTrBoard/trLostArk?sort=pri&page=1' ;return false;"
+							style="cursor: pointer;  "><b>가격순↓</b></button>
+
+						<button class="text-subject2"
+							onclick="location.href='/ydTrBoard/trLostArk?sort=pri2&page=1' ;return false;"
+							style="cursor: pointer;  "><b>가격순↑</b></button>
+
+						
 
 
-			<br>
-			<form class="community-filter"
+					</div>
+				
+				
+				
+				<form class="community-filter"
 				action="${PageContext.request.contextPath}/ydTrBoard/trLostArk?sort=def"
 				method="post">
 
 				<input type="submit" value="검색"
-					style="float: right; cursor: pointer; color: white; background: black;">
+					style="float: right; cursor: pointer; " class="text-subject2">
 				<input type="text" name="searchName" style="float: right;">
 
 			</form>
-
-			<div class="site-pagination sp-style-2"
-				style="padding-left: 45% !important;">
+				</tr>
+				
+				
+			</table>
+	<div class="site-pagination sp-style-2"
+				style="padding-left: 40% !important; padding-top: 0px;" >
 
 
 				<c:if test="${pm.prev }">
-					<a href="trLostArk?sort=<%=request.getParameter("sort") %>page=${pm.startPage - 1 }">&laquo;</a>
+					<a class="text-subject" href="trLostArk?sort=<%=request.getParameter("sort") %>&page=${pm.startPage - 1 }">&laquo;</a>
 				</c:if>
 
 				<c:forEach var="idx" begin="${pm.startPage }" end="${pm.endPage }">
 
-					<a href="trLostArk?sort=<%=request.getParameter("sort") %>&page=${idx }">${idx }</a>
+					<a  class="text-subject" href="trLostArk?sort=<%=request.getParameter("sort") %>&page=${idx }">${idx }</a>
 				</c:forEach>
 
 				<c:if test="${pm.next && pm.endPage >0 }">
-					<a
-						href="trLostArk?sort=<%=request.getParameter("sort") %>page=${pm.endPage + 1 }">&raquo;</a>
+					<a class="text-subject"
+						href="trLostArk?sort=<%=request.getParameter("sort") %>&page=${pm.endPage + 1 }">&raquo;</a>
 				</c:if>
 
 
+			
 			</div>
+
+			
 
 
 

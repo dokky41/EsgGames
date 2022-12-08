@@ -148,6 +148,7 @@ public class YdTradeController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.totalCnt2(searchName));
 
+		log.info("페이지메이커"+pageMaker);
 		model.addAttribute("pm", pageMaker);
 
 		

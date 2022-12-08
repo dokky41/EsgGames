@@ -10,7 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.esg.domain.MemberVO;
+import com.esg.domain.esgChange;
 import com.esg.domain.esgMileVO;
+import com.esg.domain.esgmailVO;
 import com.esg.domain.trLoaVO;
 import com.esg.domain.trMailVO;
 
@@ -98,6 +100,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public void buyerMileTrans(MemberVO vo2) {
 		sqlSession.update(NAMESPACE+".buyerMileTrans", vo2);
 	}
+	@Override
+	public void exMileTrans(esgChange vo) {
+		sqlSession.update(NAMESPACE+".mileUpdate", vo);
+	}
 
 	@Override
 	public String getIdSearch(MemberVO vo) {
@@ -120,6 +126,50 @@ public class MemberDAOImpl implements MemberDAO {
 	public void updateMeInfo(MemberVO vo) {
 		sqlSession.update(NAMESPACE+".updateMeInfo", vo);
 		
+	}
+
+	@Override
+	public void exPutDB(esgChange vo) {
+		sqlSession.insert(NAMESPACE+".exInsert", vo);
+		
+	}
+
+	@Override
+	public void deleteMeInfo(MemberVO vo) {
+		sqlSession.delete(NAMESPACE+".deleteMeInfo", vo);
+		
+	}
+
+	@Override
+	public void getRefuse(trMailVO vo) {
+		sqlSession.update(NAMESPACE+".getRefuse", vo);
+		
+	}
+
+	@Override
+	public List<trMailVO> getFromTrInfo(String userid) {
+		return sqlSession.selectList(NAMESPACE+".getFromTrInfo",userid);
+	}
+
+	@Override
+	public List<trMailVO> getToTrInfo(String userid) {
+		return sqlSession.selectList(NAMESPACE+".getToTrInfo",userid);
+	}
+
+	@Override
+	public void sendMail(esgmailVO vo) {
+		 sqlSession.insert(NAMESPACE+".sendMail", vo);
+		
+	}
+
+	@Override
+	public List<trMailVO> getmailForm(String userid) {
+		return sqlSession.selectList(NAMESPACE+".getmailForm",userid);
+	}
+
+	@Override
+	public List<trMailVO> getmailTo(String userid) {
+		return sqlSession.selectList(NAMESPACE+".getmailTo",userid);
 	}
 
 	

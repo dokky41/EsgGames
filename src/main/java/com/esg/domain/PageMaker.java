@@ -16,7 +16,7 @@ public class PageMaker {
 	private boolean prev;
 	private boolean next;
 	
-	private int displayPageNum = 10; //페이지 블럭의 수
+	private int displayPageNum = 5; //페이지 블럭의 수
 		
 	public void setCri(Criteria cri) {
 		this.cri = cri;

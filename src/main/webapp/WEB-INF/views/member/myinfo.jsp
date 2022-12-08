@@ -1,108 +1,180 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+<title>EsgGames</title>
 <meta charset="UTF-8">
-<title>ESG GAMES</title>
-<link href="${pageContext.request.contextPath }/resources/css/default.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/resources/css/subpage.css" rel="stylesheet" type="text/css">
+<meta name="description" content="Game Warrior Template">
+<meta name="keywords" content="warrior, game, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/yd/myInfoC.css">
+<script>
+	if ("${membervo.userid}" == '') {
+		alert('로그인이 필요합니다');
+		location.href = "${pageContext.request.contextPath}/member/login";
+	}
+</script>
 </head>
-<body>
-<div id="wrap">
-
-<jsp:include page="../include/header.jsp"></jsp:include>
-
-<div id="sub_img_member"></div>
-<nav id="sub_menu">
-<ul>
-
-</ul>
-</nav>
-<article style="padding-left: 40%;  height: 100%;">
-<!-- <a href="/index" style="padding-left: 45%;"> -->
-<br>
-<img style="padding-left: 1%;" width="300"
- src="${pageContext.request.contextPath }/resources/img/logo2.jpg" style=" width: 33%;">
-<br>
-<br>
-<h5 style="padding-left: 5%;"><b>${membervo.userid}님의 정보 페이지</b></h5>
-<br>
-<fieldset>
-
-<div id="loginWrap" class="loginWrap">
-				<div class="loginUserInfo">
-					
-					
-						<table border="1" style="text-align: center;">
-							
-							<tr>
-							<td width="100" >아이디  </td>
-							<td width="185"> ${membervo.userid }</td>
-							</tr>
-						
-							<tr>
-							<td>이름  </td>
-							<td>${membervo.username }</td>
-							</tr>
-							
-							<tr>
-							<td>이메일  </td>
-							<td> ${membervo.useremail}</td>
-							</tr>
-						
-							<tr>
-							<td>마일리지  </td>
-							<td> ${membervo.userpoint}</td>
-							</tr>
-						
-						</table>
-							
-							<br>
-					
-					
-					<div id="notice" role="tooltip"></div>
-					<p id="content">
-					<button id="loginBtn" class="btn btn-primary btn-large"
-					onclick="location.href='/member/pointCharge'; return false;" style="width: 140px;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i> 마일리지 충전</span></button>
-					
-					<button id="loginBtn" class="btn btn-primary btn-large" 
-					onclick="location.href='/member/myChargeInfo?userid=${membervo.userid}'; return false;" style="width: 145px; background: red;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i> 내 충전내역</span></button>
-					</p>
-					
-					
-					
+<body id="body-pd">
+	<div class="l-navbar" id="navbar">
+		<nav class="nav">
+			<div>
+				<div class="nav__brand">
+					<ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+					<a href="${pageContext.request.contextPath }/index" class="nav__logo">메인페이지</a>
 				</div>
-				
-				<button id="loginBtn" class="btn btn-primary btn-large" 
-					onclick="location.href='/member/myTradeInfo?userid=${membervo.userid}'; return false;" style="width: 145px; background: #2c974b;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i>내 거래정보</span></button>
-				
-				<button id="loginBtn" class="btn btn-primary btn-large" 
-					onclick="location.href='/member/myinfoUpdate?userid=${membervo.userid}'; return false;" style="width: 145px; background: black;">
-					<span>
-					<i class="fa fa-sign-in">
-					</i>회원정보변경</span></button>
-					
-				<br>
+				<div class="nav__list">
+					<a href="${pageContext.request.contextPath }/member/myinfo?sort=1"
+						class="nav__link active"> <ion-icon name="home-outline"
+							class="nav__icon"></ion-icon> <span class="nav_name">정보페이지</span>
+					</a>
+
+					<div href="#" class="nav__link collapse">
+						<ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+						<span class="nav_name">메세지함</span>
+
+						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+						<ul class="collapse__menu">
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=submit"" class="collapse__sublink">submit</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=mailFrom" class="collapse__sublink">from</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=mailTo" class="collapse__sublink">to</a>
+						</ul>
+
+					</div>
+
+					<div href="#" class="nav__link collapse">
+						<ion-icon name="diamond-outline" class="nav__icon"></ion-icon>
+						<span class="nav_name">마일리지</span>
+
+						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+						<ul class="collapse__menu">
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=charge" class="collapse__sublink">Charge</a>
+<%-- 							<a href="${pageContext.request.contextPath }/member/myinfo?sort=exChange" class="collapse__sublink">exChange</a> --%>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=chargeList" class="collapse__sublink">mileList</a>
+						</ul>
+					</div>
+
+					<div href="#" class="nav__link collapse">
+						<ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+						<span class="nav_name">거래관련</span>
+
+						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+						<ul class="collapse__menu">
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trList"
+							 class="collapse__sublink">list</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trFromList"
+							 class="collapse__sublink">from</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trToList" 
+							class="collapse__sublink">to</a>
+						</ul>
+
+					</div>
+
+					<div href="#" class="nav__link collapse">
+						<ion-icon name="people-outline" class="nav__icon"></ion-icon>
+						<span class="nav_name">내 정보</span>
+
+						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+						<ul class="collapse__menu">
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myInfoView" class="collapse__sublink">select</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myinfoUpdate" class="collapse__sublink">update</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myinfoDelete" class="collapse__sublink">delete</a>
+						</ul>
+
+					</div>
+
+					<a href="#" class="nav__link"> <ion-icon
+							name="settings-outline" class="nav__icon"></ion-icon> <span
+						class="nav_name">Settings</span>
+					</a>
+				</div>
+				<a href="${pageContext.request.contextPath }/member/logout"
+					class="nav__link"> <ion-icon name="log-out-outline"
+						class="nav__icon"></ion-icon> <span class="nav_name">Log
+						out</span>
+				</a>
 			</div>
-			</fieldset>
-		
-</article>
+		</nav>
+	</div>
 
-<div class="clear"></div>
-<!-- í¸í°ë¤ì´ê°ë ê³³ -->
+	<c:if test="${param.sort=='1' }">
+	<jsp:include page="include/base.jsp" />
+	</c:if>
+	
+	<!-- 메세지 -->
+	<c:if test="${param.sort=='submit'}">
+	<jsp:include page="include/mSubmit.jsp" />
+	</c:if>
+	
+	<c:if test="${param.sort=='mailFrom'}">
+	<jsp:include page="include/mailFrom.jsp" />
+	</c:if>
+	
+	<c:if test="${param.sort =='mailTo'}">
+	<jsp:include page="include/mailTo.jsp" />
+	</c:if>
+	<!-- 메세지 -->
+	
+	<!-- 마일리지 -->
+	<c:if test="${param.sort=='charge'}">
+	<jsp:include page="include/pointCharge.jsp" />
+	</c:if>
+	
+	<c:if test="${param.sort=='exChange'}">
+	<jsp:include page="include/exChangeList.jsp" />
+	</c:if>
+	
+	<c:if test="${param.sort =='chargeList'}">
+	<jsp:include page="include/chargeList.jsp" />
+	</c:if>
+	<!-- 마일리지 -->
 
-<jsp:include page="../include/footer.jsp"></jsp:include>
 
-</div>
+	<!-- 내 정보 -->
+	<c:if test="${param.sort =='myInfoView'}">
+	<jsp:include page="include/myInfoView.jsp" />
+	</c:if>
+	
+	<c:if test="${param.sort =='myinfoUpdate'}">
+	<jsp:include page="include/myinfoUpdate.jsp" />
+	</c:if>
+	
+	<c:if test="${param.sort =='myinfoDelete'}">
+	<jsp:include page="include/myinfoDelete.jsp" />
+	</c:if>
+
+	<!-- 내 정보 -->
+	
+	
+	<!-- 거래 -->
+	<c:if test="${param.sort =='trList'}">
+	<jsp:include page="include/trList.jsp" />
+	</c:if>
+	
+	<c:if test="${param.sort =='trFromList'}">
+	<jsp:include page="include/trFromList.jsp" />
+	</c:if>
+	
+	<c:if test="${param.sort =='trToList'}">
+	<jsp:include page="include/trToList.jsp" />
+	</c:if>
+	
+	<!-- 거래 -->
+	
+	<!-- IONICONS -->
+	<script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+	<!-- JS -->
+	<script
+		src="${pageContext.request.contextPath }/resources/js/yd/myInfoC.js"></script>
 </body>
 </html>
