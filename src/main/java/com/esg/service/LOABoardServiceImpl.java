@@ -1,43 +1,40 @@
 package com.esg.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import com.esg.persistence.LOLBoardDAO;
-import com.esg.utils.LOLFileUtils;
-import com.esg.domain.LOLBoardVO;
-import com.esg.domain.LOLCriteria;
-import com.esg.domain.LOLReplyVO;
-import com.esg.domain.LOLSearchCriteria;
+
+import com.esg.domain.LOABoardVO;
+import com.esg.domain.LOASearchCriteria;
+import com.esg.persistence.LOABoardDAO;
+import com.esg.utils.LOAFileUtils;
 
 @Service
-public class LOLBoardServiceImpl implements LOLBoardService {
+public class LOABoardServiceImpl implements LOABoardService{
 
-	@Inject //daoÍ∞ùÏ≤¥ Ï£ºÏûÖ
-	LOLBoardDAO dao;
+	@Inject //dao∞¥√º ¡÷¿‘
+	LOABoardDAO dao;
 
 	@Resource(name="fileUtils")
-	private LOLFileUtils fileUtils;
+	private LOAFileUtils fileUtils;
 	
-	private static final Logger log = LoggerFactory.getLogger(LOLBoardServiceImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(LOABoardServiceImpl.class);
 
 	@Override
-	public List<LOLBoardVO> getBoardList(LOLSearchCriteria cri) {
+	public List<LOABoardVO> getBoardList(LOASearchCriteria cri) {
 		// TODO Auto-generated method stub
 		return dao.getBoardList(cri);
 	}
 
 	@Override
-	public void insertBoard(LOLBoardVO vo,MultipartFile[] file)throws Exception{
+	public void insertBoard(LOABoardVO vo,MultipartFile[] file)throws Exception{
 		// TODO Auto-generated method stub
 		dao.insertBoard(vo);
 	    List<Map<String, Object>>fileList = fileUtils.parseFileInfo(vo, file);
@@ -53,14 +50,14 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	}
 
 	@Override
-	public LOLBoardVO readBoard(int num) {
+	public LOABoardVO readBoard(int num) {
 		// TODO Auto-generated method stub
-		LOLBoardVO vo = dao.getBoardContent(num);
+		LOABoardVO vo = dao.getBoardContent(num);
 		return vo;
 	}
 
 	@Override
-	public void update(LOLBoardVO vo) {
+	public void update(LOABoardVO vo) {
 		// TODO Auto-generated method stub
 		dao.update(vo);
 	}
@@ -79,13 +76,13 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 	}
 
 	@Override
-	public int countBoardListTotal(LOLSearchCriteria cri) {
+	public int countBoardListTotal(LOASearchCriteria cri) {
 		// TODO Auto-generated method stub
 		return dao.countBoardList(cri);
 	}
 
 	@Override
-	public void insertBoard(LOLBoardVO vo) {
+	public void insertBoard(LOABoardVO vo) {
 		// TODO Auto-generated method stub
 		dao.insertBoard(vo);
 	}
@@ -95,6 +92,4 @@ public class LOLBoardServiceImpl implements LOLBoardService {
 		// TODO Auto-generated method stub
 		dao.recommend(num);
 	}
-
-
 }
