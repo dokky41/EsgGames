@@ -22,7 +22,7 @@ public class LOABoardServiceImpl implements LOABoardService{
 	@Inject //dao∞¥√º ¡÷¿‘
 	LOABoardDAO dao;
 
-	@Resource(name="fileUtils")
+	@Resource(name="LOAfileUtils")
 	private LOAFileUtils fileUtils;
 	
 	private static final Logger log = LoggerFactory.getLogger(LOABoardServiceImpl.class);

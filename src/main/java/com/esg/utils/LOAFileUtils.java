@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.esg.domain.LOABoardVO;
 
-@Component("fileUtils")
+@Component("LOAfileUtils")
 public class LOAFileUtils {
 	private static final Logger log = LoggerFactory.getLogger(LOAFileUtils.class);
 	
