@@ -30,7 +30,7 @@
 					<a href="${pageContext.request.contextPath }/index" class="nav__logo">메인페이지</a>
 				</div>
 				<div class="nav__list">
-					<a href="${pageContext.request.contextPath }/member/myinfo?sort=1"
+					<a href="${pageContext.request.contextPath }/member/myinfo?sort=1&userid=${membervo.userid}"
 						class="nav__link active"> <ion-icon name="home-outline"
 							class="nav__icon"></ion-icon> <span class="nav_name">정보페이지</span>
 					</a>
@@ -42,9 +42,9 @@
 						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
 						<ul class="collapse__menu">
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=submit"" class="collapse__sublink">submit</a>
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=mailFrom" class="collapse__sublink">from</a>
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=mailTo" class="collapse__sublink">to</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=submit&userid=${membervo.userid}"" class="collapse__sublink">submit</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=mailFrom&userid=${membervo.userid}" class="collapse__sublink">from</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=mailTo&userid=${membervo.userid}" class="collapse__sublink">to</a>
 						</ul>
 
 					</div>
@@ -56,9 +56,9 @@
 						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
 						<ul class="collapse__menu">
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=charge" class="collapse__sublink">Charge</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=charge&userid=${membervo.userid}" class="collapse__sublink">Charge</a>
 <%-- 							<a href="${pageContext.request.contextPath }/member/myinfo?sort=exChange" class="collapse__sublink">exChange</a> --%>
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=chargeList" class="collapse__sublink">mileList</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=chargeList&userid=${membervo.userid}" class="collapse__sublink">mileList</a>
 						</ul>
 					</div>
 
@@ -69,11 +69,11 @@
 						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
 						<ul class="collapse__menu">
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trList"
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trList&userid=${membervo.userid}"
 							 class="collapse__sublink">list</a>
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trFromList"
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trFromList&userid=${membervo.userid}"
 							 class="collapse__sublink">from</a>
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trToList" 
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=trToList&userid=${membervo.userid}" 
 							class="collapse__sublink">to</a>
 						</ul>
 
@@ -86,9 +86,9 @@
 						<ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
 
 						<ul class="collapse__menu">
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myInfoView" class="collapse__sublink">select</a>
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myinfoUpdate" class="collapse__sublink">update</a>
-							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myinfoDelete" class="collapse__sublink">delete</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myInfoView&userid=${membervo.userid}" class="collapse__sublink">select</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myinfoUpdate&userid=${membervo.userid}" class="collapse__sublink">update</a>
+							<a href="${pageContext.request.contextPath }/member/myinfo?sort=myinfoDelete&userid=${membervo.userid}" class="collapse__sublink">delete</a>
 						</ul>
 
 					</div>

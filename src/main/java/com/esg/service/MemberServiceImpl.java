@@ -71,14 +71,14 @@ public class MemberServiceImpl implements MemberService {
 		String a = dao.searchCnum();
 
 		// a 문자부분
-		String b = "esgChNum";
+		String b = "esgCrNum";
 
 		// a 숫자부분
 		int c = 0;
 
 		if (a == null) {
 
-			b = "esgTestCNum";
+			b = "esgCrNum";
 			c = 0;
 		} else {
 			c = Integer.parseInt(a.replaceAll("[^0-9]", ""));

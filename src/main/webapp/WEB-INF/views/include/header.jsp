@@ -80,7 +80,7 @@
 					   </li>
 					   
 					    <li>
-					   <a href="${pageContext.request.contextPath }/review">로스트아크</a>
+					   <a href="${pageContext.request.contextPath }/LOAboard/boardList">로스트아크</a>
 					   </li>
 					   
 					</ul>
@@ -95,15 +95,15 @@
 					 <ul class="Gsubmenu2" >
 					
 						<li>
-					   <a href="${pageContext.request.contextPath }/review">T리그오브레전드</a>
+					   <a href="${pageContext.request.contextPath }/lolTrBoard/trList?sort=def&page=1">T리그오브레전드</a>
 					   </li>
 					   
 					   <li>
-					   <a href="${pageContext.request.contextPath }/review">T메이플스토리</a>
+					   <a href="${pageContext.request.contextPath }/mpTrBoard/trList?sort=def&page=1">T메이플스토리</a>
 					   </li>
 					   
 					   <li>
-					   <a href="${pageContext.request.contextPath }/review">T배틀그라운드</a>
+					   <a href="${pageContext.request.contextPath }/bgTrBoard/trList?sort=def&page=1">T배틀그라운드</a>
 					   </li>
 					   
 					    <li>
@@ -125,7 +125,7 @@
 					</c:if>
 					
 					<c:if test="${membervo.userid!=null }">
-					<li><a href="${pageContext.request.contextPath }/member/myinfo?sort=1">내정보</a></li>
+					<li><a href="${pageContext.request.contextPath }/member/myinfo?sort=1&userid=${membervo.userid}" onclick="">내정보</a></li>
 					</c:if>
 				</ul>
 			</nav>

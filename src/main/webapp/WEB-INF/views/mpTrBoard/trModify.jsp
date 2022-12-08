@@ -43,16 +43,16 @@ function deleteFile(obj) {
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">로아 뉴스</div>
+		<div class="ln-title">메이플 뉴스</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
 				<div class="nt-item">
 				
-				<!-- 로아뉴스 for문 -->
-				<c:forEach var="list" items="${LoaNews}" >
+				<!-- 롤 뉴스 for문 -->
+				<c:forEach var="list" items="${mpNews}" >
 				
 					<span class="new">news</span>
-					<a style="color: white !important;" href="https://m-lostark.game.onstove.com${list.RoaLink}">${list.RoaNews}</a> 
+					<a style="color: white !important;" href="https://m-lostark.game.onstove.com${list.mpLink}">${list.mpNews}</a> 
 					&nbsp; &nbsp;&nbsp;
 				
 				</c:forEach>
@@ -72,7 +72,7 @@ function deleteFile(obj) {
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>로아 거래소</h2>
+						<h2>메이플 거래소</h2>
 						<p> &nbsp; 게임머니 및 아이템 거래</p>
 					</div>
 				</div>
@@ -96,37 +96,37 @@ function deleteFile(obj) {
 					<div class="contact-form-warp">
 						<h4 class="comment-title" style="color: white;">판매글수정</h4>
 						<form class="comment-form" 
-						action="${PageContext.request.contextPath}/ydTrBoard/trLostModify" method="post" enctype="multipart/form-data">
+						action="${PageContext.request.contextPath}/mpTrBoard/trMpModify" method="post" enctype="multipart/form-data">
 
-							<input type="hidden" value="${trLoa.num}" name="num">
+							<input type="hidden" value="${trMp.num}" name="num">
 							
 							<div class="row">
 								<div class="col-md-6">
-									<input type="text" placeholder="상품이름" name="subject" value="${trLoa.subject }">
+									<input type="text" placeholder="상품이름" name="subject" value="${trMp.subject }">
 								</div>
 								<div class="col-md-6">
-									<input type="text" placeholder="상품개수" name="goodsCount" value="${trLoa.goodsCount }">
-								</div>
-								
-								<div class="col-md-6">
-									<input type="text" placeholder="캐릭터명" name="chname" value="${trLoa.chname }">
+									<input type="text" placeholder="상품개수" name="goodsCount" value="${trMp.goodsCount }">
 								</div>
 								
 								<div class="col-md-6">
-									<input type="text" placeholder="판매금액" name="price" value="${trLoa.price }">
+									<input type="text" placeholder="캐릭터명" name="chname" value="${trMp.chname }">
+								</div>
+								
+								<div class="col-md-6">
+									<input type="text" placeholder="판매금액" name="price" value="${trMp.price }">
 								</div>
 								
 								<div class="col-lg-12">
 <!-- 									<input type="text" placeholder="판매금액"> -->
 									
-									<textarea placeholder="상세설명" name="content" >${trLoa.content }</textarea>
+									<textarea placeholder="상세설명" name="content" >${trMp.content }</textarea>
 									
 									
 									<div class="form-group" id="file-list">
 								        <a href="#this" onclick="addFile()">파일추가</a>
 							        	<div class="file-group">
 							        	<a style="color: white;">* 맨 위 메인이미지</a> <br>
-<!-- 						            		<input type="file" name="files" accept="image/*"><a href='#this' name='file-deleteno' >삭제</a> -->
+						            		<input type="file" name="files" accept="image/*"><a href='#this' name='file-deleteno' >삭제</a>
 						        		</div>
 								    </div>
 									

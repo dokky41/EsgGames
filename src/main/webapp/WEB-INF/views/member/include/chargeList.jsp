@@ -86,7 +86,7 @@
 			    });
 				  
 				  alert('환불성공')
-				  location.href="${pageContext.request.contextPath}/member/myinfo?sort=chargeList";
+				  location.href="${pageContext.request.contextPath}/member/myinfo?sort=chargeList&userid=${membervo.userid}";
 			  }else{
 				  return;		  
 			  }

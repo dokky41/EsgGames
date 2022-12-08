@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.esg.mapper.TrMpMapper">
+
+
+	<insert id="TrMpinsert">
+	
+		insert into trmpboard (userid,subject,content,ip,file1,goodsCount,chname,price,file2,file3,file4)
+		values(#{userid},#{subject},#{content},#{ip},#{file1},#{goodsCount},#{chname},#{price},#{file2},#{file3},#{file4})
+	
+	</insert>
+	
+	
+	<select id="TrMpList" resultType="trMpVO">
+	
+	 <![CDATA[
+ 		select * from trmpboard
+ 		where num > 0
+ 		order by num desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	
+	<select id="TrMpSearchList" resultType="trMpVO">
+	
+	 <![CDATA[
+ 		select * from trmpboard
+ 		where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'))
+ 		order by num desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	
+	
+	
+	<select id="mpTotalCnt" resultType="int">
+ 	select count(num) from trmpboard;
+ 	
+ 	</select>
+ 	
+ 	
+ 	<select id="TrMpContent" resultType="trMpVO">
+ 	select * from trmpboard where num=#{num};
+ 	
+ 	</select>
+ 	
+ 	
+ 	<select id="mpTotalCnt2" resultType="int">
+ 	select count(num) from trmpboard
+ 	where (subject like concat('%',#{searchName},'%')) || (content like concat('%',#{searchName},'%'));
+ 	
+ 	</select>
+ 	
+ 	<update id="TrMpModify">
+ 		update trmpboard set subject=#{subject},content=#{content},file1=#{file1},goodsCount=#{goodsCount},
+ 		chname=#{chname},price=#{price},file2=#{file2},file3=#{file3},file4=#{file4}
+ 		where num=#{num}
+ 	</update>
+ 	
+ 	<delete id="TrMpDelete">
+ 		
+ 		delete from trmpboard
+ 		where num=#{num}
+ 	
+ 	</delete>
+ 	
+ 	
+ 	<update id="TrMpCount">
+ 	
+ 		update trmpboard set readcount=readcount+1
+ 		where num=#{num}
+ 	
+ 	</update>
+ 	
+ 	
+	<select id="TrMpSelList" resultType="trMpVO">
+	
+	 <![CDATA[
+ 		select * from trmpboard
+ 		where num > 0
+ 		order by readcount desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	<select id="TrMpPriList" resultType="trMpVO">
+	
+	 <![CDATA[
+ 		select * from trmpboard
+ 		where num > 0
+ 		order by price asc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+	
+	<select id="TrMpPriList2" resultType="trMpVO">
+	
+	 <![CDATA[
+ 		select * from trmpboard
+ 		where num > 0
+ 		order by price desc, date desc 
+ 		limit #{pageStart},#{perPageNum}
+ 		]]>
+ 		
+	</select>
+ 	
+ 	
+ 	
+ 	<insert id="trSendRequest">
+ 		insert into tr_mail (trSender,trReceiver,gNickName,trCount,trSubject,trContent,trConNum)
+		values(#{trSender},#{trReceiver},#{gNickName},#{trCount},#{trSubject},#{trContent},#{trConNum})
+ 	
+ 	</insert>
+ 	
+ 	
+
+ 	
+
+ 	
+</mapper>

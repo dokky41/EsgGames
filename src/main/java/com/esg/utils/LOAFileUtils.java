@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.esg.domain.LOABoardVO;
 
-@Component("fileUtils")
+@Component("LOAfileUtils")
 public class LOAFileUtils {
 	private static final Logger log = LoggerFactory.getLogger(LOAFileUtils.class);
 	
@@ -38,9 +38,9 @@ public class LOAFileUtils {
             Long saveFileSize = file[i].getSize();
             
             log.info("================== file start ==================");
-            log.info("ÆÄÀÏ ½ÇÁ¦ ÀÌ¸§: "+orgFileName);
-            log.info("ÆÄÀÏ ÀúÀå ÀÌ¸§: "+saveFileName);
-            log.info("ÆÄÀÏ Å©±â: "+saveFileSize);
+            log.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½: "+orgFileName);
+            log.info("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½: "+saveFileName);
+            log.info("ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½: "+saveFileSize);
             log.info("content type: "+file[i].getContentType());
             log.info("================== file   END ==================");
  

@@ -23,44 +23,44 @@ import org.springframework.web.servlet.ModelAndView;
 import com.esg.domain.Criteria;
 import com.esg.domain.MemberVO;
 import com.esg.domain.PageMaker;
-import com.esg.domain.trLoaVO;
+import com.esg.domain.trBgVO;
+import com.esg.domain.trLolVO;
 import com.esg.domain.trMailVO;
-import com.esg.service.TrLoaService;
+import com.esg.service.TrBgService;
+import com.esg.service.TrLolService;
 
 @Controller
-@RequestMapping("/ydTrBoard/*")
-public class YdTradeController {
+@RequestMapping("/bgTrBoard/*")
+public class bgTrController {
 
-	private static final Logger log = LoggerFactory.getLogger(YdTradeController.class);
+	private static final Logger log = LoggerFactory.getLogger(bgTrController.class);
 
 	@Inject
-	private TrLoaService service;
+	private TrBgService service;
 
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public void gettest() {
 
 	}
 
-	@RequestMapping(value = "/trLoaContent", method = RequestMethod.GET)
-	public void gettrLoaContent(Model model, HttpSession session,
+	@RequestMapping(value = "/trContent", method = RequestMethod.GET)
+	public void gettrBgContent(Model model, HttpSession session,
 			@RequestParam("num") int num, Criteria cri,@RequestParam("page") int page) {
 
-		log.info("LostContent 거래상세페이지 이동");
+		log.info("trContent 거래상세페이지 이동");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray bgNews = service.getBgNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("bgNews", bgNews);
 
-//		log.info(LoaNews+"");
-		// 로아 최신뉴스 크롤링
 
 		// 조회수 증가
 		service.updateTrBoardCount(num);
 
 		// 해당글내용 불러오기
-		log.info(service.getTrLoaContent(num)+"");
-		session.setAttribute("trLoa", service.getTrLoaContent(num));
+		log.info(service.getTrBgContent(num)+"");
+		session.setAttribute("trBg", service.getTrBgContent(num));
 		// 해당글내용 불러오기
 
 		
@@ -68,38 +68,38 @@ public class YdTradeController {
 		model.addAttribute("pageCnt", page);
 	}
 
-	@RequestMapping(value = "/trLostArk", method = RequestMethod.GET)
-	public void gettrLostArk(Model model, HttpSession session, Criteria cri, 
+	@RequestMapping(value = "/trList", method = RequestMethod.GET)
+	public void gettrBg(Model model, HttpSession session, Criteria cri, 
 			@RequestParam("sort") String sort) throws Exception {
 
-		log.info("LostArk 거래페이지 이동");
+		log.info("Bg 거래페이지 이동");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray bgNews = service.getBgNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("bgNews", bgNews);
 
-//		log.info(LoaNews+"");
+		log.info(bgNews+"");
 		// 로아 최신뉴스 크롤링
-		List<trLoaVO> trLoaList = null;
+		List<trBgVO> trBgList = null;
 		// 로아 거래글 목록 불러오기
 		if (sort.equals("def")) {
-			trLoaList = service.trLoaBoardList(cri);
+			trBgList = service.trBgBoardList(cri);
 		} else if (sort.equals("sel")) {
-			trLoaList = service.trLoaBoardSelList(cri);
+			trBgList = service.trBgBoardSelList(cri);
 		} else if (sort.equals("pri")) {
-			trLoaList = service.trLoaBoardPriList(cri);
+			trBgList = service.trBgBoardPriList(cri);
 		}else if (sort.equals("pri2")) {
-			trLoaList = service.trLoaBoardPri2List(cri);
+			trBgList = service.trBgBoardPri2List(cri);
 		}
 		// 로아 거래글 목록 불러오기
 
-		log.info("어어" + trLoaList + "");
+		log.info("어어" + trBgList + "");
 
 		model.addAttribute("listSize", service.totalCnt());
 
 		// 로아글목록 저장
-		model.addAttribute("trLoaList", trLoaList);
+		model.addAttribute("trBgList", trBgList);
 	
 		// 로아글목록 저장
 
@@ -113,34 +113,34 @@ public class YdTradeController {
 
 	}
 
-	@RequestMapping(value = "/trLostArk", method = RequestMethod.POST)
-	public void posttrLostArk(Model model, HttpSession session, Criteria cri,
+	@RequestMapping(value = "/trList", method = RequestMethod.POST)
+	public void posttrBg(Model model, HttpSession session, Criteria cri,
 			@RequestParam("searchName") String searchName, 
 			@RequestParam("sort") String sort) throws Exception {
 
-		log.info("LostArk 거래페이지 검색");
+		log.info("Bg 거래페이지 검색");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray bgNews = service.getBgNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("bgNews", bgNews);
 
 
 //		log.info(LoaNews+"");
 		// 로아 최신뉴스 크롤링
 		
-		List<trLoaVO> trLoaList = null;
+		List<trBgVO> trBgList = null;
 		// 로아 거래글 목록 불러오기
-			trLoaList = service.trLoaSearchList(cri);
+			trBgList = service.trBgSearchList(cri);
 		// 로아 거래글 목록 불러오기
 
-		log.info("ok:" + trLoaList + "");
+		log.info("ok:" + trBgList + "");
 		// 거래글수
 		model.addAttribute("listSize", service.totalCnt2(searchName));
 		// 거래글수
 
 		// 로아글목록 저장
-		model.addAttribute("trLoaList", trLoaList);
+		model.addAttribute("trBgList", trBgList);
 		// 로아글목록 저장
 
 		// 하단 페이징처리 정보 전달
@@ -154,27 +154,27 @@ public class YdTradeController {
 		
 	}
 
-	@RequestMapping(value = "/trLostWrite", method = RequestMethod.GET)
-	public void gettrLostWrite(Model model, HttpSession session) {
+	@RequestMapping(value = "/trWrite", method = RequestMethod.GET)
+	public void gettrBgWrite(Model model, HttpSession session) {
 
-		log.info("LostArk 거래작성페이지로 이동");
+		log.info("Bg 거래작성페이지로 이동");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray bgNews = service.getBgNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("bgNews", bgNews);
 
-		log.info(LoaNews + "");
+		log.info(bgNews + "");
 		// 로아 최신뉴스 크롤링
 
 	}
 	
 	int WRcount=1;
-	@RequestMapping(value = "/trLoaWrite", method = RequestMethod.POST)
-	public String gettrLostWrite(ArrayList<MultipartFile> files, trLoaVO vo, HttpServletRequest req,
+	@RequestMapping(value = "/trBgWrite", method = RequestMethod.POST)
+	public String gettrBgWrite(ArrayList<MultipartFile> files, trBgVO vo, HttpServletRequest req,
 			@RequestParam("userid") String userid) {
 
-		log.info("LostArk 거래작성완료");
+		log.info("Lol 거래작성완료");
 
 		// 사진저장부분
 		files.forEach(file -> {
@@ -217,37 +217,37 @@ public class YdTradeController {
 		log.info("저장 후 vo : " + vo);
 
 		// 글 작성 서비스동작
-		service.trLoaboardCreate(vo);
+		service.trBgboardCreate(vo);
 
 		WRcount=1;
-		return "redirect:/ydTrBoard/trLostArk?sort=def&page=1";
+		return "redirect:/bgTrBoard/trList?sort=def&page=1";
 	}
-	@RequestMapping(value = "/trLostModify", method = RequestMethod.GET)
-	public void gettrLostModify(Model model, HttpSession session,
+	@RequestMapping(value = "/trBgModify", method = RequestMethod.GET)
+	public void gettrBgModify(Model model, HttpSession session,
 			@RequestParam("num") int num) {
 
-		log.info("trLostModify 거래글 수정페이지로 이동");
+		log.info("trBg 거래글 수정페이지로 이동");
 
 		// 로아 최신뉴스 크롤링
-		JSONArray LoaNews = service.getLoaNews();
+		JSONArray BgNews = service.getBgNews();
 
-		model.addAttribute("LoaNews", LoaNews);
+		model.addAttribute("BgNews", BgNews);
 
-		log.info(LoaNews + "");
+		log.info(BgNews + "");
 		// 로아 최신뉴스 크롤링
 
 		// 해당글내용 불러오기
-		log.info(service.getTrLoaContent(num) + "");
-		session.setAttribute("trLoa", service.getTrLoaContent(num));
+		log.info(service.getTrBgContent(num) + "");
+		session.setAttribute("trBg", service.getTrBgContent(num));
 		// 해당글내용 불러오기
 
 	}
 
-	@RequestMapping(value = "/trLostModify", method = RequestMethod.POST)
-	public String posttrLostModify(Model model, HttpSession session, 
-			@RequestParam("num") int num, trLoaVO vo,ArrayList<MultipartFile> files) {
+	@RequestMapping(value = "/trBgModify", method = RequestMethod.POST)
+	public String posttrBgModify(Model model, HttpSession session, 
+			@RequestParam("num") int num, trBgVO vo,ArrayList<MultipartFile> files) {
 
-		log.info("trLostModify 거래글 수정하기");
+		log.info("trBgModify 거래글 수정하기");
 
 		// 사진저장부분
 				files.forEach(file -> {
@@ -285,26 +285,24 @@ public class YdTradeController {
 				});
 				// 사진저장부분
 		// 해당글내용 수정
-		service.getTrLoaModify(vo);
+		service.getTrBgModify(vo);
 		// 해당글내용 수정
-		WRcount=1;
-		
-		
-		return "redirect:/ydTrBoard/trLoaContent?num=" + num+"&page=1";
+
+		return "redirect:/bgTrBoard/trBgContent?num=" + num;
 	}
 
-	@RequestMapping(value = "/trLoadelete", method = RequestMethod.POST)
-	public String posttrLoaDelete(@RequestParam("num") int num) {
+	@RequestMapping(value = "/trBgdelete", method = RequestMethod.POST)
+	public String posttrBgDelete(@RequestParam("num") int num) {
 
-		log.info("trLostModify 거래글 삭제하기");
+		log.info("trBgModify 거래글 삭제하기");
 
 		
 		
 		// 해당글내용 삭제
-		service.getTrLoaDelete(num);
+		service.getTrBgDelete(num);
 		// 해당글내용 삭제
 
-		return "redirect:/ydTrBoard/trLostArk?sort=def&page=1";
+		return "redirect:/bgTrBoard/trList?sort=def";
 	}
 	
 	@RequestMapping(value = "/trSendRequest", method = RequestMethod.POST)
@@ -316,7 +314,7 @@ public class YdTradeController {
 		service.trRequestMail(vo);
 		//거래요청하기
 
-		return "redirect:/ydTrBoard/trLostArk?sort=def&page=1";
+		return "redirect:/bgTrBoard/trList?sort=def";
 	}
 	
 	

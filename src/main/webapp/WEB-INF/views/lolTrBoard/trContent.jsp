@@ -18,23 +18,23 @@ $(document).ready(function(){
 				 
 			    } else {
 			        // 확인(예) 버튼 클릭 시 이벤트
-			    	formObj.attr("action","/ydTrBoard/trLoadelete?num=${trLoa.num}");
+			    	formObj.attr("action","/lolTrBoard/trLoldelete?num=${trLol.num}");
 					
 					formObj.attr("method","post");
 					
-					formObj.submit();
+					formObj.submit();	
 			    }
 			
 			
 		});
 		
 		var userpoint = parseInt('${membervo.userpoint}');
-		var price = parseInt('${trLoa.price}');
+		var price = parseInt('${trLol.price}');
 		
 		$('#trRequest').click(function(){
 			if(userpoint > price){
 				alert('시작');
-				$('form[role="form"]').submit();
+				$('form[role="form2"]').submit();
 			}else{
 				alert('마일리지가 부족합니다.');
 				
@@ -62,12 +62,12 @@ $(document).ready(function(){
 				<div class="nt-item">
 				
 				<!-- 로아뉴스 for문 -->
-				<c:forEach var="list" items="${LoaNews}" >
+				<c:forEach var="list" items="${LolNews}" >
 				
 					<span class="new">news</span>
 					<a style="color: white !important;" 
-						href="https://m-lostark.game.onstove.com${list.RoaLink}">
-					${list.RoaNews}
+						href="https://m-lostark.game.onstove.com${list.lolLink}">
+					${list.lolNews}
 					</a> 
 					&nbsp; &nbsp;&nbsp;
 				
@@ -109,11 +109,11 @@ $(document).ready(function(){
 						<div class="col-md-9">
 							<ul class="contact-info-list" style="padding-top: 0px;" >
 							
-					<c:if test="${trLoa.file1 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }" class="img" width="300px" height="150px" >
+					<c:if test="${trLol.file1 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLol.file1 }" class="img" width="300px" height="150px" >
 					</c:if>
 					
-					<c:if test="${trLoa.file1 == null}">
+					<c:if test="${trLol.file1 == null}">
 					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" width="300px" height="150px">
 					</c:if>
 					
@@ -124,12 +124,12 @@ $(document).ready(function(){
 					
 							<br><br>
 							
-								<li><div class="cf-left">상품이름</div><div class="cf-right" style="color: white;">${trLoa.subject}</div></li>
-								<li><div class="cf-left">가격</div><div class="cf-right" style="color: white;">${trLoa.price}원</div></li>
-								<li><div class="cf-left">개수</div><div class="cf-right" style="color: white;">${trLoa.goodsCount}</div></li>
-								<li><div class="cf-left">작성자</div><div class="cf-right" style="color: white;">${trLoa.userid}</div></li>
-								<li><div class="cf-left">거래번호</div><div class="cf-right" style="color: white;">#${trLoa.num}</div></li>
-								<li><div class="cf-left">등록일</div><div class="cf-right" style="color: white;">#${trLoa.date}</div></li>
+								<li><div class="cf-left">상품이름</div><div class="cf-right" style="color: white;">${trLol.subject}</div></li>
+								<li><div class="cf-left">가격</div><div class="cf-right" style="color: white;">${trLol.price}원</div></li>
+								<li><div class="cf-left">개수</div><div class="cf-right" style="color: white;">${trLol.goodsCount}</div></li>
+								<li><div class="cf-left">작성자</div><div class="cf-right" style="color: white;">${trLol.userid}</div></li>
+								<li><div class="cf-left">거래번호</div><div class="cf-right" style="color: white;">#${trLol.num}</div></li>
+								<li><div class="cf-left">등록일</div><div class="cf-right" style="color: white;">#${trLol.date}</div></li>
 							</ul>
 	
 							<br><br><br>
@@ -138,7 +138,7 @@ $(document).ready(function(){
 							<h4 style="margin-top: 8px; color: white;">상세내용</h4>
 							<br><br><br>
 							<table border="1" width="200" height="100">
-							<tr><textarea rows="17" cols="42" readonly="readonly" style="resize: none;">${trLoa.content}</textarea></tr>
+							<tr><textarea rows="17" cols="42" readonly="readonly" style="resize: none;">${trLol.content}</textarea></tr>
 							
 							</table>
 															
@@ -152,16 +152,16 @@ $(document).ready(function(){
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
 						<h4 class="comment-title" style="color: white;">요청사항  <button class="site-btn btn-sm" style="float: right;"
-									onclick="location.href='/ydTrBoard/trLostArk?sort=def&page=${pageCnt}' ;return false;">
+									onclick="location.href='/lolTrBoard/trList?sort=def&page=${pageCnt}' ;return false;">
 									목록</button></h4>
 						 
 						
 									
 						<form class="comment-form" 
-						action="${pageContext.request.contextPath }/ydTrBoard/trSendRequest" method="post" role="form">
+						action="${pageContext.request.contextPath }/lolTrBoard/trSendRequest" method="post" role="form2">
 							<input type="hidden" name="trSender" value="${membervo.userid}">
-							<input type="hidden" name="trReceiver" value="${trLoa.userid}">
-							<input type="hidden" name="trConNum" value="${trLoa.num}">
+							<input type="hidden" name="trReceiver" value="${trLol.userid}">
+							<input type="hidden" name="trConNum" value="${trLol.num}">
 							
 							<div class="row">
 								<div class="col-md-6">
@@ -174,30 +174,26 @@ $(document).ready(function(){
 									<input type="text" placeholder="제목" name="trSubject">
 									<textarea placeholder="내용" name="trContent"></textarea>
 									
-									<c:if test="${trLoa.userid!=membervo.userid || membervo.userid == 'admin' }">
 									<button type="button" class="site-btn btn-sm" id="trRequest" onclick="javascript:trRequest()">구매신청</button>
-									</c:if>
 									
 									</form>
 									
 									
-									
-								<c:if test="${trLoa.userid==membervo.userid || membervo.userid == 'admin' }">
+								<c:if test="${trLol.userid==membervo.userid || membervo.userid == 'admin' }">
 								
-								<button class="site-btn btn-sm" id="loadelete" onclick="javascript:loadelete()" style="float: right;">
+								<button class="site-btn btn-sm" id="loldelete" onclick="javascript:loldelete()" style="float: right;">
 									삭제</button>
 								
 								
-								
 									<button class="site-btn btn-sm"
-									onclick="location.href='/ydTrBoard/trLostModify?num=${trLoa.num}&sort=def'; 
+									onclick="location.href='/lolTrBoard/trLolModify?num=${trLol.num}&sort=def'; 
 									return false;" style="float: right;">수정</button>
 									
 									
 									
 								</c:if>
 									
-									</form>
+									
 									
 								</div>
 							</div>
@@ -214,32 +210,32 @@ $(document).ready(function(){
 	<!-- 사진들 4개 -->
 	<!-- 사진들 4개 -->
 	<div class="social-links">
-					<c:if test="${trLoa.file1 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file1 }"  width="300px" height='200px' onclick="window.open(this.src)">
+					<c:if test="${trLol.file1 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLol.file1 }" class="img" style="width: 300px; height: 200px;" onclick="window.open(this.src)">
 					</c:if>
-					<c:if test="${trLoa.file1 == null}">
-					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg"  width='300px' height='200px'>
+					<c:if test="${trLol.file1 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" style="width: 360px; height: 200px">
 					</c:if>
 	
-					<c:if test="${trLoa.file2 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file2 }"  width= '300px' height='200px' onclick="window.open(this.src)">
+					<c:if test="${trLol.file2 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLol.file2 }" class="img" style="width: 300px; height: 200px;" onclick="window.open(this.src)">
 					</c:if>
-					<c:if test="${trLoa.file2 == null}">
-					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" width="300px" height='200px'>
-					</c:if>
-					
-					<c:if test="${trLoa.file3 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file3 }" width= '300px' height='200px' onclick="window.open(this.src)">
-					</c:if>
-					<c:if test="${trLoa.file3 == null}">
-					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg"  width= '300px' height= '200px'>
+					<c:if test="${trLol.file2 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" style="width: 360px; height: 200px">
 					</c:if>
 					
-					<c:if test="${trLoa.file4 != null}">
-					<img src="http://localhost:8088/tomcatImg/${trLoa.file4 }"  width= '300px' height= '200px' onclick="window.open(this.src)">
+					<c:if test="${trLol.file3 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLol.file3 }" class="img" style="width: 300px; height: 200px;" onclick="window.open(this.src)">
 					</c:if>
-					<c:if test="${trLoa.file4 == null}">
-					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg"  width= '300px' height= '200px'>
+					<c:if test="${trLol.file3 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" style="width: 360px; height: 200px">
+					</c:if>
+					
+					<c:if test="${trLol.file4 != null}">
+					<img src="http://localhost:8088/tomcatImg/${trLol.file4 }" class="img" style="width: 300px; height: 200px;" onclick="window.open(this.src)">
+					</c:if>
+					<c:if test="${trLol.file4 == null}">
+					<img src="${pageContext.request.contextPath }/resources/img/yd/noimg.jpg" class="img" style="width: 360px; height: 200px">
 					</c:if>
 	</div>
 	
