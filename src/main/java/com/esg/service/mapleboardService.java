@@ -1,8 +1,8 @@
 package com.esg.service;
 
 import java.util.List;
+import java.util.Map;
 
-import javax.activation.CommandMap;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,6 +36,8 @@ public interface mapleboardService {
 	void insertFile(mapleFileVO vo1, MultipartFile[] file) throws Exception;
 
 	int getBoardNum();
+
+	List<Map<String, Object>> selectFileList(int num);
 
 	
 
