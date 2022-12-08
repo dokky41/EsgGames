@@ -1,9 +1,14 @@
 package com.esg.service;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.json.simple.parser.ParseException;
+
 import com.esg.domain.MemberVO;
+import com.esg.domain.esgChange;
 import com.esg.domain.esgMileVO;
+import com.esg.domain.esgmailVO;
 import com.esg.domain.trLoaVO;
 import com.esg.domain.trMailVO;
 
@@ -51,4 +56,36 @@ public interface MemberService {
 
 	//내 정보 변경
 	void updateMeInfo(MemberVO vo);
+
+	//환불
+	void payExChange(esgChange vo) throws IOException, ParseException;
+
+	//환불테이블
+	void exPutDB(esgChange vo);
+
+	//마일리지 업데이트
+	void exMileTrans(esgChange vo);
+
+	//내 정보 삭제
+	void deleteMeInfo(MemberVO vo);
+
+	//거래 거절
+	void getRefuse(trMailVO vo);
+
+	//구매자
+	List<trMailVO> getFromTrInfo(String userid);
+
+	//판매자
+	List<trMailVO> getToTrInfo(String userid);
+
+	//메일보내기
+	void sendMail(esgmailVO vo);
+
+	//받은 메일함
+	List<trMailVO> getmailForm(String userid);
+	
+	//보낸 메일함
+	List<trMailVO> getmailTo(String userid);
+	
+	
 }

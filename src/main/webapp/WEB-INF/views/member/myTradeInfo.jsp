@@ -106,14 +106,10 @@
 							<input type="hidden" name="num" value="${trList.trConNum }">
 							
 							<button type="submit">승낙</button>
-							<button type="button"  onclick="location.href='/ydTrBoard/trRefuse'">거부</button>
+							<button type="button"  onclick="location.href='/member/trRefuse'">거부</button>
 							</form>
 							
 							</c:if>
-							
-<%-- 							<c:if test="${trList.trState!='yes'}"> --%>
-<!-- 							<button >취소</button> -->
-<%-- 							</c:if> --%>
 							
 							<br><br>
 							</c:forEach>

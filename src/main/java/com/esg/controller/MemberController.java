@@ -1,5 +1,7 @@
 package com.esg.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.esg.domain.MemberVO;
 import com.esg.domain.addressVO;
+import com.esg.domain.esgChange;
 import com.esg.domain.esgMileVO;
+import com.esg.domain.esgmailVO;
 import com.esg.domain.trLoaVO;
 import com.esg.domain.trMailVO;
 import com.esg.service.MemberService;
@@ -80,7 +84,7 @@ public class MemberController {
 		return "redirect:/member/login";
 }
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(MemberVO vo, HttpSession session) throws Exception {
+	public String login(esgMileVO vo2,MemberVO vo, HttpSession session) throws Exception {
 		
 		log.info("controller 로그인");
 		log.info(vo+"");
@@ -90,8 +94,25 @@ public class MemberController {
 		if(membervo==null) {
 			return "redirect:/member/login";
 		}
+
+		List<esgMileVO> mile = service.getMyMileInfo(vo2);
+		List<trMailVO> trInfo = service.getMyTrInfo(membervo.getUserid());
+		List<trMailVO> trFromInfo = service.getFromTrInfo(membervo.getUserid());
+		List<trMailVO> trToInfo = service.getToTrInfo(membervo.getUserid());
+		List<trMailVO> mailFrom = service.getmailForm(membervo.getUserid());
+		List<trMailVO> mailTo = service.getmailTo(membervo.getUserid());
 		
+		log.info(mile+"");
+		log.info(trFromInfo+"");
+		
+		
+		session.setAttribute("mailFrom", mailFrom);
+		session.setAttribute("mailTo", mailTo);
+		session.setAttribute("trToInfo", trToInfo);
+		session.setAttribute("trFromInfo", trFromInfo);
 		session.setAttribute("membervo", membervo);
+		session.setAttribute("mile", mile);
+		session.setAttribute("tr", trInfo);
 		
 		return "redirect:/index";
 	}
@@ -109,9 +130,11 @@ public class MemberController {
 	
 	//내 정보 페이지로 이동
 	@RequestMapping(value="/myinfo", method=RequestMethod.GET)
-	public void myinfoGET() throws Exception {
+	public void myinfoGET(Model model,@RequestParam("sort") String sort) throws Exception {
 		
 		log.info("내정보 페이지 이동");
+		
+		model.addAttribute("sort", sort);
 	}
 	
 	//마일리지 충전 페이지로 이동
@@ -212,6 +235,22 @@ public class MemberController {
 		//구매자마일리지변환
 		
 		return "redirect:/member/myinfo";
+	}
+	
+	@RequestMapping(value = "/trRefuse", method = RequestMethod.GET)
+	public String trRefuse(trMailVO vo) {
+		
+		log.info("trRefuse 거래 거절하기");
+		
+		vo.setTrState("no");
+		
+		log.info(vo+"");
+		
+		service.getRefuse(vo);
+		
+		
+		
+		return "redirect:/member/myinfo?sort=1";
 	}
 
 	//본인인증 메세지
@@ -314,7 +353,7 @@ public class MemberController {
 		
 	}
 	
-	//내정보변경 페이지로 이동
+	//내정보변경 
 	@RequestMapping(value="/updateMeInfo", method=RequestMethod.POST)
 	public String updateInfoPOST(MemberVO vo) throws Exception {
 		
@@ -324,6 +363,39 @@ public class MemberController {
 		return "redirect:/member/login";
 	}
 	
+	//내정보삭제 
+	@RequestMapping(value="/deleteMeInfo", method=RequestMethod.POST)
+	public String deleteMeInfoPOST(MemberVO vo) throws Exception {
+		
+		service.deleteMeInfo(vo);
+		
+		
+		return "redirect:/member/login";
+	}
 	
+	//마일리지 환불
+	@RequestMapping(value="/exChangeDB", method=RequestMethod.POST)
+	public void exChangeDBPOST(esgChange vo) throws Exception {
+		
+		//환불아임포트
+		service.payExChange(vo);
+		
+		//환불테이블
+		service.exPutDB(vo);
+		
+		//마일리지 업데이트
+		service.exMileTrans(vo);
+		
+	}
+	
+	//메일보내기
+	@RequestMapping(value="/mailSend", method=RequestMethod.POST)
+	public String mailSendPOST(esgmailVO vo) throws Exception {
+		
+		service.sendMail(vo);
+		
+		
+		return "redirect:/member/myinfo?sort=1";
+	}
 
 }

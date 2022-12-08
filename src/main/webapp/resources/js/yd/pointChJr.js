@@ -58,14 +58,14 @@ function requestPay() {
 			 				}
 			 			
 			 			}); //ajax끝
-			 			 location.href="/member/myinfo";
+			 			 location.href="/member/myinfo?sort=1";
 			 			
 			          } else {
 			         	
 			              // 결제 실패 시 로직, 뒤로가기
 			              alert('결제실패');
 			              //결제 실패시 뒤로가기
-			              location.href="/member/myinfo";
+			              location.href="/member/myinfo?sort=1";
 			          }
 			      });
 			}

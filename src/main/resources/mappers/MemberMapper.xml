@@ -77,6 +77,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		update esgmember set userpoint=userpoint-${userpoint}
  		where userid=#{userid}
  	</update>
+ 	
+ 	<update id="mileUpdate">
+ 		update esgmember set userpoint=userpoint-${userpoint}
+ 		where userid=#{userid}
+ 	</update>
 	
 	 <select id="getIdSearch" resultType="String">
  		select userid from esgmember
@@ -97,5 +102,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		update esgmember set userpw=#{userpw}
  		where userid=#{userid}
  	</update>
+ 	
+	<insert id="exInsert">
+	
+		insert into esgexchange (userid,userpoint,username,chargeNum)
+		values(#{userid},#{userpoint},#{username},#{chargeNum})
+	
+	</insert>
+	
+	<delete id="deleteMeInfo">
+	
+		delete from esgmember
+		where userid=#{userid}
+		
+	
+	</delete>
+	
+	 <update id="getRefuse">
+ 		update tr_mail set trState=#{trState}
+ 		where trBnum=#{trBnum}
+ 	</update>
+ 	
+ 	<select id="getFromTrInfo" resultType="trMailVO">
+ 		select * from tr_mail
+ 		where trReceiver=#{userid}
+ 	</select>
+ 	
+ 	<select id="getToTrInfo" resultType="trMailVO">
+ 		select * from tr_mail
+ 		where trSender=#{userid}
+ 	</select>
+ 	
+ 	
+	<insert id="sendMail">
+	
+		insert into esgmail (mSubject,mContent,mSender,mReceiver)
+		values(#{mSubject},#{mContent},#{mSender},#{mReceiver})
+	
+	</insert>
+ 	
+ 	<select id="getmailForm" resultType="esgmailVO">
+ 		select * from esgmail
+ 		where mReceiver=#{userid}
+ 	</select>
+ 	
+ 	<select id="getmailTo" resultType="esgmailVO">
+ 		select * from esgmail
+ 		where mSender=#{userid}
+ 	</select>
  	
 </mapper>

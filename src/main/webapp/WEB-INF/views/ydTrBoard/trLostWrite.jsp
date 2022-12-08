@@ -84,7 +84,7 @@ function deleteFile(obj) {
 
 
 	<!-- Page section -->
-	<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/community-bg.jpg">
+	<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/yd/trloabg.jpg">
 		<div class="community-warp spad">
 			<div class="container">
 				<ul class="community-post-list">
@@ -109,7 +109,7 @@ function deleteFile(obj) {
 									<input type="text" placeholder="상품이름" name="subject">
 								</div>
 								<div class="col-md-6">
-									<input type="number" placeholder="상품개수" name="goodsCount" value="1">
+									<input type="number" placeholder="상품개수" name="goodsCount">
 								</div>
 								
 								<div class="col-md-6">
@@ -117,7 +117,7 @@ function deleteFile(obj) {
 								</div>
 								
 								<div class="col-md-6">
-									<input type="number" placeholder="판매금액" name="price" value="1000">
+									<input type="number" placeholder="판매금액" name="price">
 								</div>
 								
 								<div class="col-lg-12">
