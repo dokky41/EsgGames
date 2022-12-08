@@ -6,70 +6,64 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.esg.domain.BGFileVO;
+import com.esg.domain.BGboardVO;
 import com.esg.domain.Criteria;
-import com.esg.domain.mapleFileVO;
-import com.esg.domain.mapleboardVO;
-import com.esg.persistence.mapleboardDAO;
-import com.esg.utils.mapleFileUtils;
-
+import com.esg.persistence.BGboardDAO;
+import com.esg.utils.BGFileUtils;
 
 @Service
-public class mapleboardServiceImpl implements mapleboardService {
-
-	private static final Logger log = LoggerFactory.getLogger(mapleboardServiceImpl.class);
+public class BGboardServiceImpl implements BGboardService {
+	
+	private static final Logger log = LoggerFactory.getLogger(BGboardServiceImpl.class);
 	
 	@Inject
-	mapleboardDAO dao;
+	BGboardDAO dao;
 	
-	@Resource(name="maplefileUtils")
-	private mapleFileUtils maplefileUtils;
-	
+	@Resource(name="BGfileUtils")
+	private BGFileUtils BGfileUtils;
+
 	@Override
-	public void mapleboardwrite(mapleboardVO vo) {
+	public void BGboardwrite(BGboardVO vo) {
 		// TODO Auto-generated method stub
-		//log.info(vo+"");
-		dao.mapleboardwrite(vo);
+		dao.BGboardwrite(vo);
 		
 	}
 
 	@Override
-	public List<mapleboardVO> mapleboardlist(Criteria cri) {
+	public List<BGboardVO> BGboardlist(Criteria cri) {
 		// TODO Auto-generated method stub
-		return dao.mapleboardlist(cri);
+		return dao.BGboardlist(cri);
 	}
 
 	@Override
-	public List<mapleboardVO> mapleSearchList(Criteria cri) {
+	public List<BGboardVO> BGSearchList(Criteria cri) {
 		// TODO Auto-generated method stub
-		return dao.mapleSearchList(cri);
+		return dao.BGSearchList(cri);
 	}
-	
-	
 
 	@Override
-	public void getmaplemodify(mapleboardVO vo) {
+	public void getBGmodify(BGboardVO vo) {
 		// TODO Auto-generated method stub
-		dao.getmaplemodify(vo);
+		dao.getBGmodify(vo);
 		
 	}
-	
+
 	@Override
-	public mapleboardVO getmapleContent(int num) {
+	public BGboardVO getBGContent(int num) {
 		// TODO Auto-generated method stub
-		return dao.getmapleContent(num);
+		return dao.getBGContent(num);
 	}
 
 	@Override
-	public void getmapledelete(int num) {
+	public void getBGdelete(int num) {
 		// TODO Auto-generated method stub
-		dao.getmapledelete(num);
-		
+		dao.getBGdelete(num);
 	}
 
 	@Override
@@ -79,19 +73,18 @@ public class mapleboardServiceImpl implements mapleboardService {
 	}
 
 	@Override
-	public void updatemapleBoardCount(int num) {
+	public void updateBGBoardCount(int num) {
 		// TODO Auto-generated method stub
-		dao.updatemapleBoardCount(num);
+		dao.updateBGBoardCount(num);
 	}
 
 	@Override
-	public void insertFile(mapleFileVO vo1, MultipartFile[] file) throws Exception{
+	public void insertFile(BGFileVO vo1, MultipartFile[] file) throws Exception {
 		// TODO Auto-generated method stub
-	    List<Map<String, Object>>fileList = mapleFileUtils.parseFileInfo(vo1, file);
+		List<Map<String, Object>>fileList = BGFileUtils.parseFileInfo(vo1, file);
 		for(int i=0; i<fileList.size(); i++) {
 	        dao.insertFile(fileList.get(i));
 	    }
-	
 	}
 
 	@Override
@@ -105,20 +98,5 @@ public class mapleboardServiceImpl implements mapleboardService {
 		// TODO Auto-generated method stub
 		return dao.selectFileList(num);
 	}
-
-
-		
-	
-
-	
-	
-		
-	
-
-	
-
-	
-
-	
 
 }

@@ -6,7 +6,7 @@
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">Maple ISSUE</div>
+		<div class="ln-title">BattleGrounds ISSUE</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
 				<div class="nt-item"><span class="new">HOT</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
@@ -19,13 +19,13 @@
 
 
 	<!-- Page info section -->
-	<section class="page-info-section set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/maple/1.jpeg">
+	<section class="page-info-section set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/battlegrounds/1.jpeg">
 		<div class="pi-content">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>MapleStory</h2>
-						<p>메이플스토리 게시판 </p>
+						<h2>BattleGrounds</h2>
+						<p>배틀그라운드 게시판 </p>
 					</div>
 				</div>
 			</div>
@@ -46,7 +46,7 @@
 				<div class="col-lg-8">
 					<div class="contact-form-warp">
 						<h4 class="comment-title">글쓰기 </h4>
-						<form class="comment-form" action="${pageContext.request.contextPath}/maple/mapleboardwrite" method="post" enctype="multipart/form-data">
+						<form class="comment-form" action="${pageContext.request.contextPath}/battlegrounds/BGboardwrite" method="post" enctype="multipart/form-data">
 							<input type="hidden" value="textID" name="CREA_ID">
 							<div class="row">
 								<div class="col-md-6">

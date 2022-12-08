@@ -10,69 +10,55 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.esg.domain.BGboardVO;
 import com.esg.domain.Criteria;
-import com.esg.domain.mapleFileVO;
-import com.esg.domain.mapleboardVO;
-
-
 
 @Repository
-public class mapleboardDAOImpl implements mapleboardDAO{
+public class BGboardDAOImpl implements BGboardDAO{
 	
-private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.class);
+private static final Logger log = LoggerFactory.getLogger(BGboardDAOImpl.class);
 	
-	//mapper 위치값(주소) 이름 (sql를 호출하기 위한 인터페이스)
-	private static final String NAMESPACE ="com.esg.mapper.MapleMapper";
+	private static final String NAMESPACE ="com.esg.mapper.BGMapper";
 	
-	//DB연결, 자원해제, SQL실행
 	@Inject
 	private SqlSession sqlSession;
 
 
 	@Override
-	public void mapleboardwrite(mapleboardVO vo) {
+	public void BGboardwrite(BGboardVO vo) {
 		// TODO Auto-generated method stub
 		sqlSession.insert(NAMESPACE+".createBoard",vo);
-		
 	}
 
-
 	@Override
-	public List<mapleboardVO> mapleboardlist(Criteria cri) {
+	public List<BGboardVO> BGboardlist(Criteria cri) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+".maplelist",cri);
+		return sqlSession.selectList(NAMESPACE+".BGlist",cri);
 	}
 
-
 	@Override
-	public List<mapleboardVO> mapleSearchList(Criteria cri) {
+	public List<BGboardVO> BGSearchList(Criteria cri) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE + ".mapleSearchList",cri);
+		return sqlSession.selectList(NAMESPACE + ".BGSearchList",cri);
 	}
 
-
-	
 	@Override
-	public void getmaplemodify(mapleboardVO vo) {
-		sqlSession.update(NAMESPACE+".maplemodify",vo);
-		
-	}
-
-
-	@Override
-	public mapleboardVO getmapleContent(int num) {
+	public void getBGmodify(BGboardVO vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+".mapleContent",num);
+		sqlSession.update(NAMESPACE+".BGmodify",vo);
 	}
-
 
 	@Override
-	public void getmapledelete(int num) {
+	public BGboardVO getBGContent(int num) {
 		// TODO Auto-generated method stub
-		sqlSession.delete(NAMESPACE+".mapledelete",num);
-		
+		return sqlSession.selectOne(NAMESPACE+".BGContent",num);
 	}
 
+	@Override
+	public void getBGdelete(int num) {
+		// TODO Auto-generated method stub
+		sqlSession.delete(NAMESPACE+".BGdelete",num);
+	}
 
 	@Override
 	public int totalCnt() {
@@ -80,14 +66,11 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 		return sqlSession.selectOne(NAMESPACE+".totalCnt");
 	}
 
-
 	@Override
-	public void updatemapleBoardCount(int num) {
+	public void updateBGBoardCount(int num) {
 		// TODO Auto-generated method stub
-		sqlSession.delete(NAMESPACE+".mapleCount",num);
-		
+		sqlSession.delete(NAMESPACE+".BGCount",num);
 	}
-
 
 	@Override
 	public void insertFile(Map<String, Object> map) {
@@ -95,29 +78,16 @@ private static final Logger log = LoggerFactory.getLogger(mapleboardDAOImpl.clas
 		sqlSession.insert(NAMESPACE+".insertFile", map);
 	}
 
-
-
 	@Override
 	public int getBoardNum() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+".getBoardNum");
 	}
 
-
 	@Override
 	public List<Map<String, Object>> selectFileList(int num) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+".getBoardFile",num);
 	}
-
-
-	
-	
-	
-	
-
-
-
-	
 
 }

@@ -9,7 +9,7 @@
 
 	<!-- Latest news section -->
 	<div class="latest-news-section">
-		<div class="ln-title">Maple ISSUE</div>
+		<div class="ln-title">BattleGrounds ISSUE</div>
 		<div class="news-ticker">
 			<div class="news-ticker-contant">
 				<div class="nt-item"><span class="new">HOT</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </div>
@@ -22,14 +22,14 @@
 
 
 	<!-- Page info section -->
-	<section class="page-info-section set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/maple/1.jpeg">
+	<section class="page-info-section set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/battlegrounds/1.jpeg">
 		<div class="pi-content">
 			<div class="container">
 				<div class="row">
 					<div class="col-xl-5 col-lg-6 text-white">
-						<h2>MapleStory</h2>
+						<h2>BattleGrounds</h2>
 					
-					    <p>메이플스토리 게시판 </p>
+					    <p>배틀그라운드 게시판 </p>
 					</div>
 				</div>
 			</div>
@@ -39,19 +39,19 @@
 
 
 	<!-- Page section -->
-	<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/maple/2.jpeg">
-		<div class="community-warp spad">
+	<section class="page-section community-page set-bg" data-setbg="${pageContext.request.contextPath }/resources/img/battlegrounds/2.jpeg">
+		<div class="community-warp spad" >
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h3 class="community-top-title" style="color: white">Maple COMMUNITY </h3>
-						<form action="${pageContext.request.contextPath }/maple/mapleboardlist" method="POST">
+						<h3 class="community-top-title" style="color: white">BattleGrounds COMMUNITY </h3>
+						<form action="${pageContext.request.contextPath }/battlegrounds/BGboardlist" method="POST">
 						<input type="text" name="searchName">
 						<input type="submit" value="검색 " style="color: black; background: white; cursor: pointer; border-radius:7px 7px 7px 7px; ">
 						</form>
 					</div>
 					<div class="col-md-6 text-lg-right">
-						<form class="community-filter" action ="${pageContext.request.contextPath}/maple/mapleboardwrite" method="get">
+						<form class="community-filter" action ="${pageContext.request.contextPath}/battlegrounds/BGboardwrite" method="get">
 							<label for="fdf5"><input type="submit" value="글쓰기" style="height:40px;
 							background: white; color: black; border-radius:7px 7px 7px 7px; cursor: pointer;">
 							</label>
@@ -69,11 +69,11 @@
               </thead>
               <tbody style="text-align: center; color: white;">
  											                     
-                          <c:forEach var="list" items="${maplelist}">
+                          <c:forEach var="list" items="${BGlist}">
                               <tr >
                               <th scope="row">${list.num }</th>
                               <td>
-                              <a href="${pageContext.request.contextPath }/maple/mapleread?num=${list.num}" 
+                              <a href="${pageContext.request.contextPath }/battlegrounds/BGread?num=${list.num}" 
                                class="text-subject" >${list.subject }</a>
                               </td>
                               <td>
@@ -97,17 +97,17 @@
 				<div class="site-pagination sp-style-2" style="padding-left: 45%; ">
 	
 	<c:if test="${pm.prev}">
-		<a href="mapleboardlist?page=${pm.startPage -1}"> &laquo; </a>
+		<a href="BGboardlist?page=${pm.startPage -1}"> &laquo; </a>
 	</c:if>
 	
 	<c:forEach var="idx" begin="${pm.startPage}" end="${pm.endPage }">
 	
-		<a href="mapleboardlist?page=${idx }" style= "color : black; background:#dcdcdc ">${idx }</a>
+		<a href="BGboardlist?page=${idx }" style= "color : black; background:#dcdcdc ">${idx }</a>
 		
 	</c:forEach>
 	
 	<c:if test="${pm.next && pm.endPage > 0 }">
-		<a href="mapleboardlist?page=${pm.endPage+1}"> &raquo; </a>
+		<a href="BGboardlist?page=${pm.endPage+1}"> &raquo; </a>
 		
 	</c:if>
 </div>

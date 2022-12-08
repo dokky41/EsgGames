@@ -2,7 +2,7 @@ package com.esg.controller;
 
 
 import java.util.List;
-
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -66,10 +66,14 @@ public class mapleboardController {
 	@RequestMapping(value="/maple/mapleboardwrite", method=RequestMethod.POST)
 	public ModelAndView maple2Post(mapleboardVO vo,mapleFileVO vo1,MultipartFile[] file) throws Exception {
 		log.info(vo+"");
-		log.info(file+"");
+		log.info(file[0].getOriginalFilename()+"");
+		vo1.setBOARD_IDX(service.getBoardNum());
 		ModelAndView mav = new ModelAndView("redirect:/maple/mapleboardlist");
 		service.mapleboardwrite(vo);
-		service.insertBoard(vo1,file);
+		
+		if(!(file[0].getOriginalFilename()).equals("")) {
+			service.insertFile(vo1,file);
+		}
 		return mav;
 	
 		
@@ -82,7 +86,7 @@ public class mapleboardController {
 	
 	
 	@RequestMapping(value="/maple/mapleboardlist", method=RequestMethod.POST)
-	public void posttrLostArk(Model model,HttpSession session,
+	public void postmaple(Model model,HttpSession session,
 			Criteria cri,@RequestParam("searchName") String searchName) throws Exception {
 		
 		log.info("maple페이지 검색" );
@@ -104,6 +108,9 @@ public class mapleboardController {
 		service.updatemapleBoardCount(num);
 		mapleboardVO mapleread = service.getmapleContent(num);
 		model.addAttribute("mapleboard", mapleread);
+		
+		List<Map<String,Object>> fileList=service.selectFileList(num);
+		model.addAttribute("file", fileList);
 	}
 	
 	@RequestMapping(value="/maplemodify", method=RequestMethod.GET)
