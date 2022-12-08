@@ -3,7 +3,6 @@ package com.esg.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.activation.CommandMap;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 
@@ -30,7 +29,6 @@ public class mapleboardServiceImpl implements mapleboardService {
 	
 	@Resource(name="maplefileUtils")
 	private mapleFileUtils maplefileUtils;
-	
 	
 	@Override
 	public void mapleboardwrite(mapleboardVO vo) {
@@ -100,6 +98,12 @@ public class mapleboardServiceImpl implements mapleboardService {
 	public int getBoardNum() {
 		// TODO Auto-generated method stub
 		return dao.getBoardNum()+1;
+	}
+
+	@Override
+	public List<Map<String, Object>> selectFileList(int num) {
+		// TODO Auto-generated method stub
+		return dao.selectFileList(num);
 	}
 
 
